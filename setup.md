@@ -163,7 +163,7 @@ public key (the contents of the file ending in `.pub`) into the **Key** box then
 It is important to fully understand and adhere to the [Anaconda Licensing][anacondalicense] which permits
 the use of their software (including Miniconda) in educational and research environments _only_ if there is no
 commercial benefit. If the work you undertake involves commercial collaboration you should seek alternative solutions
-for virtual environments (e.g. [virtualenvwrapper][virtualenvwrapper]).
+for virtual environments (e.g. [miniforge3][miniforge3] or [virtualenvwrapper][virtualenvwrapper]).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -174,8 +174,9 @@ has been chosen as the language to fulfill that task. You do _not_ need to know 
 the code you need to use is all provided and can be copy and pasted.
 
 However, you _do_ need what is known as a "_Virtual Environment_" setup to be able to install various programmes and run
-the checks that are part of this course. To that end you should install [Miniconda3][miniconda3] on your system prior to
-attending the course.
+the checks that are part of this course. To that end you should install
+[Miniconda3][miniconda3]/[miniforge3][miniforge3] or another tool for managing Virtual Environments
+(e.g. [virtualenvwrapper][virtualenvwrapper]) on your system prior to attending the course.
 
 If you are already familiar with Python and Virtual Environments you can simply create a fresh virtual environment to
 use for the course.
@@ -188,6 +189,9 @@ use for the course.
 
 Please follow the instructions at [Installing Miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/)
 for your Operating System.
+
+Should you chose to use `miniforge3` the downloads and installation instructions for different operating systems can be
+found [here][miniforge3-install].
 
 :::::::::::::::::::::::::
 
@@ -212,6 +216,8 @@ conda activate git-collaboration
 [gitWin]: https://git-scm.com/download/win
 [git4windows]: https://carpentries.github.io/workshop-template/install_instructions/#shell
 [miniconda3]: https://docs.anaconda.com/free/miniconda/
+[miniforge3]: https://conda-forge.org/
+[miniforge3-install]: https://github.com/conda-forge/miniforge
 [putty]: https://www.ssh.com/ssh/putty/download
 [putty-ssh]: https://www.ssh.com/academy/ssh/putty/windows/puttygen#creating-a-new-key-pair-for-authentication
 [python]: https://python.org
