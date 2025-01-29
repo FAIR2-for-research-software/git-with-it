@@ -19,9 +19,9 @@ directory which should be used to generate the contents of these emails in HTML 
 
 | Schedule        | File                        | Description                                                                                                    |
 |:----------------|:----------------------------|:---------------------------------------------------------------------------------------------------------------|
-| 1 Week Reminder | `setup_email.Rmd`           | Setup instructions for registered attendees as well as information about the session (venue, dates and times). |
-| 4 Day Reminder  | `setup_email.Rmd`           | A reminder of the setup instructions as well as information about the session (venue, dates and times).        |
-| On the Morning  | `joining_email.Rmd`         | A reminder of the course starting that day, to be scheduled one hour before the course starts.                 |
+| 1 Week Reminder | `setup_email_two_day.Rmd`   | Setup instructions for registered attendees as well as information about the session (venue, dates and times). |
+| 4 Day Reminder  | `setup_email_two_day.Rmd`   | A reminder of the setup instructions as well as information about the session (venue, dates and times).        |
+| On the Morning  | `joining_reminder_email_two_day.Rmd`         | A reminder of the course starting that day, to be scheduled one hour before the course starts.                 |
 | Day After       | `feedback_survey_email.Rmd` | A request to complete the feedback survey.                                                                     |
 
 
@@ -59,11 +59,15 @@ rmarkdown::render("emails/<email-to-be-knitted>.Rmd")
 You can also run the same command from the command line (at the top level of the repository).
 
 ``` bash
-R -e "rmarkdown::render('emails/<email-to-be-knitted>.Rmd')"
+# Change directory into .emails
+cd .emails
+R -e "rmarkdown::render(<email-to-be-knitted>.Rmd')"
+# Or from the repository root
+R -e "rmarkdown::render(.emails/<email-to-be-knitted>.Rmd')"
 ```
 
-The HTML output sits adjacent to the input files and can be opened in your web-browser and the text copied and pasted
-into a draft email.
+The HTML output will reside in the directory from which the above commands are invoked and can be opened in your
+web-browser and the text copied and pasted into a draft email.
 
 ## Scheduling Emails
 

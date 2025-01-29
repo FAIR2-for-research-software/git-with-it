@@ -21,7 +21,7 @@ We are always looking to improve our course in order to meet our participants' n
 
 <br>
 
-## [Complete Course Survey](`r paste0(params$prefilled_survey_link, params$event_date)`)
+## [Complete Course Survey](`r paste0(params$prefilled_survey_link)`)
 
 Thank you for taking the time to provide feedback!
 
@@ -33,7 +33,7 @@ sessions. The [FAIR^2 for Research Software][rse-fair2] course which covers open
 ## Further materials
 
 For more resources to help you discover and learn more about Git please see the [Further Resources][further-resources]
-section of the coures material.
+section of the course material.
 
 <br>
 
@@ -44,7 +44,7 @@ section of the coures material.
 
 University of Sheffield
 
-[further-resources]: https://blog.nshephard.dev/git-collaboration/further_resources.html
+[further-resources]: https://fair2-for-research-software.github.io/git-collaboration/further_resources.html
 [rse-fair2]: https://rse.shef.ac.uk/training/fair4rs/
 [rse]: https://rse.shef.ac.uk
 [rse-group]: https://groups.google.com/a/sheffield.ac.uk/g/rse-group
