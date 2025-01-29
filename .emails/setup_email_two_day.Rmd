@@ -35,8 +35,8 @@ Prior to attending, you need to **install the software we are going to use and c
 style="color: #d1410c;">Please ensure you have completed setup before the course begins.</span>**
 
 Instructions on how to create the account as well as install all the software required can be found on the [**Setup
-Section**](https://blog.nshephard.dev/git-collaboration/#setup) of the course materials. If you have any problems with
-your setup, please get in touch with us for assistance *before* the course begins.
+Section**](https://fair2-for-research-software.github.io/git-collaboration/#setup) of the course materials. If you have
+any problems with your setup, please get in touch with us for assistance *before* the course begins.
 
 
 ### SCHEDULE
