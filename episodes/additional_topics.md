@@ -6,6 +6,62 @@ exercises: 2
 
 Some additional topics that extend working with branches and the process of reviewing.
 
+## Maintenance
+
+Overtime the information about branches and commits can become bloated. We've seen how to delete branches already but
+there are a few other simple steps we can take to help keep the repository clean.
+
+[`git maintenance`][gitmaintenance] is a _really_ useful command that will "_Run tasks to optimize Git repository data,
+speeding up other Git commands and reducing storage requirements for the repository._". The details of what this does
+are beyond the scope of this tutorial (refer to the [help page][gitmaintenance] if interested). Providing you have setup
+your GitHub account with SSH keys and they are available via something such as keychain locally then you can bring a
+repository under `git maintenance` and forget about it.
+
+``` bash
+git mainetenance register
+```
+
+This adds entries to your global configuration (`~/.gitconfig`) to ensure the repository will have these tasks run at
+the scheduled point (default is hourly).
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Be prepared to explain how SSH keys can be unlocked on login so that the passwords don't need entering every time you
+try to use the SSH key.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+## Finding bugs with `git bisect`
+
+`git bisect` is one of the killer features of `git` that helps you find where bugs were introduced. Unfortunately it
+requires that you be somewhat organised in your workflow as it works best when a number of small commits have been made
+rather than one or two large commits with lots of changes. If you've followed the advice in this course and grouped your
+changes into atomic commits you should be good to go.
+
+### When to use?
+
+If you've found that your tests are failing or if there is unexpected behaviour but don't know when the changes that
+caused them were introduced you can leverage `git bisect` to search for the commit that changed the behaviour.
+
+### What is bisecting?
+
+The idea behind bisecting is that you have a "Good" commit and a "Bad" commit and any number of commits have been made
+in between these two. `git bisect` will use a [bisect algorithm](https://en.wikipedia.org/wiki/Bisection_method) to
+checkout a commit between the "Good" and "Bad" commit. You can then run your tests or check behaviour to see if the
+problem still occurs, if it does then you mark the commit as "Bad", if it doesn't you mark it as "Good". Git then
+iterates the splitting strategy on the "Bad" half of commits, quickly and efficiently narrowing down the offending
+commit that introduced the problem and (often) saving you hours of trawling through a large amount of changes to
+identify what caused the problem.
+
+There is no worked example for this but it is a very powerful tool that is worth knowing about and so a broad overview
+is given. If you need to use `git bisect` it is recommended that you read the [official
+documentation](https://git-scm.com/docs/git-bisect). A useful feature is being able to include a script which
+automatically "runs" the tests or invocation that you wish to perform at each step so that after you have marked your
+good and bad commits you use a script which runs your tests and reports whether they were good or bad with `git bisect
+run <your_script> [aguments]`. A worked example of this can be found
+[here](https://interrupt.memfault.com/blog/git-bisect#scripting-the-testing).
+
 ## Worktrees instead of Branches
 
 Sometimes you will want to switch between branches that are all in development in the middle of work. If you've made
