@@ -148,7 +148,7 @@ cat ~/.ssh/id_ed25519.pub
 
 ### Adding Keys to GitHub (All OSs)
 
-Once you have created your SSH key you need to copy it to your account, got to _Settings > SSh and GPG Keys_ and click
+Once you have created your SSH key you need to copy it to your account, got to _Settings > SSH and GPG Keys_ and click
 on the _New SSH key_ button. Enter a name for your key, set the **Key type** to _Authenticaion Key_ and paste your
 public key (the contents of the file ending in `.pub`) into the **Key** box then click the _Add SSH key_ button.
 
