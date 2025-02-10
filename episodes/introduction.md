@@ -20,15 +20,14 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-[Git][git] is, in 2024, the most widely used version control system by far. It was developed by Linus Torvalds to manage
-[Linux kernel][linux] development and since then has exploded. Websites such as [GitHub][gh] and [GitLab][gl]
-make asynchronous collaboration on common code bases possible and underpin many, many software projects from enterprise
-grade tools such as the aforementioned [Linux kernel][linuxGithub], the increasingly popular [Rust][rustGitHub] through
-to niche products such as [Snapcast][snapcast] or Android apps for tracking your exercise such as
-[OpenTracks][openTracks].
+[Git][git] is, in 2025, the most widely used version control system by far. It was developed by Linus Torvalds to manage
+[Linux kernel][linux] development and since then has exploded. Websites such as [GitHub][gh] and [GitLab][gl], both
+types of Forge^[1], facilitate asynchronous collaboration on common code bases and underpin many, many software projects
+from enterprise grade tools such as the aforementioned [Linux kernel][linuxGithub], the increasingly popular
+[Rust][rustGitHub] through to niche products such as [Snapcast][snapcast] or Android apps for tracking your exercise
+such as [OpenTracks][openTracks].
 
-Git and Forges, online repositories for working with Git, such as [GitHub][gh], [GitLab][gl]
-[SourceHut][sourcehut], [Codeberg][codeberg], and [ForgeJo][forgejo] and so forth are wonderful tools for
+Git and Forges are wonderful tools for
 collaboration. However, because of the complexities of version controlling software in distributed, collaborative
 environments the tool itself, Git, has become quite complex. There are many different tasks that one may wish to
 undertake and often several different ways of achieving these.
@@ -67,7 +66,7 @@ Since this course is all about collaboration we would like you now to pair up wi
 undertake the exercises contained in this course. This could be the person sitting next to you if this is an in-person
 course or if the course is online one of the instructors will pair you up at random.
 
-Once paired up please add details to the Etherpad along with your GitHub usernames.
+Once paired up please add details to the [Collaborative Notepad] along with your GitHub usernames.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -77,8 +76,8 @@ changes to the code as required.
 
 You should discuss what you think the solution should be as you work through the challenge.
 
-This is software development technique known as [Pair Programming][pairprogramming] and by discussing the solutions you
-will hopefully come away with a better understanding of the material.
+This is a software development technique known as [Pair Programming][pairprogramming] and by discussing the solutions
+you will hopefully come away with a better understanding of the material.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -87,7 +86,8 @@ will hopefully come away with a better understanding of the material.
 In order to break the ice and find out something about the other participants on this course, please think about a
 situation BVC (**B**efore **V**ersion **C**ontrol) where you might have had a problem that Version Control would have
 prevented. This might be deleting files by mistake or making changes to code that broke your programme and not being
-unable to undo them.
+unable to undo them. Alternatively you could describe a mistake you've made AVC (**A**fter  **V**ersion **C**ontrol)
+where you perhaps committed to the wrong branch or deleted something.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -156,10 +156,10 @@ being this repository we do _not_ use templates. Instead the Repository owner sh
 the repository under their account.
 
 1. Use the `Code` button of the [Python Maths][pythonMaths] to clone the repository locally (`git clone
-   git@github.com:ns-rse/python-maths.git`).
-2. Fetch additional branches with `git fetch origin {divide,multiply,ns-rse/merge-conflict}`.
+   git@github.com:ns-rse/python-maths.git && cd python-maths`).
+2. Pull additional branches with `git fetch origin {divide,multiply,ns-rse/merge-conflict}`.
 3. On GitHub create an empty repository called `python-maths` using the [new repo][gh_newrepo], do _not_ add a license
-   or `.gitignore` to the repository, it should be completely empty.
+   or `.gitignore` to the repository, it should be **completely empty**.
 4. In the locally cloned `python-maths` directory open the `.git/config` file and edit the line 7 that reads
    `url = git@github.com:ns-rse/python-maths.git` and replace `ns-rse` with _your_ GitHub user name. E.g. if your GitHub
    username is `alice_and_bob` it should read `url = git@github.com:alice_and_bob/python-maths.git`. Save these changes.
@@ -169,12 +169,13 @@ This edit changes the `origin` to be the empty repository you created under _you
 pushes the cloned repository there.
 
 Once you have completed this you need to invite your collaborator to work on the repository with you. Navigate to
-_Settings > People_ and add invite you collaborator to the project.
+_Settings > People_ and invite you collaborator to the project using their GitHub username.
 
 ### Collaborator
 
-You should accept the invitation you have received to work on the Template the Repository Owner just sent you and clone
-their version of the `python-maths` repository.
+You should accept the invitation you have received to work on the `python-maths` repository. Once accepted clone
+_their_ version of the `python-maths` repository. E.g. if the the repository owner's GitHub username is `alice_and_bob`
+then you will clone with `git clone git@github.com:alice_and_bob/python-maths.git`.
 
 ## Install `python-maths` under the Virtual Environment
 
@@ -247,7 +248,7 @@ git clone git@github.com:alice_and_bob/python-maths.git
 
 On the `python-maths` repository you both now have access to protect the `main` branch to require approvals.
 
-1. _Settings > Branches > Add branch protection rule_
+1. _Settings > Branches > Add classic branch protection rule_
 2. Enter `main` under _Branch name pattern_
 3. Check the box _Require a pull request before merging_
 4. Prevent the repository owner from bypassing the rules by checking _Do not allow bypassing the above settings_.
@@ -279,22 +280,19 @@ You can optionally check everything is installed and runs by running the tests v
 ``` bash
 pytest
 ========================================== test session starts ==========================================
-platform linux -- Python 3.11.8, pytest-8.1.1, pluggy-1.4.0
-Matplotlib: 3.8.4
+platform linux -- Python 3.13.1, pytest-8.3.4, pluggy-1.5.0
+Matplotlib: 3.10.0
 Freetype: 2.6.1
-rootdir: /home/neil/work/teaching/git_collaboration/2024-04-19/python-maths
+rootdir: /home/neil/tmp/gitcollab-20250210/python-maths
 configfile: pyproject.toml
 testpaths: tests
-plugins: regtest-2.1.1, pylint-0.21.0, github-actions-annotate-failures-0.2.0, xdist-3.5.0, cov-5.0.0, anyio-4.3.0, mock-3.14.0, mpl-0.17.0
-collected 26 items
+plugins: cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0
+collected 25 items
 
-tests/test_arithmetic.py ......................                                                   [ 84%]
-tests/test_trig.py ....                                                                           [100%]
+tests/test_arithmetic.py .....................                                                                                                           [ 84%]
+tests/test_trig.py ....                                                                                                                                  [100%]
 
------------------------------------------ pytest-regtest report -----------------------------------------
-total number of failed regression tests: 0
-
----------- coverage: platform linux, python 3.11.8-final-0 -----------
+---------- coverage: platform linux, python 3.13.1-final-0 -----------
 Name                        Stmts   Miss  Cover
 -----------------------------------------------
 pythonmaths/arithmetic.py       8      0   100%
@@ -302,12 +300,131 @@ pythonmaths/trig.py             4      0   100%
 -----------------------------------------------
 TOTAL                          12      0   100%
 
-========================================== 26 passed in 0.28s ===========================================
+
+========================================== 25 passed in 0.28s ===========================================
 ```
 
 :::::::::::::::::::::::::::::::::
 
 After completing these steps you should both have a copy of the `python-maths` repository on your local computer.
+
+<!-- ::::::::::::::::::::::::::::::::::::: challenge -->
+
+<!-- ## Working with your Collaborator -->
+
+<!-- As a quick recap there are two issue templates `01 Zero Division` and `02 Square Root`. Assign one of these issues each -->
+<!-- and work through the tasks to add the relevant functionality (instructions, commands and codes to copy and paste are -->
+<!-- provided in each of the issues). Once you have committed the changes push them to GitHub and make a Pull Request asking -->
+<!-- your collaborator to review your code (note the instructions in the Square Root task). Review your collaborators code -->
+<!-- and approve the Pull Request. -->
+
+<!-- ::::::::::::::::::::::::::::::::::::: -->
+
+<!-- :::::::::::::::::::::::: solution -->
+
+<!-- ## Zero Division -->
+
+<!-- The instructions should have taken you through the various steps of adding an Exception to the divide function which -->
+<!-- raises an error when the supplied value of `y` is zero. A test should have been added which checked this is raised when -->
+<!-- zero is passed. -->
+
+<!-- ``` python -->
+<!-- def divide(x: int | float, y: int | float) -> float: -->
+<!--     """ -->
+<!--     Divide x by y. -->
+
+<!--     Parameters -->
+<!--     ---------- -->
+<!--     x : int | float -->
+<!--         Numerator for division. -->
+<!--     y : int | float -->
+<!--         Denominator for division. -->
+
+<!--     Returns -->
+<!--     ------- -->
+<!--     float -->
+<!--         The result of dividing `x` by `y`. -->
+
+<!--     Examples -->
+<!--     -------- -->
+<!--     >>> from python_math import arithmetic -->
+<!--     >>> arithmetic.divide(10, 2) -->
+<!--         5.0 -->
+<!--     >>> arithmetic.divide(5, 2) -->
+<!--         2.5 -->
+<!--     """ -->
+<!--     try: -->
+<!--         return x / y -->
+<!--     except ZeroDivisionError as e: -->
+<!--         raise ZeroDivisionError( -->
+<!--             "You can not divide by 0, please choose another value for 'y'." -->
+<!--         ) from e -->
+<!-- ``` -->
+
+<!-- ``` python -->
+<!-- def test_divide_zero_division_exception() -> None: -->
+<!--     """Test that a ZeroDivisionError is raised by the divide() function.""" -->
+<!--     with pytest.raises(ZeroDivisionError): -->
+<!--         arithmetic.divide(2, 0) -->
+<!-- ``` -->
+
+<!-- The test should have passed on the Continuous Integration of GitHub Actions. -->
+
+<!-- ::::::::::::::::::::::::::::::::: -->
+
+<!-- :::::::::::::::::::::::: solution -->
+
+<!-- ## Square Root -->
+
+<!-- The instructions should have taken you through the the various steps of adding a Square root function. A test shold have -->
+<!-- been added which checks the square root of the numbers `4`, `9`, `25` and `2`. -->
+
+<!-- ``` python -->
+<!-- def square_root(x): -->
+<!--     """Return the square root of a number. -->
+
+<!--     Parameters -->
+<!--     ========== -->
+<!--     x : int | float -->
+<!--         The number for which you wish to find the square root. -->
+
+<!--     Returns -->
+<!--     ======= -->
+<!--     float -->
+<!--         The square root of x. -->
+
+<!--     Examples -->
+<!--     ======== -->
+<!--     >>> from python_math import arithmetic -->
+<!--     >>> arithmetic.square_root(4) -->
+<!--         2.0 -->
+<!--     >>> arithmetic.square_root(169) -->
+<!--         13.0 -->
+<!--     """ -->
+<!--     return x ** (1 / 2) -->
+<!-- ``` -->
+
+<!-- ``` python -->
+
+<!-- @pytest.mark.parametrize( -->
+<!--     ("x", "target"), -->
+<!--     [ -->
+<!--         pytest.param(4, 2, id="square root of 4"), -->
+<!--         pytest.param(9, 3.0, id="square root of 9"), -->
+<!--         pytest.param(25, 5.0, id="square root of 25"), -->
+<!--         pytest.param(2, 1.4142135623730951, id="square root of 2"), -->
+<!--     ], -->
+<!-- ) -->
+<!-- def test_square_root(x: int | float, target: int | float) -> None: -->
+<!--     """Test the square_root() function.""" -->
+<!--     pytest.approx(arithmetic.square_root(x), target) -->
+<!-- ``` -->
+
+
+
+
+
+<!-- ::::::::::::::::::::::::::::::::: -->
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -319,9 +436,10 @@ create a pull request and merge the changes.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-[carpentryPad]: https://pad.carpentries.org/
-[coc]: https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html
-[codeberg]: https://codeberg.org/
+^[1]: The term "forge" refers to a web-based collaborative software platform.  [GitHub][gh] and [GitLab][gl] are perhaps
+the most well known but there are many others including [BitBucket][bitbucket],  [Codeberg][codeberg], and
+[ForgeJo][forgejo] and [SourceHut][sourcehut].
+
 [forgejo]: https://forgejo.org/
 [git]: https://git-scm.com
 [gh]: https://github.com
