@@ -19,10 +19,9 @@ exercises: 2
 - Manually editing Git configuration files.
 - Use `.gitignore` to avoid adding unnecessary files.
 - Understand the concept of Atomic commits.
-- Ammending commits.
-- `git absorb` the magic sponge!
+- Ammending and fixing commits.
 - Squashing commits.
-- Automated maintenance.
+- Staging hunks with `--patch`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -44,7 +43,7 @@ or by editing either the global (`~/.gitconfig`) or local (`git/config`) files.
 
 The `git config` command has a host of options that you can view with the `--help` flag. The first required option says
 what file should be modified and is typically either `global` or `local`. You can view the configuration with `git
-config --list` and you can optional restrict it to either the `--global` or `--local` configuration.
+config --list` and you can optionally restrict it to show either the `--global` or `--local` configuration.
 
 ``` bash
 git config --list
@@ -71,9 +70,9 @@ Sections are in square brackets with names, e.g. `[user]` or `[core]`. Fields th
 `name` value is set to `A N Other` the `email` address is `a.n.other@sheffield.ac.uk` and the `editor` is set to `nano`
 and so forth.
 
-To modify values you need to know the section and the key you want to change, these are combined to give the third
-argument `user.email` and you then provide the value you want it to be as the fourth argument. For example to change the
-email address in the global configuration you would.
+To modify values at the command line you need to know the section and the key you want to change, these are combined to
+give the third argument `user.email` and you then provide the value you want it to be as the fourth argument. For
+example to change the email address in the global configuration you would.
 
 ``` bash
 git config --global user.email a.other@sheffield.ac.uk
@@ -197,10 +196,11 @@ git config --global alias.logp 'log --pretty=format:"%C(yellow)%h\\ %C(green)%ad
 ### `.gitignore`
 
 The [`.gitignore`][gitignore] file does exactly what you might expect it to, it contains lists of directories and files
-that should be ignored. To save having to write out the path to each and every file the format accepts
+that should be ignored by Git. To save having to write out the path to each and every file the format accepts
 [patterns][gitignorepatterns]. This file, like many others uses `#` as a comment, to use a `#` in a file name you
 therefore need to escape it with the `\` slash. A `*` matches anything but slashes and leading/trailing `**` match
-all directories (leading) or everything within a directory (trailing). For more details
+all directories (leading) or everything within a directory (trailing). For more details refer to [Git Ignore
+Patterns][gitignorepatterns].
 
 A common set of files you may want to ignore is the `.DS_Store` directory that Mac OSX automatically generates in
 most directories. Just as you can exclude files you can list directories so add that to the `.gitignore` in the
@@ -241,6 +241,16 @@ pull-request, assigning it to the other person for review.
 
 :::::::::::::::::::::::: solution
 
+## Create a new branch
+
+First create a new branch.
+
+``` bash
+git switch main
+git pull
+git switch -c ns-rse/ignore-csv-pkl
+```
+
 ## Update the `.gitignore`
 
 The following lines to `.gitignore` will ignore all files with the extensions `.csv` and `.pkl`. The wildcard symbol `*`
@@ -251,12 +261,9 @@ is required to ensure _any_ file, no matter what comes before the extension is i
 *.pkl
 ```
 
-Staging and committing, then pushing to GitHub
+Stage and commit the changes to `.gitignore` and push to GitHub.
 
 ``` bash
-git switch main
-git pull
-git switch -c ns-rse/ignore-csv-pkl
 git add .gitignore
 git commit -m "chore: Ignoring .csv and .pkl files"
 git push
@@ -268,97 +275,11 @@ Pull requests are created on GitHub.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### `difftastic`
-
-When undertaking Pull Requests on GitHub there is the ability to toggle between two [different views][githubdiff] of the
-differences. The standard view shows the changes line-by-line and looks like the following where the deleted lines are
-started with `-` signs and may well be in red and the added lines are started with `+` and may well be in green. Changes
-within a line are reflected as a deletion _and_ addition.
-
-``` bash
-@@ -1861,12 +1862,18 @@ tree -afhD -L 2 main/
-
- Each branch can have a worktree added for it and then when you want to switch between them its is simply a case of
--`cd`ing into the worktree (/branch) you wish to work on. You use Git commands within the directory to apply them to that
--branch and Git keeps track of everything in the usual manner.
-+`cd`ing into the worktree (/branch) you wish to work on. You use Git commands within the worktree directory to apply
-+them to that branch and Git keeps track of everything in the usual manner.
-
--Lets create two worktree's, the `contributing` and `citation` we created above when working with branches.
-+###
-+Lets create two worktree's, the `contributing` and `citation` we created above when working with branches. If you didn't
-+already follow along the above steps do so now.
-```
-
-Its a matter of personal preference but it can sometimes be easier to look at differences in the split view that
-`difftastic` provides, the same changes above using the split view are shown below.
-
-``` bash
-1862                                                                            1863
-1863 Each branch can have a worktree added for it and then when you want to swi 1864 Each branch can have a worktree added for it and then when you want to swi
-.... tch between them its is simply a case of                                   .... tch between them its is simply a case of
-1864 `cd`ing into the worktree (/branch) you wish to work on. You use Git comma 1865 `cd`ing into the worktree (/branch) you wish to work on. You use Git comma
-.... nds within the directory to apply them to that                             .... nds within the worktree directory to apply
-1865 branch and Git keeps track of everything in the usual manner.              1866 them to that branch and Git keeps track of everything in the usual manner.
-1866                                                                            1867
-....                                                                            1868 ###
-1867 Lets create two worktree's, the `contributing` and `citation` we created a 1869 Lets create two worktree's, the `contributing` and `citation` we created a
-.... bove when working with branches.                                           .... bove when working with branches. If you didn't
-....                                                                            1870 already follow along the above
-steps do so now.
-```
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-Show how to toggle the view on GitHub pull requests. Make sure to have an example that is already open in a tab of your
-browser.
-
-If you have `difftastic` already configured for Git make sure to disable if you are going to show the difference in the
-terminal live.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge
-
-## Challenge 4
-
-Install [difftastic][difftastic] on your computer and configure Git globally to use it.
-
-**Hint** There are instructions on the [website][difftastic].
-
-:::::::::::::::::::::::: solution
-
-## Update the `~/.gitconfig`
-
-The [instructions](https://difftastic.wilfred.me.uk/git.html) show the configuration options you can add to
-`~/.gitconfig` to setup an alias for `git dft` which uses `difftastic`. The following in your `.gitconfig` will set that
-up.
-
-```config
-[diff]
-        tool = difftastic
-
-[difftool]
-        prompt = false
-
-[difftool "difftastic"]
-        cmd = difft "$LOCAL" "$REMOTE"
-
-[pager]
-        difftool = true
-# `git dft` is less to type than `git difftool`.
-[alias]
-        dft = difftool
-```
-
-:::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Atomic Commits
 
 The idea of atomic commits is that they are small self-contained commits focused on one issue, all the changes are
-typically in a small subset of files, e.g. only the a particular module and its associated test file. But you may have
+typically in a small subset of files, e.g. only a particular module and its associated test file. You may have
 learnt to make lots of small commits frequently and so you're history may look like.
 
 ``` bash
@@ -372,18 +293,21 @@ git log --oneline
 ```
 
 Here six commits have been made for adding the `xyz` function, writing tests that pass, adding docstrings to the
-function and correcting some spelling mistakes. But all of these pertain to one issue that will have been written up on
-the projects issues and as the work is self-contained and we've not added to any other files they could be a single
-commit.
+function and correcting some spelling mistakes. But all of these pertain to one issue/task, namely adding the `xyz`
+function. As the work is self-contained and we've not added to any other files they could be a single commit.
 
-Git has a few functions to help here and we'll go through those.
+Git has a few functions to help here and we'll go through those in turn.
 
-We'll use the `python-maths` repository as an example and will make a new branch to add a `CONTRIBUTING.md` file to.
+We'll use the `python-maths` repository as an example and will make a new branch called
+`<github-user>/amend-fixup-tutorial` to add a `CONTRIBUTING.md` file to.
+
+**NB** - I prefix my branch names with my GitHub username which is a simple way to keep track of who created which
+branches.
 
 ``` bash
 cd pytest-maths
-git switch -c amend-fixup-tutorial
-  Switched to a new branch 'amend-fixup-tutorial'
+git switch -c ns-rse/amend-fixup-tutorial
+  Switched to a new branch 'ns-rse/amend-fixup-tutorial'
 ```
 
 We now add a simple `CONTRIBUTING.md` file to the repository.
@@ -401,8 +325,8 @@ git logp
 
 ### Making Amends
 
-Sometimes you will have made a commit and you realise that you want to add more to it or perhaps you forgot to run your
-test suite and find that on running it your tests fail so you need to make a correction. In this example we want to be
+Sometimes you will have made a commit and then realise that you want to add more to it or perhaps you forgot to run your
+test suite and find that on running it your tests fail so you needed to make a correction. In this example we want to be
 more explicit about how to make contributions and let people know they should fork the branch.
 
 ``` bash
@@ -417,13 +341,13 @@ git add -u && git commit -m "docs: Ask for PRs via fork in CONTRIBUTING.md"
 
 ``` bash
 git logp
-9f0655b (HEAD -> amend-fixup-tutorial) Ask for PRs via fork in CONTRIBUTING.md
+9f0655b (HEAD -> ns-rse/amend-fixup-tutorial) docs: Ask for PRs via fork in CONTRIBUTING.md
 01191a2 Adding CONTRIBUTING.md
 ```
 
 ...and there is nothing wrong with that. However, Git history can get long and complicated when there are lots of small
-commits, because these two changes to `CONTRIBUTING.md` are essentially the same piece of work then If we'd been
-thinking clearly we would have written about making forks in the first place and made a single commit.
+commits, because these two changes to `CONTRIBUTING.md` are essentially the same piece of work and had we been thinking
+clearly we would have written about making forks in the first place and made a single commit.
 
 Fortunately Git can help here as there is the `git commit --amend` option which adds the staged changes to the last
 commit and allows you to edit the last commit message (if nothing is currently staged then you will be prompted to edit
@@ -466,7 +390,7 @@ git commit --allow-empty -m "Another empty commit for demonstration purposes"
 
 ```bash
 git logp
-  8061221 (HEAD -> amend-fixup-tutorial) Another empty commit for demonstration purposes
+  8061221 (HEAD -> ns-rse/amend-fixup-tutorial) Another empty commit for demonstration purposes
   65587ce Empty commit for demonstration purposes
   4fda15f Adding CONTRIBUTING.md
   35aa48c Previous commit before adding CONTRIBUTING.md
@@ -491,8 +415,8 @@ We see the commit we have just made starts with `fixup!` and is then followed by
 but it hasn't yet been combined into that commit.
 
 ```bash
-git log --oneline
-  97711a4 (HEAD -> amend-fixup-tutorial) fixup! Adding CONTRIBUTING.md
+git logp
+  97711a4 (HEAD -> ns-rse/amend-fixup-tutorial) fixup! Adding CONTRIBUTING.md
   8061221 Another empty commit for demonstration purposes
   65587ce Empty commit for demonstration purposes
   4fda15f Adding CONTRIBUTING.md
@@ -501,17 +425,21 @@ git log --oneline
 
 The final step is to perform the automatic squashing via an interactive rebase. You need to supply the hash of the
 commit _before_ the one you are fixing up, in this case `35aa48c` (check the output of `git logp` if you haven't made a
-note of this).
+note of this). This can be done explicitly but an alternative and convenient way of referring to this previous commit is
+by using the `~1` appended to the commit you have chosen to fixup so you would use.
 
 ``` bash
-git rebase -i --autosquash 4fda15f
+# Relative to the fixup
+git rebase -i --autosquash 4fda15f~1
+# Absolute commit
+git rebase -i --autosquash 35aa48c
 ```
 
 This will open the default editor and because the `--autosquash` option has been used it should have marked the
 commits that need combining with `fixup`. All you have to do is save the file and exit and we can check the history and
 look at the contents of the file.
 
-**NB** If you find that the necessary commit _isn't_ already marked navigate then you are likely to have supplied the
+**NB** If you find that the necessary commit _isn't_ already marked then you are likely to have mistakenly supplied the
 wrong hash (most probably the hash of the commit your wish to fixup rather than the commit before it).
 
 ```bash
@@ -617,6 +545,9 @@ def square_root(x):
         2.0
     >>> arithmetic.square_root(169)
         13.0
+     >>> arithmetic.square_root(-2)
+         WARNING : you have supplied a negative number, the square root is complex.
+         (8.659560562354934e-17+1.4142135623730951j)
     """
     if x < 0:
         print("WARNING : you have supplied a negative number, the square root is complex.")
@@ -626,6 +557,8 @@ def square_root(x):
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: callout
 
 ### `git absorb`
 
@@ -642,6 +575,8 @@ git absorb --and-rebase
 
 By default `git absorb` will search the last 10 commits but this can be configured at runtime using the `--base` flag to
 specify the last commit to check or by adapting the configuration file.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Squashing commits
 
@@ -683,7 +618,7 @@ a1101c7 [pre-commit.ci] Fixing issues with pre-commit
 ```
 
 The hash of the first commit we want to squash is `c437414` or `HEAD~5`) but you need to include it. We start a rebase
-with `git rebase -i c437414` which will open our default editor.
+with `git rebase -i c437414` or `git rebase -i HEAD~5` which will open our default editor.
 
 ``` bash
 pick c437414 Commit 1 # empty
@@ -873,30 +808,147 @@ The following resources are highly recommended reading on this topic.
 
 ## Keep things tidy
 
-Overtime the information about branches and commits can become bloated. We've seen how to delete branches already but
-there are a few other simple steps we can take to help keep the repository clean.
+We've covered some ways of grouping commits together and/or squashing a series of commits that have been made into
+logical groups, but what if a piece of work necessitated making changes to a large number of files simultaneously? You
+have completed the work and all your tests are passing so the work is ready to commit but rather than making one large
+commit with all the changes you would like to group the changes into a number of smaller commits, grouped by the
+module/class that has been changed.
 
-### Maintenance
+Fortunately this is possible using `git add --patch` (or just `-p` flag for short) which allows you to choose which
+hunks of a file you wish to include in a commit. We can work through this in an example with our `python-maths` package.
 
-[`git maintenance`][gitmaintenance] is a _really_ useful command that will "_Run tasks to optimize Git repository data,
-speeding up other Git commands and reducing storage requirements for the repository._". The details of what this does
-are beyond the scope of this tutorial (refer to the [help page][gitmaintenance] if interested). Providing you have setup
-your GitHub account with SSH keys and they are available via something such as keychain locally then you can bring a
-repository under `git maintenance` and forget about it.
+### Make some changes to `pythonmaths/arithmetic.py`
 
-``` bash
-git mainetenance register
+Lets improve the docstrings for the `add()` and `multiply()` function by editing `pythonmaths/arithmetic.py`. We'll make
+sure `main` is up-to-date and make a new branch.
+
+```bash
+git switch main
+git pull
+git switch -c ns-rse/test-patch
 ```
 
-This adds entries to your global configuration (`~/.gitconfig`) to ensure the repository will have these tasks run at
-the scheduled point (default is hourly).
+We then cange the first line of the `add()` function to read....
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+```python
+    """
+    Return the sum of two numbers.
+```
 
-Be prepared to explain how SSH keys can be unlocked on login so that the passwords don't need entering every time you
-try to use the SSH key.
+...and update the first line of the `multiply()` function to read...
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+```python
+Return the product of x and y.
+```
+
+Stage your changes, but include the `--patch` option, you should now be presented with the following screen asking if
+you want to "Stage this hunk" (a "hunk" is a section of code). There are a number of possible options and you can use
+the `?` option to give you help on what each does.
+
+``` bash
+git add --patch -u
+diff --git a/pythonmaths/arithmetic.py b/pythonmaths/arithmetic.py
+index 5fbabe8..6e7f4fd 100644
+--- a/pythonmaths/arithmetic.py
++++ b/pythonmaths/arithmetic.py
+@@ -3,7 +3,7 @@
+
+ def add(x: int | float, y: int | float) -> float:
+     """
+-    Add two numbers together.
++    Return the sum of two numbers.
+
+     Parameters
+     ----------
+(1/2) Stage this hunk [y,n,q,a,d,j,J,g,/,e,p,?]? ?
+y - stage this hunk
+n - do not stage this hunk
+q - quit; do not stage this hunk or any of the remaining ones
+a - stage this hunk and all later hunks in the file
+d - do not stage this hunk or any of the later hunks in the file
+j - leave this hunk undecided, see next undecided hunk
+J - leave this hunk undecided, see next hunk
+g - select a hunk to go to
+/ - search for a hunk matching the given regex
+e - manually edit the current hunk
+p - print the current hunk, 'P' to use the pager
+? - print help
+(1/2) Stage this hunk [y,n,q,a,d,j,J,g,/,e,p,?]?
+```
+
+For this example we are going to skip this first hunk and add the second so we select `n`. We are then shown the second
+hunk and asked the same question. In this case we want to include it so we answer `y`.
+
+```bash
+@@ -66,7 +66,7 @@ def divide(x: int | float, y: int | float) -> float:
+
+ def multiply(x: int | float, y: int | float) -> float:
+     """
+-    Multiply x by y.
++    Return the product of x and y.
+
+     Parameters
+     ----------
+(2/2) Stage this hunk [y,n,q,a,d,K,g,/,e,p,?]? y
+```
+
+If we check the current status we see that there are both staged and unstaged changes to the `pythonmaths/arithmetic.py`
+file.
+
+```bash
+git status
+On branch ns-rse/test-patch
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   pythonmaths/arithmetic.py
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   pythonmaths/arithmetic.py
+```
+
+We can now commit the changes to the `multiply()` function keeping changes atomic and focused on specific
+functions.
+
+``` bash
+git commit -m "docs: Improve docstring of multiply() function."
+```
+
+Since we know the only outstanding change is to the docstring of the `add()` function (we can check with `git diff` to
+reassure us), we can stage that hunk and commit it separately.
+
+``` bash
+git add --patch -u
+
+diff --git a/pythonmaths/arithmetic.py b/pythonmaths/arithmetic.py
+index 0546271..6e7f4fd 100644
+--- a/pythonmaths/arithmetic.py
++++ b/pythonmaths/arithmetic.py
+@@ -3,7 +3,7 @@
+
+ def add(x: int | float, y: int | float) -> float:
+     """
+-    Add two numbers together.
++    Return the sum of two numbers.
+
+     Parameters
+     ----------
+(1/1) Stage this hunk [y,n,q,a,d,e,p,?]? y
+
+
+git commit -m "doc: improve docstring for add() function"
+
+[ns-rse/test-patch 88a3d9c] doc: improve docstring for add() function
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+```
+
+By staging hunks into groups it allows us to make commits that are atomic, focused and related on one specific function
+or change, and in turn our history will become easier to understand and follow (particularly if we have errors and need
+to use `git bisect` to find where they have been introduced, see [additional
+topics](additional_topics.md#finding-bugs-with-git-bisect)).
+
 
 ## Conventional Commits
 
@@ -926,6 +978,8 @@ needs be to your commit messages. You don't want your history to look like this.
 
 ![[XKCD Git Commit](https://xkcd.com/1296/)](https://imgs.xkcd.com/comics/git_commit_2x.png)
 
+Commit messages should explain _why_ you have made changes, the code itself shows _what_ has changed.
+
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Global configuration is via `.gitconfig`
@@ -935,9 +989,9 @@ needs be to your commit messages. You don't want your history to look like this.
 - Make commits atomic, i.e. small and focused using `git commit --amend` and `git commit --fixup`, better still make
   life easier using `git absorb`.
 - `git rebase --interactive` can be used to squash commits.
+- Use `git add --patch` to group changes into atomic commits.
+- Use [Conventional commits][concommit] and write informative messages.
 - Keeping the commit history atomic and clean makes it easier to understand what work has been undertaken.
-- Git periodically tidies things up for you with `git gc`.
-- You can and should enable further automated cleaning by enabling `git mainenance` on a repository.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -962,8 +1016,4 @@ founders of GitHub and co-author of [Pro Git][progit] book on useful tips for us
 [gitignore]: https://git-scm.com/docs/gitignore
 [gitignorepatterns]: https://git-scm.com/docs/gitignore#_pattern_format
 [gitlog]: https://git-scm.com/docs/git-log
-[gitmaintenance]: https://git-scm.com/docs/git-maintenance
-[ignoregenerator]: https://www.toptal.com/developers/gitignore
-[nano]: https://www.nano-editor.org/dist/latest/cheatsheet.html
 [progit]: https://git-scm.com/book/en/v2
-[r]: https://www.r-project.org

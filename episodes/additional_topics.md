@@ -6,6 +6,94 @@ exercises: 2
 
 Some additional topics that extend working with branches and the process of reviewing.
 
+### `difftastic`
+
+When undertaking Pull Requests on GitHub there is the ability to toggle between two [different views][githubdiff] of the
+differences. The standard view shows the changes line-by-line and looks like the following where the deleted lines are
+started with `-` signs and may well be in red and the added lines are started with `+` and may well be in green. Changes
+within a line are reflected as a deletion _and_ addition.
+
+``` bash
+@@ -1861,12 +1862,18 @@ tree -afhD -L 2 main/
+
+ Each branch can have a worktree added for it and then when you want to switch between them its is simply a case of
+-`cd`ing into the worktree (/branch) you wish to work on. You use Git commands within the directory to apply them to that
+-branch and Git keeps track of everything in the usual manner.
++`cd`ing into the worktree (/branch) you wish to work on. You use Git commands within the worktree directory to apply
++them to that branch and Git keeps track of everything in the usual manner.
+
+-Lets create two worktree's, the `contributing` and `citation` we created above when working with branches.
++###
++Lets create two worktree's, the `contributing` and `citation` we created above when working with branches. If you didn't
++already follow along the above steps do so now.
+```
+
+Its a matter of personal preference but it can sometimes be easier to look at differences in the split view that
+`difftastic` provides, the same changes above using the split view are shown below.
+
+``` bash
+1862                                                                            1863
+1863 Each branch can have a worktree added for it and then when you want to swi 1864 Each branch can have a worktree added for it and then when you want to swi
+.... tch between them its is simply a case of                                   .... tch between them its is simply a case of
+1864 `cd`ing into the worktree (/branch) you wish to work on. You use Git comma 1865 `cd`ing into the worktree (/branch) you wish to work on. You use Git comma
+.... nds within the directory to apply them to that                             .... nds within the worktree directory to apply
+1865 branch and Git keeps track of everything in the usual manner.              1866 them to that branch and Git keeps track of everything in the usual manner.
+1866                                                                            1867
+....                                                                            1868 ###
+1867 Lets create two worktree's, the `contributing` and `citation` we created a 1869 Lets create two worktree's, the `contributing` and `citation` we created a
+.... bove when working with branches.                                           .... bove when working with branches. If you didn't
+....                                                                            1870 already follow along the above
+steps do so now.
+```
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Show how to toggle the view on GitHub pull requests. Make sure to have an example that is already open in a tab of your
+browser.
+
+If you have `difftastic` already configured for Git make sure to disable if you are going to show the difference in the
+terminal live.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 1
+
+Install [difftastic][difftastic] on your computer and configure Git globally to use it.
+
+**Hint** There are instructions on the [website][difftastic].
+
+:::::::::::::::::::::::: solution
+
+## Update the `~/.gitconfig`
+
+The [instructions](https://difftastic.wilfred.me.uk/git.html) show the configuration options you can add to
+`~/.gitconfig` to setup an alias for `git dft` which uses `difftastic`. The following in your `.gitconfig` will set that
+up.
+
+```config
+[diff]
+        tool = difftastic
+
+[difftool]
+        prompt = false
+
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+        difftool = true
+# `git dft` is less to type than `git difftool`.
+[alias]
+        dft = difftool
+```
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
 ## Maintenance
 
 Overtime the information about branches and commits can become bloated. We've seen how to delete branches already but
