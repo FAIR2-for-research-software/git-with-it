@@ -310,39 +310,40 @@ git switch -c ns-rse/amend-fixup-tutorial
   Switched to a new branch 'ns-rse/amend-fixup-tutorial'
 ```
 
-We now add a simple `CONTRIBUTING.md` file to the repository.
+We already added a basic `CONTRIBUTING.md` to the repository in the previous episode, we will add to that.
 
 ``` bash
-echo "# Contributing\n\nContributions via pull requests are welcome." > CONTRIBUTING.md
-git add CONTRIBUTING.md
-git commit -m "docs: Adding CONTRIBUTING.md"
+echo "\nPlease make a fork of this repository, make your changes and open a Pull Request." >> CONTRIBUTING.md
+git add -u
+git commit -m "docs: Ask for PRs via fork in CONTRIBUTING.md"
 ```
+
 
 ``` bash
 git logp
-  01191a2 (HEAD -> amend-fixup-tutorial) Adding CONTRIBUTING.md
+  01191a2 (HEAD -> ns-rse/amend-fixup-tutorial) docs: Ask for PRs via fork in CONTRIBUTING.md
 ```
 
 ### Making Amends
 
 Sometimes you will have made a commit and then realise that you want to add more to it or perhaps you forgot to run your
 test suite and find that on running it your tests fail so you needed to make a correction. In this example we want to be
-more explicit about how to make contributions and let people know they should fork the branch.
+more explicit about how to report bugs.
 
 ``` bash
-echo "\nPlease make a fork of this repository, make your changes and open a Pull Request." >> CONTRIBUTING.md
+echo "\nBug reports are also welcome please create an [issue](https://github.com/<user-name>/python-maths/issues).\n" >> CONTRIBUTING.md
 ```
 
-Now you could make a second commit...
+We could add a new commit for this.
 
 ``` bash
-git add -u && git commit -m "docs: Ask for PRs via fork in CONTRIBUTING.md"
+git add -u
+git commit -m "docs: Add link directing to GH issues for reporting bugs"
 ```
 
 ``` bash
 git logp
-9f0655b (HEAD -> ns-rse/amend-fixup-tutorial) docs: Ask for PRs via fork in CONTRIBUTING.md
-01191a2 Adding CONTRIBUTING.md
+9f0655b (HEAD -> ns-rse/amend-fixup-tutorial) docs: Add link directing to GH issues for reporting bugs
 ```
 
 ...and there is nothing wrong with that. However, Git history can get long and complicated when there are lots of small
@@ -351,8 +352,8 @@ clearly we would have written about making forks in the first place and made a s
 
 Fortunately Git can help here as there is the `git commit --amend` option which adds the staged changes to the last
 commit and allows you to edit the last commit message (if nothing is currently staged then you will be prompted to edit
-the last commit message). We can undo the last commit using `git reset HEAD~1` (more on resetting later) and instead
-amend the first commit that added the `CONTRIBUTING.md`
+the last commit message). We can undo the last commit using `git reset HEAD~1` as we saw in the branching episode and
+instead amend the first commit that added the `CONTRIBUTING.md`
 
 ``` bash
 git reset HEAD~1

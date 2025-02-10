@@ -7,19 +7,18 @@ exercises: 2
 :::::::::::::::::::::::::::::::::::::: questions
 
 - What are branches?
-- How do we use branches in git effectively?
-- How can I check out other peoples branches whilst working on my own?
-- How do I keep my development branch up-to-date with `main`?
+- Why use branches?
+- How can I switch between branches and commits?
+- Comparing commits on a branch
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- How branches can be used to fix bugs or develop features in isolation.
-- Switching branches, stashing and restoring.
-- How to keep a development branch up-to-date.
-- Git worktrees instead of branches.
-- Tracking multiple origins
+- What branches are and why they are used
+- Switching branches and commits
+- Comparing branches/commits
+- Stashing commits
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -29,7 +28,7 @@ Branches are key to working with version control as they allow the development o
 touching the current working version of code. New features and bug fixes are then merged into the `main` branch to
 update the code base, but what is a branch?
 
-The word suggests an analogy with trees where branches are parts of a tree the extend from the "main" trunk or recursively
+The word suggests an analogy with trees where branches are parts of a tree that extend from the "main" trunk or recursively
 from parent "branches". An intuitive model of this is shown in the figure below.
 
 <!-- Source for Mermaid diagram :
@@ -76,25 +75,10 @@ the `HEAD` is `6-93e787c`.
 
 You can change branches by using `git switch <branchname>`.
 
-::::::::::::::::::::::::::::::::::::: callout
-
-`git switch` was introduced in [Git
-v2.23.0](https://github.blog/2019-08-16-highlights-from-git-2-23/#experimental-alternatives-for-git-checkout) along with
-`git restore` to provide two separate commands for the functionality that was originally available in `git checkout`.
-The main reason was to separate the functionality of `git checkout` which could "switch" branches, including creating
-branches using the `--branch`/`-b` flag, and change ("restore") individual files with `git checkout [treeish] --
-<filename>` (more on this later).
-
-Splitting this functionality means that `git switch` is solely for `switch`ing branches whilst `git restore` is solely
-concerned with `restore`ing files but is destructive and we will cover later the `git revert` command as an alternative.
-
-`git checkout` has not been deprecated and is still available and many people still use it as old habits die hard.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 1: What is the first and last commit on branch `divide`?
+## Challenge 1: What is the first and last commit on branch &nbsp; `divide`?
 
 Using the `python-maths` repository you have cloned look up the first and last commit of the `divide` branch.
 
@@ -165,19 +149,102 @@ From the `git log` graph we see the first and last commits were.
 ## Challenge 2: What commit did the &nbsp; `multiply` &nbsp; branch diverge from &nbsp; `master` &nbsp;?
 
 Again using the `python-maths` repository switch to the multiply. Use `git log` what is the commit that `multiply`
-diverged from `master`. How many commits have been made on the `multiply` branch?
+diverged from `main`. How many commits have been made on the `main` branch?
+
+**Hint** You will need to look at the log of the `main` branch.
 
 :::::::::::::::::::::::: solution
 
 ## Solution
 
 ``` bash
-git switch multiply
+git switch main
 git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
-* b702501 - (HEAD -> multiply, origin/multiply) bug: multiply instead of add arguments (2024-03-26 10:33:37 +0000) <Neil Shephard>
-* 11e36a3 - feat: Adding multiply function and tests (2024-03-26 10:32:42 +0000) <Neil Shephard>
-* c1f64b0 - Setting up the repository for git-collaboration (2024-02-02 15:48:50 +0000) <Neil Shephard>
-*   fa76751 - (origin/main, main) Merge pull request #6 from RSE-Sheffield/ns-rse/5-setup-clean-up (2023-10-19 22:46:14 +0100) <Neil Shephard>
+*   9a267a0 - (origin/main, origin/HEAD, main) Merge pull request #7 from slackline/ns-rse/6-square-root-warning (2025-02-10 14:22:58 +0000) <slackline>
+|\
+| * 784a268 - (origin/ns-rse/6-square-root-warning, ns-rse/6-square-root-warning) feature: add warning to square root if number is -ve (2025-02-10 14:18:34 +0$
+| * 0e3b6e0 - docs: Adding zero division example to docstring (2025-02-10 13:51:18 +0000) <Neil Shephard>
+* |   7ff8773 - Merge pull request #5 from slackline/ns-rse/zero-division-amend-fixup (2025-02-10 13:57:23 +0000) <slackline>
+|\ \
+| |/
+|/|
+| * 8165d09 - (origin/ns-rse/zero-division-amend-fixup) docs: Adding zero division example to docstring (2025-02-10 13:51:18 +0000) <Neil Shephard>
+* | b7625d6 - Merge pull request #4 from slackline/ns-rse/2-square-root (2025-02-10 13:15:42 +0000) <slackline>
+|\|
+| * 537c339 - (origin/ns-rse/2-square-root) feature: adds a square root function with tests (2025-02-10 12:55:21 +0000) <Neil Shephard>
+|/
+*   1e13f81 - Merge pull request #3 from slackline/ns-rse/zero-division (2025-02-10 12:27:53 +0000) <slackline>
+|\
+| * 0b8fd76 - (origin/ns-rse/zero-division) feature: Add exception and test for division by zero (2025-02-10 12:26:32 +0000) <Neil Shephard>
+|/
+*   f2de1f0 - Merge pull request #2 from slackline/ns-rse/add-contributing (2025-02-10 12:10:25 +0000) <slackline>
+|\
+| * 126b9de - (origin/ns-rse/add-contributing) doc: Adding CONTRIBUTING.md (2025-02-10 12:09:36 +0000) <Neil Shephard>
+|/
+* 80b95c0 - Link to course material (2025-02-10 11:03:03 +0000) <Neil Shephard>
+* efc6527 - Tpyo in title (2025-02-10 11:02:02 +0000) <Neil Shephard>
+*   105b37a - Merge pull request #13 from ns-rse/pre-commit-ci-update-config (2025-01-21 11:27:04 +0000) <Neil Shephard>
+|\
+| * a280884 - [pre-commit.ci] pre-commit autoupdate (2025-01-20 18:04:16 +0000) <pre-commit-ci[bot]>
+|/
+*   30c44b9 - Merge pull request #12 from ns-rse/pre-commit-ci-update-config (2024-12-10 10:28:29 +0000) <Neil Shephard>
+|\
+| * 20c0c4d - [pre-commit.ci] pre-commit autoupdate (2024-12-09 18:11:45 +0000) <pre-commit-ci[bot]>
+|/
+*   d49ed9a - Merge pull request #11 from ns-rse/pre-commit-ci-update-config (2024-09-24 10:08:00 +0100) <Neil Shephard>
+|\
+| * 9c35a18 - [pre-commit.ci] pre-commit autoupdate (2024-09-23 18:06:46 +0000) <pre-commit-ci[bot]>
+|/
+*   5c59a89 - Merge pull request #10 from ns-rse/pre-commit-ci-update-config (2024-09-06 12:24:55 +0100) <Neil Shephard>
+|\
+| * 88f1b11 - [pre-commit.ci] pre-commit autoupdate (2024-09-02 18:05:08 +0000) <pre-commit-ci[bot]>
+|/
+*   937f8a4 - Merge pull request #9 from ns-rse/ns-rse/correct-amend-fixup-templates (2024-05-23 16:54:28 +0100) <Neil Shephard>
+|\
+| * a84cb52 - bug: Simplify if statement in square root issue template (2024-05-23 16:52:46 +0100) <Neil Shephard>
+* |   557099b - Merge pull request #7 from ns-rse/pre-commit-ci-update-config (2024-05-23 16:53:46 +0100) <Neil Shephard>
+|\ \
+| * | 5cc9d6a - [pre-commit.ci] pre-commit autoupdate (2024-05-13 17:57:04 +0000) <pre-commit-ci[bot]>
+* | |   49a1dc6 - Merge pull request #8 from ns-rse/ns-rse/correct-amend-fixup-templates (2024-05-23 16:47:44 +0100) <Neil Shephard>
+|\ \ \
+| |/ /
+|/| /
+| |/
+| * 53e29fd - bug: Fix instructions for fixups (2024-05-23 16:45:53 +0100) <Neil Shephard>
+|/
+*   cdd8fcc - Merge pull request #6 from ns-rse/ns-rse/trail-run-fixes-2024-05-09 (2024-05-10 15:49:34 +0100) <Neil Shephard>
+|\
+| * fcf4ac2 - chore: Fixing errors identified in trial run (2024-05-09) (2024-05-10 11:04:36 +0100) <Neil Shephard>
+|/
+*   0a588bb - Merge pull request #5 from ns-rse/ns-rse/fix-template-04 (2024-05-09 15:38:44 +0100) <Neil Shephard>
+|\
+| * b2bb239 - Fixing name in issue 4 template (2024-05-09 15:38:05 +0100) <Neil Shephard>
+* | 9e22ef2 - Fixing name in issue 4 template (2024-05-09 15:37:12 +0100) <Neil Shephard>
+|/
+* 3f6494f - chore: tidying up prior to trial run (2024-05-02 14:26:33 +0100) <Neil Shephard>
+* ba7a5da - bug: ISSUE_TEMPLATES > ISSUE_TEMPLATES (2024-04-24 14:49:45 +0100) <Neil Shephard>
+*   ae5402f - Merge pull request #3 from ns-rse/multiply (2024-04-23 23:14:14 +0100) <Neil Shephard>
+|\
+| * b702501 - (HEAD -> multiply, origin/multiply) bug: multiply instead of add arguments (2024-03-26 10:33:37 +0000) <Neil Shephard>
+| * 11e36a3 - feat: Adding multiply function and tests (2024-03-26 10:32:42 +0000) <Neil Shephard>
+* |   12a159c - Merge pull request #2 from ns-rse/divide (2024-04-23 23:13:13 +0100) <Neil Shephard>
+|\ \
+| * | 6353fb4 - (origin/divide, divide) bug: Fix tpyo in divide function (2024-03-26 10:28:36 +0000) <Neil Shephard>
+| * | 7485e56 - chore: Fix merge conflict (2024-03-26 10:28:11 +0000) <Neil Shephard>
+| * | adfef4d - feat: Divide branch (2024-03-25 15:55:15 +0000) <Neil Shephard>
+| * | 400896a - Divide branch (2024-03-25 15:55:15 +0000) <Neil Shephard>
+| |/
+* |   f8dcc8d - Merge pull request #1 from ns-rse/ns-rse/initial-setup (2024-03-15 18:04:02 +0000) <Neil Shephard>
+|\ \
+| * | a4b1bb4 - Min Python version >= 3.10 to align with workflow (2024-03-15 18:01:01 +0000) <Neil Shephard>
+| * | 4f5daa2 - Quoting Python versions and adding os matrix to workflow (2024-03-15 17:59:05 +0000) <Neil Shephard>
+| * | 74e909b - Issue template for amend and fixup of square_root function (2024-03-08 13:01:42 +0000) <Neil Shephard>
+| * | bffc993 - Issue template for amend/fixup on zero-division branch (2024-03-07 17:28:49 +0000) <Neil Shephard>
+| * | 44c70e6 - Tidying .pre-commit-config.yaml| (2024-02-02 15:48:50 +0000) <Neil Shephard>
+| |/
+| * c1f64b0 - Setting up the repository for git-collaboration (2024-02-02 15:48:50 +0000) <Neil Shephard>
+|/
+*   fa76751 - Merge pull request #6 from RSE-Sheffield/ns-rse/5-setup-clean-up (2023-10-19 22:46:14 +0100) <Neil Shephard>
 |\
 | * c8f0697 - 5 | Removing comment from setup.cfg (2022-10-04 11:12:23 +0100) <Neil Shephard>
 * |   aff8153 - Merge pull request #7 from RSE-Sheffield/subtract-mistake (2023-01-20 10:07:58 +0000) <bobturneruk>
@@ -189,33 +256,7 @@ git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
 |/
 *   f06c0ab - Merge pull request #4 from RSE-Sheffield/simplify_deliberate_errors (2022-06-07 14:58:27 +0100) <David Wilby>
 |\
-| * f55c0d2 - remove missing colon and no newline deliberate errors (2022-05-06 11:50:24 +0100) <David Wilby>
-|/
-* 5c9ae75 - correct python testing instruction (2021-05-18 16:15:23 +0300) <Anna Krystalli>
-* 86d7633 - add correct details to each issue (2021-05-18 16:01:50 +0300) <Anna Krystalli>
-* a58d6e7 - add all github issue templates (2021-05-17 13:43:57 +0300) <Anna Krystalli>
-* 9429ab4 - complete subtract issue template (2021-05-14 15:53:25 +0300) <Anna Krystalli>
-* bb560b0 - simplify function (2021-05-14 15:53:01 +0300) <Anna Krystalli>
-*   325d038 - Merge pull request #1 from RSE-Sheffield/tests_changes (2021-05-14 14:40:36 +0300) <Anna Krystalli>
-|\
-| * 608ad59 - Restructure so tests pass (2021-05-14 12:24:23 +0100) <Will Furnass>
-|/
-* 8584b0f - correct pull request branch spec (2021-05-14 12:45:21 +0300) <Anna Krystalli>
-* cdc9ea3 - correct push branch specification (2021-05-14 12:40:01 +0300) <Anna Krystalli>
-* c01ff62 - add instructions to README (2021-05-14 12:38:29 +0300) <Anna Krystalli>
-* 585287a - add test and CI (2021-05-14 12:38:09 +0300) <Anna Krystalli>
-* 3f4d54b - rename python_package folder (2021-05-14 12:37:48 +0300) <Anna Krystalli>
-* 4b1707b - use requirements.txt instead of env.yml (2021-05-14 10:04:02 +0100) <davidwilby>
-* 2556966 - remove build specs from conda env (2021-05-14 10:01:28 +0100) <davidwilby>
-* b50e658 - move env.yml to right place.. (2021-05-14 09:54:59 +0100) <davidwilby>
-*   0d2f520 - Merge branch 'main' of github.com:RSE-Sheffield/python-calculator into main (2021-05-14 09:53:44 +0100) <davidwilby>
-|\
-| * b1179a7 - add package name folder (2021-05-14 11:33:06 +0300) <Anna Krystalli>
-* | c883789 - add conda environment yaml (2021-05-14 09:53:06 +0100) <davidwilby>
-|/
-* fdb8716 - draft commit (2021-05-14 11:23:42 +0300) <Anna Krystalli>
-* 328e61b - Add subtraction issue template (2021-05-13 12:23:42 +0300) <Anna Krystalli>
-* 31a4a93 - Initial commit (2021-05-13 12:14:08 +0300) <Anna Krystalli>
+...
 ```
 
 This is a little more challenging to interpret but reading the output carefully we have an indicator of where the
@@ -223,7 +264,7 @@ This is a little more challenging to interpret but reading the output carefully 
 branch which is `multiply` and `origin/multiply` (i.e. the local copy of the branch is at the same point as the remote
 on GitHub).
 
-Knowing this we can see that the `multiply` branch diverged from the `fa76751` commit on `main` and that three commits
+Knowing this we can see that the `multiply` branch diverged from the `fa76751` commit on `main` and that two commits
 have been made on the `multiply` branch.
 
 :::::::::::::::::::::::::::::::::
@@ -231,12 +272,12 @@ have been made on the `multiply` branch.
 
 ## Working with Branches
 
-The `git switch` command is the common method for working with branches. It allows you to list, create and delete
+The `git switch` command is the common method for working with branches. It allows you to create and switch between
 branches along with a few other tasks.
 
 To list the branches that are available you can just type `git branch` or optionally include the `--list` option. In the
 `python-maths` repository you  have cloned you should see a number of branches listed. The branch you are currently
-checked out on is listed first with an asterisk (`*` )at the start and they are listed alphabetically. Later we will
+checked out on is listed first with an asterisk (`*`) at the start and they are listed alphabetically. Later we will
 change the default order to be more informative.
 
 ``` bash
@@ -247,6 +288,22 @@ main
 * multiply
 ns-rse/initial-setup
 ```
+
+::::::::::::::::::::::::::::::::::::: callout
+
+`git switch` was introduced in [Git
+v2.23.0](https://github.blog/2019-08-16-highlights-from-git-2-23/#experimental-alternatives-for-git-checkout) along with
+`git restore` to provide two separate commands for the functionality that was originally available in `git checkout`.
+The main reason was to separate the functionality of `git checkout` which could "switch" branches, including creating
+branches using the `--branch`/`-b` flag, and change ("restore") individual files with `git checkout [treeish] --
+<filename>` (more on this later).
+
+Splitting this functionality means that `git switch` is solely for `switch`ing branches whilst `git restore` is solely
+concerned with `restore`ing files but is destructive and we will cover later the `git revert` command as an alternative.
+
+`git checkout` has not been deprecated and is still available and many people still use it as old habits die hard.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Creating Branches
 
@@ -287,9 +344,10 @@ characters too but I would avoid using `#` as this is the character used by most
 would therefore have to _always_ double quote the branch name at the command line.
 
 A useful convention when creating branches is to include some meta data about who owns the branch and what it is for and
-to construct the branch name from your GitHub/GitLab username followed by a `/` and because you will typically be
-working on a particular issue include the issue number followed by a short few words which describe the work or
-issue. For example GitHub user `ns-rse` working on issue 1 to fix typehints might create a branch called
+to construct the branch name from your GitHub/GitLab username followed by a `/`. Because you will typically be
+working on a particular issue then including the issue number followed by a short few words which describe the work or
+issue can make it easy for others (including your future self) to find out more information about the branch and why the
+work has been undertaken. For example GitHub user `ns-rse` working on issue 1 to fix typehints might create a branch called
 `ns-rse/1-fix-typehints` from main.
 
 This structure is informative as it provides other people you collaborate with or who look at the repository an
@@ -306,8 +364,8 @@ In your pairs assign the `01 Add zero division exception and test` to one person
 and test` to the other person.
 
 Work through the tasks adding the necessary code, saving, staging and committing your changes then pushing to `origin`
-(GitHub). **NB** only the first issue for zero division should have a Pull Request created, please do _not_ create a
-pull request or merge the Square Root work.
+(GitHub). **NB** Please note the comment about holding back on merging the Square Root work, there will be conflicts
+that need resolving.
 
 Assign the person who worked on the Square root function to review the Zero Division exception and if everything looks
 good merge the pull request.
@@ -322,7 +380,7 @@ git switch -c main ns-rse/1-zero-divide-exception
 # MAKE EDITS
 git add -u
 git commit -m "Add Zero division exception and test"
-git push --set-upstream origin ns-rse/1-zero-divide-exception
+git push
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -338,6 +396,7 @@ git switch -c ns-rse/2-square-root
 # MAKE EDITS
 git add -u
 git commit -m "Adds square root function"
+git push
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -428,12 +487,14 @@ lose them.
 
 In your pairs navigate to the _Settings_ page and enable the _Automatically delete head branches_ option.
 
+**Hint** - Search [GitHub documentation][gh-help] for how to automatically delete branches.
+
 :::::::::::::::::::::::: solution
 
 ## Solution 1
 
-This option is on the _General_ section of _Settings_ page, it indicates that "_Deleted branches will still be able to
-be restored_".
+This option is on the _Settings > General_ page under the _Pull Requests_ section where you can select  "_Automatically
+delete head branches_".
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -442,9 +503,10 @@ be restored_".
 
 A branch is a history of commits and you can use `git log` to see the commit history (and customise the output so it can
 be easier to read), but what if you wanted to look at the state of the branch at a previous point in time? Well because
-Git has kept track of everything you can do that and the command to do so is the same one for switching branches
-i.e. `git checkout` which takes a "reference" as an argument. So far you have been using branch names as references but
-commit hashes are also references and so can be used to checkout the state of the repository in the past.
+Git has kept track of everything you can do that and the command to do so is `git checkout` which takes a "reference" as
+an argument. So far you have been using branch names as references but commit hashes are also references and so can be
+used to checkout the state of the repository in the past.
+
 
 <!-- Source for Mermaid diagram :
      https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_diverging_checkout-js
@@ -513,8 +575,23 @@ changes and save them you are advised to create a new branch to do so.
 
 ## Solution 1
 
-``` bash
+You can checkout the specific hash and use `git log` to look at who made the commit.
+```bash
 git checkout 585287a
+git log
+
+commit 585287aec5d94b10d03ae8fd35ad0423b2c1b0db (HEAD)
+Author: Anna Krystalli <annakrystalli@googlemail.com>
+Date:   2021-05-14 12:38:09 +0300
+
+    add test and CI
+
+```
+
+We can see it was made by `Anna Krystalli <annakrystalli@googlemail.com>` almost four years ago on `2021-05-14 12:38:09
++0300`.
+
+```bash
 cat tests/test_add.py
 
 import src.python_calculator.add as add
@@ -527,34 +604,6 @@ git switch -
 cat tests/test_add.py
 
 cat: tests/test_add.py: No such file or directory
-```
-
-The file `tests/test_add.py` has an import statement and defines the `test_add()` function which checks if the
-`add.add()` function returns the value of 4 when given the numbers 1 and 3.
-
-The `tests/test_add.py` file no longer exists on the `HEAD` of the `main` branch!
-
-:::::::::::::::::::::::::::::::::
-:::::::::::::::::::::::: solution
-
-## Solution 2
-
-``` bash
-git checkout 585287a
-git diff main -- tests/test_add.py
-
-diff --git a/tests/test_add.py b/tests/test_add.py
-new file mode 100644
-index 0000000..bed1ffe
---- /dev/null
-+++ b/tests/test_add.py
-@@ -0,0 +1,5 @@
-+import src.python_calculator.add as add
-+
-+
-+def test_add():
-+    assert add.add(1, 3) == 4
-
 ```
 
 The file `tests/test_add.py` has an import statement and defines the `test_add()` function which checks if the
@@ -585,11 +634,18 @@ commit/reference.
 
 Thus to compare the `HEAD` of the `divide` branch you would
 
-``` bash
-git checkout ns-rse/1-zero-divide-exception
+```bash
+git switch ns-rse/1-zero-divide-exception
 git diff 585287a
 # Equivalent to...
 git diff HEAD 585287a
+```
+
+If you want to limit this to a specific file use the `-- <file1> <file2>` option.
+
+```bash
+git switch main
+git diff 585287a -- tests/test_add.py
 ```
 
 ## Ooops! I Did It Again
@@ -609,7 +665,7 @@ removes reference to the changes from the Git history but leaves the changes to 
 
 Normally you are working on the `HEAD` of a branch which is the most recent commit that has been made along with any
 staged, but uncommitted changes. Git has a simple way of referring to previous commits relative to `HEAD` using the `~`
-and counting backwards.
+(tilde) character and counting backwards.
 
 <!-- Source for Mermaid diagram :
      https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_relative_refs-js
@@ -633,13 +689,13 @@ and counting backwards.
 <!-- markdownlint-disable-next-line MD013 -->
 ![Relative Refs on a Git Branch](https://mermaid.ink/img/pako:eNp10k1rgzAYB_CvIg8UL6bkxbzobaxlO-y22_CSxtiGVS02hXXiPvtii5uDmVPyf34JJE96MG1pIYfVqneN83nUx_5gaxvnUbzTZxsnUbx3_qnTp0M8VrvWa28f27p2_kXv7DGkvrvYoWiiaYT5sFrdg2nzT9nctkauzKMCMEolrQgmBURe78foSxXwPyaIE0VEKWZYLmGKhBRZVdEZFkuYIWU4LY2dYb6EU6SsYSrTM5wuYY4oI7zSeIbZEhYoY1YqaWaYLmGJdiZl2Z-nI0tYIa2wsZX6xc_bh83EIYHadrV2ZfgK_ZgVcPsGBYy01N37SIfgLqcy9H9bOt92kI-dT0BffPt6bcy0vpuN0_tO15BX-ngO6Uk3b237Zw15Dx-QU5muOcVcKJVKwQXlCVxDrNK1xJRhgikPNxVDAp-3E_BacamwyjhhOBQoHb4BB-fKEQ?type=png){alt="Relative references on the `main` branch with 9 commits showing the commit hash and the reference relative to the `HEAD`"}
 
-If you want to undo the _last_ commit then you can do this using `git reset --soft HEAD~1`.
+If you want to undo the _last_ commit then you can do this using `git reset HEAD~1`.
 
 ``` bash
 touch test_file
 git add test_file
 git commit -m "Adding test_file"
-git reset --soft HEAD~1
+git reset HEAD~1
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -656,7 +712,7 @@ For a detailed exposition of `git reset` see the excellent [Atlassian | Git rese
 ## Challenge 7: Commits on the wrong branch
 
 - Switch to the `main` branch of the `pytest-maths` repository.
-- Create a new file using `echo "# How to Contribute to this repo" > CONTRIBUTING.md`
+- Create a new file using `echo "# This is TODO list" > TODO.md`
 - Stage and commit the file to the `main` branch of your repository. **NB** to do this you will have to disable the
   `pre-commit` checks with the `-n` flag.
 
@@ -664,32 +720,32 @@ Ooops you've just committed to the `main` branch which is protected so you can't
 to a new branch so you can push them.
 
 - Reset the change.
-- Create a new branch called `<github_user>/contributing`.
-- Stage and commit the file to `<github_user>/contributing`.
+- Create a new branch called `<github_user>/todo`.
+- Stage and commit the file to `<github_user>/todo`.
 
 :::::::::::::::::::::::: solution
 
-## Solution
+## Solution 1
 
 You can `git reset --mixed` to `HEAD~1`, i.e. the previous commit, which removes the `CONTRIBUTING.md` file from the
 commit history, leaving it unstaged, then create a new branch and add it to that.
 
 ``` bash
 git switch main
-echo "# How to Contribute to this repo" > CONTRIBUTING.md
-git add CONTRIBUTING.md
-git commit -n -m "docs: Adding contributing guideline template"
+echo "# This is a TODO list" > TODO.md
+git add TODO.md
+git commit -n -m "docs: Adding a todo file"
 git reset --mixed HEAD~1
-git switch -c ns-rse/contributing
+git switch -c ns-rse/todo
 git add CONTRIBUTING.md
-git commit -m "docs: Adding contributing guideline template"
+git commit -m "docs: Adding a todo file"
 ```
 
 :::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
 
-## Solution
+## Solution 2
 
 Alternatively you can checkout the previous commit _before_ you added the file by mistake, create the
 `<github_user>/contributing` branch,  and `git cherrypick` the commit from `main` which contains the `CONTRIBUTING.md`
@@ -697,12 +753,12 @@ file and _then_ remove the commit from main.
 
 ``` bash
 git switch main
-echo "# How to Contribute to this repo" > CONTRIBUTING.md
-git add CONTRIBUTING.md
-git commit -n -m "docs: Adding contributing guideline template"
+echo "# This is a TODO list" > TODO.md
+git add TODO.md
+git commit -n -m "docs: Adding a todo file"
 git log              # Note the commit of the mistaken hash
-git revert HEAD~1    # Checkout the previous commit on the main branch
-git switch -c ns-rse/contributing
+git checkout HEAD~1    # Checkout the previous commit on the main branch
+git switch -c ns-rse/todo
 git cherrypick <hash>
 git switch main
 git reset --hard HEAD~1
@@ -710,45 +766,46 @@ git reset --hard HEAD~1
 
 :::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::: solution
-
-## Solution
-
-A third similar option is checkout the previous commit _before_ you added the file by mistake, create the
-`<github_user>/contributing` branch, and copy the `CONTRIBUTING.md` file from the `HEAD` of `main` using `git restore`
-and _then_ remove the commit from main.
-
-``` bash
-# TODO get commit hash of last commit
-git checkout HEAD~1
-git switch -c ns-rse/contributing
-git restore -s main -- CONTRIBUTING.md # Copy the file from HEAD of main branch or
-git add CONTRIBUTING.md
-git commit -m "Adding contributing guideline template"
-git switch -   # Switch back to main
-git
-# TODO : Complete solution and add output once sample repository is in place
-```
-
-**NB** You could also copy the file using the older `git checkout main -- CONTRIBUTING.md`.
-
-:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-You then have to decide how to add the changes to a branch. If they are brand new then you can create a new branch and
-add them. If however they were meant to be added to an existing branch you face a slight problem as if you try to switch
-branches you will be told that this would over-write the changes to the files you have just modified and unstaged and
-you don't want to lose your work.
+<!-- :::::::::::::::::::::::: solution -->
 
-The solution here is to use `git stash` to temporarily store the unstaged changes, switch branches to the target branch
-they should be on, and you can then un-stash them (known as `pop`ing) onto the correct branch.
+<!-- ## Solution 3 -->
+
+<!-- A third similar option is checkout the previous commit _before_ you added the file by mistake, create the -->
+<!-- `<github_user>/contributing` branch, and copy the `CONTRIBUTING.md` file from the `HEAD` of `main` using `git restore` -->
+<!-- and _then_ remove the commit from main. -->
+
+<!-- ``` bash -->
+<!-- # TODO get commit hash of last commit -->
+<!-- git checkout HEAD~1 -->
+<!-- git switch -c ns-rse/contributing -->
+<!-- git restore -s main -- CONTRIBUTING.md # Copy the file from HEAD of main branch or -->
+<!-- git add CONTRIBUTING.md -->
+<!-- git commit -m "Adding contributing guideline template" -->
+<!-- git switch -   # Switch back to main -->
+<!-- git -->
+<!-- # TODO : Complete solution and add output once sample repository is in place -->
+<!-- ``` -->
+
+<!-- **NB** You could also copy the file using the older `git checkout main -- CONTRIBUTING.md`. -->
+
+<!-- ::::::::::::::::::::::::::::::::: -->
+
+<!-- You then have to decide how to add the changes to a branch. If they are brand new then you can create a new branch and -->
+<!-- add them. If however they were meant to be added to an existing branch you face a slight problem as if you try to switch -->
+<!-- branches you will be told that this would over-write the changes to the files you have just modified and unstaged and -->
+<!-- you don't want to lose your work. -->
+
+<!-- The solution here is to use `git stash` to temporarily store the unstaged changes, switch branches to the target branch -->
+<!-- they should be on, and you can then un-stash them (known as `pop`ing) onto the correct branch. -->
 
 ::::::::::::::::::::::::::::::::::::: callout
 
 You can set an alias to undo the last commit with
 
 ``` bash
-git config --global alias.undo 'reset HEAD~'
+git config --global alias.undo 'reset HEAD~1'
 ```
 
 This adds the following line to the `alias` section of your `~/.gitconfig`
@@ -765,7 +822,7 @@ This adds the following line to the `alias` section of your `~/.gitconfig`
 
 `git reset` is destructive, you can lose work using it and it is advisable _not_ to use it when you have more than one
 commit you wish to undo as you lose the intermediary work between commits as you are restored to the commit you reset
-to. Fortunately Git has the `revert` option is a non-destructive approach to undoing changes in your Git
+to. Fortunately Git has the `revert` option which is a non-destructive approach to undoing changes in your Git
 history. Instead it takes a specified commit and inverts the changes, i.e. goes back to the previous state and rather
 than discarding the changes it makes a new "revert" commit to record the inversion and this new "revert" commit becomes
 the `HEAD` of the branch. `git revert` _has_ to have a reference in order to work, whether that is absolute (i.e. a
@@ -789,7 +846,7 @@ episode).
 But there is a challenge, in order to switch branches you have to stage and commit all changes to tracked files.
 
 ``` bash
-git switch branch2
+git switch -c branch2
 echo "Please feel free to contribute to this repository" >> CONTRIBUTING.md
 git add CONTRIBUTING.md
 git commit -m "Adding CONTRIBUTING.md"
@@ -807,16 +864,17 @@ another option.
 
 ### `git stash`
 
-`git stash` allows you to save your current changes in a temporary location and then reverts to the last commit (`HEAD`)
-and allows you to move about to other branches and undertake work. There are lots of options to `git stash` but the
-basics are pretty straight-forward. You start by `git stash push` (the `push` is actually optional) and you can include
-a `--message` that explains what the stash contains, you are told if this has worked and on what branch the stash was
-made and can then switch branches, pull down changes, create a new branch and do something different.
+`git stash` allows you to save your current changes in a temporary location and then reverts to the last commit
+(`HEAD`). This allows you to move about `git switch` to other branches and undertake work. There are lots of options to
+`git stash` but the basics are pretty straight-forward. You start by `git stash push` (the `push` is actually optional)
+and you can include a `--message` that explains what the stash contains, you are told if this has worked and on what
+branch the stash was made and can then switch branches, pull down changes, create a new branch and do something
+different.
 
 #### 1. Stash `CONTRIBUTING.md`
 
 ``` bash
-git stash --message "CONTRIBUTING.md WIP"
+git stash --message "WIP : CONTRIBUTING.md"
 Saved working directory and index state On branch2: CONTRIBUTION.md WIP
 ```
 
@@ -869,13 +927,14 @@ We stash `CONTRIBUTING.md`, the last message is reused by default, then we add `
 different message.
 
 ``` bash
-git stash --message "CONTRIBUTING.md WIP"
+git switch -c example-stashes
+git stash push --message "WIP CONTRIBUTING.md"
 echo "Yet another file" > ANOTHER.md
 git add ANOTHER.md
-git stash --message "Stashing ANOTHER.md file"
+git stash push --message "WIP ANOTHER.md file"
 
-stash@{0}: On branch2: Stashing ANOTHER.md file
-stash@{1}: WIP on branch2: a8b6f5f Adding CONTRIBUTING.md
+stash@{0}: On branch2: WIP ANOTHER.md file
+stash@{1}: WIP on branch2: a8b6f5f WIP CONTRIBUTING.md
 ```
 
 #### 2. Pop the `CONTRIBUTING.md` stash
@@ -887,6 +946,8 @@ earlier `Adding CONTRIBUTING.md` work first. You can do this by referring to the
 is within the curly braces. For the `Adding CONTRIBUTING.md` this is `1`.
 
 ``` bash
+git stash list
+
 git stash pop 1
 
 On branch branch2
@@ -907,17 +968,15 @@ Only the `CONTRIBUTING.md` file has been restored and not the `ANOTHER.md`.
 
 Working in your pairs on the `python-maths` repository...
 
-1. Create a `contributing` branch.
-2. Create a `CONTRIBUTING.md` with `echo "# Contributing\n\nContributions to this repository are welcome via Pull
-   Requests." > CONTRIBUTING.md`.
-3. Do _not_ add and commit, instead `git stash` your changes.
+1. Create a `todo` branch.
+2. Create a `TODO.md` with `echo "# TODO Tasks." > TODO.md`.
+3. Do _not_ add and commit, instead `git stash push -m "Adding a TODO file"` your changes.
 4. Switch to the `main` branch and create a `citation` branch.
-5. Add a basic `CITATION.cff` with `echo "cff-version: 1.2.0\ntitle: Pytest Examples\ntype: software" > CITATION.cff`.
+5. Add a basic `CITATION.cff` with `echo "cff-version: 1.2.0\ntitle: Python \ntype: software" > CITATION.cff`.
 6. Add and commit this file.
-7. Unstash the `CONTRIBUTING.md` file on the `citation` branch.
-8. Amend the previous commit to include `CONTRIBUTING.md` (**Hint** - you need to `add` and `commit` the file).
-9. Push the changes to GitHub, create a merge request and merge the changes.
-10. Delete the branches locally (try and avoid any messages telling you there are unmerged changes).
+7. Unstash the `TODO.md` file on the `citation` branch.
+8. Stage and commit the changes. Do **NOT** create a pull request or merge these changes.
+9. Delete the branches locally (try and avoid any messages telling you there are unmerged changes).
 
 :::::::::::::::::::::::: solution
 
@@ -937,9 +996,9 @@ If we want to switch branches without making a commit but save our work in progr
 git stash -m "An example stash"
 git switch main
 git switch -c citation
-echo "cff-version: 1.2.0\ntitle: Pytest Examples\ntype: software" > CITATION.cff
+echo "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" > CITATION.cff
 git add CITATION.cff
-git commit -m "chore: Adding a CITATION.cff"
+git commit -m "doc: Adding a CITATION.cff"
 ```
 
 We now unstash the contributing work to this branch and commit the changes, amending the commit and push to GitHub
@@ -947,17 +1006,17 @@ We now unstash the contributing work to this branch and commit the changes, amen
 ```bash
 git pop
 git add CONTRIBUTING.md
-git commit -m --amend "chore: Adding a CITATION.cff and CONTRIBUTING.md"
+git commit -m "doc: Adding a CONTRIBUTING.md"
 git push
 ```
 
-You should then create a Pull Request and merge it. To ensure don't get any messages about unmerged changes when
-deleting the branches you should pull the changes that have been merged to `main`.
+You can now make a pull request to merge these changes, assign it and have it reviewed and merged.
+
 
 ``` bash
 git switch main
 git pull
-git branch -d {citation, contributing}
+git branch -D {citation, contributing}
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -1005,3 +1064,4 @@ This was a revelation that came to me as I wrote the material for this Episode a
 - [git branches: intuition & reality](https://jvns.ca/blog/2023/11/23/branches-intuition-reality/)
 
 [atlassian_git_reset]: https://www.atlassian.com/git/tutorials/undoing-changes/git-reset
+[gh-help]: https://docs.github.com/en

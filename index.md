@@ -13,12 +13,10 @@ The core idea around which the course is based is to improve your understanding 
 make a clean Git history in terms of commits and pull requests which in turn makes it easier to collaborate and work on
 code with others (including your future self!).
 
-The course is split into six episodes. The first introduces how to customise the configuration of your Git repository
-and how to make informative and atomic commits which makes it easier to read and understand the history. The next topic
-covered is branches, how switch between branches, moving around the history of a branch, correcting commits made to the
-wrong branch and stashing work in progress. Once branches have been understood we cover how to handle diverging
-branches. Finally the concept of Git hooks are introduced along with the Pre-Commit framework and how these can be
-leveraged in Continuous Integration closes the course.
+The course is split into six episodes. The first three introduce the concepts of branches and how to navigate them and
+handle diverging branches and introduces the concept of atomic commits and keeping your commit history clean. The
+remaining three chapters introduce the concept of Git along with the Pre-Commit framework and how these can be leveraged in
+Continuous Integration.
 
 [swCarpentryGit]: https://swcarpentry.github.io/git-novice/
 [zeroHero]: https://srse-git-github-zero2hero.netlify.app
