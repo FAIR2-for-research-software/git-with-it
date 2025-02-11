@@ -15,8 +15,8 @@ code with others (including your future self!).
 
 The course is split into six episodes. The first three introduce the concepts of branches and how to navigate them and
 handle diverging branches and introduces the concept of atomic commits and keeping your commit history clean. The
-remaining three chapters introduce the concept of Git along with the Pre-Commit framework and how these can be leveraged in
-Continuous Integration.
+remaining three chapters introduce the concept of Git along with the Pre-Commit framework and how these can be leveraged
+in Continuous Integration.
 
 [swCarpentryGit]: https://swcarpentry.github.io/git-novice/
 [zeroHero]: https://srse-git-github-zero2hero.netlify.app

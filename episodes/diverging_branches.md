@@ -65,14 +65,15 @@ In this example the `main` branch now includes the commits `3-8c52dce` and `5-23
 branch as well as the commit `7-bc43901` which was made when the `ns-rse/1-zero-division` branch was merged in. The
 `ns-rse/2-square-root` branch does _not_ contain these commits.
 
-In this particular example that is not necessarily a problem, the two features/issues are completely independent and it
-would be possible to merge the `ns-rse/2-square-root` branch into `main` without any merge conflicts because neither
-have modified the same files in the same location.
+Sometimes this won't be a problem, the two features/issues are completely independent and have not made changes to the
+same file and it would be possible to merge the branches into `main` without any merge conflicts because neither have
+modified the same files in the same location.
 
-That will not always the case though, sometimes merge conflicts might arise if the second branch is changing some of the
+That will not always be the case though, sometimes merge conflicts might arise if the second branch is changing some of the
 same files as the first branch. Another scenario might be that whilst work was being done on adding a new feature branch
 a critical bug was fixed that the new feature depends on and the changes now in `main` need incorporating in the feature
-branch.
+branch. That is in fact the situation we have with our `ns-rse/2-square-root` branch, it conflicts with `main` because
+of the changes we merged from the `ns-rse/1-zero-division` branch.
 
 There are two approaches to solving this merging (`git merge`)  and rebasing (`git rebase`).
 
@@ -160,7 +161,7 @@ git switch -c branch1
 echo "# Just a test" > README.md
 git add README.md
 git commit -m "docs: Adding README.md"
-git logp
+git log --pretty="%h %ad (%cr) %x09 %an : %s"
 ```
 
 #### 3. Switch back to `main`
@@ -170,7 +171,7 @@ Check the contents of `README.md` (there is no such file as the it exists on `br
 ``` bash
 git switch main
 cat README.md   # Note that `README.md` does not currently exist on this branch
-git logp
+git log --pretty="%h %ad (%cr) %x09 %an : %s"
 ```
 
 #### 4. Create `branch2`, add a `LICENSE` and commit it
@@ -180,6 +181,7 @@ git switch -c branch2
 echo "YOU CAN DO WHAT YOU WANT WITH THIS CODE" > LICENSE
 git add LICENSE
 git commit -m "Adding a LICENSE"
+git log --pretty="%h %ad (%cr) %x09 %an : %s"
 ```
 
 #### 5. Merge `branch1` into `main`
@@ -191,7 +193,7 @@ exists on the `main` branch.
 git switch main
 git merge branch1
 cat README.md
-git logp
+git log --pretty="%h %ad (%cr) %x09 %an : %s"
 ```
 
 #### 6. Merge `main`, which now contains `README.md`, into `branch2`
@@ -202,7 +204,7 @@ Switch to `branch2` which has now diverged as it contains changes of its own _an
 ``` bash
 git switch branch2
 git merge --ff main # Merge changes merged into main from branch1 into branch2
-git logp
+git log --pretty="%h %ad (%cr) %x09 %an : %s"
 
 *   d914fee - (HEAD -> branch2) Merge branch 'main' into branch2 (2024-03-01 12:02:08 +0000) <Neil
 |\
@@ -220,7 +222,7 @@ We now have the changes from `branch1` included in `branch2` by virtue of having
 ``` bash
 git switch main
 git merge branch2
-git logp
+git log --pretty="%h %ad (%cr) %x09 %an : %s"
 *   d914fee - (HEAD -> main, branch2) Merge branch 'main' into branch2 (2024-03-01 12:02:08 +0000) <Neil Shephard>
 |\
 | * 7817070 - (branch1) Adding a README.md (2024-03-01 11:57:35 +0000) <Neil Shephard>
@@ -236,7 +238,7 @@ As we're done with `branch1` and `branch2` we can delete them.
 ``` bash
 # Delete the two branches
 git branch -d branch{1,2}
-git logp
+git log --pretty="%h %ad (%cr) %x09 %an : %s"
 *   d914fee - (HEAD -> main) Merge branch 'main' into branch2 (2024-03-01 12:02:08 +0000) <Neil Shephard>
 |\
 | * 7817070 - Adding a README.md (2024-03-01 11:57:35 +0000) <Neil Shephard>
@@ -246,7 +248,7 @@ git logp
 ```
 
 Having used `git merge` we couldn't perform a simple fast-forward because the history of `main` now contained changes
-that were made on `branch1` and so a separate commit (`d914fee`) was made to merge the `main` branch into `main`
+that were made on `branch1` and so a separate commit (`d914fee`) was made to merge the `main` branch into `branch2`
 (commits are denoted by `*` and so you can see the commits were made on separate branches). We can see from the graph
 that `README.md` was added from a separate `branch1` and `LICENSE` was added from `branch2`, although after deleting the
 branches they are no longer shown by name in the `git log --graph` output.
@@ -443,10 +445,15 @@ git switch ns-rse/square-root
 git merge main
 ```
 
-You can now push the changes that are on the `square-root` branch to GitHub and make a Pull Request for approval
+You should have received a message about conflicts in the `tests/test_arithmetic.py` file.
 
 ``` bash
-git push --set-upstream origin ns-rse/square-root
+git merge main
+Auto-merging pythonmaths/arithmetic.py
+Auto-merging tests/test_arithmetic.py
+CONFLICT (content): Merge conflict in tests/test_arithmetic.py
+Recorded preimage for 'tests/test_arithmetic.py'
+Automatic merge failed; fix conflicts and then commit the result.
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -470,10 +477,21 @@ git switch ns-rse/square-root
 git rebase main
 ```
 
-You can now push the changes that are on the `square-root` branch to GitHub and make a Pull Request for approval
+You should have received a message about conflicts in the `tests/test_arithmetic.py` file.
 
 ``` bash
-git push --set-upstream origin ns-rse/square-root
+git rebase main
+Auto-merging pythonmaths/arithmetic.py
+Auto-merging tests/test_arithmetic.py
+CONFLICT (content): Merge conflict in tests/test_arithmetic.py
+error: could not apply bb4294a... feature: adds square root function
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+Recorded preimage for 'tests/test_arithmetic.py'
+Could not apply bb4294a... feature: adds square root function
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -482,11 +500,10 @@ git push --set-upstream origin ns-rse/square-root
 
 ### Oh no I've got a `merge conflict`
 
-Both the `git merge` and `git rebase` strategies in the worked examples and the `python-maths` repositories you worked
-through in the challenge were fairly painless because none of the changes that were made touched the same files. In
-real-life things are often likely to be a bit more messy and when you want to update your diverged branch you will often
-find that files you have been working on have been modified and merged into `main` by others. This results in a "merge
-conflict" where Git can not determine which lines are required and therefore requires manual intervention.
+Both the `git merge` and `git rebase` strategies in the examples we went through worked because none of the changes that
+were made touched the same files. In the Challenge though there was a conflict because both commits had added code to
+the end of `tests/test_arithmetic.py` and Git didn't know which should be kept and is known as "conflict" and resolving
+it requires manual intervention.
 
 If you have undertaken the [Git & GitHub Through GitKraken - From Zero to Hero!][zerohero] course you will have
 encountered merge conflicts when working through the "_Python Calculator_" exercise and have some idea of how to resolve
@@ -754,8 +771,9 @@ current checked out branch (`branch2`).
 
 ### Repeating yourself
 
-You had to resolve two merge conflicts here, if the history you are merging has a lot of commits you may end up solving
-the same merge conflict repeatedly. There is a way to avoid this though.
+You only had to resolve one merge conflicts here, if the history you are merging has a lot of commits you may end up solving
+the same merge conflict repeatedly and wonder why you keep on getting asked to resolve the same conflict. There is a way
+to avoid this though.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -796,75 +814,199 @@ You can of course enable globally and disable locally as local configuration var
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 2: Merge Conflicts
+## Challenge 2: Diverging Branches
 
-You have now merged both the Zero Division and Square Root features into your `main` branch. In order to gain experience
-of resolving merge conflicts the branch `origin/ns-rse/merge-conflict` exists with some of these changes already in place.
+You didn't complete the merge/rebase in the previous challenge because of the merge conflict. In your pairs do so now.
 
-In your pairs work through the tasks of resolving these conflicts.
+If we look at the conflict in `tests/test_arithmetic.py` we can see at the bottom the sections that are
+conflicting. They are de-marked by `<<<<<<<`, `======-` and `>>>>>>>` and the `HEAD` and `<commit-hash>` show which
+branches they originate from.
 
-1. Create a new branch `resolve-merge-conflict`.
-2. Merge the `origin/ns-rse/merge-conflict` branch into `resolve-merge-conflict`.
-3. Look at the file you are told there are conflicts with and resolve them, you should remove the conflict delimiters
-   (`<<<<<<< HEAD` / `=======` / `>>>>>>> origin/ns-rse/merge-conflict`) and select just one of the changes to retain.
+The exact solution will depend on the strategy you have chosen to bring the branch up-to-date.
 
 :::::::::::::::::::::::: solution
 
-## Solution : `git merge`
-
-The first thing to do is make sure `main` is up-to-date and has the changes that have been merged from the
-`zero-division` branch locally.
+## Solution 1 : `git merge`
 
 ``` bash
-cd ~/work/git/hub/ns-rse/python-maths
-git switch main
-git pull
-git switch -c resolve-merge-conflict
-git merge origin/ns-rse/merge-conflict
-```
-
-You should, hopefully, see some merge conflicts being reported.
-
-``` bash
-Auto-merging tests/test_arithmetic.py
-CONFLICT (content): Merge conflict in tests/test_arithmetic.py
-Recorded preimage for 'tests/test_arithmetic.py'
-Automatic merge failed; fix conflicts and then commit the result.
-```
-
-...and if we look at the `tests/test_arithmetic.py` it shows the following conflicts.
-
-``` python
+cat tests/test/arithmetic.py
 <<<<<<< HEAD
 
 
-def test_divide_zero_division_exception() -> None:
-    """Test that a ZeroDivisionError is raised by the divide() function."""
-    with pytest.raises(ZeroDivisionError):
-        arithmetic.divide(2, 0)
-||||||| cdd8fcc
+@pytest.mark.parametrize(
+    ("x", "target"),
+    [
+        pytest.param(4, 2, id="square root of 4"),
+        pytest.param(9, 3.0, id="square root of 9"),
+        pytest.param(25, 5.0, id="square root of 25"),
+        pytest.param(2, 1.4142135623730951, id="square root of 2"),
+    ],
+)
+def test_square_root(x: int | float, target: int | float) -> None:
+    """Test the square_root() function."""
+    pytest.approx(arithmetic.square_root(x), target)
+||||||| 80b95c0
 =======
 
 
 def test_divide_zero_division_exception() -> None:
     """Test that a ZeroDivisionError is raised by the divide() function."""
     with pytest.raises(ZeroDivisionError):
-        arithmetic.divide(10, 0)
->>>>>>> origin/ns-rse/merge-conflict
+        arithmetic.divide(2, 0)
+>>>>>>> main
 ```
 
-The `ns-rse/merge-conflict` uses `arithmetic.divide(10, 0)` whilst the function added in the earlier task uses
-`arithmetic.divide(2, 0)`. Select one to use (it doesn't matter which) and tidy up so it looks like the following.
+We know that we want _both_ of these changes so we can edit the file and remove the delimiters to leave it looking like
+the following.
 
-``` python
+Then you can switch branches to the `square-root` branch and merge the main branch in.
+
+``` bash
+
+
+@pytest.mark.parametrize(
+    ("x", "target"),
+    [
+        pytest.param(4, 2, id="square root of 4"),
+        pytest.param(9, 3.0, id="square root of 9"),
+        pytest.param(25, 5.0, id="square root of 25"),
+        pytest.param(2, 1.4142135623730951, id="square root of 2"),
+    ],
+)
+def test_square_root(x: int | float, target: int | float) -> None:
+    """Test the square_root() function."""
+    pytest.approx(arithmetic.square_root(x), target)
+
+
 def test_divide_zero_division_exception() -> None:
     """Test that a ZeroDivisionError is raised by the divide() function."""
     with pytest.raises(ZeroDivisionError):
         arithmetic.divide(2, 0)
 ```
 
+If you check the status you see that you are in the middle of a merge and that `tests/test_arithmetic.py` has been
+modified by `both`.
+
+``` bash
+git status
+On branch ns-rse/2-square-root
+Your branch is up to date with 'origin/ns-rse/2-square-root'.
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+    modified:   pythonmaths/arithmetic.py
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+    both modified:   tests/test_arithmetic.py
+```
+
+You now need to stage your changes and commit them.
+
+``` bash
+git add -u
+git commit
+git push
+```
+
+You can now create a pull request, assign it for review and merge it.
+
 :::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::: solution
+
+## Solution 2 : `git rebase`
+
+``` bash
+cat tests/test/arithmetic.py
+<<<<<<< HEAD
+
+
+@pytest.mark.parametrize(
+    ("x", "target"),
+    [
+        pytest.param(4, 2, id="square root of 4"),
+        pytest.param(9, 3.0, id="square root of 9"),
+        pytest.param(25, 5.0, id="square root of 25"),
+        pytest.param(2, 1.4142135623730951, id="square root of 2"),
+    ],
+)
+def test_square_root(x: int | float, target: int | float) -> None:
+    """Test the square_root() function."""
+    pytest.approx(arithmetic.square_root(x), target)
+||||||| 80b95c0
+=======
+
+
+def test_divide_zero_division_exception() -> None:
+    """Test that a ZeroDivisionError is raised by the divide() function."""
+    with pytest.raises(ZeroDivisionError):
+        arithmetic.divide(2, 0)
+>>>>>>> main
+```
+
+We know that we want _both_ of these changes so we can edit the file and remove the delimiters to leave it looking like
+the following.
+
+Then you can switch branches to the `square-root` branch and merge the main branch in.
+
+``` bash
+
+
+@pytest.mark.parametrize(
+    ("x", "target"),
+    [
+        pytest.param(4, 2, id="square root of 4"),
+        pytest.param(9, 3.0, id="square root of 9"),
+        pytest.param(25, 5.0, id="square root of 25"),
+        pytest.param(2, 1.4142135623730951, id="square root of 2"),
+    ],
+)
+def test_square_root(x: int | float, target: int | float) -> None:
+    """Test the square_root() function."""
+    pytest.approx(arithmetic.square_root(x), target)
+
+
+def test_divide_zero_division_exception() -> None:
+    """Test that a ZeroDivisionError is raised by the divide() function."""
+    with pytest.raises(ZeroDivisionError):
+        arithmetic.divide(2, 0)
+```
+
+If you check the status you see that you are in the middle of a merge and that `tests/test_arithmetic.py` has been
+modified by `both`.
+
+``` bash
+git status
+On branch ns-rse/2-square-root
+Your branch is up to date with 'origin/ns-rse/2-square-root'.
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+    modified:   pythonmaths/arithmetic.py
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+    both modified:   tests/test_arithmetic.py
+```
+
+You now need to stage your changes and commit them.
+
+``` bash
+git add -u
+git rebase --continue
+git push
+```
+
+You can now create a pull request, assign it for review and merge it.
+
+:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: callout

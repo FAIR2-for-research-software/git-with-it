@@ -4,9 +4,9 @@ teaching: 10
 exercises: 2
 ---
 
-Some additional topics that extend working with branches and the process of reviewing.
+Some additional topics that are useful but didn't fit into the time frame.
 
-### `difftastic`
+## `difftastic`
 
 When undertaking Pull Requests on GitHub there is the ability to toggle between two [different views][githubdiff] of the
 differences. The standard view shows the changes line-by-line and looks like the following where the deleted lines are
@@ -62,7 +62,7 @@ terminal live.
 
 Install [difftastic][difftastic] on your computer and configure Git globally to use it.
 
-**Hint** There are instructions on the [website][difftastic].
+**Hint** There are instructions on the [website][difftastic_git].
 
 :::::::::::::::::::::::: solution
 
@@ -93,33 +93,6 @@ up.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-## Maintenance
-
-Overtime the information about branches and commits can become bloated. We've seen how to delete branches already but
-there are a few other simple steps we can take to help keep the repository clean.
-
-[`git maintenance`][gitmaintenance] is a _really_ useful command that will "_Run tasks to optimize Git repository data,
-speeding up other Git commands and reducing storage requirements for the repository._". The details of what this does
-are beyond the scope of this tutorial (refer to the [help page][gitmaintenance] if interested). Providing you have setup
-your GitHub account with SSH keys and they are available via something such as keychain locally then you can bring a
-repository under `git maintenance` and forget about it.
-
-``` bash
-git mainetenance register
-```
-
-This adds entries to your global configuration (`~/.gitconfig`) to ensure the repository will have these tasks run at
-the scheduled point (default is hourly).
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-Be prepared to explain how SSH keys can be unlocked on login so that the passwords don't need entering every time you
-try to use the SSH key.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
 ## Finding bugs with `git bisect`
 
 `git bisect` is one of the killer features of `git` that helps you find where bugs were introduced. Unfortunately it
@@ -144,7 +117,7 @@ identify what caused the problem.
 
 There is no worked example for this but it is a very powerful tool that is worth knowing about and so a broad overview
 is given. If you need to use `git bisect` it is recommended that you read the [official
-documentation](https://git-scm.com/docs/git-bisect). A useful feature is being able to include a script which
+documentation][gitbisect]. A useful feature is being able to include a script which
 automatically "runs" the tests or invocation that you wish to perform at each step so that after you have marked your
 good and bad commits you use a script which runs your tests and reports whether they were good or bad with `git bisect
 run <your_script> [aguments]`. A worked example of this can be found
@@ -241,7 +214,7 @@ tree -afhD -L 2
 21 directories, 43 files
 ```
 
-### The Worktree
+## The Worktree
 
 Worktrees take a different approach to organising branches. They start with a `--bare` clone of the repository which
 implies the `--no-checkout` flag and means that the files that would normally be found under the `<repository>/.git`
@@ -485,7 +458,7 @@ Working collaboratively invariably involves reviewing pull/merge requests made b
 should be afraid or anxious about undertaking as its a good opportunity to learn. Whether your work is being reviewed or
 you are reviewing others reading other people's code is an excellent way of learning.
 
-### Code Review Tutorial
+## Code Review Tutorial
 
 [Code-Review.org](https://code-review.org/) is an online tutorial to help you learn and improve how to undertake code
 reviews. It is an interactive self-paced learning resource that you can work through with the goals of...
@@ -507,3 +480,34 @@ listed below and it is recommended that you take the time to read through these.
   Review](https://google.github.io/eng-practices/review/reviewer/)).
 - [pyOpenSci Software Peer Review Guidebook! — Software Peer Review
   Guide](https://www.pyopensci.org/software-peer-review/)
+
+## Maintenance
+
+Overtime the information about branches and commits can become bloated. We've seen how to delete branches already but
+there are a few other simple steps we can take to help keep the repository clean.
+
+[`git maintenance`][gitmaintenance] is a _really_ useful command that will "_Run tasks to optimize Git repository data,
+speeding up other Git commands and reducing storage requirements for the repository._". The details of what this does
+are beyond the scope of this tutorial (refer to the [help page][gitmaintenance] if interested). Providing you have setup
+your GitHub account with SSH keys and they are available via something such as keychain locally then you can bring a
+repository under `git maintenance` and forget about it.
+
+``` bash
+git mainetenance register
+```
+
+This adds entries to your global configuration (`~/.gitconfig`) to ensure the repository will have these tasks run at
+the scheduled point (default is hourly).
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Be prepared to explain how SSH keys can be unlocked on login so that the passwords don't need entering every time you
+try to use the SSH key.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+[difftastic]: https://difftastic.wilfred.me.uk/
+[difftastic_git]: https://difftastic.wilfred.me.uk/git.html
+[gitbisect]: https://git-scm.com/docs/git-bisect
+[githubdiff]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#diff-view-options
+[gitmaintenance]: https://git-scm.com/docs/git-maintenance

@@ -160,9 +160,13 @@ As with other configuration options you can also edit the configuration files di
 ## Challenge 2 - Set a &nbsp; `git log` alias
 
 `git log` shows the history of commits on the current branch, but its default is quite verbose. Fortunately there are a
-_lot_ of options to modify the output adding colour, shortening dates and including a graph. You can see all the options
-in the manual ([`git log --help`][gitlog]). For this exercise add the following set of log options to an alias of your
-choice (this course uses `logp` but you are free to set it to whatever you want, e.g. `lp`)
+_lot_ of options to modify the output adding colour, shortening dates and including a graph and we've been using a
+version a fair bit already. You can see all the options in the manual ([`git log --help`][gitlog])
+
+Rather than having to remember this long complicated command or rely on your shell history you can instead set an alias.
+
+For this exercise add the following set of log options to an alias of your choice (this course uses `logp` but you are
+free to set it to whatever you want, e.g. `lp`)
 
 ``` bash
 log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
@@ -235,9 +239,11 @@ repository.
 
 ## Challenge 3
 
-In your pairs exclude files with the extension `.csv` and `.pkl` from being added to the `python-maths` project by
-adding the appropriate pattern to the `.gitignore` file on a new branch and merge it into the `main` branch via a
-pull-request, assigning it to the other person for review.
+In your pairs exclude files with the extension, `.RData`, `.csv` and `.pkl` and the `.DS_Store` director from being
+added to the `python-maths` project by adding the appropriate patterns to the `.gitignore` file on a new branch and
+merge it into the `main` branch via a pull-request, assigning it to the other person for review.
+
+**NB** Only one person needs to make the changes, but talk through how to solve the problem together.
 
 :::::::::::::::::::::::: solution
 
@@ -257,8 +263,10 @@ The following lines to `.gitignore` will ignore all files with the extensions `.
 is required to ensure _any_ file, no matter what comes before the extension is ignored.
 
 ```output
+.DS_Store
 *.csv
 *.pkl
+*.RData
 ```
 
 Stage and commit the changes to `.gitignore` and push to GitHub.
@@ -274,7 +282,6 @@ Pull requests are created on GitHub.
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ## Atomic Commits
 
@@ -301,9 +308,6 @@ Git has a few functions to help here and we'll go through those in turn.
 We'll use the `python-maths` repository as an example and will make a new branch called
 `<github-user>/amend-fixup-tutorial` to add a `CONTRIBUTING.md` file to.
 
-**NB** - I prefix my branch names with my GitHub username which is a simple way to keep track of who created which
-branches.
-
 ``` bash
 cd pytest-maths
 git switch -c ns-rse/amend-fixup-tutorial
@@ -317,7 +321,6 @@ echo "\nPlease make a fork of this repository, make your changes and open a Pull
 git add -u
 git commit -m "docs: Ask for PRs via fork in CONTRIBUTING.md"
 ```
-
 
 ``` bash
 git logp
@@ -424,10 +427,11 @@ git logp
   35aa48c Previous commit before adding CONTRIBUTING.md
 ```
 
-The final step is to perform the automatic squashing via an interactive rebase. You need to supply the hash of the
-commit _before_ the one you are fixing up, in this case `35aa48c` (check the output of `git logp` if you haven't made a
-note of this). This can be done explicitly but an alternative and convenient way of referring to this previous commit is
-by using the `~1` appended to the commit you have chosen to fixup so you would use.
+The final step is to perform the automatic squashing via an "interactive rebase". You need to supply the hash of the
+commit _before_ the one you are fixing up, in the above example `35aa48c` (check the output of `git logp` if you haven't
+made a note of this). This can be done explicitly but, as covered in the earlier episodes, an alternative and convenient
+way of referring to this previous commit is by using the `~1` appended to the commit you have chosen to fixup so you
+would use.
 
 ``` bash
 # Relative to the fixup
@@ -582,13 +586,13 @@ specify the last commit to check or by adapting the configuration file.
 ### Squashing commits
 
 If you don't want to use [git-absorb][gitabsorb] and you forgot to use `git commit --fixup` you can still combine
-commits using an interactive rebase `git rebase -i`.  We've already touched on `git rebase` in the context of keeping
-branches up-to-date but its a very flexible and powerful component of Git and it also allows you to "squash" commits on
-the same branch.
+commits before making pull requests using an interactive rebase `git rebase -i`.  We've already touched on `git rebase`
+in the context of keeping branches up-to-date but its a very flexible and powerful component of Git and it also allows
+you to "squash" commits on the same branch.
 
 We will now make a few commits to our branch and then squash them via an interactive rebase. This helps keep commits
-that you will merge into `main` atomic since even if you've been using `git commit --amend` to sequentially update a
-commit you may still have several commits on a branch which can be combined into a single informative commit that is
+that you will merge into `main` atomic since even if you've been using `--amend` or `--fixup` to sequentially update
+commits you may still have several commits on a branch which can be combined into a single informative commit that is
 ready for merging into the `main` branch.
 
 Returning to the `python-maths` repository we will make a series of empty commits on a new branch and then undertake an
@@ -838,7 +842,6 @@ We then cange the first line of the `add()` function to read....
 
 ...and update the first line of the `multiply()` function to read...
 
-
 ```python
 Return the product of x and y.
 ```
@@ -902,12 +905,12 @@ git status
 On branch ns-rse/test-patch
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
-	modified:   pythonmaths/arithmetic.py
+    modified:   pythonmaths/arithmetic.py
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   pythonmaths/arithmetic.py
+    modified:   pythonmaths/arithmetic.py
 ```
 
 We can now commit the changes to the `multiply()` function keeping changes atomic and focused on specific
@@ -949,7 +952,6 @@ By staging hunks into groups it allows us to make commits that are atomic, focus
 or change, and in turn our history will become easier to understand and follow (particularly if we have errors and need
 to use `git bisect` to find where they have been introduced, see [additional
 topics](additional_topics.md#finding-bugs-with-git-bisect)).
-
 
 ## Conventional Commits
 
@@ -1010,11 +1012,12 @@ founders of GitHub and co-author of [Pro Git][progit] book on useful tips for us
 
 [advanced]: https://www.atlassian.com/git/tutorials/advanced-overview
 [concommit]: https://www.conventionalcommits.org/en/v1.0.0/
-[difftastic]: https://difftastic.wilfred.me.uk/
 [gitabsorb]: https://github.com/tummychow/git-absorb
 [gitaliases]: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
-[githubdiff]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#diff-view-options
 [gitignore]: https://git-scm.com/docs/gitignore
 [gitignorepatterns]: https://git-scm.com/docs/gitignore#_pattern_format
 [gitlog]: https://git-scm.com/docs/git-log
+[ignoregenerator]: https://www.toptal.com/developers/gitignore
+[nano]: https://www.nano-editor.org/
 [progit]: https://git-scm.com/book/en/v2
+[r]: https://www.r-project.org/

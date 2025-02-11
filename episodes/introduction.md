@@ -66,7 +66,7 @@ Since this course is all about collaboration we would like you now to pair up wi
 undertake the exercises contained in this course. This could be the person sitting next to you if this is an in-person
 course or if the course is online one of the instructors will pair you up at random.
 
-Once paired up please add details to the [Collaborative Notepad] along with your GitHub usernames.
+Once paired up please add details to the [Collaborative Notepad][collab_notepad] along with your GitHub usernames.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -110,7 +110,7 @@ If you are participating online please write down your names of pairs and provid
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
-Before the start of the course you should setup a new [collaborative pad][carpentryPad] where participants can answer
+Before the start of the course you should setup a new [collaborative pad][collab_notepad] where participants can answer
 questions and collaborate.
 
 If running the course online you should have a list of participants and have paired them off at random.
@@ -145,46 +145,11 @@ need modifying to reflect the users key for the account they wish to use.
 
 ## Choose Roles, Clone Repository and
 
-Introduce yourself to the person you have paired up with. You now need to decide who is to take on each of the two
-roles. There isn't much between them in terms of what you will be doing but one person needs to be the **repository
-owner** and one person needs to be a **collaborator**.
+In your pairs you now need to decide who is to take on each of the two roles. There isn't much between them in terms of
+what you will be doing but one person needs to be the **repository owner** and one person needs to be a
+**collaborator**.
 
-### Repository Owner
-
-The Repository Owner should visit the [Python Maths][pythonMaths] repository on GitHub. To avoid the default base branch
-being this repository we do _not_ use templates. Instead the Repository owner should follow these steps to get a copy of
-the repository under their account.
-
-1. Use the `Code` button of the [Python Maths][pythonMaths] to clone the repository locally (`git clone
-   git@github.com:ns-rse/python-maths.git && cd python-maths`).
-2. Pull additional branches with `git fetch origin {divide,multiply,ns-rse/merge-conflict}`.
-3. On GitHub create an empty repository called `python-maths` using the [new repo][gh_newrepo], do _not_ add a license
-   or `.gitignore` to the repository, it should be **completely empty**.
-4. In the locally cloned `python-maths` directory open the `.git/config` file and edit the line 7 that reads
-   `url = git@github.com:ns-rse/python-maths.git` and replace `ns-rse` with _your_ GitHub user name. E.g. if your GitHub
-   username is `alice_and_bob` it should read `url = git@github.com:alice_and_bob/python-maths.git`. Save these changes.
-5. Force push with `git push --force`.
-
-This edit changes the `origin` to be the empty repository you created under _your_ account called `python-maths` and
-pushes the cloned repository there.
-
-Once you have completed this you need to invite your collaborator to work on the repository with you. Navigate to
-_Settings > People_ and invite you collaborator to the project using their GitHub username.
-
-### Collaborator
-
-You should accept the invitation you have received to work on the `python-maths` repository. Once accepted clone
-_their_ version of the `python-maths` repository. E.g. if the the repository owner's GitHub username is `alice_and_bob`
-then you will clone with `git clone git@github.com:alice_and_bob/python-maths.git`.
-
-## Install `python-maths` under the Virtual Environment
-
-Both individuals should now have local copies of the repository. After activating the `git-collaboration` Virtual
-Environment you created during setup should install the package in editable mode within the environment along with the
-`test` dependencies. If you are not familiar with working with Python follow the instructions in the Solutions below.
-
-**NB** -  Once cloned you may have to explicitly fetch the `multiply` and `divide` branches, instructions are in the
-solution.
+Follow the instructions below under each section. If you have any questions please do not hesitate to ask.
 
 :::::::::::::::::::::::::::::::::::::
 
@@ -192,23 +157,22 @@ solution.
 
 ## Clone the repository
 
-Both the repository owner and collaborator should now clone the repository _from the repository owners copy **not** the
-original template_.
-
-Click on the _Code_ button and then the _SSH_ tab. Copy the URL. If you want to clone the work to `~/work/git/` then in
-a terminal
+Click on the _Code_ button at [Python Maths][pythonmaths] and then the _SSH_ tab. Copy the URL. If you want to clone the
+work to `~/work/git/` then in a terminal run the following commands (be wary of copy and pasting them `<onwers_id>`
+needs replacing)
 
 ``` bash
 cd ~/work/git
 git clone git@github.com:<owners_id>/python-maths
 cd python-maths
+git fetch origin {divide,multiply,ns-rse/merge-conflict}
 ```
 
-### Repository Owners
+### Edit `.git/config`
 
-Just the repository owner should now edit the `.git/config` and modify line 7 where the `url` of the origin is defined
-replace `ns-rse` with their GitHub username. For example if the repository owner uses the `alice_and_bob` username on
-GitHub it should read.
+Both users should now edit the `.git/config` file and modify line 7 where the `url` of the `origin` is defined and
+replace `ns-rse` with the GitHub username of the person who will be the Repository Owner. For example if the repository
+owner uses the `alice_and_bob` username on GitHub it should read.
 
 ``` bash
  [remote "origin"]
@@ -216,14 +180,15 @@ GitHub it should read.
      fetch = +refs/heads/*:refs/remotes/origin/*
 ```
 
-Alternatively you can do this at the command line with...
+This edit changes the `origin` to be the empty repository you created under the _Repository Owner's_ account called
+`python-maths` and pushes the cloned repository there.
 
-``` bash
-git remote set-url origin git@github.com:alice_and_bob/python-maths.git
-```
+### Force Push
 
-The Repository Owner should create a new, empty, but public repository on GitHub called `python-maths`, there is no need
-to include a license nor `.gitignore` file.
+**NB** This step is _just_ for the **Repository Owner**, the **Collaborator** should **not** perform this step.
+
+The repository owner should now create an empty repository called `python-maths` using the [new repo][gh_newrepo], do
+_not_ add a license or `.gitignore` to the repository, it should be **completely empty**.
 
 The Repository Owner can push the cloned repository to their account with, the `--force` is optional and shouldn't be
 required unless you have inadvertently initialised the repository with additional files.
@@ -232,25 +197,19 @@ required unless you have inadvertently initialised the repository with additiona
 git push --force
 ```
 
-### Collaborator
-
-Once the Repository Owner has cloned and pushed a copy of the repository to their account the Collaborator can clone
-that. If the Repository Owner has username `alice_and_bob` then you can clone with the following command.
-
-``` bash
-git clone git@github.com:alice_and_bob/python-maths.git
-```
-
 :::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::: solution
 
 ## Protect the Main Branch
+
+**NB** This step is _just_ for the **Repository Owner**, the **Collaborator** should **not** perform this step.
 
 On the `python-maths` repository you both now have access to protect the `main` branch to require approvals.
 
 1. _Settings > Branches > Add classic branch protection rule_
 2. Enter `main` under _Branch name pattern_
-3. Check the box _Require a pull request before merging_
+3. Check the boxes _Require a pull request before merging_ and _Require approvals_
 4. Prevent the repository owner from bypassing the rules by checking _Do not allow bypassing the above settings_.
 5. Save the changes using the button at the bottom of the page.
 
@@ -258,7 +217,24 @@ On the `python-maths` repository you both now have access to protect the `main` 
 
 :::::::::::::::::::::::: solution
 
+## Invite your Collaborator
+
+**NB** This step is _just_ for the **Repository Owner**, the **Collaborator** should **not** perform this step.
+
+The Repository owner should now invite their collaborator to work on the repository.
+
+1. Navigate to _Settings > Collaborators_
+2. Click on _Add People_ and enter the GitHub username of your collaborator.
+
+The "Collaborator** should receive an email invitation to collaborate and should accept it.
+
+:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::: solution
+
 ## Install the Package
+
+**NB** Both the **Repository Owner**, the **Collaborator** should perform this step.
 
 If you have not already done so activate the `git-collaboration` environment you created as described in the setup
 instructions.
@@ -272,6 +248,8 @@ changes you make will instantly be available. Make sure you are in the `python-m
 you are and `cd` to change directory).
 
 ``` bash
+pwd
+cd ~/work/git/python-maths
 pip install -e .[tests,dev]
 ```
 
@@ -312,11 +290,11 @@ After completing these steps you should both have a copy of the `python-maths` r
 
 <!-- ## Working with your Collaborator -->
 
-<!-- As a quick recap there are two issue templates `01 Zero Division` and `02 Square Root`. Assign one of these issues each -->
-<!-- and work through the tasks to add the relevant functionality (instructions, commands and codes to copy and paste are -->
-<!-- provided in each of the issues). Once you have committed the changes push them to GitHub and make a Pull Request asking -->
-<!-- your collaborator to review your code (note the instructions in the Square Root task). Review your collaborators code -->
-<!-- and approve the Pull Request. -->
+<!-- As a quick recap there are two issue templates `01 Zero Division` and `02 Square Root`. Assign one of -->
+<!-- these issues each and work through the tasks to add the relevant functionality (instructions, commands -->
+<!-- and codes to copy and paste are provided in each of the issues). Once you have committed the changes -->
+<!-- push them to GitHub and make a Pull Request asking your collaborator to review your code (note the -->
+<!-- instructions in the Square Root task). Review your collaborators code and approve the Pull Request. -->
 
 <!-- ::::::::::::::::::::::::::::::::::::: -->
 
@@ -324,9 +302,9 @@ After completing these steps you should both have a copy of the `python-maths` r
 
 <!-- ## Zero Division -->
 
-<!-- The instructions should have taken you through the various steps of adding an Exception to the divide function which -->
-<!-- raises an error when the supplied value of `y` is zero. A test should have been added which checked this is raised when -->
-<!-- zero is passed. -->
+<!-- The instructions should have taken you through the various steps of adding an Exception to the divide -->
+<!--  function which raises an error when the supplied value of `y` is zero. A test should have been added -->
+<!-- which checked this is raised when zero is passed. -->
 
 <!-- ``` python -->
 <!-- def divide(x: int | float, y: int | float) -> float: -->
@@ -376,8 +354,8 @@ After completing these steps you should both have a copy of the `python-maths` r
 
 <!-- ## Square Root -->
 
-<!-- The instructions should have taken you through the the various steps of adding a Square root function. A test shold have -->
-<!-- been added which checks the square root of the numbers `4`, `9`, `25` and `2`. -->
+<!-- The instructions should have taken you through the the various steps of adding a Square root function. -->
+<!-- A test shold have been added which checks the square root of the numbers `4`, `9`, `25` and `2`. -->
 
 <!-- ``` python -->
 <!-- def square_root(x): -->
@@ -420,10 +398,6 @@ After completing these steps you should both have a copy of the `python-maths` r
 <!--     pytest.approx(arithmetic.square_root(x), target) -->
 <!-- ``` -->
 
-
-
-
-
 <!-- ::::::::::::::::::::::::::::::::: -->
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -440,6 +414,10 @@ create a pull request and merge the changes.
 the most well known but there are many others including [BitBucket][bitbucket],  [Codeberg][codeberg], and
 [ForgeJo][forgejo] and [SourceHut][sourcehut].
 
+[bitbucket]: https://bitbucket.org/
+[coc]: https://docs.carpentries.org/policies/coc/
+[codeberg]: https://codeberg.org/
+[collab_notepad]: https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/edit?tab=t.0
 [forgejo]: https://forgejo.org/
 [git]: https://git-scm.com
 [gh]: https://github.com

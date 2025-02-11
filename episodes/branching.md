@@ -75,6 +75,11 @@ the `HEAD` is `6-93e787c`.
 
 You can change branches by using `git switch <branchname>`.
 
+We can improve the output of `git log` using the following
+
+```bash
+git log --pretty="%h %ad (%cr) %x09 %an : %s"
+```
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -88,7 +93,7 @@ What are the commit hashes, commit messages, date/time and committers names?
 
 ## Solution
 
-``` bash
+```bash
 git switch divide
 git log --pretty="%h %ad (%cr) %x09 %an : %s"
 * 6353fb4 - (HEAD -> divide, origin/divide) bug: Fix tpyo in divide function (2024-03-26 10:28:36 +0000) <Neil Shephard>
@@ -157,7 +162,7 @@ diverged from `main`. How many commits have been made on the `main` branch?
 
 ## Solution
 
-``` bash
+```bash
 git switch main
 git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
 *   9a267a0 - (origin/main, origin/HEAD, main) Merge pull request #7 from slackline/ns-rse/6-square-root-warning (2025-02-10 14:22:58 +0000) <slackline>
@@ -283,10 +288,8 @@ change the default order to be more informative.
 ``` bash
 git branch
 
+* main
 divide
-main
-* multiply
-ns-rse/initial-setup
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -376,13 +379,15 @@ good merge the pull request.
 
 ``` bash
 git switch main
-git switch -c main ns-rse/1-zero-divide-exception
+git pull
+git switch -c ns-rse/1-zero-divide-exception
 # MAKE EDITS
 git add -u
 git commit -m "Add Zero division exception and test"
 git push
 ```
 
+You should then create a pull request, assign it to your collaborator who can review and approve.
 :::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
@@ -398,6 +403,9 @@ git add -u
 git commit -m "Adds square root function"
 git push
 ```
+
+You should **not** have created a pull request, if you have you may find that there are conflicts which need
+resolving. This is by design and we will resolve them later.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -507,7 +515,6 @@ Git has kept track of everything you can do that and the command to do so is `gi
 an argument. So far you have been using branch names as references but commit hashes are also references and so can be
 used to checkout the state of the repository in the past.
 
-
 <!-- Source for Mermaid diagram :
      https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_diverging_checkout-js
 -->
@@ -567,7 +574,8 @@ changes and save them you are advised to create a new branch to do so.
 
 ## Challenge 6: Checkout old commits
 
-- Look at the history of the `python-maths` repository and find out who the author of commit `585287a` was.
+- Look at the history of the `python-maths` repository and find out who the author of commit `585287a` was (there are
+  several ways of doing this.)
 - Checkout this commit and look at the contents of the file `tests/test_add.py` (you can use `cat tests/test_add.py`).
 - Switch back to `HEAD` has anything changed in the `tests/test_add.py` file?
 
@@ -575,7 +583,21 @@ changes and save them you are advised to create a new branch to do so.
 
 ## Solution 1
 
-You can checkout the specific hash and use `git log` to look at who made the commit.
+You could query the logs for the specific commit and it will show you the history from there.
+
+``` bash
+git log 585287a
+
+commit 585287aec5d94b10d03ae8fd35ad0423b2c1b0db (HEAD)
+Author: Anna Krystalli <annakrystalli@googlemail.com>
+Date:   2021-05-14 12:38:09 +0300
+
+    add test and CI
+
+```
+
+Alternatively you can checkout the specific hash and use `git log` to look at who made the commit.
+
 ```bash
 git checkout 585287a
 git log
@@ -773,8 +795,8 @@ git reset --hard HEAD~1
 <!-- ## Solution 3 -->
 
 <!-- A third similar option is checkout the previous commit _before_ you added the file by mistake, create the -->
-<!-- `<github_user>/contributing` branch, and copy the `CONTRIBUTING.md` file from the `HEAD` of `main` using `git restore` -->
-<!-- and _then_ remove the commit from main. -->
+<!-- `<github_user>/contributing` branch, and copy the `CONTRIBUTING.md` file from the `HEAD` of `main` using -->
+<!--  `git restore` and _then_ remove the commit from main. -->
 
 <!-- ``` bash -->
 <!-- # TODO get commit hash of last commit -->
@@ -792,13 +814,13 @@ git reset --hard HEAD~1
 
 <!-- ::::::::::::::::::::::::::::::::: -->
 
-<!-- You then have to decide how to add the changes to a branch. If they are brand new then you can create a new branch and -->
-<!-- add them. If however they were meant to be added to an existing branch you face a slight problem as if you try to switch -->
-<!-- branches you will be told that this would over-write the changes to the files you have just modified and unstaged and -->
-<!-- you don't want to lose your work. -->
+<!-- You then have to decide how to add the changes to a branch. If they are brand new then you can create a new  -->
+<!-- branch and add them. If however they were meant to be added to an existing branch you face a slight problem  -->
+<!-- as if you try to switch branches you will be told that this would over-write the changes to the files you  -->
+<!-- have just modified and unstaged and you don't want to lose your work. -->
 
-<!-- The solution here is to use `git stash` to temporarily store the unstaged changes, switch branches to the target branch -->
-<!-- they should be on, and you can then un-stash them (known as `pop`ing) onto the correct branch. -->
+<!-- The solution here is to use `git stash` to temporarily store the unstaged changes, switch branches to the  -->
+<!-- target branch they should be on, and you can then un-stash them (known as `pop`ing) onto the correct branch. -->
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -1011,7 +1033,6 @@ git push
 ```
 
 You can now make a pull request to merge these changes, assign it and have it reviewed and merged.
-
 
 ``` bash
 git switch main
