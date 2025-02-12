@@ -190,8 +190,8 @@ This edit changes the `origin` to be the empty repository you created under the 
 The repository owner should now create an empty repository called `python-maths` using the [new repo][gh_newrepo], do
 _not_ add a license or `.gitignore` to the repository, it should be **completely empty**.
 
-The Repository Owner can push the cloned repository to their account with the following command, the `--force` is optional and shouldn't be
-required unless you have inadvertently initialised the repository with additional files.
+The Repository Owner can push the cloned repository to their account with the following command, the `--force` is
+optional and shouldn't be required unless you have inadvertently initialised the repository with additional files.
 
 ``` bash
 git push --force
