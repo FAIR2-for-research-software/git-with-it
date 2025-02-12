@@ -4,7 +4,124 @@ teaching: 10
 exercises: 2
 ---
 
-Some additional topics that extend working with branches and the process of reviewing.
+Some additional topics that are useful but didn't fit into the time frame.
+
+## `difftastic`
+
+When undertaking Pull Requests on GitHub there is the ability to toggle between two [different views][githubdiff] of the
+differences. The standard view shows the changes line-by-line and looks like the following where the deleted lines are
+started with `-` signs and may well be in red and the added lines are started with `+` and may well be in green. Changes
+within a line are reflected as a deletion _and_ addition.
+
+``` bash
+@@ -1861,12 +1862,18 @@ tree -afhD -L 2 main/
+
+ Each branch can have a worktree added for it and then when you want to switch between them its is simply a case of
+-`cd`ing into the worktree (/branch) you wish to work on. You use Git commands within the directory to apply them to that
+-branch and Git keeps track of everything in the usual manner.
++`cd`ing into the worktree (/branch) you wish to work on. You use Git commands within the worktree directory to apply
++them to that branch and Git keeps track of everything in the usual manner.
+
+-Lets create two worktree's, the `contributing` and `citation` we created above when working with branches.
++###
++Lets create two worktree's, the `contributing` and `citation` we created above when working with branches. If you didn't
++already follow along the above steps do so now.
+```
+
+Its a matter of personal preference but it can sometimes be easier to look at differences in the split view that
+`difftastic` provides, the same changes above using the split view are shown below.
+
+``` bash
+1862                                                                            1863
+1863 Each branch can have a worktree added for it and then when you want to swi 1864 Each branch can have a worktree added for it and then when you want to swi
+.... tch between them its is simply a case of                                   .... tch between them its is simply a case of
+1864 `cd`ing into the worktree (/branch) you wish to work on. You use Git comma 1865 `cd`ing into the worktree (/branch) you wish to work on. You use Git comma
+.... nds within the directory to apply them to that                             .... nds within the worktree directory to apply
+1865 branch and Git keeps track of everything in the usual manner.              1866 them to that branch and Git keeps track of everything in the usual manner.
+1866                                                                            1867
+....                                                                            1868 ###
+1867 Lets create two worktree's, the `contributing` and `citation` we created a 1869 Lets create two worktree's, the `contributing` and `citation` we created a
+.... bove when working with branches.                                           .... bove when working with branches. If you didn't
+....                                                                            1870 already follow along the above
+steps do so now.
+```
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Show how to toggle the view on GitHub pull requests. Make sure to have an example that is already open in a tab of your
+browser.
+
+If you have `difftastic` already configured for Git make sure to disable if you are going to show the difference in the
+terminal live.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 1
+
+Install [difftastic][difftastic] on your computer and configure Git globally to use it.
+
+**Hint** There are instructions on the [website][difftastic_git].
+
+:::::::::::::::::::::::: solution
+
+## Update the `~/.gitconfig`
+
+The [instructions](https://difftastic.wilfred.me.uk/git.html) show the configuration options you can add to
+`~/.gitconfig` to setup an alias for `git dft` which uses `difftastic`. The following in your `.gitconfig` will set that
+up.
+
+```config
+[diff]
+        tool = difftastic
+
+[difftool]
+        prompt = false
+
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+        difftool = true
+# `git dft` is less to type than `git difftool`.
+[alias]
+        dft = difftool
+```
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Finding bugs with `git bisect`
+
+`git bisect` is one of the killer features of `git` that helps you find where bugs were introduced. Unfortunately it
+requires that you be somewhat organised in your workflow as it works best when a number of small commits have been made
+rather than one or two large commits with lots of changes. If you've followed the advice in this course and grouped your
+changes into atomic commits you should be good to go.
+
+### When to use?
+
+If you've found that your tests are failing or if there is unexpected behaviour but don't know when the changes that
+caused them were introduced you can leverage `git bisect` to search for the commit that changed the behaviour.
+
+### What is bisecting?
+
+The idea behind bisecting is that you have a "Good" commit and a "Bad" commit and any number of commits have been made
+in between these two. `git bisect` will use a [bisect algorithm](https://en.wikipedia.org/wiki/Bisection_method) to
+checkout a commit between the "Good" and "Bad" commit. You can then run your tests or check behaviour to see if the
+problem still occurs, if it does then you mark the commit as "Bad", if it doesn't you mark it as "Good". Git then
+iterates the splitting strategy on the "Bad" half of commits, quickly and efficiently narrowing down the offending
+commit that introduced the problem and (often) saving you hours of trawling through a large amount of changes to
+identify what caused the problem.
+
+There is no worked example for this but it is a very powerful tool that is worth knowing about and so a broad overview
+is given. If you need to use `git bisect` it is recommended that you read the [official
+documentation][gitbisect]. A useful feature is being able to include a script which
+automatically "runs" the tests or invocation that you wish to perform at each step so that after you have marked your
+good and bad commits you use a script which runs your tests and reports whether they were good or bad with `git bisect
+run <your_script> [aguments]`. A worked example of this can be found
+[here](https://interrupt.memfault.com/blog/git-bisect#scripting-the-testing).
 
 ## Worktrees instead of Branches
 
@@ -97,7 +214,7 @@ tree -afhD -L 2
 21 directories, 43 files
 ```
 
-### The Worktree
+## The Worktree
 
 Worktrees take a different approach to organising branches. They start with a `--bare` clone of the repository which
 implies the `--no-checkout` flag and means that the files that would normally be found under the `<repository>/.git`
@@ -341,7 +458,7 @@ Working collaboratively invariably involves reviewing pull/merge requests made b
 should be afraid or anxious about undertaking as its a good opportunity to learn. Whether your work is being reviewed or
 you are reviewing others reading other people's code is an excellent way of learning.
 
-### Code Review Tutorial
+## Code Review Tutorial
 
 [Code-Review.org](https://code-review.org/) is an online tutorial to help you learn and improve how to undertake code
 reviews. It is an interactive self-paced learning resource that you can work through with the goals of...
@@ -363,3 +480,34 @@ listed below and it is recommended that you take the time to read through these.
   Review](https://google.github.io/eng-practices/review/reviewer/)).
 - [pyOpenSci Software Peer Review Guidebook! — Software Peer Review
   Guide](https://www.pyopensci.org/software-peer-review/)
+
+## Maintenance
+
+Overtime the information about branches and commits can become bloated. We've seen how to delete branches already but
+there are a few other simple steps we can take to help keep the repository clean.
+
+[`git maintenance`][gitmaintenance] is a _really_ useful command that will "_Run tasks to optimize Git repository data,
+speeding up other Git commands and reducing storage requirements for the repository._". The details of what this does
+are beyond the scope of this tutorial (refer to the [help page][gitmaintenance] if interested). Providing you have setup
+your GitHub account with SSH keys and they are available via something such as keychain locally then you can bring a
+repository under `git maintenance` and forget about it.
+
+``` bash
+git mainetenance register
+```
+
+This adds entries to your global configuration (`~/.gitconfig`) to ensure the repository will have these tasks run at
+the scheduled point (default is hourly).
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Be prepared to explain how SSH keys can be unlocked on login so that the passwords don't need entering every time you
+try to use the SSH key.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+[difftastic]: https://difftastic.wilfred.me.uk/
+[difftastic_git]: https://difftastic.wilfred.me.uk/git.html
+[gitbisect]: https://git-scm.com/docs/git-bisect
+[githubdiff]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-comparing-branches-in-pull-requests#diff-view-options
+[gitmaintenance]: https://git-scm.com/docs/git-maintenance

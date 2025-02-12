@@ -107,10 +107,10 @@ emerge -av dev-vcs/git
 
 You will also need an account on [GitHub][gh]. If you do not already have one please
 [register](https://github.com/signup), if you have an academic email address such as `@<institute>.ac.uk` or
-`@<institute.edu` then registering with this address will give you access to a few more features.
+`@<institute.edu>` then registering with this address will give you access to a few more features.
 
-You should generate an SSH keys _and use a secure password when creating them_, then add the public component to your
-GitHub account.
+You should generate an SSH keys _using a secure password when creating them_, then add the public component to your
+[GitHub account][github_ssh].
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -148,7 +148,7 @@ cat ~/.ssh/id_ed25519.pub
 
 ### Adding Keys to GitHub (All OSs)
 
-Once you have created your SSH key you need to copy it to your account, got to _Settings > SSh and GPG Keys_ and click
+Once you have created your SSH key you need to copy it to your account, got to _Settings > SSH and GPG Keys_ and click
 on the _New SSH key_ button. Enter a name for your key, set the **Key type** to _Authenticaion Key_ and paste your
 public key (the contents of the file ending in `.pub`) into the **Key** box then click the _Add SSH key_ button.
 
@@ -185,7 +185,7 @@ use for the course.
 
 :::::::::::::::: solution
 
-### Installing Miniconda
+### Installing Miniconda/Miniforge3
 
 Please follow the instructions at [Installing Miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/)
 for your Operating System.
@@ -212,6 +212,7 @@ conda activate git-collaboration
 [anacondalicense]: https://www.anaconda.com/blog/update-on-anacondas-terms-of-service-for-academia-and-research
 [gh]: https://github.com
 [git]: https://git-scm.com/
+[github_ssh]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
 [gitMac]: https://git-scm.com/download/mac
 [gitWin]: https://git-scm.com/download/win
 [git4windows]: https://carpentries.github.io/workshop-template/install_instructions/#shell

@@ -60,9 +60,9 @@ contact: 'n.shephard@sheffield.ac.uk' # FIXME
 # Order of episodes in your lesson
 episodes:
 - introduction.md
-- git_hygiene.md
 - branching.md
 - diverging_branches.md
+- git_hygiene.md
 - hooks.md
 - continuous_integration.md
 # - reviewing.md

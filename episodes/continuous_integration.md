@@ -48,7 +48,7 @@ configuration files to configure the system and very similar syntax.
 
 ## ForgeJo
 
-[Forgejo][fg] has a system very similar to GitHub using [action][fg-actions]
+[Forgejo][fg] have their own [action][fg-actions], a system very similar to GitHub.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -198,8 +198,9 @@ In your pairs add the [Python Coverage][pycov] GitHub Action to the `python-math
 Work together on the solution. Create GitHub issues and assign them and undertake the work on a new branch and make the
 following changes...
 
-1. Enable `pytest` to create a coverage report to a file by adding `--cov-report coverage.xml`.
-2. Run `coverage` on that file with `coverage xml coverage.xml` in the `run: |` section.
+1. Enable `pytest` to create a coverage report to a file by adding the option `--cov-report coverage.xml` to the
+   `pytest` call.
+2. Run `coverage` on that file with `coverage xml coverage.xml` on the next line after within the `run: |` section.
 3. Add the YAML section for `- name: Get Cover` _after_ the section that runs `pytest`.
 
 :::::::::::::::::::::::: solution
@@ -282,11 +283,11 @@ ci:
 ## Challenge 2: Add pre-commit.ci to your `python-maths` repository
 
 In your pairs add an appropriate configuration section the `.pre-commit-config.yaml` on a new branch on the
-`python-maths` repository push the changes to GitHub and make a Pull Request.
+`python-maths` repository push the changes to GitHub and make a Pull Request. You should...
 
-Set the `autoupdate_schedule` to `monthly` and customise both `autofix_commit_msage` and `autoupdate_commit_msg` fields.
-
-Finally configure the `pylint` hook to be skipped in pre-commit.ci.
+- Set the `autoupdate_schedule` to `monthly`.
+- Customise both `autofix_commit_msg` and `autoupdate_commit_msg` fields.
+- Configure the `pylint` and `pytest` hooks to be skipped in pre-commit.ci.
 
 You are free to use the [pre-commit.ci][precommit-ci] documentation to help guide you.
 
@@ -302,7 +303,7 @@ ci:
     autoupdate_branch: ''
     autoupdate_commit_msg: '[pre-commit.ci] Automatically updating pre-commit'
     autoupdate_schedule: monthly
-    skip: [pylint]
+    skip: [pylint, pytest]
     submodules: false
 ```
 
