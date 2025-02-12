@@ -44,6 +44,7 @@ make on the repository at different stages in the Git workflow.
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ``` output
+❱ cd ~/work/git/hub/ns-rse
 ❱ mkdir test
 ❱ cd test
 ❱ git init
@@ -68,8 +69,8 @@ drwxr-xr-x neil neil 4.0 KB Fri Feb 23 10:40:46 2024 ..
 ```
 
 If you create a repository on [GitHub][gh], [GitLab][gl] or another forge when you clone it locally these samples are
-created on your system. They are _not_ part of the repository itself as files under the `.git` directory are not part of
-the repository.
+created on your system. They are _not_ part of the repository itself as files under the `.git` directory are not under
+version control by default.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -79,7 +80,8 @@ Lets take a look at the hooks in the [`python-maths`][pm] repository you have cl
 
 1. What does `.git/hooks/pre-push.sample` do?
 2. Enable the `.git/hooks/pre-push` using the `.git/hooks/pre-push.sample`.
-3. Test the enabled hook by making an empty commit that will trigger the hook (**hint** it is case-sensitive).
+3. Test the enabled hook by creating a new branch and making an empty commit that will trigger the hook (**hint** it is
+   case-sensitive). Remove the branch after you are satisfied the hook works.
 
 :::::::::::::::::::::::: solution
 
@@ -91,7 +93,7 @@ Git will have populated the `.git/hooks` directory automatically when you cloned
 2. Look at the file `.git/hooks/pre-push.sample`.
 
 ``` bash
-❱ cd python-maths
+❱ cd ~/path/to/cloned/repository/python-maths
 ❱ cat .git/hooks/pre-push.sample
 #!/bin/sh
 
@@ -156,8 +158,8 @@ When enabled this hook will "_prevent push of commits where the log message star
 
 ## Solution 2: Enable the `pre-push` hook and test it
 
-This sounds like a good idea as it, notionally, prevents people from pushing work that is in progress, if they are in
-the habit of starting commit messages with "WIP".
+This sounds like a good idea as it, notionally, prevents people from pushing work that is in progress...if they are in
+the habit of starting commit messages with "WIP"!
 
 1. Enable the hook.
 2. Create a new branch `<github-user>/test-hook` to test the hook on.
@@ -211,7 +213,7 @@ the local branch and you are advised to `git pull` before attempting to `git pus
 ```
 
 A simple addition you can add to the `.git/hooks/pre-push` script is to have it `git fetch` before attempting to make a
-`git push` which retrieve details, but not pull them, of changes that have been made to the branch on `origin`.
+`git push` which retrieves details, but does not pull them, of changes that have been made to the branch on `origin`.
 
 ``` bash
 #!/bin/sh
@@ -227,10 +229,13 @@ exec git fetch
 
 Pre-commit hooks that run before commits are made are _really_ useful to the extent that they require special discussion
 and will be the focus of the remainder of this episode. Why are they so useful? It's because they shorten the feedback
-loop of changes that need to be made when checking and linting code. It may seem mundane and unnecessary to apply such
-standards to your code, particularly if it is just exploratory code development, but over time if you employ these tools
-the way in which you write code will change so that it becomes natural to write code that is formatted and linted and
-should you then decide that code is ready to be used beyond exploratory stage it will not need refactoring in order to
+loop of changes that need to be made when checking and linting code.
+
+It may seem mundane and unnecessary to apply such standards to your code, particularly if it is just exploratory code
+development, but over time if you employ these tools the way in which you write code will change so that it becomes
+natural to write code that is formatted and linted.
+
+Should you then decide that code is ready to be used beyond exploratory stage it will not need refactoring in order to
 get it in shape. In essence this encourages adoption of good coding practices from the outset, taking
 responsibility/ownership of the code you write so that it is to the highest standards it can be. In the long run t is
 better to form good habits than bad ones and hooks help you do so.
@@ -247,10 +252,10 @@ hook that resides at `.git/hooks/pre-commit`, although we will look at that file
 
 ### Why are Pre-Commit hooks so important?
 
-You may be wondering why running hooks prior to commits is so important. The short answer is that it reduces the
-feedback loop and speeds up the pace of development. The long answer is that it only really becomes apparent after using
-them so we're going to have a go at installing and enabling some `pre-commit` hooks on our code base, making some
-changes and committing them.
+You may be wondering why running hooks prior to commits is so important. The short answer, as we've already hear,  is
+that it reduces the feedback loop and speeds up the pace of development. The long answer is that it only really becomes
+apparent after using them so we're going to have a go at installing and enabling some `pre-commit` hooks on our code
+base, making some changes and committing them.
 
 ### Installation
 
@@ -270,21 +275,6 @@ However, for this course the setup instructions asked you to install [Miniconda]
 Retrieving notices: ...working... done
 Collecting package metadata (current_repodata.json): done
 Solving environment: done
-
-
-==> WARNING: A newer version of conda exists. <==
-  current version: 24.4.0
-  latest version: 24.5.0
-
-Please update conda by running
-
-    $ conda update -n base -c defaults conda
-
-Or to minimize the number of packages updated during conda update use
-
-     conda install conda=24.5.0
-
-
 
 ## Package Plan ##
 
@@ -382,8 +372,8 @@ activate a virtual environment.
 
 We have just installed `pre-commit` locally in the `python-maths` repository lets see what it has done.
 
-- What will the message say if `pre-commit` can not be found by the `pre-commit` hook? (**Hint** - look for the line that
-  starts with `echo`)
+- What will the message say if `pre-commit` can not be found by the `pre-commit` hook? (**Hint** - remember where hooks
+  are installed and look for the line that starts with `echo`)
 
 :::::::::::::::::::::::: solution
 
@@ -546,8 +536,8 @@ itself. Other configured repositories are
 
 ### `rev:`
 
-The next line indicates the revision of the repo that you wish to use. These are typically `git tags` that have been
-applied to releases of the hook. In this example the revision is `4.5.0` for the `pre-commit-hooks`.
+The next line indicates the revision of the hook repository that you wish to use. These are typically `git tags` that
+have been applied to releases of the hook. In this example the revision is `4.5.0` for the `pre-commit-hooks`.
 
 ### `hooks:`
 
@@ -593,9 +583,13 @@ before (`-B`) and after (`-A`) flags and how the pipe (`|`) command is used to c
 Now that we've gone through the structure of how a `pre-commit` repository is defined and configured lets look at some
 of the others that are defined.
 
+- What version of the `numpydoc` repo is configured?
+- What hook(s) is/are enabled from the `black-pre-commit-mirror` repo?
+- What arguments are listed for the `ruff` hook?
+
 :::::::::::::::::::::::: solution
 
-## Challenge 3: What version of the `numpydoc` repo is configured
+## Solution 1 : What version of the `numpydoc` repo is configured
 
 Using [grep][grep] to search for the `numpydoc` string in the `.pre-commit-config.yaml` we can hone in on the `repo` and
 its associated `rev`.
@@ -612,7 +606,7 @@ We see that it is `v1.6.0` that is currently configured for `numpydoc`.
 
 :::::::::::::::::::::::: solution
 
-## Challenge 4: What hook(s) is/are enabled from the `black-pre-commit-mirror` repo?
+## Solution 2 : What hook(s) is/are enabled from the `black-pre-commit-mirror` repo?
 
 Searching for the `black-pre-commit-mirror` in the configuration and then looking for the `id` shows us what hooks are
 configured for this `repi`.
@@ -630,7 +624,7 @@ Jupyter Notebooks.
 
 :::::::::::::::::::::::: solution
 
-## Challenge 5: What arguments are listed for the `ruff` hook?
+## Solution 3 : What arguments are listed for the `ruff` hook?
 
 Finally searching for `ruff` in `.pre-commit-config.yaml` and then looking for the `args` field we can find out what
 arguments are passed to the [ruff][ruff] linter.
@@ -653,7 +647,11 @@ the configuration file where each `- repo:` is defined which points to a Git rep
 environment to run the hook.
 
 These need downloading and initialising before they will run on your local system and that is achieved using `pre-commit
-install-hooks`.
+install-hooks`. We will now install the hooks.
+
+```bash
+❱ pre-commit install-hooks
+```
 
 The repos that are defined need installing, this is done once and sets up some virtual environments which are reused
 across Git repositories that have `pre-commit` installed. If the `ref:` is changed or updated then it will require
@@ -661,10 +659,12 @@ downloading a new environment.
 
 ## Running `pre-commit`
 
-Whilst configured as a hook to run before commits `pre-commit` can be run at any time against the whole repository
+Whilst configured as a hook to run before commits `pre-commit` you can run all hooks or a specific hook at any time
+against the whole repository
 
 ``` bash
-❱ pre-commit run --all-files
+❱ pre-commit run --all-files                # Run all hooks on all files
+❱ pre-commit run <hook-to-run> --all-files  # Run a specific hook on all files
 ```
 
 ...or on individual files, in this case `pyproject.toml` and `README.md`
@@ -744,7 +744,7 @@ changes (**NB** make sure youre are)
 ``` bash
 ❱ git add .pre-commit-config.yaml
 ❱ git commit -m "pre-commit : Exclude large files and detect private keys"
-❱ git push --set-upstream origin ns-rse/add-pre-commit-hooks
+❱ git push
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -778,57 +778,58 @@ The file should then be staged, committed and pushed.
 The definitive [list][pc-hooks] of `pre-commit` repos is maintained on the official website. Each entry links to the
 GitHub repository and most contain in their `README.md` instructions on how to use the hooks.
 
-::::::::::::::::::::::::::::::::::::: challenge
+<!-- ::::::::::::::::::::::::::::::::::::: challenge -->
 
-## Challenge 7: Add the `numpydoc` repo, exclude the `tests/` and `doc/` directories and run it against the code base
+<!-- ## Challenge 7: Add the `numpydoc` repo, exclude the `tests/` and `doc/` directories and run it against-->
+<!-- the code base -->
 
-The [numpydoc](https://github.com/numpy/numpydoc) repo defines hooks that check the Python docstrings conform to the
-[Numpydoc style guide](https://numpydoc.readthedocs.io/en/latest/format.html). Following the instructions add the repo
-to the `.pre-commit-config.yaml` (on a new branch)
+<!-- The [numpydoc](https://github.com/numpy/numpydoc) repo defines hooks that check the Python docstrings -->
+<!-- conform to the [Numpydoc style guide](https://numpydoc.readthedocs.io/en/latest/format.html). Following the  -->
+<!-- instructions add the repo to the `.pre-commit-config.yaml` (on a new branch) -->
 
-:::::::::::::::::::::::: solution
+<!-- :::::::::::::::::::::::: solution -->
 
-## Solution
+<!-- ## Solution -->
 
-Create a branch to undertake the work on.
+<!-- Create a branch to undertake the work on. -->
 
-``` bash
-❱ git switch main
-❱ git pull
-❱ git switch -c ns-rse/pre-commit-numpydoc
-```
+<!-- ``` bash -->
+<!-- ❱ git switch main -->
+<!-- ❱ git pull -->
+<!-- ❱ git switch -c ns-rse/pre-commit-numpydoc -->
+<!-- ``` -->
 
-The following should be added to your `.pre-commit-config.yaml`
+<!-- The following should be added to your `.pre-commit-config.yaml` -->
 
-``` yaml
-   - repo: https://github.com/numpy/numpydoc
-     rev: v1.6.0
-     hooks:
-       - id: numpydoc-validation
-         exclude: |
-           (?x)(
-               tests/|
-               docs/
-           )
-```
+<!-- ``` yaml -->
+<!--    - repo: https://github.com/numpy/numpydoc -->
+<!--      rev: v1.6.0 -->
+<!--      hooks: -->
+<!--        - id: numpydoc-validation -->
+<!--          exclude: | -->
+<!--            (?x)( -->
+<!--                tests/| -->
+<!--                docs/ -->
+<!--            ) -->
+<!-- ``` -->
 
-Check that the code base passes the checks, correct any errors that are highlighted.
+<!-- Check that the code base passes the checks, correct any errors that are highlighted. -->
 
-``` bash
-❱ pre-commit run numpydoc --all-files
-```
+<!-- ``` bash -->
+<!-- ❱ pre-commit run numpydoc --all-files -->
+<!-- ``` -->
 
-The file should then be staged, committed and pushed.
+<!-- The file should then be staged, committed and pushed. -->
 
-``` bash
-❱ git add .pre-commit-config.yaml
-❱ git commit -m "pre-commit : adds the numpydoc repo/hook"
-❱ git push
-```
+<!-- ``` bash -->
+<!-- ❱ git add .pre-commit-config.yaml -->
+<!-- ❱ git commit -m "pre-commit : adds the numpydoc repo/hook" -->
+<!-- ❱ git push -->
+<!-- ``` -->
 
-:::::::::::::::::::::::::::::::::
+<!-- ::::::::::::::::::::::::::::::::: -->
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+<!-- :::::::::::::::::::::::::::::::::::::::::::::::: -->
 
 ## Local repos
 
