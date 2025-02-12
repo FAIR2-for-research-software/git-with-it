@@ -8,7 +8,7 @@ exercises: 2
 
 - What are branches?
 - How do we use branches in git effectively?
-- How can I check out other peoples branches whilst working on my own?
+- How can I check out other people's branches whilst working on my own?
 - How do I keep my development branch up-to-date with `main`?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -20,7 +20,7 @@ exercises: 2
 - How to keep a development branch up-to-date.
 - Differences between and when to use merge and rebase.
 - Git worktrees instead of branches.
-- Tracking multiple origins
+- Tracking multiple origins.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -59,7 +59,7 @@ has been merged via a Pull Request, but the work to address the Square Root func
 -->
 
 <!-- markdownlint-disable-next-line MD013 -->
-![Diverging branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division.`](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="Diverging branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
+![Diverging branches in `python-maths`: `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`.](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="Diverging branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
 
 In this example the `main` branch now includes the commits `3-8c52dce` and `5-2315fa0` from the `ns-rse/1-zero-division`
 branch as well as the commit `7-bc43901` which was made when the `ns-rse/1-zero-division` branch was merged in. The
@@ -70,17 +70,17 @@ same file and it would be possible to merge the branches into `main` without any
 modified the same files in the same location.
 
 That will not always be the case though, sometimes merge conflicts might arise if the second branch is changing some of the
-same files as the first branch. Another scenario might be that whilst work was being done on adding a new feature branch
+same files as the first branch. Another scenario might be that whilst work was being done on adding a new feature branch,
 a critical bug was fixed that the new feature depends on and the changes now in `main` need incorporating in the feature
 branch. That is in fact the situation we have with our `ns-rse/2-square-root` branch, it conflicts with `main` because
 of the changes we merged from the `ns-rse/1-zero-division` branch.
 
-There are two approaches to solving this merging (`git merge`)  and rebasing (`git rebase`).
+There are two approaches to solving this: merging (`git merge`)  and rebasing (`git rebase`).
 
 ### Merging
 
 <!-- markdownlint-disable-next-line MD013 -->
-![**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division.`](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
+![**Before** - diverged branches in `python-maths`: `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`.](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
 
 <!-- Source for Mermaid diagram :
      https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_merging-js
@@ -116,7 +116,7 @@ There are two approaches to solving this merging (`git merge`)  and rebasing (`g
 -->
 
 <!-- markdownlint-disable-next-line MD013 -->
-![**After** - merging `ns-rse/1-zero-division` into `main` then `main` into `ns-rse/2-square-root`. Development is completed on `ns-rse/2-square-root` and the feature merged into `main`](https://mermaid.ink/img/pako:eNqtk8GOmzAQhl8FWYpoJUxtA8bmVnVX7aE99VZxMcYk1i44NWbVXcS715CyTaIkqtpywuN_vvk9mhmBNLUCBdhsRt1pVwRj6HaqVWERhJXoVRgF4Va7j1bsd-F8a40TTn0wbavdZ1GpRx91dlBT2QXr5_-nzeYQWJNfr-WSGui6CEqAYJqTBiNcgssCDDPMMK3pNQGBNKe8aUjwZvb79khXWdHJndd0PbS9eofhi7IG1vpJ99p0N5QE9t8HYRW0xrjjyjslH8zg_oR54jKBTGakluom7GrZY1QKmZIJ4-J_-MogSXDWCPTvvijkicpZLi-hWqG712ir7FbdsPoLmMNKpgmfZyNwYjuHnlCM46uz8un-_d1fvWM1tLhcyzMoGJKqYb_Lf1l0B9VlCxzKiiX8tJ8n84wgFipLZXLZ6Rn8rFVnD1iZ2FuVnCfkrFNkJoEIeIrn1n7Nx5lcgmXFSzALa2EfZtnkdcO-9rt9X2tnLCjmrY6AGJz5-tzJ9XzQ3GmxtaIFRSMeex_di-6bMSdnUIzgBygwyWOcEoSTDHHMEU8i8AwKwmjMckwYyThllLIpAi8LAcUMYR9KEfU5Wcbx9BO0WV5-?type=png){alt-text="**After** - merging `ns-rse/1-zero-division` into `main` then `main` into `ns-rse/2-square-root`. Development is completed on`ns-rse/2-square-root` and the feature merged into `main`"}
+![**After** - merging `ns-rse/1-zero-division` into `main` then `main` into `ns-rse/2-square-root`. Development is completed on `ns-rse/2-square-root` and the feature merged into `main`.](https://mermaid.ink/img/pako:eNqtk8GOmzAQhl8FWYpoJUxtA8bmVnVX7aE99VZxMcYk1i44NWbVXcS715CyTaIkqtpywuN_vvk9mhmBNLUCBdhsRt1pVwRj6HaqVWERhJXoVRgF4Va7j1bsd-F8a40TTn0wbavdZ1GpRx91dlBT2QXr5_-nzeYQWJNfr-WSGui6CEqAYJqTBiNcgssCDDPMMK3pNQGBNKe8aUjwZvb79khXWdHJndd0PbS9eofhi7IG1vpJ99p0N5QE9t8HYRW0xrjjyjslH8zg_oR54jKBTGakluom7GrZY1QKmZIJ4-J_-MogSXDWCPTvvijkicpZLi-hWqG712ir7FbdsPoLmMNKpgmfZyNwYjuHnlCM46uz8un-_d1fvWM1tLhcyzMoGJKqYb_Lf1l0B9VlCxzKiiX8tJ8n84wgFipLZXLZ6Rn8rFVnD1iZ2FuVnCfkrFNkJoEIeIrn1n7Nx5lcgmXFSzALa2EfZtnkdcO-9rt9X2tnLCjmrY6AGJz5-tzJ9XzQ3GmxtaIFRSMeex_di-6bMSdnUIzgBygwyWOcEoSTDHHMEU8i8AwKwmjMckwYyThllLIpAi8LAcUMYR9KEfU5Wcbx9BO0WV5-?type=png){alt-text="**After** - merging `ns-rse/1-zero-division` into `main` then `main` into `ns-rse/2-square-root`. Development is completed on`ns-rse/2-square-root` and the feature merged into `main`"}
 
 The syntax of `git merge` is
 
@@ -126,12 +126,12 @@ git merge <OPTIONS> <ref>
 
 Where `<ref>` is one of a commit, branch name or tag (both of which are references to commits). There is an option for
 how the merge is made known as `fast-forward`. Fast-forward is the default action unless annotated tags are being merged
-that is in the incorrect hierarchy. To explicitly enabled this behaviour (`--ff`) and the branch pointer, that is where
-the current branch diverged from the the `main` branch) is updated to point to the most recent commit on the `main`
+that are in the incorrect hierarchy. To explicitly enable this behaviour (`--ff`) and the branch pointer, that is where
+the current branch diverged from the the `main` branch, is updated to point to the most recent commit on the `main`
 branch.
 
 Typically though the `main` branch contains work from someone else's branch and we want to incorporate those changes in
-the another branch.
+the other branch.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -259,7 +259,7 @@ Rebasing moves the point at which the branch diverged from its original position
 the `main` branch. You are changing the `base` commit, hence the name `git rebase`.
 
 <!-- markdownlint-disable-next-line MD013 -->
-![**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division.`](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
+![**Before** - diverged branches in `python-maths`: `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`.](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
 
 <!-- Source for Mermaid diagram :
      https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_rebase-js
@@ -295,7 +295,7 @@ the `main` branch. You are changing the `base` commit, hence the name `git rebas
 <!-- markdownlint-disable-next-line MD013 -->
 ![**After** - rebase to bring the diverged branch up-to-date with `main` which includes `ns-rse/1-zero-division`. Two more commits are made and `ns-rse/2-square-root` is then merged into `main`.](https://mermaid.ink/img/pako:eNqtk02PmzAQhv8KshTRSjH1Bxiba1v10lN7q7gYYxJrF5was-ou4r_XziYrdpVEK7Wc8DvvPB7PaGagbKtBBTab2QzGV8mc-r3udVolaSNHnW6TdGf8NycP-zRGnfXS68-2743_Lht9H1TvJr3UQ3L-wv-y2TwL5-SXsDqmJqatkhogmJekwwjX4LIBwwJzzFp2zUAgK5noOpJ8iPV-XPkaJwe1D55hhG7UnzB80s7C1jyY0dhhTdxrdWcn_y7v-nYKuSpIq_T_gBWQUFx0El2C9dIML2qv3U7f4J-AJWxUTkXsbuLlLkoPKMPZhW6fwj90bOKNHhI4_p6k09BZ628--qpz_eQccq0oF_LfUQwKqkteqmuGEqqGU_G6vWsDh1jqIlf0cjHHCYBrM3hT4wkpYCMFRQS9mQCJoHoAWxAwAdyGFZwjugbH9atBtLbS3UXjEnzToQ1797U13jpQxY3bAjl5-_NxUOfzs-eLkTsne1B18n4M6kEOv6x9dQbVDP6ACpMywzlBmBZIYIEE3YJHUBHOMl5iwkkhGGeML1vwdCSgjCMcpByxkFMUAi9_ARUBQVQ?type=png){alt-text="**After** - rebase to bring the diverged branch up-to-date with `main` which includes `ns-rse/1-zero-division`. Two more commits are made and `ns-rse/2-square-root` is then merged into `main`."}
 
-`git rebase` takes a different approach to bringing branches up-to-date and in effects moves the point at which a branch
+`git rebase` takes a different approach to bringing branches up-to-date and in effect moves the point at which a branch
 diverged from `main` rather than merging the changes in.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
@@ -502,8 +502,8 @@ Could not apply bb4294a... feature: adds square root function
 
 Both the `git merge` and `git rebase` strategies in the examples we went through worked because none of the changes that
 were made touched the same files. In the Challenge though there was a conflict because both commits had added code to
-the end of `tests/test_arithmetic.py` and Git didn't know which should be kept and is known as "conflict" and resolving
-it requires manual intervention.
+the end of `tests/test_arithmetic.py` and Git didn't know which should be kept. This situation is known as "conflict"
+and resolving it requires manual intervention.
 
 If you have undertaken the [Git & GitHub Through GitKraken - From Zero to Hero!][zerohero] course you will have
 encountered merge conflicts when working through the "_Python Calculator_" exercise and have some idea of how to resolve
@@ -642,7 +642,7 @@ open the `README.md` and edit it to leave it in the state we want the file to be
 
 #### 7. Resolve the conflict
 
-You can use the `nano` editor to open the file with `nano README.md`. Edit it to look like this
+You can use the `nano` editor to open the file with `nano README.md`. Edit it to look like this:
 
 ``` bash
 # Just a test
@@ -707,8 +707,8 @@ Lets add another commit to make things messier
 >>>>>>> 84a1592 (Bulking out README.md with more information)
 ```
 
-Here we can see its the second line that we added to `README.md` under `branch2` that read
-`Lets add another commit to make things messier` that is causing the problem. Its not in the `main` branch on which we
+Here we can see it's the second line that we added to `README.md` under `branch2` that read
+`Lets add another commit to make things messier` that is causing the problem. It's not in the `main` branch on which we
 are rebasing so Git doesn't know whether it should be and we have to manually resolve this. Edit the file so that it
 looks like the following.
 
@@ -771,7 +771,7 @@ current checked out branch (`branch2`).
 
 ### Repeating yourself
 
-You only had to resolve one merge conflicts here, if the history you are merging has a lot of commits you may end up solving
+You only had to resolve two merge conflicts here, if the history you are merging has a lot of commits you may end up solving
 the same merge conflict repeatedly and wonder why you keep on getting asked to resolve the same conflict. There is a way
 to avoid this though.
 
