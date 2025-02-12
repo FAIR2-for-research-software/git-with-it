@@ -218,7 +218,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="git_hygiene.html">2. Git Hygiene</a>
+        <a href="branching.html">2. Branching</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -227,7 +227,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="branching.html">3. Branching</a>
+        <a href="diverging_branches.html">3. Diverging Branches</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -236,7 +236,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="diverging_branches.html">4. Diverging Branches</a>
+        <a href="git_hygiene.html">4. Git Hygiene</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -349,7 +349,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Continuous Integration</h1>
-        <p>Last updated on 2024-05-23 |
+        <p>Last updated on 2025-02-12 |
 
         <a href="https://github.com/ns-rse/git-collaboration/edit/main/episodes/continuous_integration.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -422,8 +422,8 @@ named <a href="https://docs.gitlab.com/ee/ci/" class="external-link">CI/CD</a>.<
 </div>
 <div class="section level2">
 <h2 id="forgejo">ForgeJo<a class="anchor" aria-label="anchor" href="#forgejo"></a></h2>
-<p><a href="https://forgejo.org" class="external-link">Forgejo</a> has a system very similar
-to GitHub using <a href="https://forgejo.org/docs/next/user/actions/" class="external-link">action</a></p>
+<p><a href="https://forgejo.org" class="external-link">Forgejo</a> have their own <a href="https://forgejo.org/docs/next/user/actions/" class="external-link">action</a>, a system
+very similar to GitHub.</p>
 </div>
 </div>
 </div>
@@ -648,10 +648,11 @@ repository.</p>
 and undertake the work on a new branch and make the following
 changes…</p>
 <ol style="list-style-type: decimal"><li>Enable <code>pytest</code> to create a coverage report to a file by
-adding <code>--cov-report coverage.xml</code>.</li>
+adding the option <code>--cov-report coverage.xml</code> to the
+<code>pytest</code> call.</li>
 <li>Run <code>coverage</code> on that file with
-<code>coverage xml coverage.xml</code> in the <code>run: |</code>
-section.</li>
+<code>coverage xml coverage.xml</code> on the next line after within the
+<code>run: |</code> section.</li>
 <li>Add the YAML section for <code>- name: Get Cover</code>
 <em>after</em> the section that runs <code>pytest</code>.</li>
 </ol></div>
@@ -662,7 +663,7 @@ section.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Adding Python Coverage </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>After creating an issue and assigning it you can create a new branch
 with the following.</p>
@@ -760,13 +761,14 @@ and is shown below.</p>
 <p>In your pairs add an appropriate configuration section the
 <code>.pre-commit-config.yaml</code> on a new branch on the
 <code>python-maths</code> repository push the changes to GitHub and make
-a Pull Request.</p>
-<p>Set the <code>autoupdate_schedule</code> to <code>monthly</code> and
-customise both <code>autofix_commit_msage</code> and
-<code>autoupdate_commit_msg</code> fields.</p>
-<p>Finally configure the <code>pylint</code> hook to be skipped in
-pre-commit.ci.</p>
-<p>You are free to use the <a href="https://pre-commit.ci/" class="external-link">pre-commit.ci</a> documentation to help
+a Pull Request. You should…</p>
+<ul><li>Set the <code>autoupdate_schedule</code> to
+<code>monthly</code>.</li>
+<li>Customise both <code>autofix_commit_msg</code> and
+<code>autoupdate_commit_msg</code> fields.</li>
+<li>Configure the <code>pylint</code> and <code>pytest</code> hooks to
+be skipped in pre-commit.ci.</li>
+</ul><p>You are free to use the <a href="https://pre-commit.ci/" class="external-link">pre-commit.ci</a> documentation to help
 guide you.</p>
 </div>
 </div>
@@ -776,7 +778,7 @@ guide you.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> .pre-commit-config.yaml </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -788,7 +790,7 @@ guide you.</p>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="at">    </span><span class="fu">autoupdate_branch</span><span class="kw">:</span><span class="at"> </span><span class="st">''</span></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="at">    </span><span class="fu">autoupdate_commit_msg</span><span class="kw">:</span><span class="at"> </span><span class="st">'[pre-commit.ci] Automatically updating pre-commit'</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="at">    </span><span class="fu">autoupdate_schedule</span><span class="kw">:</span><span class="at"> monthly</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="at">    </span><span class="fu">skip</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">pylint</span><span class="kw">]</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="at">    </span><span class="fu">skip</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">pylint</span><span class="kw">,</span><span class="at"> pytest</span><span class="kw">]</span></span>
 <span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="at">    </span><span class="fu">submodules</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre>
 </div>
 </div>
@@ -889,8 +891,8 @@ any links that you are not going to use.
   "url": "ns-rse.github.io/git-collaboration/continuous_integration.html",
   "identifier": "ns-rse.github.io/git-collaboration/continuous_integration.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2024-05-23",
-  "datePublished": "2025-02-11"
+  "dateModified": "2025-02-12",
+  "datePublished": "2025-02-12"
 }
 
   </script><script>

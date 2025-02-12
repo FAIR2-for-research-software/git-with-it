@@ -261,7 +261,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="git_hygiene.html">2. Git Hygiene</a>
+        <a href="branching.html">2. Branching</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -273,7 +273,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="branching.html">3. Branching</a>
+        <a href="diverging_branches.html">3. Diverging Branches</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -285,7 +285,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="diverging_branches.html">4. Diverging Branches</a>
+        <a href="git_hygiene.html">4. Git Hygiene</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -398,29 +398,7 @@
         
         
 <section id="introduction"><h2 class="section-heading"><a href="introduction.html">Introduction</a></h2>
-<hr class="half-width"></section><section id="git_hygiene"><h2 class="section-heading"><a href="git_hygiene.html">Git Hygiene</a></h2>
-<hr class="half-width">
-<ul>
-<li>Global configuration is via <code>.gitconfig</code>
-</li>
-<li>Local configuration is via <code>.git/config</code> and takes
-precedence over Global.</li>
-<li>Configuration can be done at the command line or by editing
-files.</li>
-<li>Ignore files using <code>.gitignore</code>.</li>
-<li>Make commits atomic, i.e. small and focused using
-<code>git commit --amend</code> and <code>git commit --fixup</code>,
-better still make life easier using <code>git absorb</code>.</li>
-<li>
-<code>git rebase --interactive</code> can be used to squash
-commits.</li>
-<li>Keeping the commit history atomic and clean makes it easier to
-understand what work has been undertaken.</li>
-<li>Git periodically tidies things up for you with
-<code>git gc</code>.</li>
-<li>You can and should enable further automated cleaning by enabling
-<code>git mainenance</code> on a repository.</li>
-</ul></section><section id="branching"><h2 class="section-heading"><a href="branching.html">Branching</a></h2>
+<hr class="half-width"></section><section id="branching"><h2 class="section-heading"><a href="branching.html">Branching</a></h2>
 <hr class="half-width">
 <ul>
 <li>Branches and how they relate to each other are fundamental to
@@ -438,6 +416,28 @@ references using <code>git commit</code> or compare them using
 <li>Branches can become outdated as work progresses</li>
 <li>Branches can be brought up-to-date with either
 <code>git merge</code> or <code>git rebase</code>.</li>
+</ul></section><section id="git_hygiene"><h2 class="section-heading"><a href="git_hygiene.html">Git Hygiene</a></h2>
+<hr class="half-width">
+<ul>
+<li>Global configuration is via <code>.gitconfig</code>
+</li>
+<li>Local configuration is via <code>.git/config</code> and takes
+precedence over Global.</li>
+<li>Configuration can be done at the command line or by editing
+files.</li>
+<li>Ignore files using <code>.gitignore</code>.</li>
+<li>Make commits atomic, i.e. small and focused using
+<code>git commit --amend</code> and <code>git commit --fixup</code>,
+better still make life easier using <code>git absorb</code>.</li>
+<li>
+<code>git rebase --interactive</code> can be used to squash
+commits.</li>
+<li>Use <code>git add --patch</code> to group changes into atomic
+commits.</li>
+<li>Use <a href="https://www.conventionalcommits.org/en/v1.0.0/" class="external-link">Conventional
+commits</a> and write informative messages.</li>
+<li>Keeping the commit history atomic and clean makes it easier to
+understand what work has been undertaken.</li>
 </ul></section><section id="hooks"><h2 class="section-heading"><a href="hooks.html">Hooks</a></h2>
 <hr class="half-width">
 <ul>
@@ -528,8 +528,8 @@ GitHub Actions.</p></li>
   "url": "ns-rse.github.io/git-collaboration/key-points.html",
   "identifier": "ns-rse.github.io/git-collaboration/key-points.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-02-11",
-  "datePublished": "2025-02-11"
+  "dateModified": "2025-02-12",
+  "datePublished": "2025-02-12"
 }
 
   </script><script>

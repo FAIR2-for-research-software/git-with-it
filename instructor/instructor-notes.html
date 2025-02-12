@@ -262,7 +262,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="git_hygiene.html">2. Git Hygiene</a>
+        <a href="branching.html">2. Branching</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -274,7 +274,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="branching.html">3. Branching</a>
+        <a href="diverging_branches.html">3. Diverging Branches</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -286,7 +286,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="diverging_branches.html">4. Diverging Branches</a>
+        <a href="git_hygiene.html">4. Git Hygiene</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -412,8 +412,8 @@ any links that you are not going to use.
 <h3 id="introduction-headingInstructor1">
 <a href="introduction.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#introduction-headingInstructor1"></a>
 </h3>
-<p>Before the start of the course you should setup a new <a href="https://pad.carpentries.org/" class="external-link">collaborative pad</a> where
-participants can answer questions and collaborate.</p>
+<p>Before the start of the course you should setup a new <a href="https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/edit?tab=t.0" class="external-link">collaborative
+pad</a> where participants can answer questions and collaborate.</p>
 <p>If running the course online you should have a list of participants
 and have paired them off at random.</p>
 <p>When explaining the challenge remember to let participants know that
@@ -441,31 +441,6 @@ use.</p>
 <p>The important part is that it points to the correct SSH key, in the
 above this is <code>~/.ssh/id_ed25519</code> which will need modifying
 to reflect the users key for the account they wish to use.</p>
-<hr>
-<br></section><section id="git_hygiene"><h2 class="section-heading"><a href="git_hygiene.html">Git Hygiene</a></h2>
-<hr class="half-width">
-<h3 id="git_hygiene-headingInstructor1">
-<a href="git_hygiene.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#git_hygiene-headingInstructor1"></a>
-</h3>
-<p>Remember to switch to GitHub and go through the process of creating a
-new repository to show where the option to select a template can be
-found.</p>
-<hr>
-<br><h3 id="git_hygiene-headingInstructor2">
-<a href="git_hygiene.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#git_hygiene-headingInstructor2"></a>
-</h3>
-<p>Show how to toggle the view on GitHub pull requests. Make sure to
-have an example that is already open in a tab of your browser.</p>
-<p>If you have <code>difftastic</code> already configured for Git make
-sure to disable if you are going to show the difference in the terminal
-live.</p>
-<hr>
-<br><h3 id="git_hygiene-headingInstructor3">
-<a href="git_hygiene.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#git_hygiene-headingInstructor3"></a>
-</h3>
-<p>Be prepared to explain how SSH keys can be unlocked on login so that
-the passwords don’t need entering every time you try to use the SSH
-key.</p>
 <hr>
 <br></section><section id="branching"><h2 class="section-heading"><a href="branching.html">Branching</a></h2>
 <hr class="half-width">
@@ -511,6 +486,15 @@ history of the two <code>git-merge-test</code> and
 <code>git-rebase-test</code> repositories to show how they differ in
 terms of branches.</p>
 <hr>
+<br></section><section id="git_hygiene"><h2 class="section-heading"><a href="git_hygiene.html">Git Hygiene</a></h2>
+<hr class="half-width">
+<h3 id="git_hygiene-headingInstructor1">
+<a href="git_hygiene.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#git_hygiene-headingInstructor1"></a>
+</h3>
+<p>Remember to switch to GitHub and go through the process of creating a
+new repository to show where the option to select a template can be
+found.</p>
+<hr>
 <br></section><section id="hooks"><h2 class="section-heading"><a href="hooks.html">Hooks</a></h2>
 <hr class="half-width">
 <h3 id="hooks-headingInstructor1">
@@ -541,7 +525,24 @@ the level of experience in the room. If no one has come across it before
 take things a little slower and explain how the structure works.</p>
 <hr>
 <br></section><section id="additional_topics"><h2 class="section-heading"><a href="additional_topics.html">Additional Topics</a></h2>
-<hr class="half-width"></section><section id="further_resources"><h2 class="section-heading"><a href="further_resources.html">Further Resources</a></h2>
+<hr class="half-width">
+<h3 id="additional_topics-headingInstructor1">
+<a href="additional_topics.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#additional_topics-headingInstructor1"></a>
+</h3>
+<p>Show how to toggle the view on GitHub pull requests. Make sure to
+have an example that is already open in a tab of your browser.</p>
+<p>If you have <code>difftastic</code> already configured for Git make
+sure to disable if you are going to show the difference in the terminal
+live.</p>
+<hr>
+<br><h3 id="additional_topics-headingInstructor2">
+<a href="additional_topics.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#additional_topics-headingInstructor2"></a>
+</h3>
+<p>Be prepared to explain how SSH keys can be unlocked on login so that
+the passwords don’t need entering every time you try to use the SSH
+key.</p>
+<hr>
+<br></section><section id="further_resources"><h2 class="section-heading"><a href="further_resources.html">Further Resources</a></h2>
 <hr class="half-width"></section></section>
 </div>
     </main>
@@ -603,8 +604,8 @@ take things a little slower and explain how the structure works.</p>
   "url": "ns-rse.github.io/git-collaboration/instructor/instructor-notes.html",
   "identifier": "ns-rse.github.io/git-collaboration/instructor/instructor-notes.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-02-11",
-  "datePublished": "2025-02-11"
+  "dateModified": "2025-02-12",
+  "datePublished": "2025-02-12"
 }
 
   </script><script>

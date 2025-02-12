@@ -121,11 +121,11 @@
   Git Collaboration
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 38%" class="percentage">
-    38%
+<aside class="col-md-12 lesson-progress"><div style="width: 25%" class="percentage">
+    25%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 38%" aria-valuenow="38" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 25%" aria-valuenow="25" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -218,16 +218,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="git_hygiene.html">2. Git Hygiene</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush4">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading4">
-        <a href="branching.html">3. Branching</a>
+        <a href="branching.html">2. Branching</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -239,7 +230,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        4. Diverging Branches
+        3. Diverging Branches
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -250,6 +241,15 @@
 <li><a href="#links">Links</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="git_hygiene.html">4. Git Hygiene</a>
+    </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -333,7 +333,7 @@
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="branching.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="hooks.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="git_hygiene.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -341,14 +341,14 @@
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Branching
         </a>
-        <a class="chapter-link float-end" href="hooks.html" rel="next">
-          Next: Hooks...
+        <a class="chapter-link float-end" href="git_hygiene.html" rel="next">
+          Next: Git Hygiene...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Diverging Branches</h1>
-        <p>Last updated on 2024-09-24 |
+        <p>Last updated on 2025-02-12 |
 
         <a href="https://github.com/ns-rse/git-collaboration/edit/main/episodes/diverging_branches.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -439,17 +439,20 @@ branch which has incorporated the changes from
 <code>ns-rse/1-zero-division</code> branch was merged in. The
 <code>ns-rse/2-square-root</code> branch does <em>not</em> contain these
 commits.</p>
-<p>In this particular example that is not necessarily a problem, the two
-features/issues are completely independent and it would be possible to
-merge the <code>ns-rse/2-square-root</code> branch into
-<code>main</code> without any merge conflicts because neither have
-modified the same files in the same location.</p>
-<p>That will not always the case though, sometimes merge conflicts might
-arise if the second branch is changing some of the same files as the
-first branch. Another scenario might be that whilst work was being done
-on adding a new feature branch a critical bug was fixed that the new
-feature depends on and the changes now in <code>main</code> need
-incorporating in the feature branch.</p>
+<p>Sometimes this won’t be a problem, the two features/issues are
+completely independent and have not made changes to the same file and it
+would be possible to merge the branches into <code>main</code> without
+any merge conflicts because neither have modified the same files in the
+same location.</p>
+<p>That will not always be the case though, sometimes merge conflicts
+might arise if the second branch is changing some of the same files as
+the first branch. Another scenario might be that whilst work was being
+done on adding a new feature branch a critical bug was fixed that the
+new feature depends on and the changes now in <code>main</code> need
+incorporating in the feature branch. That is in fact the situation we
+have with our <code>ns-rse/2-square-root</code> branch, it conflicts
+with <code>main</code> because of the changes we merged from the
+<code>ns-rse/1-zero-division</code> branch.</p>
 <p>There are two approaches to solving this merging
 (<code>git merge</code>) and rebasing (<code>git rebase</code>).</p>
 <div class="section level3">
@@ -538,7 +541,7 @@ commit it<a class="anchor" aria-label="anchor" href="#create-branch1-add-a-readm
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Just a test"</span> <span class="op">&gt;</span> README.md</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: Adding README.md"</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">git</span> logp</span></code></pre>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -551,7 +554,7 @@ as the it exists on <code>branch1</code>).</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">cat</span> README.md   <span class="co"># Note that `README.md` does not currently exist on this branch</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">git</span> logp</span></code></pre>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -563,7 +566,8 @@ commit it<a class="anchor" aria-label="anchor" href="#create-branch2-add-a-licen
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> branch2</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"YOU CAN DO WHAT YOU WANT WITH THIS CODE"</span> <span class="op">&gt;</span> LICENSE</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">git</span> add LICENSE</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adding a LICENSE"</span></span></code></pre>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adding a LICENSE"</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -578,7 +582,7 @@ is equivalent to merging a Pull Request). The file
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">git</span> merge branch1</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">cat</span> README.md</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">git</span> logp</span></code></pre>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -594,7 +598,7 @@ made on <code>branch1</code>. We want to merge the changes on
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">git</span> switch branch2</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--ff</span> main <span class="co"># Merge changes merged into main from branch1 into branch2</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">git</span> logp</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="ex">*</span>   d914fee <span class="at">-</span> <span class="er">(</span><span class="ex">HEAD</span> <span class="at">-</span><span class="op">&gt;</span> branch2<span class="kw">)</span> <span class="ex">Merge</span> branch <span class="st">'main'</span> into branch2 <span class="er">(</span><span class="ex">2024-03-01</span> 12:02:08 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil</span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
@@ -616,7 +620,7 @@ switch back to <code>main</code> we can merge the changes from
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> merge branch2</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> logp</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="ex">*</span>   d914fee <span class="at">-</span> <span class="er">(</span><span class="ex">HEAD</span> <span class="at">-</span><span class="op">&gt;</span> main, branch2<span class="kw">)</span> <span class="ex">Merge</span> branch <span class="st">'main'</span> into branch2 <span class="er">(</span><span class="ex">2024-03-01</span> 12:02:08 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 7817070 <span class="at">-</span> <span class="er">(</span><span class="ex">branch1</span><span class="kw">)</span> <span class="ex">Adding</span> a README.md <span class="er">(</span><span class="ex">2024-03-01</span> 11:57:35 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
@@ -635,7 +639,7 @@ can delete them.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Delete the two branches</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> branch<span class="dt">{1</span><span class="op">,</span><span class="dt">2}</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">git</span> logp</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">*</span>   d914fee <span class="at">-</span> <span class="er">(</span><span class="ex">HEAD</span> <span class="at">-</span><span class="op">&gt;</span> main<span class="kw">)</span> <span class="ex">Merge</span> branch <span class="st">'main'</span> into branch2 <span class="er">(</span><span class="ex">2024-03-01</span> 12:02:08 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 7817070 <span class="at">-</span> Adding a README.md <span class="er">(</span><span class="ex">2024-03-01</span> 11:57:35 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
@@ -647,9 +651,9 @@ can delete them.</p>
 fast-forward because the history of <code>main</code> now contained
 changes that were made on <code>branch1</code> and so a separate commit
 (<code>d914fee</code>) was made to merge the <code>main</code> branch
-into <code>main</code> (commits are denoted by <code>*</code> and so you
-can see the commits were made on separate branches). We can see from the
-graph that <code>README.md</code> was added from a separate
+into <code>branch2</code> (commits are denoted by <code>*</code> and so
+you can see the commits were made on separate branches). We can see from
+the graph that <code>README.md</code> was added from a separate
 <code>branch1</code> and <code>LICENSE</code> was added from
 <code>branch2</code>, although after deleting the branches they are no
 longer shown by name in the <code>git log --graph</code> output.</p>
@@ -872,12 +876,17 @@ and merge the main branch in.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">git</span> switch ns-rse/square-root</span>
 <span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">git</span> merge main</span></code></pre>
 </div>
-<p>You can now push the changes that are on the <code>square-root</code>
-branch to GitHub and make a Pull Request for approval</p>
+<p>You should have received a message about conflicts in the
+<code>tests/test_arithmetic.py</code> file.</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin ns-rse/square-root</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> merge main</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="ex">Auto-merging</span> pythonmaths/arithmetic.py</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="ex">Auto-merging</span> tests/test_arithmetic.py</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="ex">CONFLICT</span> <span class="er">(</span><span class="ex">content</span><span class="kw">)</span><span class="bu">:</span> Merge conflict in tests/test_arithmetic.py</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="ex">Recorded</span> preimage for <span class="st">'tests/test_arithmetic.py'</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="ex">Automatic</span> merge failed<span class="kw">;</span> <span class="ex">fix</span> conflicts and then commit the result.</span></code></pre>
 </div>
 </div>
 </div>
@@ -908,12 +917,23 @@ and merge and rebase onto main.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">git</span> switch ns-rse/square-root</span>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">git</span> rebase main</span></code></pre>
 </div>
-<p>You can now push the changes that are on the <code>square-root</code>
-branch to GitHub and make a Pull Request for approval</p>
+<p>You should have received a message about conflicts in the
+<code>tests/test_arithmetic.py</code> file.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin ns-rse/square-root</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">git</span> rebase main</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="ex">Auto-merging</span> pythonmaths/arithmetic.py</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="ex">Auto-merging</span> tests/test_arithmetic.py</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="ex">CONFLICT</span> <span class="er">(</span><span class="ex">content</span><span class="kw">)</span><span class="bu">:</span> Merge conflict in tests/test_arithmetic.py</span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="ex">error:</span> could not apply bb4294a... feature: adds square root function</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a><span class="ex">hint:</span> Resolve all conflicts manually, mark them as resolved with</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a><span class="ex">hint:</span> <span class="st">"git add/rm &lt;conflicted_files&gt;"</span>, then run <span class="st">"git rebase --continue"</span>.</span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="ex">hint:</span> You can instead skip this commit: run <span class="st">"git rebase --skip"</span>.</span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="ex">hint:</span> To abort and get back to the state before <span class="st">"git rebase"</span>, run <span class="st">"git rebase --abort"</span>.</span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="ex">hint:</span> Disable this message with <span class="st">"git config set advice.mergeConflict false"</span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="ex">Recorded</span> preimage for <span class="st">'tests/test_arithmetic.py'</span></span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="ex">Could</span> not apply bb4294a... feature: adds square root function</span></code></pre>
 </div>
 </div>
 </div>
@@ -925,15 +945,12 @@ branch to GitHub and make a Pull Request for approval</p>
 <h3 id="oh-no-ive-got-a-merge-conflict">Oh no I’ve got a <code>merge conflict</code>
 <a class="anchor" aria-label="anchor" href="#oh-no-ive-got-a-merge-conflict"></a></h3>
 <p>Both the <code>git merge</code> and <code>git rebase</code>
-strategies in the worked examples and the <code>python-maths</code>
-repositories you worked through in the challenge were fairly painless
-because none of the changes that were made touched the same files. In
-real-life things are often likely to be a bit more messy and when you
-want to update your diverged branch you will often find that files you
-have been working on have been modified and merged into
-<code>main</code> by others. This results in a “merge conflict” where
-Git can not determine which lines are required and therefore requires
-manual intervention.</p>
+strategies in the examples we went through worked because none of the
+changes that were made touched the same files. In the Challenge though
+there was a conflict because both commits had added code to the end of
+<code>tests/test_arithmetic.py</code> and Git didn’t know which should
+be kept and is known as “conflict” and resolving it requires manual
+intervention.</p>
 <p>If you have undertaken the <a href="https://srse-git-github-zero2hero.netlify.app/" class="external-link">Git &amp; GitHub
 Through GitKraken - From Zero to Hero!</a> course you will have
 encountered merge conflicts when working through the “<em>Python
@@ -1260,9 +1277,10 @@ checked out branch (<code>branch2</code>).</p>
 </div>
 <div class="section level3">
 <h3 id="repeating-yourself">Repeating yourself<a class="anchor" aria-label="anchor" href="#repeating-yourself"></a></h3>
-<p>You had to resolve two merge conflicts here, if the history you are
-merging has a lot of commits you may end up solving the same merge
-conflict repeatedly. There is a way to avoid this though.</p>
+<p>You only had to resolve one merge conflicts here, if the history you
+are merging has a lot of commits you may end up solving the same merge
+conflict repeatedly and wonder why you keep on getting asked to resolve
+the same conflict. There is a way to avoid this though.</p>
 <div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1312,94 +1330,222 @@ directory.</p>
 </div>
 <p>You can of course enable globally and disable locally as local
 configuration variables take precedence over global.</p>
-<div id="challenge-2-merge-conflicts" class="callout challenge">
+<div id="challenge-2-diverging-branches" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-2-merge-conflicts" class="callout-inner">
-<h3 class="callout-title">Challenge 2: Merge Conflicts</h3>
+<div id="challenge-2-diverging-branches" class="callout-inner">
+<h3 class="callout-title">Challenge 2: Diverging Branches</h3>
 <div class="callout-content">
-<p>You have now merged both the Zero Division and Square Root features
-into your <code>main</code> branch. In order to gain experience of
-resolving merge conflicts the branch
-<code>origin/ns-rse/merge-conflict</code> exists with some of these
-changes already in place.</p>
-<p>In your pairs work through the tasks of resolving these
-conflicts.</p>
-<ol style="list-style-type: decimal"><li>Create a new branch <code>resolve-merge-conflict</code>.</li>
-<li>Merge the <code>origin/ns-rse/merge-conflict</code> branch into
-<code>resolve-merge-conflict</code>.</li>
-<li>Look at the file you are told there are conflicts with and resolve
-them, you should remove the conflict delimiters
-(<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> / <code>=======</code> /
-<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/ns-rse/merge-conflict</code>)
-and select just one of the changes to retain.</li>
-</ol></div>
+<p>You didn’t complete the merge/rebase in the previous challenge
+because of the merge conflict. In your pairs do so now.</p>
+<p>If we look at the conflict in <code>tests/test_arithmetic.py</code>
+we can see at the bottom the sections that are conflicting. They are
+de-marked by <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>,
+<code>======-</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> and
+the <code>HEAD</code> and <code>&lt;commit-hash&gt;</code> show which
+branches they originate from.</p>
+<p>The exact solution will depend on the strategy you have chosen to
+bring the branch up-to-date.</p>
+</div>
 </div>
 </div>
 <div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Solution : git merge </h4>
+  <h4 class="accordion-header" id="headingSolution3"> Solution 1 : git merge </h4>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>The first thing to do is make sure <code>main</code> is up-to-date
-and has the changes that have been merged from the
-<code>zero-division</code> branch locally.</p>
 <div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/hub/ns-rse/python-maths</span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> resolve-merge-conflict</span>
-<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a><span class="fu">git</span> merge origin/ns-rse/merge-conflict</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">cat</span> tests/test/arithmetic.py</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="op">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a><span class="ex">@pytest.mark.parametrize</span><span class="er">(</span></span>
+<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>    <span class="kw">(</span><span class="st">"x"</span><span class="ex">,</span> <span class="st">"target"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a>    <span class="bu">[</span></span>
+<span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a>        pytest.param<span class="er">(</span>4, 2, id=<span class="st">"square root of 4"</span><span class="er">)</span>,</span>
+<span id="cb41-9"><a href="#cb41-9" tabindex="-1"></a>        <span class="er">pytest.param(9,</span> <span class="er">3.0,</span> <span class="va">id</span><span class="op">=</span><span class="st">"square root of 9"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb41-10"><a href="#cb41-10" tabindex="-1"></a>        <span class="ex">pytest.param</span><span class="er">(</span><span class="ex">25,</span> 5.0, id=<span class="st">"square root of 25"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb41-11"><a href="#cb41-11" tabindex="-1"></a>        <span class="ex">pytest.param</span><span class="er">(</span><span class="ex">2,</span> 1.4142135623730951, id=<span class="st">"square root of 2"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb41-12"><a href="#cb41-12" tabindex="-1"></a>    <span class="ex">],</span></span>
+<span id="cb41-13"><a href="#cb41-13" tabindex="-1"></a><span class="er">)</span></span>
+<span id="cb41-14"><a href="#cb41-14" tabindex="-1"></a><span class="ex">def</span> test_square_root<span class="er">(</span><span class="ex">x:</span> int <span class="kw">|</span> <span class="ex">float,</span> target: int <span class="kw">|</span> <span class="ex">float</span><span class="kw">)</span> <span class="ex">-</span><span class="op">&gt;</span> None:</span>
+<span id="cb41-15"><a href="#cb41-15" tabindex="-1"></a>    <span class="st">"""Test the square_root() function."""</span></span>
+<span id="cb41-16"><a href="#cb41-16" tabindex="-1"></a>    <span class="ex">pytest.approx</span><span class="er">(</span><span class="ex">arithmetic.square_root</span><span class="er">(</span><span class="ex">x</span><span class="kw">)</span><span class="ex">,</span> target<span class="kw">)</span></span>
+<span id="cb41-17"><a href="#cb41-17" tabindex="-1"></a><span class="kw">|||||||</span> <span class="ex">80b95c0</span></span>
+<span id="cb41-18"><a href="#cb41-18" tabindex="-1"></a><span class="ex">=======</span></span>
+<span id="cb41-19"><a href="#cb41-19" tabindex="-1"></a></span>
+<span id="cb41-20"><a href="#cb41-20" tabindex="-1"></a></span>
+<span id="cb41-21"><a href="#cb41-21" tabindex="-1"></a><span class="ex">def</span> test_divide_zero_division_exception<span class="er">(</span><span class="kw">)</span> <span class="ex">-</span><span class="op">&gt;</span> None:</span>
+<span id="cb41-22"><a href="#cb41-22" tabindex="-1"></a>    <span class="st">"""Test that a ZeroDivisionError is raised by the divide() function."""</span></span>
+<span id="cb41-23"><a href="#cb41-23" tabindex="-1"></a>    <span class="ex">with</span> pytest.raises<span class="er">(</span><span class="ex">ZeroDivisionError</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb41-24"><a href="#cb41-24" tabindex="-1"></a>        <span class="ex">arithmetic.divide</span><span class="er">(</span><span class="ex">2,</span> 0<span class="kw">)</span></span>
+<span id="cb41-25"><a href="#cb41-25" tabindex="-1"></a><span class="op">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> main</span></code></pre>
 </div>
-<p>You should, hopefully, see some merge conflicts being reported.</p>
+<p>We know that we want <em>both</em> of these changes so we can edit
+the file and remove the delimiters to leave it looking like the
+following.</p>
+<p>Then you can switch branches to the <code>square-root</code> branch
+and merge the main branch in.</p>
 <div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="ex">Auto-merging</span> tests/test_arithmetic.py</span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="ex">CONFLICT</span> <span class="er">(</span><span class="ex">content</span><span class="kw">)</span><span class="bu">:</span> Merge conflict in tests/test_arithmetic.py</span>
-<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a><span class="ex">Recorded</span> preimage for <span class="st">'tests/test_arithmetic.py'</span></span>
-<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a><span class="ex">Automatic</span> merge failed<span class="kw">;</span> <span class="ex">fix</span> conflicts and then commit the result.</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a><span class="ex">@pytest.mark.parametrize</span><span class="er">(</span></span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a>    <span class="kw">(</span><span class="st">"x"</span><span class="ex">,</span> <span class="st">"target"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>    <span class="bu">[</span></span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a>        pytest.param<span class="er">(</span>4, 2, id=<span class="st">"square root of 4"</span><span class="er">)</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a>        <span class="er">pytest.param(9,</span> <span class="er">3.0,</span> <span class="va">id</span><span class="op">=</span><span class="st">"square root of 9"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>        <span class="ex">pytest.param</span><span class="er">(</span><span class="ex">25,</span> 5.0, id=<span class="st">"square root of 25"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a>        <span class="ex">pytest.param</span><span class="er">(</span><span class="ex">2,</span> 1.4142135623730951, id=<span class="st">"square root of 2"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a>    <span class="ex">],</span></span>
+<span id="cb42-11"><a href="#cb42-11" tabindex="-1"></a><span class="er">)</span></span>
+<span id="cb42-12"><a href="#cb42-12" tabindex="-1"></a><span class="ex">def</span> test_square_root<span class="er">(</span><span class="ex">x:</span> int <span class="kw">|</span> <span class="ex">float,</span> target: int <span class="kw">|</span> <span class="ex">float</span><span class="kw">)</span> <span class="ex">-</span><span class="op">&gt;</span> None:</span>
+<span id="cb42-13"><a href="#cb42-13" tabindex="-1"></a>    <span class="st">"""Test the square_root() function."""</span></span>
+<span id="cb42-14"><a href="#cb42-14" tabindex="-1"></a>    <span class="ex">pytest.approx</span><span class="er">(</span><span class="ex">arithmetic.square_root</span><span class="er">(</span><span class="ex">x</span><span class="kw">)</span><span class="ex">,</span> target<span class="kw">)</span></span>
+<span id="cb42-15"><a href="#cb42-15" tabindex="-1"></a></span>
+<span id="cb42-16"><a href="#cb42-16" tabindex="-1"></a></span>
+<span id="cb42-17"><a href="#cb42-17" tabindex="-1"></a><span class="ex">def</span> test_divide_zero_division_exception<span class="er">(</span><span class="kw">)</span> <span class="ex">-</span><span class="op">&gt;</span> None:</span>
+<span id="cb42-18"><a href="#cb42-18" tabindex="-1"></a>    <span class="st">"""Test that a ZeroDivisionError is raised by the divide() function."""</span></span>
+<span id="cb42-19"><a href="#cb42-19" tabindex="-1"></a>    <span class="ex">with</span> pytest.raises<span class="er">(</span><span class="ex">ZeroDivisionError</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb42-20"><a href="#cb42-20" tabindex="-1"></a>        <span class="ex">arithmetic.divide</span><span class="er">(</span><span class="ex">2,</span> 0<span class="kw">)</span></span></code></pre>
 </div>
-<p>…and if we look at the <code>tests/test_arithmetic.py</code> it shows
-the following conflicts.</p>
+<p>If you check the status you see that you are in the middle of a merge
+and that <code>tests/test_arithmetic.py</code> has been modified by
+<code>both</code>.</p>
 <div class="codewrapper sourceCode" id="cb43">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="op">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a><span class="kw">def</span> test_divide_zero_division_exception() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a>    <span class="co">"""Test that a ZeroDivisionError is raised by the divide() function."""</span></span>
-<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ZeroDivisionError</span>):</span>
-<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a>        arithmetic.divide(<span class="dv">2</span>, <span class="dv">0</span>)</span>
-<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a><span class="op">|||||||</span> cdd8fcc</span>
-<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a><span class="op">=======</span></span>
-<span id="cb43-10"><a href="#cb43-10" tabindex="-1"></a></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="ex">On</span> branch ns-rse/2-square-root</span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/ns-rse/2-square-root'</span>.</span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a><span class="ex">You</span> have unmerged paths.</span>
+<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">fix</span> conflicts and run <span class="st">"git commit"</span><span class="kw">)</span></span>
+<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git merge --abort"</span> to abort the merge<span class="kw">)</span></span>
+<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb43-10"><a href="#cb43-10" tabindex="-1"></a>    <span class="ex">modified:</span>   pythonmaths/arithmetic.py</span>
 <span id="cb43-11"><a href="#cb43-11" tabindex="-1"></a></span>
-<span id="cb43-12"><a href="#cb43-12" tabindex="-1"></a><span class="kw">def</span> test_divide_zero_division_exception() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb43-13"><a href="#cb43-13" tabindex="-1"></a>    <span class="co">"""Test that a ZeroDivisionError is raised by the divide() function."""</span></span>
-<span id="cb43-14"><a href="#cb43-14" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ZeroDivisionError</span>):</span>
-<span id="cb43-15"><a href="#cb43-15" tabindex="-1"></a>        arithmetic.divide(<span class="dv">10</span>, <span class="dv">0</span>)</span>
-<span id="cb43-16"><a href="#cb43-16" tabindex="-1"></a><span class="op">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> origin<span class="op">/</span>ns<span class="op">-</span>rse<span class="op">/</span>merge<span class="op">-</span>conflict</span></code></pre>
+<span id="cb43-12"><a href="#cb43-12" tabindex="-1"></a><span class="ex">Unmerged</span> paths:</span>
+<span id="cb43-13"><a href="#cb43-13" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to mark resolution<span class="kw">)</span></span>
+<span id="cb43-14"><a href="#cb43-14" tabindex="-1"></a>    <span class="ex">both</span> modified:   tests/test_arithmetic.py</span></code></pre>
 </div>
-<p>The <code>ns-rse/merge-conflict</code> uses
-<code>arithmetic.divide(10, 0)</code> whilst the function added in the
-earlier task uses <code>arithmetic.divide(2, 0)</code>. Select one to
-use (it doesn’t matter which) and tidy up so it looks like the
-following.</p>
+<p>You now need to stage your changes and commit them.</p>
 <div class="codewrapper sourceCode" id="cb44">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="kw">def</span> test_divide_zero_division_exception() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>    <span class="co">"""Test that a ZeroDivisionError is raised by the divide() function."""</span></span>
-<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ZeroDivisionError</span>):</span>
-<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>        arithmetic.divide(<span class="dv">2</span>, <span class="dv">0</span>)</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-u</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">git</span> commit</span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
 </div>
+<p>You can now create a pull request, assign it for review and merge
+it.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Solution 2 : git rebase </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb45">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="fu">cat</span> tests/test/arithmetic.py</span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="op">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a><span class="ex">@pytest.mark.parametrize</span><span class="er">(</span></span>
+<span id="cb45-6"><a href="#cb45-6" tabindex="-1"></a>    <span class="kw">(</span><span class="st">"x"</span><span class="ex">,</span> <span class="st">"target"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb45-7"><a href="#cb45-7" tabindex="-1"></a>    <span class="bu">[</span></span>
+<span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a>        pytest.param<span class="er">(</span>4, 2, id=<span class="st">"square root of 4"</span><span class="er">)</span>,</span>
+<span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a>        <span class="er">pytest.param(9,</span> <span class="er">3.0,</span> <span class="va">id</span><span class="op">=</span><span class="st">"square root of 9"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb45-10"><a href="#cb45-10" tabindex="-1"></a>        <span class="ex">pytest.param</span><span class="er">(</span><span class="ex">25,</span> 5.0, id=<span class="st">"square root of 25"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb45-11"><a href="#cb45-11" tabindex="-1"></a>        <span class="ex">pytest.param</span><span class="er">(</span><span class="ex">2,</span> 1.4142135623730951, id=<span class="st">"square root of 2"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb45-12"><a href="#cb45-12" tabindex="-1"></a>    <span class="ex">],</span></span>
+<span id="cb45-13"><a href="#cb45-13" tabindex="-1"></a><span class="er">)</span></span>
+<span id="cb45-14"><a href="#cb45-14" tabindex="-1"></a><span class="ex">def</span> test_square_root<span class="er">(</span><span class="ex">x:</span> int <span class="kw">|</span> <span class="ex">float,</span> target: int <span class="kw">|</span> <span class="ex">float</span><span class="kw">)</span> <span class="ex">-</span><span class="op">&gt;</span> None:</span>
+<span id="cb45-15"><a href="#cb45-15" tabindex="-1"></a>    <span class="st">"""Test the square_root() function."""</span></span>
+<span id="cb45-16"><a href="#cb45-16" tabindex="-1"></a>    <span class="ex">pytest.approx</span><span class="er">(</span><span class="ex">arithmetic.square_root</span><span class="er">(</span><span class="ex">x</span><span class="kw">)</span><span class="ex">,</span> target<span class="kw">)</span></span>
+<span id="cb45-17"><a href="#cb45-17" tabindex="-1"></a><span class="kw">|||||||</span> <span class="ex">80b95c0</span></span>
+<span id="cb45-18"><a href="#cb45-18" tabindex="-1"></a><span class="ex">=======</span></span>
+<span id="cb45-19"><a href="#cb45-19" tabindex="-1"></a></span>
+<span id="cb45-20"><a href="#cb45-20" tabindex="-1"></a></span>
+<span id="cb45-21"><a href="#cb45-21" tabindex="-1"></a><span class="ex">def</span> test_divide_zero_division_exception<span class="er">(</span><span class="kw">)</span> <span class="ex">-</span><span class="op">&gt;</span> None:</span>
+<span id="cb45-22"><a href="#cb45-22" tabindex="-1"></a>    <span class="st">"""Test that a ZeroDivisionError is raised by the divide() function."""</span></span>
+<span id="cb45-23"><a href="#cb45-23" tabindex="-1"></a>    <span class="ex">with</span> pytest.raises<span class="er">(</span><span class="ex">ZeroDivisionError</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb45-24"><a href="#cb45-24" tabindex="-1"></a>        <span class="ex">arithmetic.divide</span><span class="er">(</span><span class="ex">2,</span> 0<span class="kw">)</span></span>
+<span id="cb45-25"><a href="#cb45-25" tabindex="-1"></a><span class="op">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> main</span></code></pre>
+</div>
+<p>We know that we want <em>both</em> of these changes so we can edit
+the file and remove the delimiters to leave it looking like the
+following.</p>
+<p>Then you can switch branches to the <code>square-root</code> branch
+and merge the main branch in.</p>
+<div class="codewrapper sourceCode" id="cb46">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a></span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a><span class="ex">@pytest.mark.parametrize</span><span class="er">(</span></span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a>    <span class="kw">(</span><span class="st">"x"</span><span class="ex">,</span> <span class="st">"target"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>    <span class="bu">[</span></span>
+<span id="cb46-6"><a href="#cb46-6" tabindex="-1"></a>        pytest.param<span class="er">(</span>4, 2, id=<span class="st">"square root of 4"</span><span class="er">)</span>,</span>
+<span id="cb46-7"><a href="#cb46-7" tabindex="-1"></a>        <span class="er">pytest.param(9,</span> <span class="er">3.0,</span> <span class="va">id</span><span class="op">=</span><span class="st">"square root of 9"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb46-8"><a href="#cb46-8" tabindex="-1"></a>        <span class="ex">pytest.param</span><span class="er">(</span><span class="ex">25,</span> 5.0, id=<span class="st">"square root of 25"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb46-9"><a href="#cb46-9" tabindex="-1"></a>        <span class="ex">pytest.param</span><span class="er">(</span><span class="ex">2,</span> 1.4142135623730951, id=<span class="st">"square root of 2"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb46-10"><a href="#cb46-10" tabindex="-1"></a>    <span class="ex">],</span></span>
+<span id="cb46-11"><a href="#cb46-11" tabindex="-1"></a><span class="er">)</span></span>
+<span id="cb46-12"><a href="#cb46-12" tabindex="-1"></a><span class="ex">def</span> test_square_root<span class="er">(</span><span class="ex">x:</span> int <span class="kw">|</span> <span class="ex">float,</span> target: int <span class="kw">|</span> <span class="ex">float</span><span class="kw">)</span> <span class="ex">-</span><span class="op">&gt;</span> None:</span>
+<span id="cb46-13"><a href="#cb46-13" tabindex="-1"></a>    <span class="st">"""Test the square_root() function."""</span></span>
+<span id="cb46-14"><a href="#cb46-14" tabindex="-1"></a>    <span class="ex">pytest.approx</span><span class="er">(</span><span class="ex">arithmetic.square_root</span><span class="er">(</span><span class="ex">x</span><span class="kw">)</span><span class="ex">,</span> target<span class="kw">)</span></span>
+<span id="cb46-15"><a href="#cb46-15" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" tabindex="-1"></a></span>
+<span id="cb46-17"><a href="#cb46-17" tabindex="-1"></a><span class="ex">def</span> test_divide_zero_division_exception<span class="er">(</span><span class="kw">)</span> <span class="ex">-</span><span class="op">&gt;</span> None:</span>
+<span id="cb46-18"><a href="#cb46-18" tabindex="-1"></a>    <span class="st">"""Test that a ZeroDivisionError is raised by the divide() function."""</span></span>
+<span id="cb46-19"><a href="#cb46-19" tabindex="-1"></a>    <span class="ex">with</span> pytest.raises<span class="er">(</span><span class="ex">ZeroDivisionError</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb46-20"><a href="#cb46-20" tabindex="-1"></a>        <span class="ex">arithmetic.divide</span><span class="er">(</span><span class="ex">2,</span> 0<span class="kw">)</span></span></code></pre>
+</div>
+<p>If you check the status you see that you are in the middle of a merge
+and that <code>tests/test_arithmetic.py</code> has been modified by
+<code>both</code>.</p>
+<div class="codewrapper sourceCode" id="cb47">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a><span class="ex">On</span> branch ns-rse/2-square-root</span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/ns-rse/2-square-root'</span>.</span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a><span class="ex">You</span> have unmerged paths.</span>
+<span id="cb47-6"><a href="#cb47-6" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">fix</span> conflicts and run <span class="st">"git commit"</span><span class="kw">)</span></span>
+<span id="cb47-7"><a href="#cb47-7" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git merge --abort"</span> to abort the merge<span class="kw">)</span></span>
+<span id="cb47-8"><a href="#cb47-8" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="#cb47-9" tabindex="-1"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb47-10"><a href="#cb47-10" tabindex="-1"></a>    <span class="ex">modified:</span>   pythonmaths/arithmetic.py</span>
+<span id="cb47-11"><a href="#cb47-11" tabindex="-1"></a></span>
+<span id="cb47-12"><a href="#cb47-12" tabindex="-1"></a><span class="ex">Unmerged</span> paths:</span>
+<span id="cb47-13"><a href="#cb47-13" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to mark resolution<span class="kw">)</span></span>
+<span id="cb47-14"><a href="#cb47-14" tabindex="-1"></a>    <span class="ex">both</span> modified:   tests/test_arithmetic.py</span></code></pre>
+</div>
+<p>You now need to stage your changes and commit them.</p>
+<div class="codewrapper sourceCode" id="cb48">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-u</span></span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--continue</span></span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+</div>
+<p>You can now create a pull request, assign it for review and merge
+it.</p>
 </div>
 </div>
 </div>
@@ -1458,7 +1604,7 @@ any links that you are not going to use.
  --></section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="branching.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="hooks.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="git_hygiene.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -1466,8 +1612,8 @@ any links that you are not going to use.
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Branching
         </a>
-        <a class="chapter-link float-end" href="hooks.html" rel="next">
-          Next: Hooks...
+        <a class="chapter-link float-end" href="git_hygiene.html" rel="next">
+          Next: Git Hygiene...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -1526,8 +1672,8 @@ any links that you are not going to use.
   "url": "ns-rse.github.io/git-collaboration/diverging_branches.html",
   "identifier": "ns-rse.github.io/git-collaboration/diverging_branches.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2024-09-24",
-  "datePublished": "2025-02-11"
+  "dateModified": "2025-02-12",
+  "datePublished": "2025-02-12"
 }
 
   </script><script>
