@@ -116,7 +116,7 @@ There are two approaches to solving this: merging (`git merge`)  and rebasing (`
 -->
 
 <!-- markdownlint-disable-next-line MD013 -->
-![**After** - merging `ns-rse/1-zero-division` into `main` then `main` into `ns-rse/2-square-root`. Development is completed on `ns-rse/2-square-root` and the feature merged into `main`.](https://mermaid.ink/img/pako:eNqtk8GOmzAQhl8FWYpoJUxtA8bmVnVX7aE99VZxMcYk1i44NWbVXcS715CyTaIkqtpywuN_vvk9mhmBNLUCBdhsRt1pVwRj6HaqVWERhJXoVRgF4Va7j1bsd-F8a40TTn0wbavdZ1GpRx91dlBT2QXr5_-nzeYQWJNfr-WSGui6CEqAYJqTBiNcgssCDDPMMK3pNQGBNKe8aUjwZvb79khXWdHJndd0PbS9eofhi7IG1vpJ99p0N5QE9t8HYRW0xrjjyjslH8zg_oR54jKBTGakluom7GrZY1QKmZIJ4-J_-MogSXDWCPTvvijkicpZLi-hWqG712ir7FbdsPoLmMNKpgmfZyNwYjuHnlCM46uz8un-_d1fvWM1tLhcyzMoGJKqYb_Lf1l0B9VlCxzKiiX8tJ8n84wgFipLZXLZ6Rn8rFVnD1iZ2FuVnCfkrFNkJoEIeIrn1n7Nx5lcgmXFSzALa2EfZtnkdcO-9rt9X2tnLCjmrY6AGJz5-tzJ9XzQ3GmxtaIFRSMeex_di-6bMSdnUIzgBygwyWOcEoSTDHHMEU8i8AwKwmjMckwYyThllLIpAi8LAcUMYR9KEfU5Wcbx9BO0WV5-?type=png){alt-text="**After** - merging `ns-rse/1-zero-division` into `main` then `main` into `ns-rse/2-square-root`. Development is completed on`ns-rse/2-square-root` and the feature merged into `main`"}
+![**After** - `main`, which has already had the work in `ns-rse/1-zero-division` merged into it, is merged into `ns-rse/2-square-root`. Development is completed on `ns-rse/2-square-root` and the feature merged into `main`.](https://mermaid.ink/img/pako:eNqtk8GOmzAQhl8FWYpoJUxtA8bmVnVX7aE99VZxMcYk1i44NWbVXcS715CyTaIkqtpywuN_vvk9mhmBNLUCBdhsRt1pVwRj6HaqVWERhJXoVRgF4Va7j1bsd-F8a40TTn0wbavdZ1GpRx91dlBT2QXr5_-nzeYQWJNfr-WSGui6CEqAYJqTBiNcgssCDDPMMK3pNQGBNKe8aUjwZvb79khXWdHJndd0PbS9eofhi7IG1vpJ99p0N5QE9t8HYRW0xrjjyjslH8zg_oR54jKBTGakluom7GrZY1QKmZIJ4-J_-MogSXDWCPTvvijkicpZLi-hWqG712ir7FbdsPoLmMNKpgmfZyNwYjuHnlCM46uz8un-_d1fvWM1tLhcyzMoGJKqYb_Lf1l0B9VlCxzKiiX8tJ8n84wgFipLZXLZ6Rn8rFVnD1iZ2FuVnCfkrFNkJoEIeIrn1n7Nx5lcgmXFSzALa2EfZtnkdcO-9rt9X2tnLCjmrY6AGJz5-tzJ9XzQ3GmxtaIFRSMeex_di-6bMSdnUIzgBygwyWOcEoSTDHHMEU8i8AwKwmjMckwYyThllLIpAi8LAcUMYR9KEfU5Wcbx9BO0WV5-?type=png){alt-text="**After** - `main`, which has already had the work in `ns-rse/1-zero-division` merged into it, is merged into `ns-rse/2-square-root`. Development is completed on `ns-rse/2-square-root` and the feature merged into `main`."}
 
 The syntax of `git merge` is
 
@@ -126,19 +126,17 @@ git merge <OPTIONS> <ref>
 
 Where `<ref>` is one of a commit, branch name or tag (both of which are references to commits). There is an option for
 how the merge is made known as `fast-forward`. Fast-forward is the default action unless annotated tags are being merged
-that are in the incorrect hierarchy. To explicitly enable this behaviour (`--ff`) and the branch pointer, that is where
-the current branch diverged from the the `main` branch, is updated to point to the most recent commit on the `main`
-branch.
+that are in the incorrect hierarchy and it updates the branch pointer (`HEAD`) to match the merged branch.
 
-Typically though the `main` branch contains work from someone else's branch and we want to incorporate those changes in
-the other branch.
+Typically, as in this example, the `main` branch contains work from someone else's branch and we want to incorporate
+those changes in the other branch.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
 Remember to take the time to show the contents of the files and how they "disappear" when switching branches, in
 particular after having added `README.md` to `branch1` and switching back to `main`.
 
-Also use `git logp` alias (or other form of `git log` that shows branches) to show the changes and explain the point at
+Also use `git log` alias (or other form of `git log` that shows branches) to show the changes and explain the point at
 which each of the branches is at with reference to the `*` indicating commits, the branch names and where they sit and
 the date/time stamps.
 
@@ -303,7 +301,7 @@ diverged from `main` rather than merging the changes in.
 Again remember to take the time to show the contents of the files and how they "disappear" when switching branches, in
 particular after having added `README.md` to `branch1` and switching back to `main`.
 
-Also use `git logp` alias (or other form of `git log` that shows branches) to show the changes and explain the point at
+Also use `git log` alias (or other form of `git log` that shows branches) to show the changes and explain the point at
 which each of the branches is at with reference to the `*` which denote commits, the branch names and where they sit and
 the date/time stamps.
 
@@ -369,7 +367,7 @@ Switch to `branch2` which has now diverged as it contains changes of its own _an
 ``` bash
 git switch branch2
 git rebase main # Rebase branch2 onto main
-git logp
+git  --pretty="%h %ad (%cr) %x09 %an : %s"
 
 * 12f5202 - (HEAD -> branch2) Adding a LICENSE (2024-03-01 12:19:12 +0000) <Neil Shephard>
 * 4e8e933 - (main, branch1) Adding README.md (2024-03-01 12:18:37 +0000) <Neil Shephard>
@@ -385,7 +383,7 @@ in `branch1` were merged in. If we switch back to `main` we can merge the change
 ``` bash
 git switch main
 git merge branch2
-git logp
+git  --pretty="%h %ad (%cr) %x09 %an : %s"
 
 * 12f5202 - (HEAD -> main, branch2) docs: Adding a LICENSE (2024-03-01 12:19:12 +0000) <Neil Shephard>
 * 4e8e933 - (branch1) docs: Adding README.md (2024-03-01 12:18:37 +0000) <Neil Shephard>
@@ -398,7 +396,7 @@ As we're done with `branch1` and `branch2` we can delete them.
 
 ``` bash
 git branch -d branch{1,2}
-git logp
+git  --pretty="%h %ad (%cr) %x09 %an : %s"
 
 * 12f5202 - (HEAD -> main) Adding a LICENSE (2024-03-01 12:19:12 +0000) <Neil Shephard>
 * 4e8e933 - Adding README.md (2024-03-01 12:18:37 +0000) <Neil Shephard>
@@ -579,7 +577,7 @@ git switch branch2
 echo "Lets add another commit to make things messier" >> README.md
 git add README.md
 git commit -m "Bulking out README.md with more information"
-git logp
+git  --pretty="%h %ad (%cr) %x09 %an : %s"
 
 * bce21bd - (HEAD -> branch2) Bulking out README.md with more information (2024-03-01 13:26:01 +0000) <Neil Shephard>
 * 29b2e32 - This repo needs a README.md (2024-03-01 13:23:16 +0000) <Neil Shephard>
@@ -753,7 +751,7 @@ Lets add another commit to make things messier
 The history/graph is linear now and shows that `branch2` is two commits ahead of `main`.
 
 ``` bash
-git logp
+git  --pretty="%h %ad (%cr) %x09 %an : %s"
 * 0ccfe91 - (HEAD -> branch2) Bulking out README.md with more information (2024-03-01 14:00:57 +0000) <Neil Shephard>
 * d041adb - This repo needs a README.md (2024-03-01 13:59:31 +0000) <Neil Shephard>
 * 64905e8 - (main) Ooops, missed a line from the README.md (2024-03-01 13:56:35 +0000) <Neil Shephard>
