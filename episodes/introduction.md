@@ -22,7 +22,7 @@ exercises: 2
 
 [Git][git] is, in 2025, the most widely used version control system by far. It was developed by Linus Torvalds to manage
 [Linux kernel][linux] development and since then has exploded. Websites such as [GitHub][gh] and [GitLab][gl], both
-types of Forge^[1], facilitate asynchronous collaboration on common code bases and underpin many, many software projects
+types of Forge[^1], facilitate asynchronous collaboration on common code bases and underpin many, many software projects
 from enterprise grade tools such as the aforementioned [Linux kernel][linuxGithub], the increasingly popular
 [Rust][rustGitHub] through to niche products such as [Snapcast][snapcast] or Android apps for tracking your exercise
 such as [OpenTracks][openTracks].
@@ -143,7 +143,7 @@ need modifying to reflect the users key for the account they wish to use.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Choose Roles, Clone Repository and
+## Choose Roles, Clone Repository and Install Package
 
 In your pairs you now need to decide who is to take on each of the two roles. There isn't much between them in terms of
 what you will be doing but one person needs to be the **repository owner** and one person needs to be a
@@ -410,12 +410,12 @@ create a pull request and merge the changes.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-^[1]: The term "forge" refers to a web-based collaborative software platform.  [GitHub][gh] and [GitLab][gl] are perhaps
-the most well known but there are many others including [BitBucket][bitbucket],  [Codeberg][codeberg], and
+[^1]: The term "forge" refers to a web-based collaborative software platform.  [GitHub][gh] and [GitLab][gl] are perhaps
+the most well known but there are many others including [BitBucket][bitbucket], [Codeberg][codeberg], and
 [ForgeJo][forgejo] and [SourceHut][sourcehut].
 
 [bitbucket]: https://bitbucket.org/
-[coc]: https://docs.carpentries.org/policies/coc/
+[coc]: https://rse.shef.ac.uk/community/code_of_conduct
 [codeberg]: https://codeberg.org/
 [collab_notepad]: https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/edit?tab=t.0
 [forgejo]: https://forgejo.org/
