@@ -67,7 +67,7 @@ These are summarised in the following series of blog posts.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-### RSS
+## RSS
 
 [Really Simply Syndication](https://rssboard.org/rss-specification) is a much under appreciated/used technology that
 makes it really simple to syndicate blog posts from a range of sources to give yourself a customised reading list rather
@@ -78,6 +78,8 @@ specific feeds for topics. I would highly recommend using [RSS](https://en.wikip
 improving your understanding of Git but all other research areas (e.g. Python, R, Open Research et.c) Some useful
 resources for RSS feeds are below.
 
+- [Get RSS Feed URL Extension](https://github.com/shevabam/get-rss-feed-url-extension) is a browser extension which digs
+  out the RSS feed for a page.
 - [OpenRSS](https://openrss.org/) is a simple way of creating RSS feeds for sites, even if they don't natively provided
   them.
 - [Feeder](https://github.com/spacecowboy/Feeder) open source, private feed reader that runs on your Android device.
@@ -87,6 +89,7 @@ resources for RSS feeds are below.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!-- markdownlint-disable-next-line MD001 -->
 #### Learning Resources
 
 Various tutorials and tools that help explain how Git works.

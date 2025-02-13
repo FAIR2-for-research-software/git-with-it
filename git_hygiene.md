@@ -80,6 +80,8 @@ git config --global user.email a.other@sheffield.ac.uk
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## Where are my configuration files?
+
 You can always lookup the location of configuration options using the following command which shows the file in which each
 configuration is set as the first column of output.
 
@@ -775,6 +777,8 @@ Date:   2024-03-07 16:07:06 +0000
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## Commits don't have to be adjacent
+
 When squashing commits they do not have to be contiguous, you can pick and choose any combination. Commits that are
 prefixed with `pick` will remain in the Git history.
 
@@ -794,6 +798,8 @@ the changes you can force them to be pushed using `git push --force-with-lease`,
 doing so in some situations.
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Use force cautiously
 
 If anyone else has `git pull` the branch or if the changes have been merged into `main` (or another branch) using these
 commands then `git push --force` will cause a lot of headaches so make sure no one else is working on your branches and

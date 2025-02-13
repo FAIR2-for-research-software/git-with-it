@@ -39,6 +39,8 @@ The list of options is vast and there are whole ecosystems for the different For
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## CI on other Forges
+
 This course focuses on [GitHub][gh] but there are similar systems available for other Forges. All use [YAML][yaml]
 configuration files to configure the system and very similar syntax.
 
@@ -64,6 +66,8 @@ Marketplace][gh-actions-market].
 Configuration of actions that run in GitHub is via [YAML][yaml] files that reside in `.github/workflows/`.
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## workflow and actions
 
 Quite why the directory isn't `.github/actions/` is a mystery as it would align better.
 
@@ -129,12 +133,15 @@ jobs:
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## YAML
+
 [YAML][yaml] (which stands for _YAML Ain't Markup Language_) is a common format for defining hierarchical data
 structures. It is a super-set of JSON (JavaScript Object Notation) that many find more flexible (in part because of the
 ability to have comments) and is regularly used for configuration files.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!-- markdownlint-disable-next-line MD001 -->
 #### Fields
 
 The syntax defined in the Workflow
