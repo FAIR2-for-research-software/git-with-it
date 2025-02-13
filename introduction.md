@@ -32,7 +32,7 @@ collaboration. However, because of the complexities of version controlling softw
 environments the tool itself, Git, has become quite complex. There are many different tasks that one may wish to
 undertake and often several different ways of achieving these.
 
-Its relatively easy to get the _basics_ of working with [Git][git] on your own or with small groups to work
+It's relatively easy to get the _basics_ of working with [Git][git] on your own or with small groups to work
 collaboratively on code development. If you aren't already familiar with these basics then this course isn't for you
 (yet!) and you would benefit from an introductory course such as [Git, GitHub through GitKraken : From Zero to
 Hero!][zeroHero] or the [Software Carpentry : Version Control with Git][swCarpentryGit]. This course aims to show you
@@ -158,7 +158,7 @@ Follow the instructions below under each section. If you have any questions plea
 ## Clone the repository
 
 Click on the _Code_ button at [Python Maths][pythonmaths] and then the _SSH_ tab. Copy the URL. If you want to clone the
-work to `~/work/git/` then in a terminal run the following commands (be wary of copy and pasting them `<onwers_id>`
+work to `~/work/git/` then in a terminal run the following commands (be wary of copy and pasting them `<owners_id>`
 needs replacing)
 
 ``` bash
@@ -190,8 +190,8 @@ This edit changes the `origin` to be the empty repository you created under the 
 The repository owner should now create an empty repository called `python-maths` using the [new repo][gh_newrepo], do
 _not_ add a license or `.gitignore` to the repository, it should be **completely empty**.
 
-The Repository Owner can push the cloned repository to their account with, the `--force` is optional and shouldn't be
-required unless you have inadvertently initialised the repository with additional files.
+The Repository Owner can push the cloned repository to their account with the following command, the `--force` is
+optional and shouldn't be required unless you have inadvertently initialised the repository with additional files.
 
 ``` bash
 git push --force
@@ -205,7 +205,7 @@ git push --force
 
 **NB** This step is _just_ for the **Repository Owner**, the **Collaborator** should **not** perform this step.
 
-On the `python-maths` repository you both now have access to protect the `main` branch to require approvals.
+On the `python-maths` repository you both now have access to, protect the `main` branch to require approvals.
 
 1. _Settings > Branches > Add classic branch protection rule_
 2. Enter `main` under _Branch name pattern_
@@ -226,7 +226,7 @@ The Repository owner should now invite their collaborator to work on the reposit
 1. Navigate to _Settings > Collaborators_
 2. Click on _Add People_ and enter the GitHub username of your collaborator.
 
-The "Collaborator** should receive an email invitation to collaborate and should accept it.
+The **Collaborator** should receive an email invitation to collaborate and should accept it.
 
 :::::::::::::::::::::::::::::::::
 
@@ -253,7 +253,7 @@ cd ~/work/git/python-maths
 pip install -e .[tests,dev]
 ```
 
-You can optionally check everything is installed and runs by running the tests via [pytest][pytest]
+You can optionally check everything is installed and runs by running the tests via [pytest][pytest].
 
 ``` bash
 pytest
@@ -402,7 +402,7 @@ After completing these steps you should both have a copy of the `python-maths` r
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-If desired you can between you update the Metadata in `pyproject.toml` it is important to have accurate Metadata in this
+If desired you can between you update the Metadata in `pyproject.toml`. It is important to have accurate Metadata in this
 file because if you ever publish your package to [Python Package Index (PyPI)][pypi] it will be used.
 
 To update the metadata create a branch and update lines 12 and 13 with your names and email addresses. Push the changes,
