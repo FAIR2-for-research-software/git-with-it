@@ -75,7 +75,7 @@ the `HEAD` is `6-93e787c`.
 
 You can change branches by using `git switch <branchname>`.
 
-We can improve the output of `git log` using the following
+We can improve the output of `git log` using the following options.
 
 ```bash
 git log --pretty="%h %ad (%cr) %x09 %an : %s"
@@ -87,7 +87,7 @@ git log --pretty="%h %ad (%cr) %x09 %an : %s"
 
 Using the `python-maths` repository you have cloned look up the first and last commit of the `divide` branch.
 
-What are the commit hashes, commit messages, date/time and committers names?
+What are the commit hashes, commit messages, date/time and committers' names?
 
 :::::::::::::::::::::::: solution
 
@@ -142,7 +142,7 @@ git log --pretty="%h %ad (%cr) %x09 %an : %s"
 * 31a4a93 - Initial commit (2021-05-13 12:14:08 +0300) <Anna Krystalli>
 ```
 
-From the `git log` graph we see the first and last commits were.
+From the `git log` graph we see the first and last commits were:
 
 | Commit | Hash    | Message                          | Date/time           | Committer      |
 |:-------|:--------|:---------------------------------|:--------------------|:---------------|
@@ -153,8 +153,8 @@ From the `git log` graph we see the first and last commits were.
 
 ## Challenge 2: What commit did the &nbsp; `multiply` &nbsp; branch diverge from &nbsp; `master` &nbsp;?
 
-Again using the `python-maths` repository switch to the multiply. Use `git log` what is the commit that `multiply`
-diverged from `main`. How many commits have been made on the `main` branch?
+Again using the `python-maths` repository switch to the `multiply` branch. Use `git log` to find the commit at which
+`multiply` diverged from `main`. How many commits have been made on the `main` branch?
 
 **Hint** You will need to look at the log of the `main` branch.
 
@@ -317,7 +317,7 @@ its name before the name of the new branch.
 ::::::::::::::::::::::::::::::::::::: callout
 
 Most of the time when creating branches you should do so from the `main` branch. It is therefore important to make sure
-your local copy of the `main` branch is up-to-date. Before creating a branch you should checkout the `main` branch and
+your local copy of the `main` branch is up-to-date. Before creating a branch you should switch to the `main` branch and
 ensure it is up-to-date.
 
 ``` bash
@@ -418,7 +418,7 @@ out-dated branches and it is therefore good practice to delete unwanted branches
 
 You can not delete a branch you currently have checked out so you must first checkout an alternative branch. Typically
 this would be the `main` branch after your Pull Request has been merged and the changes you were working on have been
-incorporated. You should `git pull` the `main` branch after merging changes so your locally copy is aware of any recent
+incorporated. You should `git pull` the `main` branch after merging changes so your local copy is aware of any recent
 merges from branches you are about to delete.
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -575,9 +575,9 @@ changes and save them you are advised to create a new branch to do so.
 ## Challenge 6: Checkout old commits
 
 - Look at the history of the `python-maths` repository and find out who the author of commit `585287a` was (there are
-  several ways of doing this.)
+  several ways of doing this).
 - Checkout this commit and look at the contents of the file `tests/test_add.py` (you can use `cat tests/test_add.py`).
-- Switch back to `HEAD` has anything changed in the `tests/test_add.py` file?
+- Switch back to `HEAD`, has anything changed in the `tests/test_add.py` file?
 
 :::::::::::::::::::::::: solution
 
@@ -672,14 +672,14 @@ git diff 585287a -- tests/test_add.py
 
 ## Ooops! I Did It Again
 
-Nothing to do with Brittney Spears but you are at some stage likely to commit changes to the wrong branch. This can
+Nothing to do with Britney Spears but you are at some stage likely to commit changes to the wrong branch. This can
 easily happen when starting to work on an issue without first creating a new branch to contain the work and you commit
-the changes to either the `main` branch, which is often protected so you won't be able to push your changes or the last
+the changes to either the `main` branch, which is often protected so you won't be able to push your changes, or the last
 branch you were working on.
 
 ### `git reset`
 
-One solution to solve this with Git is to `git reset` the branch to which you have just mistakenly made the commit. This
+One way to solve this with Git is to `git reset` the branch to which you have just mistakenly made the commit. This
 removes reference to the changes from the Git history but leaves the changes to the files in place and they appear as
 `unstaged` files. It is ideal if you have only _one_ commit you wish to undo.
 
@@ -722,7 +722,7 @@ git reset HEAD~1
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-There are three options to `git reset` that influence how the changes in commits are handled these are `--soft`,
+There are three options to `git reset` that influence how the changes in commits are handled, these are `--soft`,
 `--mixed` (the default) and `--hard`.
 
 For a detailed exposition of `git reset` see the excellent [Atlassian | Git reset][atlassian_git_reset] article.
@@ -830,7 +830,7 @@ You can set an alias to undo the last commit with
 git config --global alias.undo 'reset HEAD~1'
 ```
 
-This adds the following line to the `alias` section of your `~/.gitconfig`
+This adds the following line to the `alias` section of your `~/.gitconfig`.
 
 ``` bash
 [alias]
@@ -887,7 +887,7 @@ another option.
 ### `git stash`
 
 `git stash` allows you to save your current changes in a temporary location and then reverts to the last commit
-(`HEAD`). This allows you to move about `git switch` to other branches and undertake work. There are lots of options to
+(`HEAD`). This allows you to move about`git switch` to other branches and undertake work. There are lots of options to
 `git stash` but the basics are pretty straight-forward. You start by `git stash push` (the `push` is actually optional)
 and you can include a `--message` that explains what the stash contains, you are told if this has worked and on what
 branch the stash was made and can then switch branches, pull down changes, create a new branch and do something
@@ -1023,7 +1023,7 @@ git add CITATION.cff
 git commit -m "doc: Adding a CITATION.cff"
 ```
 
-We now unstash the contributing work to this branch and commit the changes, amending the commit and push to GitHub
+We now unstash the contributing work to this branch and commit the changes, amending the commit and push to GitHub.
 
 ```bash
 git pop
