@@ -655,6 +655,8 @@ You can use `Ctrl+k` to remove a whole line at once. Save the file and return to
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## Nano
+
 [`nano`][nano] is a simple text editor found on most GNU/Linux and OSX systems that is quick and easy to use. A useful
 bookmark to help whilst developing the muscle memory for the commands is the [nano shortcuts
 cheatsheet](https://www.nano-editor.org/dist/latest/cheatsheet.html).
@@ -664,6 +666,7 @@ text editor you use to edit and save the files and if you are comfortable using 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!-- markdownlint-disable-next-line MD001 -->
 #### 8. Add the conflicted file and continue with rebase
 
 You can now continue with the advice and add the conflicted files back to Git and continue with the rebase.
@@ -774,6 +777,8 @@ the same merge conflict repeatedly and wonder why you keep on getting asked to r
 to avoid this though.
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Avoid divergence if possible
 
 Bringing a diverged branch up-to-date can get _very_ messy and confusing if there is a large amount of divergence. The
 best strategy to avoid this complication is two fold.

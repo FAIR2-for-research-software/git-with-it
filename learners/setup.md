@@ -101,6 +101,14 @@ emerge -av dev-vcs/git
 
 :::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## Windows SSH Agent
+
+If you are using Windows you may want to enable the [ssh-agent][win_ssh_agent].
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## GitHub
 
 ::::::::::::::::::::::::::::::::::::::: discussion
@@ -225,3 +233,4 @@ conda activate git-collaboration
 [ssh-ed25519]: https://blog.g3rt.nl/upgrade-your-ssh-keys.html
 [ssh-keygen]: https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-openssh-on-macos-or-linux
 [virtualenvwrapper]: https://rse.shef.ac.uk/blog/2024-08-13-python-virtualenvwrapper/
+[win_ssh_agent]: https://peateasea.de/starting-ssh-agent-in-windows-powershell/

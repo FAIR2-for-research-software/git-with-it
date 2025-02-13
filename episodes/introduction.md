@@ -70,6 +70,8 @@ Once paired up please add details to the [Collaborative Notepad][collab_notepad]
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## Pair Programming
+
 The aim of pairing up is _not_ to divide the tasks between people. There are a few exceptions but for most tasks you
 should work with your partner to solve each of the challenges, but with one person at the "driving seat" making the
 changes to the code as required.
@@ -401,6 +403,8 @@ After completing these steps you should both have a copy of the `python-maths` r
 <!-- ::::::::::::::::::::::::::::::::: -->
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Update Metadata
 
 If desired you can between you update the Metadata in `pyproject.toml`. It is important to have accurate Metadata in this
 file because if you ever publish your package to [Python Package Index (PyPI)][pypi] it will be used.

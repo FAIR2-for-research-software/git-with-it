@@ -197,6 +197,8 @@ error: failed to push some refs to 'github.com:slackline/python-maths.git'
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## Push and Pull
+
 You may have encountered the [non-fast-forward
 error](https://docs.github.com/en/get-started/using-git/dealing-with-non-fast-forward-errors) when attempting to push
 your changes to a remote. As the message shows this is because there are changes to the remote branch that are not in
@@ -212,7 +214,7 @@ the local branch and you are advised to `git pull` before attempting to `git pus
 > 'Note about fast-forwards' section of 'git push --help' for details.
 ```
 
-A simple addition you can add to the `.git/hooks/pre-push` script is to have it `git fetch` before attempting to make a
+A simple addition you can add to the `.git/hooks/pre-push` script is to have it `git pull` before attempting to make a
 `git push` which retrieves details, but does not pull them, of changes that have been made to the branch on `origin`.
 
 ``` bash
@@ -220,7 +222,7 @@ A simple addition you can add to the `.git/hooks/pre-push` script is to have it 
 #
 # A hook script to pull before pushing
 
-exec git fetch
+exec git pull
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -244,6 +246,8 @@ There is a framework for `pre-commit` hooks called, unsurprisingly, [pre-commit]
 easy to add (and configure) some really useful `pre-commit` hooks to your workflow.
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Pre-commit
 
 From here on whenever `pre-commit` is mentioned it refers to the Python package [pre-commit][pc] and _not_ the
 hook that resides at `.git/hooks/pre-commit`, although we will look at that file.
@@ -346,6 +350,8 @@ pre-commit installed at .git/hooks/pre-commit
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Install Pre-commit globally
 
 Examples of installing [pre-commit][pc] at the system level for different Linux systems or OSX. Note you will
 need to have `root` access to install packages on your Linux system.
@@ -562,6 +568,8 @@ Some of the hooks have additional arguments (`args:`) which are arguments that a
 types (`types`) which restrict the type of files the hook should run on.
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Comments in YAML files
 
 You can add comments to YAML file by pre-fixing them with a `#`. These may be at the start of a line or can be added to
 the end of a line and the text that follows will be treated as a comment and ignored when parsing the file.
@@ -860,6 +868,8 @@ python -m pylint --rcfile=.pylintrc
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Pylint configuration
 
 The `.pylintrc` file is a configuration file for `pylint` that defines what checks are made.
 
