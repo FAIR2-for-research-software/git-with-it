@@ -348,7 +348,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Diverging Branches</h1>
-        <p>Last updated on 2025-02-12 |
+        <p>Last updated on 2025-02-13 |
 
         <a href="https://github.com/ns-rse/git-collaboration/edit/main/episodes/diverging_branches.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -371,7 +371,7 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>What are branches?</li>
 <li>How do we use branches in git effectively?</li>
-<li>How can I check out other peoples branches whilst working on my
+<li>How can I check out other people’s branches whilst working on my
 own?</li>
 <li>How do I keep my development branch up-to-date with
 <code>main</code>?</li>
@@ -388,7 +388,7 @@ isolation.</li>
 <li>How to keep a development branch up-to-date.</li>
 <li>Differences between and when to use merge and rebase.</li>
 <li>Git worktrees instead of branches.</li>
-<li>Tracking multiple origins</li>
+<li>Tracking multiple origins.</li>
 </ul></div>
 </div>
 </div>
@@ -429,11 +429,10 @@ representation of the current state, albeit from a single developer.</p>
 
 -->
 <!-- markdownlint-disable-next-line MD013 -->
-<figure><img src="https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png" alt-text="Diverging branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`." alt="Diverging branches in python-maths ns-rse/2-square-root is now behind the main branch which has incorporated the changes from ns-rse/1-zero-division." class="figure mx-auto d-block"><div class="figcaption">Diverging branches in <code>python-maths</code>
+<figure><img src="https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png" alt-text="Diverging branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`." alt="Diverging branches in python-maths: ns-rse/2-square-root is now behind the main branch which has incorporated the changes from ns-rse/1-zero-division." class="figure mx-auto d-block"><div class="figcaption">Diverging branches in <code>python-maths</code>:
 <code>ns-rse/2-square-root</code> is now behind the <code>main</code>
 branch which has incorporated the changes from
-<code>ns-rse/1-zero-division.</code>
-</div>
+<code>ns-rse/1-zero-division</code>.</div>
 </figure><p>In this example the <code>main</code> branch now includes the commits
 <code>3-8c52dce</code> and <code>5-2315fa0</code> from the
 <code>ns-rse/1-zero-division</code> branch as well as the commit
@@ -449,23 +448,22 @@ same location.</p>
 <p>That will not always be the case though, sometimes merge conflicts
 might arise if the second branch is changing some of the same files as
 the first branch. Another scenario might be that whilst work was being
-done on adding a new feature branch a critical bug was fixed that the
+done on adding a new feature branch, a critical bug was fixed that the
 new feature depends on and the changes now in <code>main</code> need
 incorporating in the feature branch. That is in fact the situation we
 have with our <code>ns-rse/2-square-root</code> branch, it conflicts
 with <code>main</code> because of the changes we merged from the
 <code>ns-rse/1-zero-division</code> branch.</p>
-<p>There are two approaches to solving this merging
+<p>There are two approaches to solving this: merging
 (<code>git merge</code>) and rebasing (<code>git rebase</code>).</p>
 <div class="section level3">
 <h3 id="merging">Merging<a class="anchor" aria-label="anchor" href="#merging"></a></h3>
 <!-- markdownlint-disable-next-line MD013 -->
-<figure><img src="https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png" alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`." alt="Before - diverged branches in python-maths ns-rse/2-square-root is now behind the main branch which has incorporated the changes from ns-rse/1-zero-division." class="figure mx-auto d-block"><div class="figcaption">
+<figure><img src="https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png" alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`." alt="Before - diverged branches in python-maths: ns-rse/2-square-root is now behind the main branch which has incorporated the changes from ns-rse/1-zero-division." class="figure mx-auto d-block"><div class="figcaption">
 <strong>Before</strong> - diverged branches in
-<code>python-maths</code> <code>ns-rse/2-square-root</code> is now
+<code>python-maths</code>: <code>ns-rse/2-square-root</code> is now
 behind the <code>main</code> branch which has incorporated the changes
-from <code>ns-rse/1-zero-division.</code>
-</div>
+from <code>ns-rse/1-zero-division</code>.</div>
 </figure><!-- Source for Mermaid diagram :
      https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_merging-js
 --><!--
@@ -496,13 +494,12 @@ from <code>ns-rse/1-zero-division.</code>
        checkout "main"
        merge "ns-rse/2-square-root" id: "11-a8c9932" tag: "v0.1.2"
 
---><!-- markdownlint-disable-next-line MD013 --><figure><img src="https://mermaid.ink/img/pako:eNqtk8GOmzAQhl8FWYpoJUxtA8bmVnVX7aE99VZxMcYk1i44NWbVXcS715CyTaIkqtpywuN_vvk9mhmBNLUCBdhsRt1pVwRj6HaqVWERhJXoVRgF4Va7j1bsd-F8a40TTn0wbavdZ1GpRx91dlBT2QXr5_-nzeYQWJNfr-WSGui6CEqAYJqTBiNcgssCDDPMMK3pNQGBNKe8aUjwZvb79khXWdHJndd0PbS9eofhi7IG1vpJ99p0N5QE9t8HYRW0xrjjyjslH8zg_oR54jKBTGakluom7GrZY1QKmZIJ4-J_-MogSXDWCPTvvijkicpZLi-hWqG712ir7FbdsPoLmMNKpgmfZyNwYjuHnlCM46uz8un-_d1fvWM1tLhcyzMoGJKqYb_Lf1l0B9VlCxzKiiX8tJ8n84wgFipLZXLZ6Rn8rFVnD1iZ2FuVnCfkrFNkJoEIeIrn1n7Nx5lcgmXFSzALa2EfZtnkdcO-9rt9X2tnLCjmrY6AGJz5-tzJ9XzQ3GmxtaIFRSMeex_di-6bMSdnUIzgBygwyWOcEoSTDHHMEU8i8AwKwmjMckwYyThllLIpAi8LAcUMYR9KEfU5Wcbx9BO0WV5-?type=png" alt-text="**After** - merging `ns-rse/1-zero-division` into `main` then `main` into `ns-rse/2-square-root`. Development is completed on`ns-rse/2-square-root` and the feature merged into `main`" alt="After - merging ns-rse/1-zero-division into main then main into ns-rse/2-square-root. Development is completed on ns-rse/2-square-root and the feature merged into main" class="figure mx-auto d-block"><div class="figcaption">
+--><!-- markdownlint-disable-next-line MD013 --><figure><img src="https://mermaid.ink/img/pako:eNqtk8GOmzAQhl8FWYpoJUxtA8bmVnVX7aE99VZxMcYk1i44NWbVXcS715CyTaIkqtpywuN_vvk9mhmBNLUCBdhsRt1pVwRj6HaqVWERhJXoVRgF4Va7j1bsd-F8a40TTn0wbavdZ1GpRx91dlBT2QXr5_-nzeYQWJNfr-WSGui6CEqAYJqTBiNcgssCDDPMMK3pNQGBNKe8aUjwZvb79khXWdHJndd0PbS9eofhi7IG1vpJ99p0N5QE9t8HYRW0xrjjyjslH8zg_oR54jKBTGakluom7GrZY1QKmZIJ4-J_-MogSXDWCPTvvijkicpZLi-hWqG712ir7FbdsPoLmMNKpgmfZyNwYjuHnlCM46uz8un-_d1fvWM1tLhcyzMoGJKqYb_Lf1l0B9VlCxzKiiX8tJ8n84wgFipLZXLZ6Rn8rFVnD1iZ2FuVnCfkrFNkJoEIeIrn1n7Nx5lcgmXFSzALa2EfZtnkdcO-9rt9X2tnLCjmrY6AGJz5-tzJ9XzQ3GmxtaIFRSMeex_di-6bMSdnUIzgBygwyWOcEoSTDHHMEU8i8AwKwmjMckwYyThllLIpAi8LAcUMYR9KEfU5Wcbx9BO0WV5-?type=png" alt-text="**After** - merging `ns-rse/1-zero-division` into `main` then `main` into `ns-rse/2-square-root`. Development is completed on`ns-rse/2-square-root` and the feature merged into `main`" alt="After - merging ns-rse/1-zero-division into main then main into ns-rse/2-square-root. Development is completed on ns-rse/2-square-root and the feature merged into main." class="figure mx-auto d-block"><div class="figcaption">
 <strong>After</strong> - merging
 <code>ns-rse/1-zero-division</code> into <code>main</code> then
 <code>main</code> into <code>ns-rse/2-square-root</code>. Development is
 completed on <code>ns-rse/2-square-root</code> and the feature merged
-into <code>main</code>
-</div>
+into <code>main</code>.</div>
 </figure><p>The syntax of <code>git merge</code> is</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -512,14 +509,14 @@ into <code>main</code>
 <p>Where <code>&lt;ref&gt;</code> is one of a commit, branch name or tag
 (both of which are references to commits). There is an option for how
 the merge is made known as <code>fast-forward</code>. Fast-forward is
-the default action unless annotated tags are being merged that is in the
-incorrect hierarchy. To explicitly enabled this behaviour
+the default action unless annotated tags are being merged that are in
+the incorrect hierarchy. To explicitly enable this behaviour
 (<code>--ff</code>) and the branch pointer, that is where the current
-branch diverged from the the <code>main</code> branch) is updated to
+branch diverged from the the <code>main</code> branch, is updated to
 point to the most recent commit on the <code>main</code> branch.</p>
 <p>Typically though the <code>main</code> branch contains work from
 someone else’s branch and we want to incorporate those changes in the
-another branch.</p>
+other branch.</p>
 <div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
@@ -687,12 +684,11 @@ original position to another, in this case the <code>HEAD</code> of the
 <code>main</code> branch. You are changing the <code>base</code> commit,
 hence the name <code>git rebase</code>.</p>
 <!-- markdownlint-disable-next-line MD013 -->
-<figure><img src="https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png" alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`." alt="Before - diverged branches in python-maths ns-rse/2-square-root is now behind the main branch which has incorporated the changes from ns-rse/1-zero-division." class="figure mx-auto d-block"><div class="figcaption">
+<figure><img src="https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png" alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`." alt="Before - diverged branches in python-maths: ns-rse/2-square-root is now behind the main branch which has incorporated the changes from ns-rse/1-zero-division." class="figure mx-auto d-block"><div class="figcaption">
 <strong>Before</strong> - diverged branches in
-<code>python-maths</code> <code>ns-rse/2-square-root</code> is now
+<code>python-maths</code>: <code>ns-rse/2-square-root</code> is now
 behind the <code>main</code> branch which has incorporated the changes
-from <code>ns-rse/1-zero-division.</code>
-</div>
+from <code>ns-rse/1-zero-division</code>.</div>
 </figure><!-- Source for Mermaid diagram :
      https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_rebase-js
 --><!--
@@ -728,7 +724,7 @@ diverged branch up-to-date with <code>main</code> which includes
 <code>ns-rse/2-square-root</code> is then merged into
 <code>main</code>.</div>
 </figure><p><code>git rebase</code> takes a different approach to bringing
-branches up-to-date and in effects moves the point at which a branch
+branches up-to-date and in effect moves the point at which a branch
 diverged from <code>main</code> rather than merging the changes in.</p>
 <div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
@@ -993,8 +989,8 @@ strategies in the examples we went through worked because none of the
 changes that were made touched the same files. In the Challenge though
 there was a conflict because both commits had added code to the end of
 <code>tests/test_arithmetic.py</code> and Git didn’t know which should
-be kept and is known as “conflict” and resolving it requires manual
-intervention.</p>
+be kept. This situation is known as “conflict” and resolving it requires
+manual intervention.</p>
 <p>If you have undertaken the <a href="https://srse-git-github-zero2hero.netlify.app/" class="external-link">Git &amp; GitHub
 Through GitKraken - From Zero to Hero!</a> course you will have
 encountered merge conflicts when working through the “<em>Python
@@ -1162,7 +1158,7 @@ file to be in.</p>
 <div class="section level4">
 <h4 id="resolve-the-conflict">7. Resolve the conflict<a class="anchor" aria-label="anchor" href="#resolve-the-conflict"></a></h4>
 <p>You can use the <code>nano</code> editor to open the file with
-<code>nano README.md</code>. Edit it to look like this</p>
+<code>nano README.md</code>. Edit it to look like this:</p>
 <div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1239,11 +1235,11 @@ advice so lets take a look at the state of <code>README.md</code></p>
 <span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a><span class="st">Lets add another commit to make things messier</span></span>
 <span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a><span class="st">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 84a1592 (Bulking out README.md with more information)</span></span></code></pre>
 </div>
-<p>Here we can see its the second line that we added to
+<p>Here we can see it’s the second line that we added to
 <code>README.md</code> under <code>branch2</code> that read
 <code>Lets add another commit to make things messier</code> that is
-causing the problem. Its not in the <code>main</code> branch on which we
-are rebasing so Git doesn’t know whether it should be and we have to
+causing the problem. It’s not in the <code>main</code> branch on which
+we are rebasing so Git doesn’t know whether it should be and we have to
 manually resolve this. Edit the file so that it looks like the
 following.</p>
 <div class="codewrapper sourceCode" id="cb35">
@@ -1321,7 +1317,7 @@ checked out branch (<code>branch2</code>).</p>
 </div>
 <div class="section level3">
 <h3 id="repeating-yourself">Repeating yourself<a class="anchor" aria-label="anchor" href="#repeating-yourself"></a></h3>
-<p>You only had to resolve one merge conflicts here, if the history you
+<p>You only had to resolve two merge conflicts here, if the history you
 are merging has a lot of commits you may end up solving the same merge
 conflict repeatedly and wonder why you keep on getting asked to resolve
 the same conflict. There is a way to avoid this though.</p>
@@ -1716,7 +1712,7 @@ any links that you are not going to use.
   "url": "ns-rse.github.io/git-collaboration/instructor/diverging_branches.html",
   "identifier": "ns-rse.github.io/git-collaboration/instructor/diverging_branches.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-02-12",
+  "dateModified": "2025-02-13",
   "datePublished": "2025-02-13"
 }
 
