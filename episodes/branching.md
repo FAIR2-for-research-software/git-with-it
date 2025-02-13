@@ -151,7 +151,7 @@ From the `git log` graph we see the first and last commits were:
 
 :::::::::::::::::::::::::::::::::
 
-## Challenge 2: What commit did the &nbsp; `multiply` &nbsp; branch diverge from &nbsp; `master` &nbsp;?
+## Challenge 2: What commit did the &nbsp; `multiply` &nbsp; branch diverge from &nbsp; `main` &nbsp;?
 
 Again using the `python-maths` repository switch to the `multiply` branch. Use `git log` to find the commit at which
 `multiply` diverged from `main`. How many commits have been made on the `main` branch?
@@ -266,10 +266,10 @@ git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
 
 This is a little more challenging to interpret but reading the output carefully we have an indicator of where the
 `origin/main` branch is where it reads `(origin/main, main)`. All subsequent commits are on the currently checked out
-branch which is `multiply` and `origin/multiply` (i.e. the local copy of the branch is at the same point as the remote
+branch which is `main` and `origin/multiply` (i.e. the local copy of the branch is at the same point as the remote
 on GitHub).
 
-Knowing this we can see that the `multiply` branch diverged from the `fa76751` commit on `main` and that two commits
+Knowing this we can see that the `multiply` branch diverged from the `fa76751` commit on `main` and that three commits
 have been made on the `multiply` branch.
 
 :::::::::::::::::::::::::::::::::
@@ -294,6 +294,8 @@ divide
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## `switch` v's `checkout`
+
 `git switch` was introduced in [Git
 v2.23.0](https://github.blog/2019-08-16-highlights-from-git-2-23/#experimental-alternatives-for-git-checkout) along with
 `git restore` to provide two separate commands for the functionality that was originally available in `git checkout`.
@@ -315,6 +317,8 @@ checked out as a basis for the new branch. If you wish to use a different branch
 its name before the name of the new branch.
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Starting off up-to-date
 
 Most of the time when creating branches you should do so from the `main` branch. It is therefore important to make sure
 your local copy of the `main` branch is up-to-date. Before creating a branch you should switch to the `main` branch and
@@ -467,6 +471,8 @@ git branch -d ns-rse/throwaway
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## Force branch deletion
+
 You were able to delete the branch you created because you hadn't made any changes to it. If you have made changes on a
 branch and they have not been merged into `main` then Git will warn you of this and refuse to delete the branch. This
 can be over-ridden with the `--force` flag or the shorthand `-D` which is the same as `--delete --force`.
@@ -484,8 +490,8 @@ hint: Disable this message with "git config advice.forceDeleteBranch false"
 git -D ns-rse/0-divide
 ```
 
-Be _very_ careful when forcing deletions, if you have not pushed your changes to the remote `origin` then you _will_
-lose them.
+Be _very_ careful when forcing deletion of branches, if you have not pushed your changes to the remote `origin` then you
+_will_lose them.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -570,6 +576,27 @@ the commit `HEAD` points to from `8-a40cef8` to `4-8ec389a`. If you make changes
 you switch back to the `8-a40cef8` commit and you are told you can do this with `git switch -`. If you want to make
 changes and save them you are advised to create a new branch to do so.
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## Work in Progress
+
+If you try to `git checkout` whilst you have unstaged changes you are likely to hit an error about changes being
+overwritten.
+
+``` bash
+error: Your local changes to the following files would be overwritten by checkout:
+ README.md
+Please commit your changes or stash them before you switch branches.
+Aborting
+```
+
+This is to be expected, here the `README.md` file has changed but those changes have not been staged and committed and
+if we checkout another commit or branch the state of the `README.md` will be reverted. Without committing or stashing
+the changes as advised Git would not be able to revert back to the changes you have made.
+
+We're going to cover switching branches whilst working later on.
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 6: Checkout old commits
@@ -637,6 +664,8 @@ The `tests/test_add.py` file no longer exists on the `HEAD` of the `main` branch
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## Checkout Anything
 
 You are not restricted to switch to commits on the same branch you are currently on. You can checkout any commit in
 the history as long as you know the commit hash.
@@ -721,6 +750,8 @@ git reset HEAD~1
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## `reset` options
 
 There are three options to `git reset` that influence how the changes in commits are handled, these are `--soft`,
 `--mixed` (the default) and `--hard`.
@@ -824,6 +855,8 @@ git reset --hard HEAD~1
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+## `undo` &nbsp; alias
+
 You can set an alias to undo the last commit with
 
 ``` bash
@@ -851,11 +884,15 @@ the `HEAD` of the branch. `git revert` _has_ to have a reference in order to wor
 hash) or relative.
 
 ::::::::::::::::::::::::::::::::::::: callout
+
+## reset v's revert
+
 The differences between `reset` and `revert` is that one (`reset`) is destructive and loses changes the other (`revert`)
 undoes the changes and makes a new commit recording these changes.
 
-Be _very_ careful when forcing deletions, if you have not pushed your changes to the remote `origin` then you will lose
+Be _very_ careful when using `reset`, if you have not pushed your changes to the remote `origin` then you will lose
 them.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Switching Branches during Work in Progress
@@ -950,7 +987,7 @@ different message.
 
 ``` bash
 git switch -c example-stashes
-git stash push --message "WIP CONTRIBUTING.md"
+git stash push --message "WIP CONTRIBUTING.md file"
 echo "Yet another file" > ANOTHER.md
 git add ANOTHER.md
 git stash push --message "WIP ANOTHER.md file"
@@ -963,9 +1000,9 @@ stash@{1}: WIP on branch2: a8b6f5f WIP CONTRIBUTING.md
 
 There are now two stashes each with different names.
 
-You may not want to restore the work stashed with the commit message `Stashing ANOTHER.md file` but rather restore the
-earlier `Adding CONTRIBUTING.md` work first. You can do this by referring to the number associated with the stash that
-is within the curly braces. For the `Adding CONTRIBUTING.md` this is `1`.
+You may not want to restore the work stashed with the commit message `WIP ANOTHER.md file` but rather restore the
+earlier `WIP CONTRIBUTING.md file` work first. You can do this by referring to the number associated with the stash that
+is within the curly braces. For the `WIP CONTRIBUTING.md file` stash this is `1`.
 
 ``` bash
 git stash list
@@ -982,7 +1019,18 @@ no changes added to commit (use "git add" and/or "git commit -a")
 Dropped refs/stash@{1} (dd538beb8f14590f720e9b9f677ba7381240bd92)
 ```
 
-Only the `CONTRIBUTING.md` file has been restored and not the `ANOTHER.md`.
+Only the `CONTRIBUTING.md` file has been restored and not the `ANOTHER.md` and there is only one stash left.
+
+``` bash
+git stash list
+
+stash@{0}: On example-stashes: WIP ANOTHER.md file
+
+ls -lha CONTRIBUTING.md ANOTHER.md
+ANOTHER.md: No such file or directory (os error 2).
+
+.rw-r--r-- neil neil 0 B Thu Feb 13 13:36:29 2025  CONTRIBUTING.md
+```
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
