@@ -520,7 +520,7 @@ in the other branch.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Remember to take the time to show the contents of the files and how
 they “disappear” when switching branches, in particular after having
@@ -729,7 +729,7 @@ diverged from <code>main</code> rather than merging the changes in.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>Again remember to take the time to show the contents of the files and
 how they “disappear” when switching branches, in particular after having
@@ -894,7 +894,7 @@ with a solution. You can use either of the two strategies
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Solution : git merge </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The first thing to do is make sure <code>main</code> is up-to-date
 and has the changes that have been merged from the
@@ -935,7 +935,7 @@ and merge the main branch in.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution : git rebase </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The first thing to do is make sure <code>main</code> is up-to-date
 and has the changes that have been merged from the
@@ -1169,12 +1169,12 @@ file to be in.</p>
 <p>You can use <code>Ctrl+k</code> to remove a whole line at once. Save
 the file and return to the command prompt (in <code>nano</code> this is
 <code>Ctrl+O</code> then <code>Ctrl+X</code>).</p>
-<div id="callout1" class="callout">
+<div id="nano" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
+<div id="nano" class="callout-inner">
+<h3 class="callout-title">Nano</h3>
 <div class="callout-content">
 <p><a href="https://www.nano-editor.org/" class="external-link"><code>nano</code></a> is a
 simple text editor found on most GNU/Linux and OSX systems that is quick
@@ -1188,6 +1188,7 @@ comfortable using this then that is not a problem.</p>
 </div>
 </div>
 </div>
+<!-- markdownlint-disable-next-line MD001 -->
 </div>
 <div class="section level4">
 <h4 id="add-the-conflicted-file-and-continue-with-rebase">8. Add the conflicted file and continue with rebase<a class="anchor" aria-label="anchor" href="#add-the-conflicted-file-and-continue-with-rebase"></a></h4>
@@ -1319,12 +1320,12 @@ checked out branch (<code>branch2</code>).</p>
 are merging has a lot of commits you may end up solving the same merge
 conflict repeatedly and wonder why you keep on getting asked to resolve
 the same conflict. There is a way to avoid this though.</p>
-<div id="callout3" class="callout">
+<div id="avoid-divergence-if-possible" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
+<div id="avoid-divergence-if-possible" class="callout-inner">
+<h3 class="callout-title">Avoid divergence if possible</h3>
 <div class="callout-content">
 <p>Bringing a diverged branch up-to-date can get <em>very</em> messy and
 confusing if there is a large amount of divergence. The best strategy to
@@ -1393,7 +1394,7 @@ bring the branch up-to-date.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Solution 1 : git merge </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1493,7 +1494,7 @@ it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Solution 2 : git rebase </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
