@@ -2,24 +2,24 @@
 title: Setup
 ---
 
-## Setup
+## Git
 
 There are many Git clients (porcelains) out there and many Integrated Development Environments (IDEs) support Git
 actions and facilitate using the bewildering array of options, but this course teaches the Command Line Interface (CLI)
 to Git as it means we have a consistent interface to teach the _principles_ that you can take away to your own choice of
 Git client. Below there are instructions for installing Git on each of the three most common operating systems.
 
-Please complete these setup tasks _before_ attending the course. If you have any issues getting setup please either
+Please complete these setup tasks **before** attending the course. If you have any issues getting setup please either
 contact an instructor in advance or arrive early and seek assistance from an instructor.
 
-## Example Repository
+<!-- ## Example Repository -->
 
-This course uses a GitHub Template that you will, in small groups, create a copy of and collaborate on. Using this
-template and setting it up is part of the course, you do not need to set it up in advance.
-
-## Install Git
+<!-- This course uses a GitHub Template that you will, in small groups, create a copy of and collaborate on. Using this -->
+<!-- template and setting it up is part of the course, you do not need to set it up in advance. -->
 
 ::::::::::::::::::::::::::::::::::::::: discussion
+
+## Install Git
 
 As this is a course about using [Git][git] you will need to have it installed on your computer. If you're already using
 Git then the chances are high you already have it installed or it may be integrated into your Integrated Development
@@ -78,76 +78,74 @@ your distribution. This will vary between distributions but some common ones are
 #### Arch
 
 ``` bash
-pacman -Syu git
+sudo pacman -Syu git
 ```
 
 #### Debian/Ubuntu
 
 ``` bash
-apt-get install git
+sudo apt-get install git
 ```
 
 #### Fedora
 
 ``` bash
-dnf install git
+sudo dnf install git
 ```
 
 #### Gentoo
 
 ``` bash
-emerge -av dev-vcs/git
+sudo emerge -av dev-vcs/git
 ```
 
 :::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: callout
-
-## Windows SSH Agent
-
-If you are using Windows you may want to enable the [ssh-agent][win_ssh_agent].
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 ## GitHub
-
-::::::::::::::::::::::::::::::::::::::: discussion
 
 You will also need an account on [GitHub][gh]. If you do not already have one please
 [register](https://github.com/signup), if you have an academic email address such as `@<institute>.ac.uk` or
 `@<institute.edu>` then registering with this address will give you access to a few more features.
 
-You should generate an SSH keys _using a secure password when creating them_, then add the public component to your
-[GitHub account][github_ssh].
+## SSH Keys
+
+::::::::::::::::::::::::::::::::::::::: discussion
+
+## ESSENTIAL
+
+You **MUST** generate an SSH key _using a secure password_, then add the public component to your [GitHub
+account][github_ssh].
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::: solution
 
-### Windows
+### Generate SSH Keys
 
-There are [comprehensive instructions][putty-ssh] on using the Windows SSH client [PuTTY][putty] to generate SSH keys.
+There is a detailed [article][ssh-keygen] on creating SSH keys under Linux and OSX that works with Git Bash too. It is
+recommended to use the newer [ed25519][ssh-ed25519] algorithm. In a terminal or Git Bash shell, you can do this using
+the following commands.
 
-:::::::::::::::::::::::::
-
-:::::::::::::::: solution
-
-### Linux / OSX
-
-There is a detailed [article][ssh-keygen] on creating SSH keys under Linux and OSX. It is recommended to use the newer
-[ed25519][ssh-ed25519] algorithm. In a terminal you can do this using the following commands.
-
-``` bash
+```bash
 ssh-keygen -a 100 -t ed25519
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/neil/.ssh/id_ed25519):
+Enter passphrase for "id_ed25519" (empty for no passphrase):
+Enter same passphrase again:
 ```
 
-This creates two files in the `~/.ssh/` directory, the private key (`~/.ssh/id_ed25519'`) and the public key
+As shown above, you will need to confirm the location that the SSH keys will be saved to (hit enter to select the
+default which will be `~/.ssh/id_ed25519`) and _then_ enter a secure passphrase (you will be asked to enter it twice to
+confirm you know what it is, do not forget it!).
+
+This creates two files in the `~/.ssh/` directory by default, the private key (`~/.ssh/id_ed25519'`) and the public key
 (`~/.ssh/id_ed25519.pub`). These are text files and it is the contents of the later that you need to add to GitHub (see
 next solution). You can view the contents of the `~/.ssh/id_ed25519.pub` file that you need to copy to your GitHub
 account with.
 
-``` bash
+```bash
 cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARcKip5cMGhQvOooF0sAFTvLAj8R7wz+7cPV9BndPtL neil@haldane
 ```
 
 :::::::::::::::::::::::::
@@ -160,6 +158,20 @@ Once you have created your SSH key you need to copy it to your account, got to _
 on the _New SSH key_ button. Enter a name for your key, set the **Key type** to _Authenticaion Key_ and paste your
 public key (the contents of the file ending in `.pub`) into the **Key** box then click the _Add SSH key_ button.
 
+:::::::::::::::::::::::::
+
+:::::::::::::::: solution
+
+### Checking your key works
+
+You can test if you have setup your SSH key by running the following command which should produce similar output.
+
+```bash
+ssh -T git@github.com
+Hi ns-rse! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+If you do **not** see the above successful authentication message please get in touch **before** the course starts.
 :::::::::::::::::::::::::
 
 ## Conda Environments
@@ -211,8 +223,8 @@ You will have to create a virtual environment to undertake the course. If you ha
 above you open a terminal (Windows use the Git Bash Shell) and create a Virtual Environment called `git-collaboation`.
 
 ``` bash
-conda create --name git-collaboration python=3.11
-conda activate git-collaboration
+conda create --name git-collab python=3.11
+conda activate git-collab
 ```
 
 :::::::::::::::::::::::::
@@ -227,10 +239,7 @@ conda activate git-collaboration
 [miniconda3]: https://docs.anaconda.com/free/miniconda/
 [miniforge3]: https://conda-forge.org/
 [miniforge3-install]: https://github.com/conda-forge/miniforge
-[putty]: https://www.ssh.com/ssh/putty/download
-[putty-ssh]: https://www.ssh.com/academy/ssh/putty/windows/puttygen#creating-a-new-key-pair-for-authentication
 [python]: https://python.org
 [ssh-ed25519]: https://blog.g3rt.nl/upgrade-your-ssh-keys.html
 [ssh-keygen]: https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-openssh-on-macos-or-linux
 [virtualenvwrapper]: https://rse.shef.ac.uk/blog/2024-08-13-python-virtualenvwrapper/
-[win_ssh_agent]: https://peateasea.de/starting-ssh-agent-in-windows-powershell/
