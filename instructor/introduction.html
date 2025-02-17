@@ -221,6 +221,7 @@
       <div class="accordion-body">
         <ul><li><a href="#code-of-conduct">Code of Conduct</a></li>
 <li><a href="#icebreaker">Icebreaker</a></li>
+<li><a href="#bash-and-nano-basics">Bash and Nano Basics</a></li>
 <li><a href="#cloning-repositories">Cloning Repositories</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -349,7 +350,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction</h1>
-        <p>Last updated on 2025-02-13 |
+        <p>Last updated on 2025-02-17 |
 
         <a href="https://github.com/ns-rse/git-collaboration/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -372,6 +373,8 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>Who else is doing this course?</li>
 <li>What can you expect from this course?</li>
+<li>How do I use the command line?</li>
+<li>How can I edit files at the command line?</li>
 </ul></div>
 </div>
 </div>
@@ -384,6 +387,8 @@
 with other participants.</li>
 <li>Have an overview of the content and material that will be
 covered.</li>
+<li>Basic command line navigation.</li>
+<li>Basic use of <code>nano</code> editor.</li>
 <li>Pair up with another participant to collaborate with during this
 workshop.</li>
 </ul></div>
@@ -486,7 +491,7 @@ branch or deleted something.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> In-Person </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If the course is being run in person please describe the situation to
 the person or people sat next to you. Write your answer in the
@@ -500,7 +505,7 @@ collaborative pad under a heading with your name.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Online </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>If you are participating online please write down your names of pairs
 and provide an answer in the collaborative notepad.</p>
@@ -513,7 +518,7 @@ and provide an answer in the collaborative notepad.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Before the start of the course you should setup a new <a href="https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/edit?tab=t.0" class="external-link">collaborative
 pad</a> where participants can answer questions and collaborate.</p>
@@ -533,7 +538,7 @@ their experiences BVC.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>If anyone has multiple GitHub accounts it is possible that permission
 may be denied which force pushing if the wrong SSH key is used. It is
@@ -553,6 +558,126 @@ above this is <code>~/.ssh/id_ed25519</code> which will need modifying
 to reflect the users key for the account they wish to use.</p>
 </div>
 </div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="bash-and-nano-basics">Bash and Nano Basics<a class="anchor" aria-label="anchor" href="#bash-and-nano-basics"></a></h2>
+<hr class="half-width"><p>You will be using the <a href="https://www.gnu.org/software/bash/" class="external-link">Bash</a> shell to navigate and
+type commands and the <a href="https://www.nano-editor.org/" class="external-link">nano</a>
+editor to edit files, although you are free to edit your files in any
+programme you want such as VSCode, RStudio or Emacs.</p>
+<div class="section level3">
+<h3 id="bash">Bash<a class="anchor" aria-label="anchor" href="#bash"></a></h3>
+<p>There are a few useful tips and tricks you can use to help you work
+at the command line more quickly.</p>
+<div class="section level4">
+<h4 id="navigation">Navigation<a class="anchor" aria-label="anchor" href="#navigation"></a></h4>
+<p>You can find out what directory you are in using <code>pwd</code>
+(<code>p</code>resent <code>w</code>orking <code>d</code>irectory).</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">/home/neil/work/git</span></span></code></pre>
+</div>
+<p>You can use <code>cd</code> to (<code>c</code>hange
+<code>d</code>irectory).</p>
+<p><strong>NB</strong> The tilde (<code>~</code>) is short cut for your
+“home” directory, typically <code>/home/&lt;username&gt;</code> on
+GNU/Linux systems, <code>/Users/&lt;username&gt;</code> on OSX and
+<code>/c/Users/&lt;username&gt;</code> on Window systems.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> ~/work</span></code></pre>
+</div>
+<p>You can create directories with <code>mkdir</code>
+(<code>m</code>a<code>k</code>e <code>dir</code>ectory), the
+<code>-p</code> flag ensures the parent directories exist.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">mkdir</span> ~/work/git</span></code></pre>
+</div>
+</div>
+<div class="section level4">
+<h4 id="tab-completion">Tab Completion<a class="anchor" aria-label="anchor" href="#tab-completion"></a></h4>
+<p>You can start typing a command or directory path in Bash and use the
+<code>&lt;Tab&gt;</code> button to auto-complete the word you are
+typing. If you have typed sufficient characters to give a unique command
+or path Bash will complete it for you. If there are several options you
+will be presented with a list of the options, one of which will be
+highlighted. Hitting <code>&lt;Tab&gt;</code> again will move onto the
+next possible completion. When you are at the completion you want simply
+hit <code>&lt;Return&gt;</code> and it will be entered on your command
+line.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">cd</span> ~/te <span class="op">&lt;</span>Tab<span class="op">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">tests/</span>  tmp/</span></code></pre>
+</div>
+</div>
+<div class="section level4">
+<h4 id="history">History<a class="anchor" aria-label="anchor" href="#history"></a></h4>
+<p>Bash keeps a record of the commands you use in its
+<code>history</code>. You can view <em>all</em> your history by simply
+typing <code>history</code>.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">history</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="bu">cd</span> work</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">mkdir</span> git</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:ns-rse/python-maths</span></code></pre>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="nano">Nano<a class="anchor" aria-label="anchor" href="#nano"></a></h3>
+<p><a href="https://www.nano-editor.org/" class="external-link">Nano</a> is a basic terminal
+editor, you open files by calling
+<code>nano &lt;path/to/filename&gt;</code>, there is a useful <a href="https://www.nano-editor.org/dist/latest/cheatsheet.html" class="external-link">nano
+cheatsheet</a>.</p>
+<div class="section level4">
+<h4 id="navigating">Navigating<a class="anchor" aria-label="anchor" href="#navigating"></a></h4>
+<p>You can jump to a specific line number with <code>Ctrl + /</code> and
+will be prompted for the line you want to go to, on hitting
+<code>Return</code> the cursor will move there.</p>
+</div>
+<div class="section level4">
+<h4 id="finding-text">Finding text<a class="anchor" aria-label="anchor" href="#finding-text"></a></h4>
+<p>If you want to search for some text you can do so with
+<code>Ctrl + F</code> and you are prompted to enter some text, on
+hitting <code>Return</code> the cursor moves to the next instance of
+that text (if it is present!). If you hit <code>Ctrl + F</code> again
+you can either enter new text to search for or you can hit
+<code>Return</code> to search for the previous text again.</p>
+</div>
+<div class="section level4">
+<h4 id="saving-files">Saving Files<a class="anchor" aria-label="anchor" href="#saving-files"></a></h4>
+<p>When you are done editing use <code>Ctrl + O</code> to save the file
+you are editing, you are prompted for a file to save it to, typically
+you don’t need to change this, just hit <code>Enter</code>.</p>
+</div>
+<div class="section level4">
+<h4 id="exiting-nano">Exiting <code>nano</code>
+<a class="anchor" aria-label="anchor" href="#exiting-nano"></a></h4>
+<p>When done editing you need to exit and return to the command line,
+you do this with <code>Ctrl + x</code>.</p>
+</div>
+<div class="section level4">
+<h4 id="useful-alias">Useful alias<a class="anchor" aria-label="anchor" href="#useful-alias"></a></h4>
+<p>You may want to set the following alias in your
+<code>~/.bashrc</code> file, it sets various options. You can then
+<code>source ~/.bashrc</code> to</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre>
+</div>
+<p>These options will be used whenever you use <code>nano</code>. See
+more options with <code>nano --help</code></p>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="cloning-repositories">Cloning Repositories<a class="anchor" aria-label="anchor" href="#cloning-repositories"></a></h2>
@@ -578,20 +703,20 @@ questions please do not hesitate to ask.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Clone the repository </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Click on the <em>Code</em> button at <a href="https://github.com/ns-rse/python-maths" class="external-link">Python Maths</a> and then
 the <em>SSH</em> tab. Copy the URL. If you want to clone the work to
 <code>~/work/git/</code> then in a terminal run the following commands
 (be wary of copy and pasting them <code>&lt;owners_id&gt;</code> needs
 replacing)</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>owners_id<span class="op">&gt;</span>/python-maths</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>owners_id<span class="op">&gt;</span>/python-maths</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="edit--gitconfig">Edit <code>.git/config</code>
@@ -602,12 +727,12 @@ defined and replace <code>ns-rse</code> with the GitHub username of the
 person who will be the Repository Owner. For example if the repository
 owner uses the <code>alice_and_bob</code> username on GitHub it should
 read.</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
 </div>
 <p>This edit changes the <code>origin</code> to be the empty repository
 you created under the <em>Repository Owner’s</em> account called
@@ -626,10 +751,10 @@ the repository, it should be <strong>completely empty</strong>.</p>
 with the following command, the <code>--force</code> is optional and
 shouldn’t be required unless you have inadvertently initialised the
 repository with additional files.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -641,7 +766,7 @@ repository with additional files.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Protect the Main Branch </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -667,7 +792,7 @@ rule</em></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Invite your Collaborator </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -689,59 +814,59 @@ to collaborate and should accept it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Install the Package </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p><strong>NB</strong> Both the <strong>Repository Owner</strong>, the
 <strong>Collaborator</strong> should perform this step.</p>
 <p>If you have not already done so activate the
 <code>git-collaboration</code> environment you created as described in
 the setup instructions.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">conda</span> activate git-collaboration</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">conda</span> activate git-collaboration</span></code></pre>
 </div>
 <p>You can now install the package and its test dependencies in an
 editable format so that as you work on the package the changes you make
 will instantly be available. Make sure you are in the
 <code>python-maths</code> directory (use <code>pwd</code> to show where
 you are and <code>cd</code> to change directory).</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">pwd</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
 </div>
 <p>You can optionally check everything is installed and runs by running
 the tests via <a href="https://docs.pytest.org/" class="external-link">pytest</a>.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">pytest</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">pytest</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
 </div>
 </div>
 </div>
@@ -939,8 +1064,8 @@ there are many others including <a href="https://bitbucket.org/" class="external
   "url": "ns-rse.github.io/git-collaboration/instructor/introduction.html",
   "identifier": "ns-rse.github.io/git-collaboration/instructor/introduction.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-02-13",
-  "datePublished": "2025-02-13"
+  "dateModified": "2025-02-17",
+  "datePublished": "2025-02-17"
 }
 
   </script><script>

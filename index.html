@@ -210,10 +210,9 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#setup">Setup</a></li>
-<li><a href="#example-repository">Example Repository</a></li>
-<li><a href="#install-git">Install Git</a></li>
+        <ul><li><a href="#git">Git</a></li>
 <li><a href="#github">GitHub</a></li>
+<li><a href="#ssh-keys">SSH Keys</a></li>
 <li><a href="#conda-environments">Conda Environments</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -368,7 +367,7 @@ any links that you are not going to use.
  -->
 </div>
 
-      <section id="setup"><section><h2 class="section-heading" id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h2>
+      <section id="setup"><section><h2 class="section-heading" id="git">Git<a class="anchor" aria-label="anchor" href="#git"></a></h2>
 <hr class="half-width"><p>There are many Git clients (porcelains) out there and many Integrated
 Development Environments (IDEs) support Git actions and facilitate using
 the bewildering array of options, but this course teaches the Command
@@ -376,21 +375,19 @@ Line Interface (CLI) to Git as it means we have a consistent interface
 to teach the <em>principles</em> that you can take away to your own
 choice of Git client. Below there are instructions for installing Git on
 each of the three most common operating systems.</p>
-<p>Please complete these setup tasks <em>before</em> attending the
-course. If you have any issues getting setup please either contact an
-instructor in advance or arrive early and seek assistance from an
+<p>Please complete these setup tasks <strong>before</strong> attending
+the course. If you have any issues getting setup please either contact
+an instructor in advance or arrive early and seek assistance from an
 instructor.</p>
-</section><section><h2 class="section-heading" id="example-repository">Example Repository<a class="anchor" aria-label="anchor" href="#example-repository"></a></h2>
-<hr class="half-width"><p>This course uses a GitHub Template that you will, in small groups,
-create a copy of and collaborate on. Using this template and setting it
-up is part of the course, you do not need to set it up in advance.</p>
-</section><section><h2 class="section-heading" id="install-git">Install Git<a class="anchor" aria-label="anchor" href="#install-git"></a></h2>
-<hr class="half-width"><div id="discussion1" class="callout discussion">
+<!-- ## Example Repository -->
+<!-- This course uses a GitHub Template that you will, in small groups, create a copy of and collaborate on. Using this -->
+<!-- template and setting it up is part of the course, you do not need to set it up in advance. -->
+<div id="install-git" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Discussion</h3>
+<div id="install-git" class="callout-inner">
+<h3 class="callout-title">Install Git</h3>
 <div class="callout-content">
 <p>As this is a course about using <a href="https://git-scm.com/" class="external-link">Git</a> you will need to have it installed
 on your computer. If you’re already using Git then the chances are high
@@ -478,7 +475,7 @@ and remove the <code>sudo</code> prefix from the following commands.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">pacman</span> <span class="at">-Syu</span> git</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-Syu</span> git</span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -486,7 +483,7 @@ and remove the <code>sudo</code> prefix from the following commands.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">apt-get</span> install git</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> apt-get install git</span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -494,7 +491,7 @@ and remove the <code>sudo</code> prefix from the following commands.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">dnf</span> install git</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> dnf install git</span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -502,39 +499,29 @@ and remove the <code>sudo</code> prefix from the following commands.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">emerge</span> <span class="at">-av</span> dev-vcs/git</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">sudo</span> emerge <span class="at">-av</span> dev-vcs/git</span></code></pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div id="windows-ssh-agent" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="windows-ssh-agent" class="callout-inner">
-<h3 class="callout-title">Windows SSH Agent</h3>
-<div class="callout-content">
-<p>If you are using Windows you may want to enable the <a href="https://peateasea.de/starting-ssh-agent-in-windows-powershell/" class="external-link">ssh-agent</a>.</p>
 </div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="github">GitHub<a class="anchor" aria-label="anchor" href="#github"></a></h2>
-<hr class="half-width"><div id="discussion2" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Discussion</h3>
-<div class="callout-content">
-<p>You will also need an account on <a href="https://github.com" class="external-link">GitHub</a>. If you do not already have one
+<hr class="half-width"><p>You will also need an account on <a href="https://github.com" class="external-link">GitHub</a>. If you do not already have one
 please <a href="https://github.com/signup" class="external-link">register</a>, if you have an
 academic email address such as <code>@&lt;institute&gt;.ac.uk</code> or
 <code>@&lt;institute.edu&gt;</code> then registering with this address
 will give you access to a few more features.</p>
-<p>You should generate an SSH keys <em>using a secure password when
-creating them</em>, then add the public component to your <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account" class="external-link">GitHub
+</section><section><h2 class="section-heading" id="ssh-keys">SSH Keys<a class="anchor" aria-label="anchor" href="#ssh-keys"></a></h2>
+<hr class="half-width"><div id="essential" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="essential" class="callout-inner">
+<h3 class="callout-title">ESSENTIAL</h3>
+<div class="callout-content">
+<p>You <strong>MUST</strong> generate an SSH key <em>using a secure
+password</em>, then add the public component to your <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account" class="external-link">GitHub
 account</a>.</p>
 </div>
 </div>
@@ -543,14 +530,43 @@ account</a>.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">
-  Windows
+  Generate SSH Keys
   </h4>
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<p>There are <a href="https://www.ssh.com/academy/ssh/putty/windows/puttygen#creating-a-new-key-pair-for-authentication" class="external-link">comprehensive
-instructions</a> on using the Windows SSH client <a href="https://www.ssh.com/ssh/putty/download" class="external-link">PuTTY</a> to generate SSH
-keys.</p>
+<p>There is a detailed <a href="https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-openssh-on-macos-or-linux" class="external-link">article</a>
+on creating SSH keys under Linux and OSX that works with Git Bash too.
+It is recommended to use the newer <a href="https://blog.g3rt.nl/upgrade-your-ssh-keys.html" class="external-link">ed25519</a>
+algorithm. In a terminal or Git Bash shell, you can do this using the
+following commands.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-a</span> 100 <span class="at">-t</span> ed25519</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">Generating</span> public/private ed25519 key pair.</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">Enter</span> file in which to save the key <span class="er">(</span><span class="ex">/home/neil/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="ex">Enter</span> passphrase for <span class="st">"id_ed25519"</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="ex">Enter</span> same passphrase again:</span></code></pre>
+</div>
+<p>As shown above, you will need to confirm the location that the SSH
+keys will be saved to (hit enter to select the default which will be
+<code>~/.ssh/id_ed25519</code>) and <em>then</em> enter a secure
+passphrase (you will be asked to enter it twice to confirm you know what
+it is, do not forget it!).</p>
+<p>This creates two files in the <code>~/.ssh/</code> directory by
+default, the private key (<code>~/.ssh/id_ed25519'</code>) and the
+public key (<code>~/.ssh/id_ed25519.pub</code>). These are text files
+and it is the contents of the later that you need to add to GitHub (see
+next solution). You can view the contents of the
+<code>~/.ssh/id_ed25519.pub</code> file that you need to copy to your
+GitHub account with.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">ssh-ed25519</span> AAAAC3NzaC1lZDI1NTE5AAAAIARcKip5cMGhQvOooF0sAFTvLAj8R7wz+7cPV9BndPtL neil@haldane</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -559,45 +575,10 @@ keys.</p>
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">
-  Linux / OSX
-  </h4>
-</button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
-<div class="accordion-body">
-<p>There is a detailed <a href="https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-openssh-on-macos-or-linux" class="external-link">article</a>
-on creating SSH keys under Linux and OSX. It is recommended to use the
-newer <a href="https://blog.g3rt.nl/upgrade-your-ssh-keys.html" class="external-link">ed25519</a>
-algorithm. In a terminal you can do this using the following
-commands.</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-a</span> 100 <span class="at">-t</span> ed25519</span></code></pre>
-</div>
-<p>This creates two files in the <code>~/.ssh/</code> directory, the
-private key (<code>~/.ssh/id_ed25519'</code>) and the public key
-(<code>~/.ssh/id_ed25519.pub</code>). These are text files and it is the
-contents of the later that you need to add to GitHub (see next
-solution). You can view the contents of the
-<code>~/.ssh/id_ed25519.pub</code> file that you need to copy to your
-GitHub account with.</p>
-<div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6">
   Adding Keys to GitHub (All OSs)
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>Once you have created your SSH key you need to copy it to your
 account, got to <em>Settings &gt; SSH and GPG Keys</em> and click on the
@@ -606,6 +587,30 @@ account, got to <em>Settings &gt; SSH and GPG Keys</em> and click on the
 public key (the contents of the file ending in <code>.pub</code>) into
 the <strong>Key</strong> box then click the <em>Add SSH key</em>
 button.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6">
+  Checking your key works
+  </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<p>You can test if you have setup your SSH key by running the following
+command which should produce similar output.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">Hi</span> ns-rse! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code></pre>
+</div>
+<p>If you do <strong>not</strong> see the above successful
+authentication message please get in touch <strong>before</strong> the
+course starts.</p>
 </div>
 </div>
 </div>
@@ -681,11 +686,11 @@ installation instructions for different operating systems can be found
 course. If you have installed Miniconda as described above you open a
 terminal (Windows use the Git Bash Shell) and create a Virtual
 Environment called <code>git-collaboation</code>.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> git-collaboration python=3.11</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">conda</span> activate git-collaboration</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> git-collab python=3.11</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">conda</span> activate git-collab</span></code></pre>
 </div>
 </div>
 </div>
@@ -757,8 +762,8 @@ any links that you are not going to use.
   "url": "ns-rse.github.io/git-collaboration/index.html",
   "identifier": "ns-rse.github.io/git-collaboration/index.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-02-13",
-  "datePublished": "2025-02-13"
+  "dateModified": "2025-02-17",
+  "datePublished": "2025-02-17"
 }
 
   </script><script>

@@ -399,7 +399,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-02-13 |
+<p>Last updated on 2025-02-17 |
 
         <a href="https://github.com/ns-rse/git-collaboration/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -415,6 +415,8 @@
 <ul>
 <li>Who else is doing this course?</li>
 <li>What can you expect from this course?</li>
+<li>How do I use the command line?</li>
+<li>How can I edit files at the command line?</li>
 </ul>
 </div>
 </div>
@@ -429,6 +431,8 @@
 with other participants.</li>
 <li>Have an overview of the content and material that will be
 covered.</li>
+<li>Basic command line navigation.</li>
+<li>Basic use of <code>nano</code> editor.</li>
 <li>Pair up with another participant to collaborate with during this
 workshop.</li>
 </ul>
@@ -539,7 +543,7 @@ branch or deleted something.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> In-Person </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>If the course is being run in person please describe the situation to
 the person or people sat next to you. Write your answer in the
@@ -553,7 +557,7 @@ collaborative pad under a heading with your name.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Online </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>If you are participating online please write down your names of pairs
 and provide an answer in the collaborative notepad.</p>
@@ -563,6 +567,138 @@ and provide an answer in the collaborative notepad.</p>
 </div>
 
 
+</section><section><h2 class="section-heading" id="bash-and-nano-basics">Bash and Nano Basics<a class="anchor" aria-label="anchor" href="#bash-and-nano-basics"></a>
+</h2>
+<hr class="half-width">
+<p>You will be using the <a href="https://www.gnu.org/software/bash/" class="external-link">Bash</a> shell to navigate and
+type commands and the <a href="https://www.nano-editor.org/" class="external-link">nano</a>
+editor to edit files, although you are free to edit your files in any
+programme you want such as VSCode, RStudio or Emacs.</p>
+<div class="section level3">
+<h3 id="bash">Bash<a class="anchor" aria-label="anchor" href="#bash"></a>
+</h3>
+<p>There are a few useful tips and tricks you can use to help you work
+at the command line more quickly.</p>
+<div class="section level4">
+<h4 id="navigation">Navigation<a class="anchor" aria-label="anchor" href="#navigation"></a>
+</h4>
+<p>You can find out what directory you are in using <code>pwd</code>
+(<code>p</code>resent <code>w</code>orking <code>d</code>irectory).</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">/home/neil/work/git</span></span></code></pre>
+</div>
+<p>You can use <code>cd</code> to (<code>c</code>hange
+<code>d</code>irectory).</p>
+<p><strong>NB</strong> The tilde (<code>~</code>) is short cut for your
+“home” directory, typically <code>/home/&lt;username&gt;</code> on
+GNU/Linux systems, <code>/Users/&lt;username&gt;</code> on OSX and
+<code>/c/Users/&lt;username&gt;</code> on Window systems.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> ~/work</span></code></pre>
+</div>
+<p>You can create directories with <code>mkdir</code>
+(<code>m</code>a<code>k</code>e <code>dir</code>ectory), the
+<code>-p</code> flag ensures the parent directories exist.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">mkdir</span> ~/work/git</span></code></pre>
+</div>
+</div>
+<div class="section level4">
+<h4 id="tab-completion">Tab Completion<a class="anchor" aria-label="anchor" href="#tab-completion"></a>
+</h4>
+<p>You can start typing a command or directory path in Bash and use the
+<code>&lt;Tab&gt;</code> button to auto-complete the word you are
+typing. If you have typed sufficient characters to give a unique command
+or path Bash will complete it for you. If there are several options you
+will be presented with a list of the options, one of which will be
+highlighted. Hitting <code>&lt;Tab&gt;</code> again will move onto the
+next possible completion. When you are at the completion you want simply
+hit <code>&lt;Return&gt;</code> and it will be entered on your command
+line.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">cd</span> ~/te <span class="op">&lt;</span>Tab<span class="op">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">tests/</span>  tmp/</span></code></pre>
+</div>
+</div>
+<div class="section level4">
+<h4 id="history">History<a class="anchor" aria-label="anchor" href="#history"></a>
+</h4>
+<p>Bash keeps a record of the commands you use in its
+<code>history</code>. You can view <em>all</em> your history by simply
+typing <code>history</code>.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">history</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="bu">cd</span> work</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">mkdir</span> git</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:ns-rse/python-maths</span></code></pre>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="nano">Nano<a class="anchor" aria-label="anchor" href="#nano"></a>
+</h3>
+<p><a href="https://www.nano-editor.org/" class="external-link">Nano</a> is a basic terminal
+editor, you open files by calling
+<code>nano &lt;path/to/filename&gt;</code>, there is a useful <a href="https://www.nano-editor.org/dist/latest/cheatsheet.html" class="external-link">nano
+cheatsheet</a>.</p>
+<div class="section level4">
+<h4 id="navigating">Navigating<a class="anchor" aria-label="anchor" href="#navigating"></a>
+</h4>
+<p>You can jump to a specific line number with <code>Ctrl + /</code> and
+will be prompted for the line you want to go to, on hitting
+<code>Return</code> the cursor will move there.</p>
+</div>
+<div class="section level4">
+<h4 id="finding-text">Finding text<a class="anchor" aria-label="anchor" href="#finding-text"></a>
+</h4>
+<p>If you want to search for some text you can do so with
+<code>Ctrl + F</code> and you are prompted to enter some text, on
+hitting <code>Return</code> the cursor moves to the next instance of
+that text (if it is present!). If you hit <code>Ctrl + F</code> again
+you can either enter new text to search for or you can hit
+<code>Return</code> to search for the previous text again.</p>
+</div>
+<div class="section level4">
+<h4 id="saving-files">Saving Files<a class="anchor" aria-label="anchor" href="#saving-files"></a>
+</h4>
+<p>When you are done editing use <code>Ctrl + O</code> to save the file
+you are editing, you are prompted for a file to save it to, typically
+you don’t need to change this, just hit <code>Enter</code>.</p>
+</div>
+<div class="section level4">
+<h4 id="exiting-nano">Exiting <code>nano</code>
+<a class="anchor" aria-label="anchor" href="#exiting-nano"></a>
+</h4>
+<p>When done editing you need to exit and return to the command line,
+you do this with <code>Ctrl + x</code>.</p>
+</div>
+<div class="section level4">
+<h4 id="useful-alias">Useful alias<a class="anchor" aria-label="anchor" href="#useful-alias"></a>
+</h4>
+<p>You may want to set the following alias in your
+<code>~/.bashrc</code> file, it sets various options. You can then
+<code>source ~/.bashrc</code> to</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre>
+</div>
+<p>These options will be used whenever you use <code>nano</code>. See
+more options with <code>nano --help</code></p>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="cloning-repositories">Cloning Repositories<a class="anchor" aria-label="anchor" href="#cloning-repositories"></a>
 </h2>
 <hr class="half-width">
@@ -588,20 +724,20 @@ questions please do not hesitate to ask.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Clone the repository </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Click on the <em>Code</em> button at <a href="https://github.com/ns-rse/python-maths" class="external-link">Python Maths</a> and then
 the <em>SSH</em> tab. Copy the URL. If you want to clone the work to
 <code>~/work/git/</code> then in a terminal run the following commands
 (be wary of copy and pasting them <code>&lt;owners_id&gt;</code> needs
 replacing)</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>owners_id<span class="op">&gt;</span>/python-maths</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>owners_id<span class="op">&gt;</span>/python-maths</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="edit--gitconfig">Edit <code>.git/config</code>
@@ -613,12 +749,12 @@ defined and replace <code>ns-rse</code> with the GitHub username of the
 person who will be the Repository Owner. For example if the repository
 owner uses the <code>alice_and_bob</code> username on GitHub it should
 read.</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
 </div>
 <p>This edit changes the <code>origin</code> to be the empty repository
 you created under the <em>Repository Owner’s</em> account called
@@ -638,10 +774,10 @@ the repository, it should be <strong>completely empty</strong>.</p>
 with the following command, the <code>--force</code> is optional and
 shouldn’t be required unless you have inadvertently initialised the
 repository with additional files.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -653,7 +789,7 @@ repository with additional files.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Protect the Main Branch </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -681,7 +817,7 @@ rule</em></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Invite your Collaborator </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -705,59 +841,59 @@ to collaborate and should accept it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Install the Package </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p><strong>NB</strong> Both the <strong>Repository Owner</strong>, the
 <strong>Collaborator</strong> should perform this step.</p>
 <p>If you have not already done so activate the
 <code>git-collaboration</code> environment you created as described in
 the setup instructions.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">conda</span> activate git-collaboration</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">conda</span> activate git-collaboration</span></code></pre>
 </div>
 <p>You can now install the package and its test dependencies in an
 editable format so that as you work on the package the changes you make
 will instantly be available. Make sure you are in the
 <code>python-maths</code> directory (use <code>pwd</code> to show where
 you are and <code>cd</code> to change directory).</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">pwd</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
 </div>
 <p>You can optionally check everything is installed and runs by running
 the tests via <a href="https://docs.pytest.org/" class="external-link">pytest</a>.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">pytest</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">pytest</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
 </div>
 </div>
 </div>
@@ -885,7 +1021,7 @@ there are many others including <a href="https://bitbucket.org/" class="external
 </ol>
 </div></section><section id="aio-branching"><p>Content from <a href="branching.html">Branching</a></p>
 <hr>
-<p>Last updated on 2025-02-13 |
+<p>Last updated on 2025-02-17 |
 
         <a href="https://github.com/ns-rse/git-collaboration/edit/main/episodes/branching.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -978,7 +1114,7 @@ options.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span></code></pre>
 </div>
 <div id="challenge-1-what-is-the-first-and-last-commit-on-branch-divide" class="callout challenge">
 <div class="callout-square">
@@ -1000,13 +1136,13 @@ committers’ names?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> switch divide</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">*</span> 6353fb4 <span class="at">-</span> <span class="er">(</span><span class="ex">HEAD</span> <span class="at">-</span><span class="op">&gt;</span> divide, origin/divide<span class="kw">)</span> <span class="ex">bug:</span> Fix tpyo in divide function <span class="er">(</span><span class="ex">2024-03-26</span> 10:28:36 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">*</span> 7485e56 <span class="at">-</span> chore: Fix merge conflict <span class="er">(</span><span class="ex">2024-03-26</span> 10:28:11 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">*</span> adfef4d <span class="at">-</span> feat: Divide branch <span class="er">(</span><span class="ex">2024-03-25</span> 15:55:15 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
@@ -1102,8 +1238,9 @@ were:</p>
 <code>multiply</code> branch. Use <code>git log</code> to find the
 commit at which <code>multiply</code> diverged from <code>main</code>.
 How many commits have been made on the <code>main</code> branch?</p>
-<p><strong>Hint</strong> You will need to look at the log of the
-<code>main</code> branch.</p>
+<p><strong>Hint</strong> You will need to find
+<code>HEAD -&gt; multiply, origin/multiply</code> and follow the line
+backwards.</p>
 </div>
 </div>
 </div>
@@ -1112,7 +1249,7 @@ How many commits have been made on the <code>main</code> branch?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1120,113 +1257,52 @@ How many commits have been made on the <code>main</code> branch?</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span><span class="st">"%h %ad (%cr) %x09 %an : %s"</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">*</span>   9a267a0 <span class="at">-</span> <span class="er">(</span><span class="ex">origin/main,</span> origin/HEAD, main<span class="kw">)</span> <span class="ex">Merge</span> pull request <span class="co">#7 from slackline/ns-rse/6-square-root-warning (2025-02-10 14:22:58 +0000) &lt;slackline&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 784a268 <span class="at">-</span> <span class="er">(</span><span class="ex">origin/ns-rse/6-square-root-warning,</span> ns-rse/6-square-root-warning<span class="kw">)</span> <span class="ex">feature:</span> add warning to square root if number is <span class="at">-ve</span> <span class="er">(</span><span class="ex">2025-02-10</span> 14:18:34 +0$</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 0e3b6e0 <span class="at">-</span> docs: Adding zero division example to docstring <span class="er">(</span><span class="ex">2025-02-10</span> 13:51:18 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">7ff8773</span> <span class="at">-</span> Merge pull request <span class="co">#5 from slackline/ns-rse/zero-division-amend-fixup (2025-02-10 13:57:23 +0000) &lt;slackline&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ </span><span class="dt">\</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span><span class="kw">|</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 8165d09 <span class="at">-</span> <span class="er">(</span><span class="ex">origin/ns-rse/zero-division-amend-fixup</span><span class="kw">)</span> <span class="ex">docs:</span> Adding zero division example to docstring <span class="er">(</span><span class="ex">2025-02-10</span> 13:51:18 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span> <span class="ex">b7625d6</span> <span class="at">-</span> Merge pull request <span class="co">#4 from slackline/ns-rse/2-square-root (2025-02-10 13:15:42 +0000) &lt;slackline&gt;</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="kw">|</span><span class="ex">\|</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 537c339 <span class="at">-</span> <span class="er">(</span><span class="ex">origin/ns-rse/2-square-root</span><span class="kw">)</span> <span class="ex">feature:</span> adds a square root function with tests <span class="er">(</span><span class="ex">2025-02-10</span> 12:55:21 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="ex">*</span>   1e13f81 <span class="at">-</span> Merge pull request <span class="co">#3 from slackline/ns-rse/zero-division (2025-02-10 12:27:53 +0000) &lt;slackline&gt;</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 0b8fd76 <span class="at">-</span> <span class="er">(</span><span class="ex">origin/ns-rse/zero-division</span><span class="kw">)</span> <span class="ex">feature:</span> Add exception and test for division by zero <span class="er">(</span><span class="ex">2025-02-10</span> 12:26:32 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="ex">*</span>   f2de1f0 <span class="at">-</span> Merge pull request <span class="co">#2 from slackline/ns-rse/add-contributing (2025-02-10 12:10:25 +0000) &lt;slackline&gt;</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 126b9de <span class="at">-</span> <span class="er">(</span><span class="ex">origin/ns-rse/add-contributing</span><span class="kw">)</span> <span class="ex">doc:</span> Adding CONTRIBUTING.md <span class="er">(</span><span class="ex">2025-02-10</span> 12:09:36 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="ex">*</span> 80b95c0 <span class="at">-</span> Link to course material <span class="er">(</span><span class="ex">2025-02-10</span> 11:03:03 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="ex">*</span> efc6527 <span class="at">-</span> Tpyo in title <span class="er">(</span><span class="ex">2025-02-10</span> 11:02:02 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="ex">*</span>   105b37a <span class="at">-</span> Merge pull request <span class="co">#13 from ns-rse/pre-commit-ci-update-config (2025-01-21 11:27:04 +0000) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> a280884 <span class="at">-</span> <span class="pp">[</span><span class="ss">pre</span><span class="pp">-</span><span class="ss">commit.ci</span><span class="pp">]</span> pre-commit autoupdate <span class="er">(</span><span class="ex">2025-01-20</span> 18:04:16 +0000<span class="kw">)</span> <span class="op">&lt;</span>pre-commit-ci<span class="pp">[</span><span class="ss">bot</span><span class="pp">]</span><span class="op">&gt;</span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="ex">*</span>   30c44b9 <span class="at">-</span> Merge pull request <span class="co">#12 from ns-rse/pre-commit-ci-update-config (2024-12-10 10:28:29 +0000) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 20c0c4d <span class="at">-</span> <span class="pp">[</span><span class="ss">pre</span><span class="pp">-</span><span class="ss">commit.ci</span><span class="pp">]</span> pre-commit autoupdate <span class="er">(</span><span class="ex">2024-12-09</span> 18:11:45 +0000<span class="kw">)</span> <span class="op">&lt;</span>pre-commit-ci<span class="pp">[</span><span class="ss">bot</span><span class="pp">]</span><span class="op">&gt;</span></span>
-<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="ex">*</span>   d49ed9a <span class="at">-</span> Merge pull request <span class="co">#11 from ns-rse/pre-commit-ci-update-config (2024-09-24 10:08:00 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 9c35a18 <span class="at">-</span> <span class="pp">[</span><span class="ss">pre</span><span class="pp">-</span><span class="ss">commit.ci</span><span class="pp">]</span> pre-commit autoupdate <span class="er">(</span><span class="ex">2024-09-23</span> 18:06:46 +0000<span class="kw">)</span> <span class="op">&lt;</span>pre-commit-ci<span class="pp">[</span><span class="ss">bot</span><span class="pp">]</span><span class="op">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="ex">*</span> 3f6494f <span class="at">-</span> chore: tidying up prior to trial run <span class="er">(</span><span class="ex">2024-05-02</span> 14:26:33 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="ex">*</span> ba7a5da <span class="at">-</span> bug: ISSUE_TEMPLATES <span class="op">&gt;</span> ISSUE_TEMPLATES <span class="er">(</span><span class="ex">2024-04-24</span> 14:49:45 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="ex">*</span>   ae5402f <span class="at">-</span> Merge pull request <span class="co">#3 from ns-rse/multiply (2024-04-23 23:14:14 +0100) &lt;Neil Shephard&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> b702501 <span class="at">-</span> <span class="er">(</span><span class="ex">HEAD</span> <span class="at">-</span><span class="op">&gt;</span> multiply, origin/multiply<span class="kw">)</span> <span class="ex">bug:</span> multiply instead of add arguments <span class="er">(</span><span class="ex">2024-03-26</span> 10:33:37 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 11e36a3 <span class="at">-</span> feat: Adding multiply function and tests <span class="er">(</span><span class="ex">2024-03-26</span> 10:32:42 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">12a159c</span> <span class="at">-</span> Merge pull request <span class="co">#2 from ns-rse/divide (2024-04-23 23:13:13 +0100) &lt;Neil Shephard&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ </span><span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">6353fb4</span> <span class="at">-</span> <span class="er">(</span><span class="ex">origin/divide,</span> divide<span class="kw">)</span> <span class="ex">bug:</span> Fix tpyo in divide function <span class="er">(</span><span class="ex">2024-03-26</span> 10:28:36 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">7485e56</span> <span class="at">-</span> chore: Fix merge conflict <span class="er">(</span><span class="ex">2024-03-26</span> 10:28:11 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">adfef4d</span> <span class="at">-</span> feat: Divide branch <span class="er">(</span><span class="ex">2024-03-25</span> 15:55:15 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">400896a</span> <span class="at">-</span> Divide branch <span class="er">(</span><span class="ex">2024-03-25</span> 15:55:15 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">f8dcc8d</span> <span class="at">-</span> Merge pull request <span class="co">#1 from ns-rse/ns-rse/initial-setup (2024-03-15 18:04:02 +0000) &lt;Neil Shephard&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ </span><span class="dt">\</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">a4b1bb4</span> <span class="at">-</span> Min Python version <span class="op">&gt;</span>= 3.10 to align with workflow <span class="er">(</span><span class="ex">2024-03-15</span> 18:01:01 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">4f5daa2</span> <span class="at">-</span> Quoting Python versions and adding os matrix to workflow <span class="er">(</span><span class="ex">2024-03-15</span> 17:59:05 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">74e909b</span> <span class="at">-</span> Issue template for amend and fixup of square_root function <span class="er">(</span><span class="ex">2024-03-08</span> 13:01:42 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">bffc993</span> <span class="at">-</span> Issue template for amend/fixup on zero-division branch <span class="er">(</span><span class="ex">2024-03-07</span> 17:28:49 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">44c70e6</span> <span class="at">-</span> Tidying .pre-commit-config.yaml<span class="kw">|</span> <span class="kw">(</span><span class="ex">2024-02-02</span> 15:48:50 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> c1f64b0 <span class="at">-</span> Setting up the repository for git-collaboration <span class="er">(</span><span class="ex">2024-02-02</span> 15:48:50 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="ex">*</span>   fa76751 <span class="at">-</span> Merge pull request <span class="co">#6 from RSE-Sheffield/ns-rse/5-setup-clean-up (2023-10-19 22:46:14 +0100) &lt;Neil Shephard&gt;</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> c8f0697 <span class="at">-</span> 5 <span class="kw">|</span> <span class="ex">Removing</span> comment from setup.cfg <span class="er">(</span><span class="ex">2022-10-04</span> 11:12:23 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">aff8153</span> <span class="at">-</span> Merge pull request <span class="co">#7 from RSE-Sheffield/subtract-mistake (2023-01-20 10:07:58 +0000) &lt;bobturneruk&gt;</span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ </span><span class="dt">\</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span><span class="kw">|</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> a45a8dd <span class="at">-</span> introduce mistake in subtract issue <span class="er">(</span><span class="ex">2023-01-20</span> 09:50:03 +0000<span class="kw">)</span> <span class="op">&lt;</span>Robert <span class="kw">(</span><span class="ex">Bob</span><span class="kw">)</span> <span class="ex">Turner</span><span class="op">&gt;</span></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 604a397 <span class="at">-</span> introduce delibarate mistake <span class="er">(</span><span class="ex">2022-12-21</span> 10:29:34 +0000<span class="kw">)</span> <span class="op">&lt;</span>Robert <span class="kw">(</span><span class="ex">Bob</span><span class="kw">)</span> <span class="ex">Turner</span><span class="op">&gt;</span></span>
 <span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="ex">*</span>   5c59a89 <span class="at">-</span> Merge pull request <span class="co">#10 from ns-rse/pre-commit-ci-update-config (2024-09-06 12:24:55 +0100) &lt;Neil Shephard&gt;</span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="ex">*</span>   f06c0ab <span class="at">-</span> Merge pull request <span class="co">#4 from RSE-Sheffield/simplify_deliberate_errors (2022-06-07 14:58:27 +0100) &lt;David Wilby&gt;</span></span>
 <span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 88f1b11 <span class="at">-</span> <span class="pp">[</span><span class="ss">pre</span><span class="pp">-</span><span class="ss">commit.ci</span><span class="pp">]</span> pre-commit autoupdate <span class="er">(</span><span class="ex">2024-09-02</span> 18:05:08 +0000<span class="kw">)</span> <span class="op">&lt;</span>pre-commit-ci<span class="pp">[</span><span class="ss">bot</span><span class="pp">]</span><span class="op">&gt;</span></span>
-<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="ex">*</span>   937f8a4 <span class="at">-</span> Merge pull request <span class="co">#9 from ns-rse/ns-rse/correct-amend-fixup-templates (2024-05-23 16:54:28 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> a84cb52 <span class="at">-</span> bug: Simplify if statement in square root issue template <span class="er">(</span><span class="ex">2024-05-23</span> 16:52:46 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">557099b</span> <span class="at">-</span> Merge pull request <span class="co">#7 from ns-rse/pre-commit-ci-update-config (2024-05-23 16:53:46 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ </span><span class="dt">\</span></span>
-<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">5cc9d6a</span> <span class="at">-</span> <span class="pp">[</span><span class="ss">pre</span><span class="pp">-</span><span class="ss">commit.ci</span><span class="pp">]</span> pre-commit autoupdate <span class="er">(</span><span class="ex">2024-05-13</span> 17:57:04 +0000<span class="kw">)</span> <span class="op">&lt;</span>pre-commit-ci<span class="pp">[</span><span class="ss">bot</span><span class="pp">]</span><span class="op">&gt;</span></span>
-<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span> <span class="kw">|</span>   <span class="ex">49a1dc6</span> <span class="at">-</span> Merge pull request <span class="co">#8 from ns-rse/ns-rse/correct-amend-fixup-templates (2024-05-23 16:47:44 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ \ </span><span class="dt">\</span></span>
-<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span> /</span>
-<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span><span class="kw">|</span> <span class="ex">/</span></span>
-<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 53e29fd <span class="at">-</span> bug: Fix instructions for fixups <span class="er">(</span><span class="ex">2024-05-23</span> 16:45:53 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="ex">*</span>   cdd8fcc <span class="at">-</span> Merge pull request <span class="co">#6 from ns-rse/ns-rse/trail-run-fixes-2024-05-09 (2024-05-10 15:49:34 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> fcf4ac2 <span class="at">-</span> chore: Fixing errors identified in trial run <span class="er">(</span><span class="ex">2024-05-09</span><span class="kw">)</span> <span class="kw">(</span><span class="ex">2024-05-10</span> 11:04:36 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-58"><a href="#cb3-58" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-59"><a href="#cb3-59" tabindex="-1"></a><span class="ex">*</span>   0a588bb <span class="at">-</span> Merge pull request <span class="co">#5 from ns-rse/ns-rse/fix-template-04 (2024-05-09 15:38:44 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-60"><a href="#cb3-60" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-61"><a href="#cb3-61" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> b2bb239 <span class="at">-</span> Fixing name in issue 4 template <span class="er">(</span><span class="ex">2024-05-09</span> 15:38:05 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-62"><a href="#cb3-62" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span> <span class="ex">9e22ef2</span> <span class="at">-</span> Fixing name in issue 4 template <span class="er">(</span><span class="ex">2024-05-09</span> 15:37:12 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-63"><a href="#cb3-63" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-64"><a href="#cb3-64" tabindex="-1"></a><span class="ex">*</span> 3f6494f <span class="at">-</span> chore: tidying up prior to trial run <span class="er">(</span><span class="ex">2024-05-02</span> 14:26:33 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-65"><a href="#cb3-65" tabindex="-1"></a><span class="ex">*</span> ba7a5da <span class="at">-</span> bug: ISSUE_TEMPLATES <span class="op">&gt;</span> ISSUE_TEMPLATES <span class="er">(</span><span class="ex">2024-04-24</span> 14:49:45 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-66"><a href="#cb3-66" tabindex="-1"></a><span class="ex">*</span>   ae5402f <span class="at">-</span> Merge pull request <span class="co">#3 from ns-rse/multiply (2024-04-23 23:14:14 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-67"><a href="#cb3-67" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-68"><a href="#cb3-68" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> b702501 <span class="at">-</span> <span class="er">(</span><span class="ex">HEAD</span> <span class="at">-</span><span class="op">&gt;</span> multiply, origin/multiply<span class="kw">)</span> <span class="ex">bug:</span> multiply instead of add arguments <span class="er">(</span><span class="ex">2024-03-26</span> 10:33:37 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-69"><a href="#cb3-69" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 11e36a3 <span class="at">-</span> feat: Adding multiply function and tests <span class="er">(</span><span class="ex">2024-03-26</span> 10:32:42 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-70"><a href="#cb3-70" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">12a159c</span> <span class="at">-</span> Merge pull request <span class="co">#2 from ns-rse/divide (2024-04-23 23:13:13 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-71"><a href="#cb3-71" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ </span><span class="dt">\</span></span>
-<span id="cb3-72"><a href="#cb3-72" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">6353fb4</span> <span class="at">-</span> <span class="er">(</span><span class="ex">origin/divide,</span> divide<span class="kw">)</span> <span class="ex">bug:</span> Fix tpyo in divide function <span class="er">(</span><span class="ex">2024-03-26</span> 10:28:36 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-73"><a href="#cb3-73" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">7485e56</span> <span class="at">-</span> chore: Fix merge conflict <span class="er">(</span><span class="ex">2024-03-26</span> 10:28:11 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-74"><a href="#cb3-74" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">adfef4d</span> <span class="at">-</span> feat: Divide branch <span class="er">(</span><span class="ex">2024-03-25</span> 15:55:15 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-75"><a href="#cb3-75" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">400896a</span> <span class="at">-</span> Divide branch <span class="er">(</span><span class="ex">2024-03-25</span> 15:55:15 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-76"><a href="#cb3-76" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-77"><a href="#cb3-77" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">f8dcc8d</span> <span class="at">-</span> Merge pull request <span class="co">#1 from ns-rse/ns-rse/initial-setup (2024-03-15 18:04:02 +0000) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-78"><a href="#cb3-78" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ </span><span class="dt">\</span></span>
-<span id="cb3-79"><a href="#cb3-79" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">a4b1bb4</span> <span class="at">-</span> Min Python version <span class="op">&gt;</span>= 3.10 to align with workflow <span class="er">(</span><span class="ex">2024-03-15</span> 18:01:01 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-80"><a href="#cb3-80" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">4f5daa2</span> <span class="at">-</span> Quoting Python versions and adding os matrix to workflow <span class="er">(</span><span class="ex">2024-03-15</span> 17:59:05 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-81"><a href="#cb3-81" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">74e909b</span> <span class="at">-</span> Issue template for amend and fixup of square_root function <span class="er">(</span><span class="ex">2024-03-08</span> 13:01:42 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-82"><a href="#cb3-82" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">bffc993</span> <span class="at">-</span> Issue template for amend/fixup on zero-division branch <span class="er">(</span><span class="ex">2024-03-07</span> 17:28:49 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-83"><a href="#cb3-83" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> <span class="kw">|</span> <span class="ex">44c70e6</span> <span class="at">-</span> Tidying .pre-commit-config.yaml<span class="kw">|</span> <span class="kw">(</span><span class="ex">2024-02-02</span> 15:48:50 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-84"><a href="#cb3-84" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-85"><a href="#cb3-85" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> c1f64b0 <span class="at">-</span> Setting up the repository for git-collaboration <span class="er">(</span><span class="ex">2024-02-02</span> 15:48:50 +0000<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-86"><a href="#cb3-86" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-87"><a href="#cb3-87" tabindex="-1"></a><span class="ex">*</span>   fa76751 <span class="at">-</span> Merge pull request <span class="co">#6 from RSE-Sheffield/ns-rse/5-setup-clean-up (2023-10-19 22:46:14 +0100) &lt;Neil Shephard&gt;</span></span>
-<span id="cb3-88"><a href="#cb3-88" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-89"><a href="#cb3-89" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> c8f0697 <span class="at">-</span> 5 <span class="kw">|</span> <span class="ex">Removing</span> comment from setup.cfg <span class="er">(</span><span class="ex">2022-10-04</span> 11:12:23 +0100<span class="kw">)</span> <span class="op">&lt;</span>Neil <span class="ex">Shephard</span><span class="op">&gt;</span></span>
-<span id="cb3-90"><a href="#cb3-90" tabindex="-1"></a><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">aff8153</span> <span class="at">-</span> Merge pull request <span class="co">#7 from RSE-Sheffield/subtract-mistake (2023-01-20 10:07:58 +0000) &lt;bobturneruk&gt;</span></span>
-<span id="cb3-91"><a href="#cb3-91" tabindex="-1"></a><span class="kw">|</span><span class="ex">\ </span><span class="dt">\</span></span>
-<span id="cb3-92"><a href="#cb3-92" tabindex="-1"></a><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-93"><a href="#cb3-93" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span><span class="kw">|</span></span>
-<span id="cb3-94"><a href="#cb3-94" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> a45a8dd <span class="at">-</span> introduce mistake in subtract issue <span class="er">(</span><span class="ex">2023-01-20</span> 09:50:03 +0000<span class="kw">)</span> <span class="op">&lt;</span>Robert <span class="kw">(</span><span class="ex">Bob</span><span class="kw">)</span> <span class="ex">Turner</span><span class="op">&gt;</span></span>
-<span id="cb3-95"><a href="#cb3-95" tabindex="-1"></a><span class="kw">|</span> <span class="ex">*</span> 604a397 <span class="at">-</span> introduce delibarate mistake <span class="er">(</span><span class="ex">2022-12-21</span> 10:29:34 +0000<span class="kw">)</span> <span class="op">&lt;</span>Robert <span class="kw">(</span><span class="ex">Bob</span><span class="kw">)</span> <span class="ex">Turner</span><span class="op">&gt;</span></span>
-<span id="cb3-96"><a href="#cb3-96" tabindex="-1"></a><span class="kw">|</span><span class="ex">/</span></span>
-<span id="cb3-97"><a href="#cb3-97" tabindex="-1"></a><span class="ex">*</span>   f06c0ab <span class="at">-</span> Merge pull request <span class="co">#4 from RSE-Sheffield/simplify_deliberate_errors (2022-06-07 14:58:27 +0100) &lt;David Wilby&gt;</span></span>
-<span id="cb3-98"><a href="#cb3-98" tabindex="-1"></a><span class="kw">|</span><span class="dt">\</span></span>
-<span id="cb3-99"><a href="#cb3-99" tabindex="-1"></a><span class="ex">...</span></span></code></pre>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="ex">...</span></span></code></pre>
 </div>
 <p>This is a little more challenging to interpret but reading the output
-carefully we have an indicator of where the <code>origin/main</code>
-branch is where it reads <code>(origin/main, main)</code>. All
-subsequent commits are on the currently checked out branch which is
-<code>main</code> and <code>origin/multiply</code> (i.e. the local copy
-of the branch is at the same point as the remote on GitHub).</p>
-<p>Knowing this we can see that the <code>multiply</code> branch
-diverged from the <code>fa76751</code> commit on <code>main</code> and
-that three commits have been made on the <code>multiply</code>
-branch.</p>
+carefully we have an indicator of where the <code>multiply</code> branch
+is where it reads <code>(HEAD -&gt; multiply, origin/multiply)</code>.
+We can trace that line back to the furthest left branch (which is
+<code>main</code> and <code>origin/main</code>).</p>
+<p>We can see that the <code>multiply</code> branch diverged from the
+<code>fa76751</code> commit on <code>main</code> and that three commits
+have been made on the <code>multiply</code> branch.</p>
 </div>
 </div>
 </div>
@@ -1379,7 +1455,7 @@ request.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Solution - 01 Zero Division Exception </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1403,7 +1479,7 @@ who can review and approve.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Solution - 02 Square root function </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1469,7 +1545,7 @@ branch (in this example <code>ns-rse/throwaway</code>).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Solution 1 </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>You can use the <code>-d</code> or <code>--delete</code> flag to
 delete a branch.</p>
@@ -1488,7 +1564,7 @@ delete a branch.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Solution 2 </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>You can use the shortcut <code>git switch -</code> to switch to the
 last branch you were on (this is a shortcut that is common to the Bash
@@ -1556,7 +1632,7 @@ automatically delete branches.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Solution 1 </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>This option is on the <em>Settings &gt; General</em> page under the
 <em>Pull Requests</em> section where you can select “<em>Automatically
@@ -1691,7 +1767,7 @@ several ways of doing this).</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Solution 1 </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <p>You could query the logs for the specific commit and it will show you
 the history from there.</p>
@@ -1902,7 +1978,7 @@ branch so you can push them.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Solution 1 </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <p>You can <code>git reset --mixed</code> to <code>HEAD~1</code>,
 i.e. the previous commit, which removes the <code>CONTRIBUTING.md</code>
@@ -1929,7 +2005,7 @@ branch and add it to that.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
   <h4 class="accordion-header" id="headingSolution10"> Solution 2 </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
 <div class="accordion-body">
 <p>Alternatively you can checkout the previous commit <em>before</em>
 you added the file by mistake, create the
@@ -2244,7 +2320,7 @@ there are unmerged changes).</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution11" aria-expanded="false" aria-controls="collapseSolution11">
   <h4 class="accordion-header" id="headingSolution11"> Solution : stashing </h4>
 </button>
-<div id="collapseSolution11" class="accordion-collapse collapse" data-bs-parent="#accordionSolution11" aria-labelledby="headingSolution11">
+<div id="collapseSolution11" class="accordion-collapse collapse" aria-labelledby="headingSolution11" data-bs-parent="#accordionSolution11">
 <div class="accordion-body">
 <p>Lets create the <code>contributing</code> branch</p>
 <div class="codewrapper sourceCode" id="cb33">
@@ -2884,7 +2960,7 @@ with a solution. You can use either of the two strategies
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Solution : git merge </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The first thing to do is make sure <code>main</code> is up-to-date
 and has the changes that have been merged from the
@@ -2925,7 +3001,7 @@ and merge the main branch in.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution : git rebase </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The first thing to do is make sure <code>main</code> is up-to-date
 and has the changes that have been merged from the
@@ -3400,7 +3476,7 @@ bring the branch up-to-date.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Solution 1 : git merge </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3500,7 +3576,7 @@ it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Solution 2 : git rebase </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7697,8 +7773,8 @@ any links that you are not going to use.
   "url": "ns-rse.github.io/git-collaboration/aio.html",
   "identifier": "ns-rse.github.io/git-collaboration/aio.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-02-13",
-  "datePublished": "2025-02-13"
+  "dateModified": "2025-02-17",
+  "datePublished": "2025-02-17"
 }
 
   </script><script>
