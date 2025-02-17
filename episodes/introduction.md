@@ -8,6 +8,8 @@ exercises: 2
 
 - Who else is doing this course?
 - What can you expect from this course?
+- How do I use the command line?
+- How can I edit files at the command line?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -16,6 +18,8 @@ exercises: 2
 - Find out something interesting about other participants.
 - Understand the way in which you are expected to behave and interact with other participants.
 - Have an overview of the content and material that will be covered.
+- Basic command line navigation.
+- Basic use of `nano` editor.
 - Pair up with another participant to collaborate with during this workshop.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -140,6 +144,102 @@ The important part is that it points to the correct SSH key, in the above this i
 need modifying to reflect the users key for the account they wish to use.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Bash and Nano Basics
+
+You will be using the [Bash][bash] shell to navigate and type commands and the [nano][nano] editor to edit files,
+although you are free to edit your files in any programme you want such as VSCode, RStudio or Emacs.
+
+### Bash
+
+There are a few useful tips and tricks you can use to help you work at the command line more quickly.
+
+#### Navigation
+
+You can find out what directory you are in using `pwd` (`p`resent `w`orking `d`irectory).
+
+```bash
+pwd
+/home/neil/work/git
+```
+
+You can use `cd` to (`c`hange `d`irectory).
+
+**NB** The tilde (`~`) is short cut for your "home" directory, typically `/home/<username>` on GNU/Linux systems,
+`/Users/<username>` on OSX and `/c/Users/<username>` on Window systems.
+
+``` bash
+cd ~/work
+```
+
+You can create directories with `mkdir` (`m`a`k`e `dir`ectory), the `-p` flag ensures the parent directories exist.
+
+``` bash
+mkdir ~/work/git
+```
+
+#### Tab Completion
+
+You can start typing a command or directory path in Bash and use the `<Tab>` button to auto-complete the word you are
+typing. If you have typed sufficient characters to give a unique command or path Bash will complete it for you. If there
+are several options you will be presented with a list of the options, one of which will be highlighted. Hitting `<Tab>`
+again will move onto the next possible completion. When you are at the completion you want simply hit `<Return>` and it
+will be entered on your command line.
+
+```bash
+cd ~/te <Tab>
+tests/  tmp/
+```
+
+#### History
+
+Bash keeps a record of the commands you use in its `history`. You can view _all_ your history by simply typing
+`history`.
+
+```bash
+history
+
+cd work
+mkdir git
+git clone git@github.com:ns-rse/python-maths
+```
+
+### Nano
+
+[Nano][nano] is a basic terminal editor, you open files by calling `nano <path/to/filename>`, there is a useful [nano
+cheatsheet][nano_cheat].
+
+#### Navigating
+
+You can jump to a specific line number with `Ctrl + /` and will be prompted for the line you want to go to, on hitting
+`Return` the cursor will move there.
+
+#### Finding text
+
+If you want to search for some text you can do so with `Ctrl + F` and you are prompted to enter some text, on hitting
+`Return` the cursor moves to the next instance of that text (if it is present!). If you hit `Ctrl + F` again you can
+either enter new text to search for or you can hit `Return` to search for the previous text again.
+
+#### Saving Files
+
+When you are done editing use `Ctrl + O` to save the file you are editing, you are prompted for a file to save it to,
+typically you don't need to change this, just hit `Enter`.
+
+#### Exiting `nano`
+
+When done editing you need to exit and return to the command line, you do this with `Ctrl + x`.
+
+#### Useful alias
+
+You may want to set the following alias in your `~/.bashrc` file, it sets various options. You can then `source
+~/.bashrc` to
+
+```bash
+echo "alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'" >> ~/.bashrc
+
+```
+
+These options will be used whenever you use `nano`. See more options with `nano --help`
 
 ## Cloning Repositories
 
@@ -418,6 +518,7 @@ create a pull request and merge the changes.
 the most well known but there are many others including [BitBucket][bitbucket], [Codeberg][codeberg], and
 [ForgeJo][forgejo] and [SourceHut][sourcehut].
 
+[bash]: https://www.gnu.org/software/bash/
 [bitbucket]: https://bitbucket.org/
 [coc]: https://rse.shef.ac.uk/community/code_of_conduct
 [codeberg]: https://codeberg.org/
@@ -429,6 +530,8 @@ the most well known but there are many others including [BitBucket][bitbucket], 
 [gl]: https://gitlab.com
 [linux]: https://www.kernel.org
 [linuxGithub]: https://github.com/torvalds/linux
+[nano]: https://www.nano-editor.org/
+[nano_cheat]: https://www.nano-editor.org/dist/latest/cheatsheet.html
 [openTracks]: https://github.com/OpenTracksApp/OpenTracks
 [pairprogramming]: https://en.wikipedia.org/wiki/Pair_programming
 [pypi]: https://pypi.org/
