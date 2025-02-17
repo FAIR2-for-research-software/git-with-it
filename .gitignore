@@ -55,3 +55,4 @@ po/*~
 # Emacs
 \#*
 *~
+.projectile-cache.eld
