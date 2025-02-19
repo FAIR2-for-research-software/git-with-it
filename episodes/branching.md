@@ -311,7 +311,9 @@ In your pairs assign the `01 Add zero division exception and test` to one person
 and test` to the other person.
 
 Work through the tasks adding the necessary code, saving, staging and committing your changes then pushing to `origin`
-(GitHub). **NB** Please note the comment about holding back on merging the Square Root work, there will be conflicts
+(GitHub). **The issues contain all the code you need and it can be copy and pasted into files.**
+
+**NB** Please note the comment about holding back on merging the Square Root work, there will be conflicts
 that need resolving.
 
 Assign the person who worked on the Square root function to review the Zero Division exception and if everything looks
@@ -325,7 +327,7 @@ good merge the pull request.
 git switch main
 git pull
 git switch -c ns-rse/1-zero-divide-exception
-# MAKE EDITS
+# MAKE EDITS AS DESCRIBED IN THE GITHUB ISSUE
 git add -u
 git commit -m "Add Zero division exception and test"
 git push
@@ -342,7 +344,7 @@ You should then create a pull request, assign it to your collaborator who can re
 git switch main
 git pull
 git switch -c ns-rse/2-square-root
-# MAKE EDITS
+# MAKE EDITS AS DESCRIBED IN THE GITHUB ISSUE
 git add -u
 git commit -m "Adds square root function"
 git push
@@ -808,7 +810,7 @@ This adds the following line to the `alias` section of your `~/.gitconfig`.
 ``` bash
 [alias]
     ...
-    undo = reset HEAD~
+    undo = reset HEAD~1
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
