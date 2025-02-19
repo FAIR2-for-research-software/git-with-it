@@ -980,45 +980,49 @@ ANOTHER.md: No such file or directory (os error 2).
 
 Working in your pairs on the `python-maths` repository...
 
-1. Create a `todo` branch.
-2. Create a `TODO.md` with `echo "# TODO Tasks." > TODO.md`.
-3. Do _not_ add and commit, instead `git stash push -m "Adding a TODO file"` your changes.
-4. Switch to the `main` branch and create a `citation` branch.
-5. Add a basic `CITATION.cff` with `echo "cff-version: 1.2.0\ntitle: Python \ntype: software" > CITATION.cff`.
+1. Create a `<github-username>/todo` branch.
+2. Create a `TODO.md` with `echo "# TODO Tasks." > TODO.md`
+3. Do _not_ add and commit, instead `git stash push -m "Adding a TODO file"` your changes
+4. Switch to the `main` branch and create a `<github-username>/citation` branch.
+5. Add a basic `CITATION.cff` with `echo "cff-version: 1.2.0\ntitle: Python \ntype: software" > CITATION.cff`
 6. Add and commit this file.
 7. Unstash the `TODO.md` file on the `citation` branch.
 8. Stage and commit the changes. Do **NOT** create a pull request or merge these changes.
-9. Delete the branches locally (try and avoid any messages telling you there are unmerged changes).
+9. Delete the branches locally (try and avoid any messages telling you there are unmerged changes, see `git branch
+   --help` on how to force deletion of unmerged branches).
 
 :::::::::::::::::::::::: solution
 
 ## Solution : stashing
 
-Lets create the `contributing` branch
+Lets create the `<github-username>/todo` branch
 
 ```bash
-git switch -c contributing
-echo "# Contributing\n\nContributions to this repository are welcome via Pull Requests." > CONTRIBUTING.md
+git switch main
+git pull
+git switch -c <github-username>/todo
+echo "# This is a ToDo List\n\n1. Task1\n2.Task2." > TODO.md
 ```
 
 If we want to switch branches without making a commit but save our work in progress we stash the work and switch to
-`main` and create a new branch (`citation`) for and add a `CITATION.cff` file.
+`main` and _before_ creating a new branch (`<github-username>/citation`) for adding a `CITATION.cff` file.
 
 ```bash
-git stash -m "An example stash"
+git stash -m "WIP : adding TODO.md"
 git switch main
-git switch -c citation
+git switch -c <github-username>/citation
 echo "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" > CITATION.cff
 git add CITATION.cff
 git commit -m "doc: Adding a CITATION.cff"
 ```
 
-We now unstash the contributing work to this branch and commit the changes, amending the commit and push to GitHub.
+We now unstash the `WIP : adding TODO.md` stash to this branch and commit the changes, amending the commit and push to
+GitHub.
 
 ```bash
 git pop
-git add CONTRIBUTING.md
-git commit -m "doc: Adding a CONTRIBUTING.md"
+git add TODO.md
+git commit -m "doc: Adding a TODO.md"
 git push
 ```
 
@@ -1027,7 +1031,7 @@ You can now make a pull request to merge these changes, assign it and have it re
 ``` bash
 git switch main
 git pull
-git branch -D {citation, contributing}
+git branch -D {<github-username>/citation, <github-username>/todo}
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -1037,7 +1041,8 @@ git branch -D {citation, contributing}
 
 ## Popping around and applying
 
-- You can `git stash apply` to `pop` a stash but leave it in the stash list.
+You can `git stash apply` to `pop` a stash but leave it in the stash list. This might be useful if you want to apply the
+stashed changes to several branches you are working on.
 
 There are a lot of useful things `git stash` can be used for. Refer to the help pages (`git stash --help`) for more
 information as well as the Further Resources.
