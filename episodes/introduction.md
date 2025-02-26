@@ -191,6 +191,12 @@ cd ~/te <Tab>
 tests/  tmp/
 ```
 
+#### Redirection
+
+This course uses the redirection pipes `>` to "pipe" what is on the left of the symbol into the file give on the
+right. A single `>` will over-write any contents in the file if it already exists. If you want to append something to a
+file you can use `>>` instead.
+
 #### History
 
 Bash keeps a record of the commands you use in its `history`. You can view _all_ your history by simply typing
@@ -198,11 +204,32 @@ Bash keeps a record of the commands you use in its `history`. You can view _all_
 
 ```bash
 history
-
+...
 cd work
 mkdir git
 git clone git@github.com:ns-rse/python-maths
 ```
+
+You can recall previous commands using the `Ctrl + p` or the Up arrow, each press takes you to the `p`revious command in
+the history. You can move forwards to the `n`ext command using `Ctrl + n` or the Down arrow. When you get to the command
+you want simply hit `Return` to execute it.
+
+This is really useful but what if there is a command you know you've used at some point in the past but it wasn't
+recently? It could take a long time going back through the history one command at a time. Fortunately you can search
+your history for a command using `Ctrl + r` to carry out a "reverse search" on the term you enter. Each subsequent press
+of `Ctrl + r` will go the previous match.
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Readline Library
+
+There are a lot of useful key chords that have evolved over the years which make navigating on the command line easier
+and faster. They have been collected into the [Readline library][readline].
+
+These are available not just in Bash but many other command line interfaces (CLI) and learning them will make you
+quicker when working at the command line. A useful [cheatsheet][readlinecheat] is available.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Nano
 
@@ -231,7 +258,7 @@ When done editing you need to exit and return to the command line, you do this w
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-#### Useful alias
+## Useful alias
 
 You may want to set the following alias in your `~/.bashrc` file, it sets various options. You can then `source
 ~/.bashrc` to
@@ -697,6 +724,8 @@ the most well known but there are many others including [BitBucket][bitbucket], 
 [pytest]: https://docs.pytest.org/
 [rustGithub]: https://github.com/rust-lang/rust
 [r]: https://www.r-project.org/
+[readline]: https://tiswww.cwru.edu/php/chet/readline/rltop.html
+[readlinecheat]: https://readline.kablamo.org/emacs.html
 [snapcast]: https://mjaggard.github.io/snapcast/
 [sourcehut]: https://sourcehut.org/
 [swCarpentryGit]: https://swcarpentry.github.io/git-novice/
