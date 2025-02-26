@@ -222,6 +222,7 @@
         <ul><li><a href="#code-of-conduct">Code of Conduct</a></li>
 <li><a href="#icebreaker">Icebreaker</a></li>
 <li><a href="#bash-and-nano-basics">Bash and Nano Basics</a></li>
+<li><a href="#git-configuration">Git Configuration</a></li>
 <li><a href="#cloning-repositories">Cloning Repositories</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -633,6 +634,353 @@ you do this with <code>Ctrl + x</code>.</p>
 more options with <code>nano --help</code></p>
 </div>
 </div>
+</section><section><h2 class="section-heading" id="git-configuration">Git Configuration<a class="anchor" aria-label="anchor" href="#git-configuration"></a></h2>
+<hr class="half-width"><p>Git configuration comes in two forms, “global” and “local” and is
+courtesy of some simple text files. The global configuration file lives
+in your home directory and on GNU/Linux and OSX systems is
+<code>~/.gitconfig</code> (on Windows it is
+<code>C:\Users\&lt;username&gt;\.gitconfig</code>) and will have been
+setup when you first attempted to use Git and were prompted for your
+name and email address.</p>
+<p>Each repository that is under Git version control has a
+<code>.git/</code> directory where all of the configuration, hooks and
+history live. Within this directory you will find a
+<code>.git/config</code> file which is the “local” configuration for
+that repository. Configuration options defined locally over-ride global
+configuration options.</p>
+<p>There are two ways of modifying either the global or local
+configuration, using the Command Line
+<code>git config &lt;options&gt;</code> or by editing either the global
+(<code>~/.gitconfig</code>) or local (<code>git/config</code>)
+files.</p>
+<div class="section level3">
+<h3 id="git-config"><code>git config</code><a class="anchor" aria-label="anchor" href="#git-config"></a></h3>
+<p>The <code>git config</code> command has a host of options that you
+can view with the <code>--help</code> flag. The first required option
+says what file should be modified and is typically either
+<code>global</code> or <code>local</code>. You can view the
+configuration with <code>git config --list</code> and you can optionally
+restrict it to show either the <code>--global</code> or
+<code>--local</code> configuration.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--local</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--global</span></span></code></pre>
+</div>
+<p>Adding values requires a bit of understanding about the structure of
+the configuration file, a very simple example is shown below.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">[user]</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a> <span class="ex">email</span> = a.n.other@sheffield.ac.uk</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a> <span class="ex">name</span> = A N Other</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">[core]</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a> <span class="ex">editor</span> = nano</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a> <span class="ex">sshCommand</span> = ssh <span class="at">-i</span> ~/.ssh/id_ed25519 <span class="at">-F</span> /dev/null</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a> <span class="ex">attributesFile</span> = <span class="va">$HOME</span>/.gitattributes</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a> <span class="ex">autocrlf</span> = input</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a> <span class="ex">excludesfile</span> = ~/dotfiles/git/.gitignore</span></code></pre>
+</div>
+<p>Sections are in square brackets with names, e.g. <code>[user]</code>
+or <code>[core]</code>. Fields then have key and value pairs e.g. the
+<code>name</code> value is set to <code>A N Other</code> the
+<code>email</code> address is <code>a.n.other@sheffield.ac.uk</code> and
+the <code>editor</code> is set to <code>nano</code> and so forth.</p>
+<p>To modify values at the command line you need to know the section and
+the key you want to change, these are combined to give the third
+argument <code>user.email</code> and you then provide the value you want
+it to be as the fourth argument. For example to change the email address
+in the global configuration you would.</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email a.other@sheffield.ac.uk</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Neil Shephard"</span></span></code></pre>
+</div>
+<div id="where-are-my-configuration-files" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="where-are-my-configuration-files" class="callout-inner">
+<h3 class="callout-title">Where are my configuration files?</h3>
+<div class="callout-content">
+<p>You can always lookup the location of configuration options using the
+following command which shows the file in which each configuration is
+set as the first column of output.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--show-origin</span> <span class="at">--show-scope</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="editing-config-files">Editing config files<a class="anchor" aria-label="anchor" href="#editing-config-files"></a></h3>
+<p>You can also edit both the local (<code>.git/config</code>) and
+global (<code>~/.gitconfig</code>) files directly to set configuration
+options and this can at times be much quicker.</p>
+<p>For example if we wanted to configure Git so that the order in which
+branches are listed is by the most recent commit we could add the
+following to our <code>~/.gitconfig</code> using <code>nano</code>,
+which will result in branches being listed in reverse chronological
+order when you <code>git branch --list</code>.</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">[branch]</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>    <span class="fu">sort</span> = <span class="at">-commiterdate</span></span></code></pre>
+</div>
+<div id="challenge-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1" class="callout-inner">
+<h3 class="callout-title">Challenge 1</h3>
+<div class="callout-content">
+<p>Add the fields <code>user</code> and <code>email</code> to the
+<code>github</code> section of your global configuration setting them to
+your GitHub username and your registered email address.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Solution 1 - Command Line </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> github.user ns-rse</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> github.email n.shephard@sheffield.ac.uk</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Solution 2 - Editing ~/.gitconfig </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<p>You could alternatively edit the <code>~/.gitconfig</code> file
+directly and add the following lines</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">[github]</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>    <span class="ex">user</span> = ns-rse</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>    <span class="ex">email</span> = n.shephard@sheffield.ac.uk</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="alias">Alias’<a class="anchor" aria-label="anchor" href="#alias"></a></h3>
+<p>A very useful configuration option available is the ability to set <a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases" class="external-link">aliases</a>
+for Git. This means you can create short cuts to complex commands.
+Aliases live under the <code>[alias]</code> section of the global
+(<code>.gitconfig</code>) or local (<code>.git/config</code>)
+configuration files. They can be set at the command line with
+<code>git config --[global|local] alias.&lt;shortcut&gt; &lt;command&gt;</code>
+.</p>
+<p>If you wanted to save a few key strokes and set <code>sw</code> as an
+alias for <code>switch</code> globally you would.</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.sw switch</span></code></pre>
+</div>
+<p>Or if you want to unstage files that are currently staged you can set
+an <code>unstage</code> alias using the following where the command you
+wish to add is put in quotes so the shell doesn’t think they are
+arguments to the command and treats them as a string.</p>
+<p>As with other configuration options you can also edit the
+configuration files directly to add the commands.</p>
+<div id="challenge-2---set-a-git-log-alias" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2---set-a-git-log-alias" class="callout-inner">
+<h3 class="callout-title">Challenge 2 - Set a   <code>git log</code>
+alias</h3>
+<div class="callout-content">
+<p><code>git log</code> shows the history of commits on the current
+branch, but its default is quite verbose. Fortunately there are a
+<em>lot</em> of options to modify the output adding colour, shortening
+dates and including a graph and we’ve been using a version a fair bit
+already. You can see all the options in the manual
+([<code>git log --help</code>][gitlog])</p>
+<p>Rather than having to remember this long complicated command or rely
+on your shell history you can instead set an alias.</p>
+<p>For this exercise add the following set of log options to an alias of
+your choice (this course uses <code>logp</code> but you are free to set
+it to whatever you want, e.g. <code>lp</code>)</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">log</span> <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span>format:<span class="st">"%C(yellow)%h</span><span class="dt">\\</span><span class="st"> %C(green)%ad%Cred%d</span><span class="dt">\\</span><span class="st"> %Creset%s%Cblue</span><span class="dt">\\</span><span class="st"> [%cn]"</span> <span class="at">--decorate</span> <span class="at">--date</span><span class="op">=</span>short</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Solution 1 - Edit   ~/.gitconfig </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
+<p>You can set the alias <code>logp</code> to the above
+<code>git log</code> options by editing <code>~/.gitconfig</code> and
+adding the following</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">[alias]</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>    <span class="ex">logp</span> = log <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span>format:<span class="st">"%C(yellow)%h</span><span class="dt">\\</span><span class="st"> %C(green)%ad%Cred%d</span><span class="dt">\\</span><span class="st"> %Creset%s%Cblue</span><span class="dt">\\</span><span class="st"> [%cn]"</span> <span class="at">--decorate</span> <span class="at">--date</span><span class="op">=</span>short</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Solution 2 - Use   git config </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<p>You could also set this alias at the command line</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.logp <span class="st">'log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="gitignore"><code>.gitignore</code><a class="anchor" aria-label="anchor" href="#gitignore"></a></h3>
+<p>The <a href="https://git-scm.com/docs/gitignore" class="external-link"><code>.gitignore</code></a>
+file does exactly what you might expect it to, it contains lists of
+directories and files that should be ignored by Git. To save having to
+write out the path to each and every file the format accepts <a href="https://git-scm.com/docs/gitignore#_pattern_format" class="external-link">patterns</a>.
+This file, like many others uses <code>#</code> as a comment, to use a
+<code>#</code> in a file name you therefore need to escape it with the
+<code>\</code> slash. A <code>*</code> matches anything but slashes and
+leading/trailing <code>**</code> match all directories (leading) or
+everything within a directory (trailing). For more details refer to <a href="https://git-scm.com/docs/gitignore#_pattern_format" class="external-link">Git Ignore
+Patterns</a>.</p>
+<p>A common set of files you may want to ignore is the
+<code>.DS_Store</code> directory that Mac OSX automatically generates in
+most directories. Just as you can exclude files you can list directories
+so add that to the <code>.gitignore</code> in the
+<code>python-maths</code> repository now. Navigate to the directory and
+open the file using <a href="https://www.nano-editor.org/" class="external-link">nano</a> and
+add the following line.</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">.DS_Store</span></span></code></pre>
+</div>
+<p>It is often sensible to ensure data files are not included in your
+repository. What these files might be depends on how you are working,
+common formats are <code>.csv</code> for text files <code>.RData</code>
+for files from <a href="https://www.r-project.org/" class="external-link">R</a> and
+<code>.pkl</code> are the Python pickles.</p>
+<p>GitHub has a useful feature when you create a repository to include
+template <code>.gitignore</code> files for specific languages, but if
+you missed out this step you can always use the <a href="https://www.toptal.com/developers/gitignore" class="external-link">.gitignore
+generator</a> to generate files to be ignored and copy and paste these
+in.</p>
+
+<p>The <code>.gitignore</code> file is part of the repository and is
+itself version controlled, this means that its rules are applied
+consistently across anyone who works on the project or a fork of it
+(since forks may end up making contributions up-stream). You therefore
+have to remember to stage and commit changes to the file just as you
+would other files in the repository.</p>
+<div id="challenge-3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-3" class="callout-inner">
+<h3 class="callout-title">Challenge 3</h3>
+<div class="callout-content">
+<p>In your pairs exclude files with the extension, <code>.RData</code>,
+<code>.csv</code> and <code>.pkl</code> and the <code>.DS_Store</code>
+director from being added to the <code>python-maths</code> project by
+adding the appropriate patterns to the <code>.gitignore</code> file on a
+new branch and merge it into the <code>main</code> branch via a
+pull-request, assigning it to the other person for review.</p>
+<p><strong>NB</strong> Only one person needs to make the changes, but
+talk through how to solve the problem together.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div class="accordion-body">
+<div class="section level3">
+<h3 id="create-a-new-branch">Create a new branch<a class="anchor" aria-label="anchor" href="#create-a-new-branch"></a></h3>
+<p>First create a new branch.</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/ignore-csv-pkl</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="update-the--gitignore">Update the <code>.gitignore</code>
+<a class="anchor" aria-label="anchor" href="#update-the--gitignore"></a></h3>
+<p>The following lines to <code>.gitignore</code> will ignore all files
+with the extensions <code>.csv</code> and <code>.pkl</code>. The
+wildcard symbol <code>*</code> is required to ensure <em>any</em> file,
+no matter what comes before the extension is ignored.</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>.DS_Store
+*.csv
+*.pkl
+*.RData</code></pre>
+</div>
+<p>Stage and commit the changes to <code>.gitignore</code> and push to
+GitHub.</p>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: Ignoring .csv and .pkl files"</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+</div>
+<p>Pull requests are created on GitHub.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="cloning-repositories">Cloning Repositories<a class="anchor" aria-label="anchor" href="#cloning-repositories"></a></h2>
 <hr class="half-width"><div id="choose-roles-clone-repository-and-install-package" class="callout challenge">
 <div class="callout-square">
@@ -651,25 +999,25 @@ questions please do not hesitate to ask.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Clone the repository </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
+  <h4 class="accordion-header" id="headingSolution8"> Clone the repository </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <p>Click on the <em>Code</em> button at <a href="https://github.com/ns-rse/python-maths" class="external-link">Python Maths</a> and then
 the <em>SSH</em> tab. Copy the URL. If you want to clone the work to
 <code>~/work/git/</code> then in a terminal run the following commands
 (be wary of copy and pasting them <code>&lt;owners_id&gt;</code> needs
 replacing)</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>owners_id<span class="op">&gt;</span>/python-maths</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>owners_id<span class="op">&gt;</span>/python-maths</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="edit--gitconfig">Edit <code>.git/config</code>
@@ -680,12 +1028,12 @@ defined and replace <code>ns-rse</code> with the GitHub username of the
 person who will be the Repository Owner. For example if the repository
 owner uses the <code>alice_and_bob</code> username on GitHub it should
 read.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
 </div>
 <p>This edit changes the <code>origin</code> to be the empty repository
 you created under the <em>Repository Owner’s</em> account called
@@ -704,22 +1052,22 @@ the repository, it should be <strong>completely empty</strong>.</p>
 with the following command, the <code>--force</code> is optional and
 shouldn’t be required unless you have inadvertently initialised the
 repository with additional files.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4"> Protect the Main Branch </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
+  <h4 class="accordion-header" id="headingSolution9"> Protect the Main Branch </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -740,12 +1088,12 @@ rule</em></li>
 </div>
 </div>
 </div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution10" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5"> Invite your Collaborator </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
+  <h4 class="accordion-header" id="headingSolution10"> Invite your Collaborator </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -762,64 +1110,64 @@ to collaborate and should accept it.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution11" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6"> Install the Package </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution11" aria-expanded="false" aria-controls="collapseSolution11">
+  <h4 class="accordion-header" id="headingSolution11"> Install the Package </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution11" class="accordion-collapse collapse" aria-labelledby="headingSolution11" data-bs-parent="#accordionSolution11">
 <div class="accordion-body">
 <p><strong>NB</strong> Both the <strong>Repository Owner</strong>, the
 <strong>Collaborator</strong> should perform this step.</p>
 <p>If you have not already done so activate the
 <code>git-collaboration</code> environment you created as described in
 the setup instructions.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">conda</span> activate git-collaboration</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">conda</span> activate git-collaboration</span></code></pre>
 </div>
 <p>You can now install the package and its test dependencies in an
 editable format so that as you work on the package the changes you make
 will instantly be available. Make sure you are in the
 <code>python-maths</code> directory (use <code>pwd</code> to show where
 you are and <code>cd</code> to change directory).</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="bu">pwd</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
 </div>
 <p>You can optionally check everything is installed and runs by running
 the tests via <a href="https://docs.pytest.org/" class="external-link">pytest</a>.</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">pytest</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
-<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
-<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
-<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
-<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
-<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a></span>
-<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">pytest</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
+<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
+<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
+<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
+<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
+<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
+<span id="cb28-20"><a href="#cb28-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb28-21"><a href="#cb28-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
+<span id="cb28-22"><a href="#cb28-22" tabindex="-1"></a></span>
+<span id="cb28-23"><a href="#cb28-23" tabindex="-1"></a></span>
+<span id="cb28-24"><a href="#cb28-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
 </div>
 </div>
 </div>
