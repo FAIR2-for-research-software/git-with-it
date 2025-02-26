@@ -31,28 +31,34 @@ We're looking forward to welcoming you to the RSE Sheffield training session on 
 
 ### SETUP
 
-Prior to attending, you need to **install the software we are going to use and create an account on GitHub. <span
-style="color: #d1410c;">Please ensure you have completed setup before the course begins.</span>**
+Prior to attending, you need to **install the software we are going to use and create and configure an account on
+GitHub.**
+
+#### <span style="color: #d1410c;">!!! Please ensure you have completed setup before the course begins !!!</span>
 
 Instructions on how to create the account as well as install all the software required can be found on the [**Setup
-Section**](https://fair2-for-research-software.github.io/git-collaboration/#setup) of the course materials. If you have
-any problems with your setup, please get in touch with us for assistance *before* the course begins.
+Section**](https://fair2-for-research-software.github.io/git-collaboration/#setup) of the course materials.
+
+Once complete you should be able to run `ssh -T git@github.com` and you will see a message similar to the following
+
+```
+ssh -T git@github.com
+Hi ns-rse! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+If you do not see this message you have a problem, most likely with the SSH key you generated and added to your account.
+If you have any problems with your setup, please get in touch with us for assistance _before_ the course begins and/or
+aim to turn up early so we can help you.
 
 
 ### SCHEDULE
 
-We’ll **kick off at `r params$event_day1_start` on
-(`r format(strptime(params$day1, format = "%Y-%m-%d"), "%a %b %d %Y")`)** in **`r params$venue_day1`**
-and aim to have a few breaks throughout the morning, finishing at `r params$event_day1_finish`. The second session
-will follow **at `r params$event_day2_start` on (`r format(strptime(params$day2, format = "%Y-%m-%d"), "%a %b %d
-%Y")`)** in **`r params$venue_day2`** and follow the same format finishing at `r params$event_day2_finish`.
-
-There will be some time at the end of each day for questions and discussions.
 
 
 ### ATTENDANCE
 
-**In the event that you can no longer make it, we please ask that you cancel your ticket so we can offer it to someone on the waiting list**.
+**In the event that you can no longer make it, we please ask that you cancel your ticket so we can offer it to someone
+on the waiting list**.
 
 <!-- **NB** Please note we will _not_ be in the same venue on the second day. -->
 
