@@ -171,7 +171,7 @@ For this exercise add the following set of log options to an alias of your choic
 free to set it to whatever you want, e.g. `lp`)
 
 ``` bash
-log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
 ```
 
 :::::::::::::::::::::::: solution
@@ -182,7 +182,7 @@ You can set the alias `logp` to the above `git log` options by editing `~/.gitco
 
 ``` bash
 [alias]
-    logp = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+    logp = log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -193,7 +193,7 @@ You can set the alias `logp` to the above `git log` options by editing `~/.gitco
 You could also set this alias at the command line
 
 ``` bash
-git config --global alias.logp 'log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph'
+git config --global alias.logp 'log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -249,7 +249,9 @@ merge it into the `main` branch via a pull-request, assigning it to the other pe
 
 :::::::::::::::::::::::: solution
 
-## Create a new branch
+## Solution
+
+### Create a new branch
 
 First create a new branch.
 
@@ -259,7 +261,7 @@ git pull
 git switch -c ns-rse/ignore-csv-pkl
 ```
 
-## Update the `.gitignore`
+### Update the `.gitignore`
 
 The following lines to `.gitignore` will ignore all files with the extensions `.csv` and `.pkl`. The wildcard symbol `*`
 is required to ensure _any_ file, no matter what comes before the extension is ignored.
