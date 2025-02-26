@@ -78,7 +78,7 @@ You can change branches by using `git switch <branchname>`.
 We can improve the output of `git log` using the following options.
 
 ```bash
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -95,7 +95,7 @@ What are the commit hashes, commit messages, date/time and committers' names?
 
 ```bash
 git switch divide
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
 * 6353fb4 - (HEAD -> divide, origin/divide) bug: Fix tpyo in divide function (2024-03-26 10:28:36 +0000) <Neil Shephard>
 * 7485e56 - chore: Fix merge conflict (2024-03-26 10:28:11 +0000) <Neil Shephard>
 * adfef4d - feat: Divide branch (2024-03-25 15:55:15 +0000) <Neil Shephard>
@@ -156,7 +156,7 @@ From the `git log` graph we see the first and last commits were:
 Again using the `python-maths` repository switch to the `multiply` branch. Use `git log` to find the commit at which
 `multiply` diverged from `main`. How many commits have been made on the `main` branch?
 
-**Hint** You will need to look at the log of the `main` branch.
+**Hint** You will need find `HEAD -> multiply, origin/multiply` and follow the line backwards.
 
 :::::::::::::::::::::::: solution
 
@@ -166,66 +166,7 @@ Again using the `python-maths` repository switch to the `multiply` branch. Use `
 git switch main
 git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
 *   9a267a0 - (origin/main, origin/HEAD, main) Merge pull request #7 from slackline/ns-rse/6-square-root-warning (2025-02-10 14:22:58 +0000) <slackline>
-|\
-| * 784a268 - (origin/ns-rse/6-square-root-warning, ns-rse/6-square-root-warning) feature: add warning to square root if number is -ve (2025-02-10 14:18:34 +0$
-| * 0e3b6e0 - docs: Adding zero division example to docstring (2025-02-10 13:51:18 +0000) <Neil Shephard>
-* |   7ff8773 - Merge pull request #5 from slackline/ns-rse/zero-division-amend-fixup (2025-02-10 13:57:23 +0000) <slackline>
-|\ \
-| |/
-|/|
-| * 8165d09 - (origin/ns-rse/zero-division-amend-fixup) docs: Adding zero division example to docstring (2025-02-10 13:51:18 +0000) <Neil Shephard>
-* | b7625d6 - Merge pull request #4 from slackline/ns-rse/2-square-root (2025-02-10 13:15:42 +0000) <slackline>
-|\|
-| * 537c339 - (origin/ns-rse/2-square-root) feature: adds a square root function with tests (2025-02-10 12:55:21 +0000) <Neil Shephard>
-|/
-*   1e13f81 - Merge pull request #3 from slackline/ns-rse/zero-division (2025-02-10 12:27:53 +0000) <slackline>
-|\
-| * 0b8fd76 - (origin/ns-rse/zero-division) feature: Add exception and test for division by zero (2025-02-10 12:26:32 +0000) <Neil Shephard>
-|/
-*   f2de1f0 - Merge pull request #2 from slackline/ns-rse/add-contributing (2025-02-10 12:10:25 +0000) <slackline>
-|\
-| * 126b9de - (origin/ns-rse/add-contributing) doc: Adding CONTRIBUTING.md (2025-02-10 12:09:36 +0000) <Neil Shephard>
-|/
-* 80b95c0 - Link to course material (2025-02-10 11:03:03 +0000) <Neil Shephard>
-* efc6527 - Tpyo in title (2025-02-10 11:02:02 +0000) <Neil Shephard>
-*   105b37a - Merge pull request #13 from ns-rse/pre-commit-ci-update-config (2025-01-21 11:27:04 +0000) <Neil Shephard>
-|\
-| * a280884 - [pre-commit.ci] pre-commit autoupdate (2025-01-20 18:04:16 +0000) <pre-commit-ci[bot]>
-|/
-*   30c44b9 - Merge pull request #12 from ns-rse/pre-commit-ci-update-config (2024-12-10 10:28:29 +0000) <Neil Shephard>
-|\
-| * 20c0c4d - [pre-commit.ci] pre-commit autoupdate (2024-12-09 18:11:45 +0000) <pre-commit-ci[bot]>
-|/
-*   d49ed9a - Merge pull request #11 from ns-rse/pre-commit-ci-update-config (2024-09-24 10:08:00 +0100) <Neil Shephard>
-|\
-| * 9c35a18 - [pre-commit.ci] pre-commit autoupdate (2024-09-23 18:06:46 +0000) <pre-commit-ci[bot]>
-|/
-*   5c59a89 - Merge pull request #10 from ns-rse/pre-commit-ci-update-config (2024-09-06 12:24:55 +0100) <Neil Shephard>
-|\
-| * 88f1b11 - [pre-commit.ci] pre-commit autoupdate (2024-09-02 18:05:08 +0000) <pre-commit-ci[bot]>
-|/
-*   937f8a4 - Merge pull request #9 from ns-rse/ns-rse/correct-amend-fixup-templates (2024-05-23 16:54:28 +0100) <Neil Shephard>
-|\
-| * a84cb52 - bug: Simplify if statement in square root issue template (2024-05-23 16:52:46 +0100) <Neil Shephard>
-* |   557099b - Merge pull request #7 from ns-rse/pre-commit-ci-update-config (2024-05-23 16:53:46 +0100) <Neil Shephard>
-|\ \
-| * | 5cc9d6a - [pre-commit.ci] pre-commit autoupdate (2024-05-13 17:57:04 +0000) <pre-commit-ci[bot]>
-* | |   49a1dc6 - Merge pull request #8 from ns-rse/ns-rse/correct-amend-fixup-templates (2024-05-23 16:47:44 +0100) <Neil Shephard>
-|\ \ \
-| |/ /
-|/| /
-| |/
-| * 53e29fd - bug: Fix instructions for fixups (2024-05-23 16:45:53 +0100) <Neil Shephard>
-|/
-*   cdd8fcc - Merge pull request #6 from ns-rse/ns-rse/trail-run-fixes-2024-05-09 (2024-05-10 15:49:34 +0100) <Neil Shephard>
-|\
-| * fcf4ac2 - chore: Fixing errors identified in trial run (2024-05-09) (2024-05-10 11:04:36 +0100) <Neil Shephard>
-|/
-*   0a588bb - Merge pull request #5 from ns-rse/ns-rse/fix-template-04 (2024-05-09 15:38:44 +0100) <Neil Shephard>
-|\
-| * b2bb239 - Fixing name in issue 4 template (2024-05-09 15:38:05 +0100) <Neil Shephard>
-* | 9e22ef2 - Fixing name in issue 4 template (2024-05-09 15:37:12 +0100) <Neil Shephard>
-|/
+...
 * 3f6494f - chore: tidying up prior to trial run (2024-05-02 14:26:33 +0100) <Neil Shephard>
 * ba7a5da - bug: ISSUE_TEMPLATES > ISSUE_TEMPLATES (2024-04-24 14:49:45 +0100) <Neil Shephard>
 *   ae5402f - Merge pull request #3 from ns-rse/multiply (2024-04-23 23:14:14 +0100) <Neil Shephard>
@@ -265,11 +206,10 @@ git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
 ```
 
 This is a little more challenging to interpret but reading the output carefully we have an indicator of where the
-`origin/main` branch is where it reads `(origin/main, main)`. All subsequent commits are on the currently checked out
-branch which is `main` and `origin/multiply` (i.e. the local copy of the branch is at the same point as the remote
-on GitHub).
+`multiply` branch is where it reads `(HEAD -> multiply, origin/multiply)`. We can trace that line back to the furthest
+left branch (which is `main` and `origin/main`).
 
-Knowing this we can see that the `multiply` branch diverged from the `fa76751` commit on `main` and that three commits
+We can see that the `multiply` branch diverged from the `fa76751` commit on `main` and that three commits
 have been made on the `multiply` branch.
 
 :::::::::::::::::::::::::::::::::
