@@ -277,10 +277,9 @@ base, making some changes and committing them.
 other than Python. Many Linux systems have [pre-commit][pc] in their package management systems so if you are using
 Linux or OSX you can install these at the system level.
 
-However, for this course the setup instructions asked you to install [Miniconda][miniconda3] and we can install
-[`pre-commit`][pc] in a Conda environment to leverage it. If you do not
-
-The steps to do so are
+However, for this section of the course you should install [Miniconda][miniconda3] so we can install
+[`pre-commit`][pc] in a Conda environment to leverage it. There are instructions at the bottom of this page on how to
+install Miniconda. Once you have done so you can proceed with creating a conda environment. The steps to do so are
 
 1. Create a Conda environment called `python-maths` with `conda create -n python-maths python=3.11`
 2. Activate the newly created `python-maths` environment.
