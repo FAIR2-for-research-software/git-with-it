@@ -253,8 +253,6 @@ what you will be doing but one person needs to be the **repository owner** and o
 
 Follow the instructions below under each section. If you have any questions please do not hesitate to ask.
 
-:::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::::::::::: solution
 
 ## Clone the repository
@@ -387,6 +385,8 @@ TOTAL                          12      0   100%
 :::::::::::::::::::::::::::::::::
 
 After completing these steps you should both have a copy of the `python-maths` repository on your local computer.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: callout
 
