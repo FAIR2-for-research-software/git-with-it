@@ -350,7 +350,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction</h1>
-        <p>Last updated on 2025-02-17 |
+        <p>Last updated on 2025-02-26 |
 
         <a href="https://github.com/ns-rse/git-collaboration/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -489,7 +489,7 @@ branch or deleted something.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> In-Person </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>If the course is being run in person please describe the situation to
 the person or people sat next to you. Write your answer in the
@@ -503,7 +503,7 @@ collaborative pad under a heading with your name.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Online </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>If you are participating online please write down your names of pairs
 and provide an answer in the collaborative notepad.</p>
@@ -656,7 +656,7 @@ questions please do not hesitate to ask.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Clone the repository </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Click on the <em>Code</em> button at <a href="https://github.com/ns-rse/python-maths" class="external-link">Python Maths</a> and then
 the <em>SSH</em> tab. Copy the URL. If you want to clone the work to
@@ -719,7 +719,7 @@ repository with additional files.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Protect the Main Branch </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -745,7 +745,7 @@ rule</em></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Invite your Collaborator </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -767,7 +767,7 @@ to collaborate and should accept it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Install the Package </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p><strong>NB</strong> Both the <strong>Repository Owner</strong>, the
 <strong>Collaborator</strong> should perform this step.</p>
@@ -827,96 +827,6 @@ the tests via <a href="https://docs.pytest.org/" class="external-link">pytest</a
 </div>
 <p>After completing these steps you should both have a copy of the
 <code>python-maths</code> repository on your local computer.</p>
-<!-- ::::::::::::::::::::::::::::::::::::: challenge -->
-<!-- ## Working with your Collaborator -->
-<!-- As a quick recap there are two issue templates `01 Zero Division` and `02 Square Root`. Assign one of -->
-<!-- these issues each and work through the tasks to add the relevant functionality (instructions, commands -->
-<!-- and codes to copy and paste are provided in each of the issues). Once you have committed the changes -->
-<!-- push them to GitHub and make a Pull Request asking your collaborator to review your code (note the -->
-<!-- instructions in the Square Root task). Review your collaborators code and approve the Pull Request. -->
-<!-- ::::::::::::::::::::::::::::::::::::: -->
-<!-- :::::::::::::::::::::::: solution -->
-<!-- ## Zero Division -->
-<!-- The instructions should have taken you through the various steps of adding an Exception to the divide -->
-<!--  function which raises an error when the supplied value of `y` is zero. A test should have been added -->
-<!-- which checked this is raised when zero is passed. -->
-<!-- ``` python -->
-<!-- def divide(x: int | float, y: int | float) -> float: -->
-<!--     """ -->
-<!--     Divide x by y. -->
-<!--     Parameters -->
-<!--     ---------- -->
-<!--     x : int | float -->
-<!--         Numerator for division. -->
-<!--     y : int | float -->
-<!--         Denominator for division. -->
-<!--     Returns -->
-<!--     ------- -->
-<!--     float -->
-<!--         The result of dividing `x` by `y`. -->
-<!--     Examples -->
-<!--     -------- -->
-<!--     >>> from python_math import arithmetic -->
-<!--     >>> arithmetic.divide(10, 2) -->
-<!--         5.0 -->
-<!--     >>> arithmetic.divide(5, 2) -->
-<!--         2.5 -->
-<!--     """ -->
-<!--     try: -->
-<!--         return x / y -->
-<!--     except ZeroDivisionError as e: -->
-<!--         raise ZeroDivisionError( -->
-<!--             "You can not divide by 0, please choose another value for 'y'." -->
-<!--         ) from e -->
-<!-- ``` -->
-<!-- ``` python -->
-<!-- def test_divide_zero_division_exception() -> None: -->
-<!--     """Test that a ZeroDivisionError is raised by the divide() function.""" -->
-<!--     with pytest.raises(ZeroDivisionError): -->
-<!--         arithmetic.divide(2, 0) -->
-<!-- ``` -->
-<!-- The test should have passed on the Continuous Integration of GitHub Actions. -->
-<!-- ::::::::::::::::::::::::::::::::: -->
-<!-- :::::::::::::::::::::::: solution -->
-<!-- ## Square Root -->
-<!-- The instructions should have taken you through the the various steps of adding a Square root function. -->
-<!-- A test shold have been added which checks the square root of the numbers `4`, `9`, `25` and `2`. -->
-<!-- ``` python -->
-<!-- def square_root(x): -->
-<!--     """Return the square root of a number. -->
-<!--     Parameters -->
-<!--     ========== -->
-<!--     x : int | float -->
-<!--         The number for which you wish to find the square root. -->
-<!--     Returns -->
-<!--     ======= -->
-<!--     float -->
-<!--         The square root of x. -->
-<!--     Examples -->
-<!--     ======== -->
-<!--     >>> from python_math import arithmetic -->
-<!--     >>> arithmetic.square_root(4) -->
-<!--         2.0 -->
-<!--     >>> arithmetic.square_root(169) -->
-<!--         13.0 -->
-<!--     """ -->
-<!--     return x ** (1 / 2) -->
-<!-- ``` -->
-<!-- ``` python -->
-<!-- @pytest.mark.parametrize( -->
-<!--     ("x", "target"), -->
-<!--     [ -->
-<!--         pytest.param(4, 2, id="square root of 4"), -->
-<!--         pytest.param(9, 3.0, id="square root of 9"), -->
-<!--         pytest.param(25, 5.0, id="square root of 25"), -->
-<!--         pytest.param(2, 1.4142135623730951, id="square root of 2"), -->
-<!--     ], -->
-<!-- ) -->
-<!-- def test_square_root(x: int | float, target: int | float) -> None: -->
-<!--     """Test the square_root() function.""" -->
-<!--     pytest.approx(arithmetic.square_root(x), target) -->
-<!-- ``` -->
-<!-- ::::::::::::::::::::::::::::::::: -->
 <div id="update-metadata" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -991,10 +901,10 @@ there are many others including <a href="https://bitbucket.org/" class="external
 
 
         <!--<p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY 4.0</a> by <a href="https://carpentries.org/">The Carpentries</a></p>-->
-        <!--<p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.11">sandpaper (0.16.11)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.7">pegboard (0.7.7)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main">varnish (1.0.4)</a></p>-->
+        <!--<p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.11">sandpaper (0.16.11)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main">varnish (1.0.4)</a></p>-->
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.11" class="external-link">sandpaper (0.16.11)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.7.7" class="external-link">pegboard (0.7.7)</a>,
+        <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>,
       and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.4) [UoS fork]</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
@@ -1017,8 +927,8 @@ there are many others including <a href="https://bitbucket.org/" class="external
   "url": "ns-rse.github.io/git-collaboration/introduction.html",
   "identifier": "ns-rse.github.io/git-collaboration/introduction.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-02-17",
-  "datePublished": "2025-02-18"
+  "dateModified": "2025-02-26",
+  "datePublished": "2025-02-26"
 }
 
   </script><script>
