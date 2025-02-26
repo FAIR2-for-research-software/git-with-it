@@ -229,6 +229,8 @@ typically you don't need to change this, just hit `Enter`.
 
 When done editing you need to exit and return to the command line, you do this with `Ctrl + x`.
 
+::::::::::::::::::::::::::::::::::::: callout
+
 #### Useful alias
 
 You may want to set the following alias in your `~/.bashrc` file, it sets various options. You can then `source
@@ -240,6 +242,8 @@ echo "alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'" >
 ```
 
 These options will be used whenever you use `nano`. See more options with `nano --help`
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Git Configuration
 
@@ -303,7 +307,7 @@ You can always lookup the location of configuration options using the following 
 configuration is set as the first column of output.
 
 ``` bash
-git config --list --show-origin --show-scope
+git config --list  --show-scope --show-origin
 
 ```
 
@@ -327,16 +331,14 @@ chronological order when you `git branch --list`.
 
 ## Challenge 1
 
-Add the fields `user` and `email` to the `github` section of your global configuration setting them to your GitHub
-username and your registered email address.
+Set globally the default editor to be `nano` (**Hint** this is nested under the `core` options).
 
 :::::::::::::::::::::::: solution
 
 ## Solution 1 - Command Line
 
 ``` bash
-git config --global github.user ns-rse
-git config --global github.email n.shephard@sheffield.ac.uk
+git config --global core.editor nano
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -347,9 +349,8 @@ git config --global github.email n.shephard@sheffield.ac.uk
 You could alternatively edit the `~/.gitconfig` file directly and add the following lines
 
 ``` bash
-[github]
-    user = ns-rse
-    email = n.shephard@sheffield.ac.uk
+[core]
+    editor = nano
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -376,20 +377,24 @@ As with other configuration options you can also edit the configuration files di
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 2 - Set a &nbsp; `git log` alias
+## Challenge 2 - Set a &nbsp; `git log` &nbsp; alias
 
 `git log` shows the history of commits on the current branch, but its default is quite verbose. Fortunately there are a
 _lot_ of options to modify the output adding colour, shortening dates and including a graph and we've been using a
 version a fair bit already. You can see all the options in the manual ([`git log --help`][gitlog])
 
-Rather than having to remember this long complicated command or rely on your shell history you can instead set an alias.
+Rather than having to remember all the options and type them out each time you can set an alias that stores the options
+you want and can be called instead.
 
-For this exercise add the following set of log options to an alias of your choice (this course uses `logp` but you are
-free to set it to whatever you want, e.g. `lp`)
+For this exercise add the following set of log options to a global alias of your choice (the solution uses `logp` but
+you are free to set it to whatever you want, e.g. `lp`)
 
 ``` bash
 log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
 ```
+
+**NB** - Because there are double-quotes in this command you will if using the command line solution have to enclose all
+of the above in single quotes.
 
 :::::::::::::::::::::::: solution
 
