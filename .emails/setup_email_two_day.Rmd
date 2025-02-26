@@ -50,10 +50,15 @@ If you do not see this message you have a problem, most likely with the SSH key 
 If you have any problems with your setup, please get in touch with us for assistance _before_ the course begins and/or
 aim to turn up early so we can help you.
 
-
 ### SCHEDULE
 
+We’ll **kick off at `r params$event_day1_start` on
+(`r format(strptime(params$day1, format = "%Y-%m-%d"), "%a %b %d %Y")`)** in **`r params$venue_day1`**
+and aim to have a few breaks throughout the morning, finishing at `r params$event_day1_finish`. The second session
+will follow **at `r params$event_day2_start` on (`r format(strptime(params$day2, format = "%Y-%m-%d"), "%a %b %d
+%Y")`)** in **`r params$venue_day2`** and follow the same format finishing at `r params$event_day2_finish`.
 
+There will be some time at the end of each day for questions and discussions.
 
 ### ATTENDANCE
 
