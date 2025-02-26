@@ -241,6 +241,269 @@ echo "alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'" >
 
 These options will be used whenever you use `nano`. See more options with `nano --help`
 
+## Git Configuration
+
+Git configuration comes in two forms, "global" and "local" and is courtesy of some simple text files. The global
+configuration file lives in your home directory and on GNU/Linux and OSX systems is `~/.gitconfig` (on Windows it is
+`C:\Users\<username>\.gitconfig`) and will have been setup when you first attempted to use Git and were prompted for
+your name and email address.
+
+Each repository that is under Git version control has a `.git/` directory where all of the configuration, hooks and
+history live. Within this directory you will find a `.git/config` file which is the "local" configuration for that
+repository. Configuration options defined locally over-ride global configuration options.
+
+There are two ways of modifying either the global or local configuration, using the Command Line `git config <options>`
+or by editing either the global (`~/.gitconfig`) or local (`git/config`) files.
+
+### `git config`
+
+The `git config` command has a host of options that you can view with the `--help` flag. The first required option says
+what file should be modified and is typically either `global` or `local`. You can view the configuration with `git
+config --list` and you can optionally restrict it to show either the `--global` or `--local` configuration.
+
+``` bash
+git config --list
+git config --list --local
+git config --list --global
+```
+
+Adding values requires a bit of understanding about the structure of the configuration file, a very simple example is
+shown below.
+
+``` bash
+[user]
+ email = a.n.other@sheffield.ac.uk
+ name = A N Other
+[core]
+ editor = nano
+ sshCommand = ssh -i ~/.ssh/id_ed25519 -F /dev/null
+ attributesFile = $HOME/.gitattributes
+ autocrlf = input
+ excludesfile = ~/dotfiles/git/.gitignore
+```
+
+Sections are in square brackets with names, e.g. `[user]` or `[core]`. Fields then have key and value pairs e.g. the
+`name` value is set to `A N Other` the `email` address is `a.n.other@sheffield.ac.uk` and the `editor` is set to `nano`
+and so forth.
+
+To modify values at the command line you need to know the section and the key you want to change, these are combined to
+give the third argument `user.email` and you then provide the value you want it to be as the fourth argument. For
+example to change the email address in the global configuration you would.
+
+``` bash
+git config --global user.email a.other@sheffield.ac.uk
+git config --global user.name "Neil Shephard"
+```
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Where are my configuration files?
+
+You can always lookup the location of configuration options using the following command which shows the file in which each
+configuration is set as the first column of output.
+
+``` bash
+git config --list --show-origin --show-scope
+
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Editing config files
+
+You can also edit both the local (`.git/config`) and global (`~/.gitconfig`) files directly to set configuration options
+and this can at times be much quicker.
+
+For example if we wanted to configure Git so that the order in which branches are listed is by the most recent commit we
+could add the following to our `~/.gitconfig` using `nano`, which will result in branches being listed in reverse
+chronological order when you `git branch --list`.
+
+``` bash
+[branch]
+    sort = -commiterdate
+```
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 1
+
+Add the fields `user` and `email` to the `github` section of your global configuration setting them to your GitHub
+username and your registered email address.
+
+:::::::::::::::::::::::: solution
+
+## Solution 1 - Command Line
+
+``` bash
+git config --global github.user ns-rse
+git config --global github.email n.shephard@sheffield.ac.uk
+```
+
+:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: solution
+
+## Solution 2 - Editing `~/.gitconfig`
+
+You could alternatively edit the `~/.gitconfig` file directly and add the following lines
+
+``` bash
+[github]
+    user = ns-rse
+    email = n.shephard@sheffield.ac.uk
+```
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Alias'
+
+A very useful configuration option available is the ability to set [aliases][gitaliases] for Git. This means you can
+create short cuts to complex commands. Aliases live under the `[alias]` section of the global (`.gitconfig`) or local
+(`.git/config`) configuration files. They can be set at the command line with `git config --[global|local]
+alias.<shortcut> <command>` .
+
+If you wanted to save a few key strokes and set `sw` as an alias for `switch` globally you would.
+
+``` bash
+git config --global alias.sw switch
+```
+
+Or if you want to unstage files that are currently staged you can set an `unstage` alias using the following where the
+command you wish to add is put in quotes so the shell doesn't think they are arguments to the command and treats them as
+a string.
+
+As with other configuration options you can also edit the configuration files directly to add the commands.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 2 - Set a &nbsp; `git log` alias
+
+`git log` shows the history of commits on the current branch, but its default is quite verbose. Fortunately there are a
+_lot_ of options to modify the output adding colour, shortening dates and including a graph and we've been using a
+version a fair bit already. You can see all the options in the manual ([`git log --help`][gitlog])
+
+Rather than having to remember this long complicated command or rely on your shell history you can instead set an alias.
+
+For this exercise add the following set of log options to an alias of your choice (this course uses `logp` but you are
+free to set it to whatever you want, e.g. `lp`)
+
+``` bash
+log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+```
+
+:::::::::::::::::::::::: solution
+
+## Solution 1 - Edit &nbsp; `~/.gitconfig`
+
+You can set the alias `logp` to the above `git log` options by editing `~/.gitconfig` and adding the following
+
+``` bash
+[alias]
+    logp = log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+```
+
+:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::: solution
+
+## Solution 2 - Use &nbsp; `git config`
+
+You could also set this alias at the command line
+
+``` bash
+git config --global alias.logp 'log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
+```
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### `.gitignore`
+
+The [`.gitignore`][gitignore] file does exactly what you might expect it to, it contains lists of directories and files
+that should be ignored by Git. To save having to write out the path to each and every file the format accepts
+[patterns][gitignorepatterns]. This file, like many others uses `#` as a comment, to use a `#` in a file name you
+therefore need to escape it with the `\` slash. A `*` matches anything but slashes and leading/trailing `**` match
+all directories (leading) or everything within a directory (trailing). For more details refer to [Git Ignore
+Patterns][gitignorepatterns].
+
+A common set of files you may want to ignore is the `.DS_Store` directory that Mac OSX automatically generates in
+most directories. Just as you can exclude files you can list directories so add that to the `.gitignore` in the
+`python-maths` repository now. Navigate to the directory and open the file using [nano][nano] and add the following
+line.
+
+``` bash
+.DS_Store
+```
+
+It is often sensible to ensure data files are not included in your repository. What these files might be depends on how
+you are working, common formats are `.csv` for text files `.RData` for files from [R][r] and `.pkl` are the Python
+pickles.
+
+GitHub has a useful feature when you create a repository to include template `.gitignore` files for specific languages,
+but if you missed out this step you can always use the [.gitignore generator][ignoregenerator] to generate files to be
+ignored and copy and paste these in.
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Remember to switch to GitHub and go through the process of creating a new repository to show where the option to select
+a template can be found.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+The `.gitignore` file is part of the repository and is itself version controlled, this means that its rules are applied
+consistently across anyone who works on the project or a fork of it (since forks may end up making contributions
+up-stream). You therefore have to remember to stage and commit changes to the file just as you would other files in the
+repository.
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 3
+
+In your pairs exclude files with the extension, `.RData`, `.csv` and `.pkl` and the `.DS_Store` director from being
+added to the `python-maths` project by adding the appropriate patterns to the `.gitignore` file on a new branch and
+merge it into the `main` branch via a pull-request, assigning it to the other person for review.
+
+**NB** Only one person needs to make the changes, but talk through how to solve the problem together.
+
+:::::::::::::::::::::::: solution
+
+## Solution
+
+### Create a new branch
+
+First create a new branch.
+
+``` bash
+git switch main
+git pull
+git switch -c ns-rse/ignore-csv-pkl
+```
+
+### Update the `.gitignore`
+
+The following lines to `.gitignore` will ignore all files with the extensions `.csv` and `.pkl`. The wildcard symbol `*`
+is required to ensure _any_ file, no matter what comes before the extension is ignored.
+
+```output
+.DS_Store
+*.csv
+*.pkl
+*.RData
+```
+
+Stage and commit the changes to `.gitignore` and push to GitHub.
+
+``` bash
+git add .gitignore
+git commit -m "chore: Ignoring .csv and .pkl files"
+git push
+```
+
+Pull requests are created on GitHub.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Cloning Repositories
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -252,8 +515,6 @@ what you will be doing but one person needs to be the **repository owner** and o
 **collaborator**.
 
 Follow the instructions below under each section. If you have any questions please do not hesitate to ask.
-
-:::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution
 
@@ -388,6 +649,8 @@ TOTAL                          12      0   100%
 
 After completing these steps you should both have a copy of the `python-maths` repository on your local computer.
 
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: callout
 
 ## Update Metadata
@@ -411,9 +674,13 @@ the most well known but there are many others including [BitBucket][bitbucket], 
 [collab_notepad]: https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/edit?tab=t.0
 [forgejo]: https://forgejo.org/
 [git]: https://git-scm.com
+[gitaliases]: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+[gitignore]: https://git-scm.com/docs/gitignore
+[gitignorepatterns]: https://git-scm.com/docs/gitignore#_pattern_format
 [gh]: https://github.com
 [gh_newrepo]: https://github.com/new
 [gl]: https://gitlab.com
+[ignoregenerator]: https://www.toptal.com/developers/gitignore
 [linux]: https://www.kernel.org
 [linuxGithub]: https://github.com/torvalds/linux
 [nano]: https://www.nano-editor.org/
@@ -424,6 +691,7 @@ the most well known but there are many others including [BitBucket][bitbucket], 
 [pythonMaths]: https://github.com/ns-rse/python-maths
 [pytest]: https://docs.pytest.org/
 [rustGithub]: https://github.com/rust-lang/rust
+[r]: https://www.r-project.org/
 [snapcast]: https://mjaggard.github.io/snapcast/
 [sourcehut]: https://sourcehut.org/
 [swCarpentryGit]: https://swcarpentry.github.io/git-novice/
