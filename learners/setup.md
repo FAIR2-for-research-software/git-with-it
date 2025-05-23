@@ -27,7 +27,8 @@ Environment (IDE).
 
 For consistency across operating systems this course uses the Command Line Interface (CLI) to Git and instructions below
 will guide you through installation on different Operating Systems. The principles can be applied to any Git Porcelain
-(client) that you choose, including IDEs, although not all will support all of the functions introduced here (e.g. the
+(client) that you choose (e.g. [GitKraken][gitkraken]), including IDEs such as [VSCode][vscode], PyCharm,
+[RStudio][rstudio] and [Emacs][emacs], although not all will support all of the functions introduced here (e.g. the
 RStudio Git interface is very basic).
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -124,7 +125,9 @@ account][github_ssh].
 
 There is a detailed [article][ssh-keygen] on creating SSH keys under Linux and OSX that works with Git Bash too. It is
 recommended to use the newer [ed25519][ssh-ed25519] algorithm. In a terminal or Git Bash shell, you can do this using
-the following commands.
+the following commands. You will be prompted to enter your password twice, **make sure to enter a secure (i.e. long)
+password, password-less keys are insecure!**, make sure you remember what the password is (**Hint** use a password
+manager!).
 
 ```bash
 ssh-keygen -a 100 -t ed25519
@@ -174,72 +177,25 @@ Hi ns-rse! You've successfully authenticated, but GitHub does not provide shell 
 If you do **not** see the above successful authentication message please get in touch **before** the course starts.
 :::::::::::::::::::::::::
 
-## Conda Environments
+::::::::::::::::::::::::::::::::::::: keypoints
 
-::::::::::::::::::::::::::::::::::::: callout
-
-## Anaconda Licensing
-
-It is important to fully understand and adhere to the [Anaconda Licensing][anacondalicense] which permits
-the use of their software (including Miniconda) in educational and research environments _only_ if there is no
-commercial benefit. If the work you undertake involves commercial collaboration you should seek alternative solutions
-for virtual environments (e.g. [miniforge3][miniforge3] or [virtualenvwrapper][virtualenvwrapper]).
+- You should have Git installed on your computer and opening a Terminal (or Git Bash Shell on Windows) you should be
+  able to type `git` and receive a summary of available commands.
+- You should have setup a GitHub account.
+- You should have created an SSH key and uploaded the public component to your GitHub Account (_Settings > SSH and GPG
+  Keys_).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::: discussion
-
-In order to teach this course we need some code that is version controlled and some tasks to complete. [Python][python]
-has been chosen as the language to fulfill that task. You do _not_ need to know Python in order to complete the course,
-the code you need to use is all provided and can be copy and pasted.
-
-However, you _do_ need what is known as a "_Virtual Environment_" setup to be able to install various programmes and run
-the checks that are part of this course. To that end you should install
-[Miniconda3][miniconda3]/[miniforge3][miniforge3] or another tool for managing Virtual Environments
-(e.g. [virtualenvwrapper][virtualenvwrapper]) on your system prior to attending the course.
-
-If you are already familiar with Python and Virtual Environments you can simply create a fresh virtual environment to
-use for the course.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::: solution
-
-### Installing Miniconda/Miniforge3
-
-Please follow the instructions at [Installing Miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/)
-for your Operating System.
-
-Should you chose to use `miniforge3` the downloads and installation instructions for different operating systems can be
-found [here][miniforge3-install].
-
-:::::::::::::::::::::::::
-
-:::::::::::::::: solution
-
-### Creating A Virtual Environment
-
-You will have to create a virtual environment to undertake the course. If you have installed Miniconda as described
-above you open a terminal (Windows use the Git Bash Shell) and create a Virtual Environment called `git-collaboation`.
-
-``` bash
-conda create --name git-collab python=3.11
-conda activate git-collab
-```
-
-:::::::::::::::::::::::::
-
-[anacondalicense]: https://www.anaconda.com/blog/update-on-anacondas-terms-of-service-for-academia-and-research
+[emacs]: https://www.gnu.org/software/emacs/
 [gh]: https://github.com
 [git]: https://git-scm.com/
 [github_ssh]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+[gitkraken]: https://www.gitkraken.com/
 [gitMac]: https://git-scm.com/download/mac
 [gitWin]: https://git-scm.com/download/win
 [git4windows]: https://carpentries.github.io/workshop-template/install_instructions/#shell
-[miniconda3]: https://docs.anaconda.com/free/miniconda/
-[miniforge3]: https://conda-forge.org/
-[miniforge3-install]: https://github.com/conda-forge/miniforge
-[python]: https://python.org
+[rstudio]: https://posit.co/download/rstudio-desktop/
 [ssh-ed25519]: https://blog.g3rt.nl/upgrade-your-ssh-keys.html
 [ssh-keygen]: https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-openssh-on-macos-or-linux
-[virtualenvwrapper]: https://rse.shef.ac.uk/blog/2024-08-13-python-virtualenvwrapper/
+[vscode]: https://code.visualstudio.com/

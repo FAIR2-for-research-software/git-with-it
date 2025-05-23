@@ -229,6 +229,16 @@ exec git pull
 
 ## Pre-Commit
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## Extra Setup
+
+This section requires you to either install `pre-commit` at the system level or setup a Virtual Environment.
+
+Instructions on doing so can be found at the bottom of the [document](hooks.md#installing_pre-commit).
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 Pre-commit hooks that run before commits are made are _really_ useful to the extent that they require special discussion
 and will be the focus of the remainder of this episode. Why are they so useful? It's because they shorten the feedback
 loop of changes that need to be made when checking and linting code.
@@ -254,7 +264,7 @@ hook that resides at `.git/hooks/pre-commit`, although we will look at that file
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Why are Pre-Commit hooks so important?
+## Why are Pre-Commit hooks so important?
 
 You may be wondering why running hooks prior to commits is so important. The short answer, as we've already hear,  is
 that it reduces the feedback loop and speeds up the pace of development. The long answer is that it only really becomes
@@ -267,8 +277,9 @@ base, making some changes and committing them.
 other than Python. Many Linux systems have [pre-commit][pc] in their package management systems so if you are using
 Linux or OSX you can install these at the system level.
 
-However, for this course the setup instructions asked you to install [Miniconda][miniconda3] and we can install
-[`pre-commit`][pc] in a Conda environment to leverage it. The steps to do so are
+However, for this section of the course you should install [Miniconda][miniconda3] so we can install
+[`pre-commit`][pc] in a Conda environment to leverage it. There are instructions at the bottom of this page on how to
+install Miniconda. Once you have done so you can proceed with creating a conda environment. The steps to do so are
 
 1. Create a Conda environment called `python-maths` with `conda create -n python-maths python=3.11`
 2. Activate the newly created `python-maths` environment.
@@ -348,29 +359,6 @@ Proceed ([y]/n)?
 (python-maths) ❱ pre-commit install
 pre-commit installed at .git/hooks/pre-commit
 ```
-
-::::::::::::::::::::::::::::::::::::: callout
-
-## Install Pre-commit globally
-
-Examples of installing [pre-commit][pc] at the system level for different Linux systems or OSX. Note you will
-need to have `root` access to install packages on your Linux system.
-
-``` bash
-# Arch Linux
-❱ pacman -Syu pre-commit
-# Gentoo
-❱ emerge -av pre-commit
-# Debin/Ubuntu
-❱ apt-get install pre-commit
-# OSX Homebrew
-❱ brew install pre-commit
-```
-
-The advantage of this is that you will be able to `pre-commit install` in any repository without first having to
-activate a virtual environment.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -599,8 +587,8 @@ of the others that are defined.
 
 ## Solution 1 : What version of the `numpydoc` repo is configured
 
-Using [grep][grep] to search for the `numpydoc` string in the `.pre-commit-config.yaml` we can hone in on the `repo` and
-its associated `rev`.
+Using [grep][grep] to search for the [`numpydoc`][numpydoc] string in the `.pre-commit-config.yaml` we can hone in on
+the `repo` and its associated `rev`.
 
 ``` bash
 ❱ grep -A1 numpydoc .pre-commit-config.yaml  | grep -B1 rev
@@ -608,7 +596,9 @@ its associated `rev`.
     rev: v1.6.0
 ```
 
-We see that it is `v1.6.0` that is currently configured for `numpydoc`.
+We see that it is `v1.6.0` that is currently configured for [`numpydoc`][numpydoc].
+
+**NB** This hook ensures the docstrings of Python functions comply with thet [numpydocstyle][numpydocstyle] guide.
 
 :::::::::::::::::::::::::::::::::
 
@@ -784,64 +774,12 @@ The file should then be staged, committed and pushed.
 ## Adding repos
 
 The definitive [list][pc-hooks] of `pre-commit` repos is maintained on the official website. Each entry links to the
-GitHub repository and most contain in their `README.md` instructions on how to use the hooks.
-
-<!-- ::::::::::::::::::::::::::::::::::::: challenge -->
-
-<!-- ## Challenge 7: Add the `numpydoc` repo, exclude the `tests/` and `doc/` directories and run it against-->
-<!-- the code base -->
-
-<!-- The [numpydoc](https://github.com/numpy/numpydoc) repo defines hooks that check the Python docstrings -->
-<!-- conform to the [Numpydoc style guide](https://numpydoc.readthedocs.io/en/latest/format.html). Following the  -->
-<!-- instructions add the repo to the `.pre-commit-config.yaml` (on a new branch) -->
-
-<!-- :::::::::::::::::::::::: solution -->
-
-<!-- ## Solution -->
-
-<!-- Create a branch to undertake the work on. -->
-
-<!-- ``` bash -->
-<!-- ❱ git switch main -->
-<!-- ❱ git pull -->
-<!-- ❱ git switch -c ns-rse/pre-commit-numpydoc -->
-<!-- ``` -->
-
-<!-- The following should be added to your `.pre-commit-config.yaml` -->
-
-<!-- ``` yaml -->
-<!--    - repo: https://github.com/numpy/numpydoc -->
-<!--      rev: v1.6.0 -->
-<!--      hooks: -->
-<!--        - id: numpydoc-validation -->
-<!--          exclude: | -->
-<!--            (?x)( -->
-<!--                tests/| -->
-<!--                docs/ -->
-<!--            ) -->
-<!-- ``` -->
-
-<!-- Check that the code base passes the checks, correct any errors that are highlighted. -->
-
-<!-- ``` bash -->
-<!-- ❱ pre-commit run numpydoc --all-files -->
-<!-- ``` -->
-
-<!-- The file should then be staged, committed and pushed. -->
-
-<!-- ``` bash -->
-<!-- ❱ git add .pre-commit-config.yaml -->
-<!-- ❱ git commit -m "pre-commit : adds the numpydoc repo/hook" -->
-<!-- ❱ git push -->
-<!-- ``` -->
-
-<!-- ::::::::::::::::::::::::::::::::: -->
-
-<!-- :::::::::::::::::::::::::::::::::::::::::::::::: -->
+GitHub repository and most contain in their `README.md` instructions on how to use the hooks. Which you will want to use
+will depend very much on your project.
 
 ## Local repos
 
-Local repo are those that do not use hooks defined by others and are instead defined by the user. This comes in handy
+Local repos are those that do not use hooks defined by others and are instead defined by the user. This comes in handy
 when you want to run checks which have dependencies that are specific to the code such as running [pylint][pylint] which
 needs to import all the dependencies that are used or run a test suite.
 
@@ -978,12 +916,76 @@ the Pre-commit hooks as part of the Continuous Integration on GitHub which is th
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Installing Pre-commit
+
+### Install Pre-commit globally
+
+Examples of installing [pre-commit][pc] at the system level for different Linux systems or OSX. Note you will
+need to have `root` access to install packages on your Linux system.
+
+``` bash
+# Arch Linux
+pacman -Syu pre-commit
+# Gentoo
+emerge -av pre-commit
+# Debin/Ubuntu
+apt-get install pre-commit
+# OSX Homebrew
+brew install pre-commit
+```
+
+The advantage of this is that you will be able to `pre-commit install` in any repository without first having to
+activate a virtual environment.
+
+### Virtual Environments
+
+The other option is to install `pre-commit` within a Python Virtual Environment. If you are already familiar with using
+these then you can simply `pip install pre-commit` and you are good to go, although note that `pre-commit` will need
+installing in _every_ new environment you create that you want to use it.
+
+If you are not familiar with Python Virtual Environments you can follow the instructions below to install and setup
+[miniconda3][miniconda3] or [miniforge3][miniforge3].
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Anaconda Licensing
+
+It is important to fully understand and adhere to the [Anaconda Licensing][anacondalicense] which permits
+the use of their software (including Miniconda) in educational and research environments _only_ if there is no
+commercial benefit. If the work you undertake involves commercial collaboration you should seek alternative solutions
+for virtual environments (e.g. [miniforge3][miniforge3] or [virtualenvwrapper][virtualenvwrapper]).
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Installing Miniconda/Miniforge3
+
+Please follow the instructions at [Installing Miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/)
+for your Operating System.
+
+Should you chose to use `miniforge3` the downloads and installation instructions for different operating systems can be
+found [here][miniforge3-install].
+
+### Creating A Virtual Environment
+
+You will have to create a virtual environment to undertake the course. If you have installed Miniconda as described
+above you open a terminal (Windows use the Git Bash Shell) and create a Virtual Environment called `git-collaboation`.
+
+``` bash
+conda create --name git-collab python=3.11
+conda activate git-collab
+```
+
+[anacondalicense]: https://www.anaconda.com/blog/update-on-anacondas-terms-of-service-for-academia-and-research
 [bash]: https://www.gnu.org/software/bash/
 [black]: https://black.readthedocs.io/en/stable/index.html
 [gh]: https://github.com
 [gl]: https://gitlab.com
 [grep]: https://en.wikipedia.org/wiki/Grep
 [miniconda3]: https://docs.anaconda.com/free/miniconda/
+[miniforge3]: https://conda-forge.org/
+[miniforge3-install]: https://github.com/conda-forge/miniforge
+[numpydoc]: https://github.com/numpy/numpydoc
+[numpydocstyle]: https://numpydoc.readthedocs.io/en/latest/format.html
 [pc]: https://pre-commit.com
 [pc-ci]: https://pre-commit.ci
 [pc-hooks]: https://pre-commit.com/hooks
@@ -992,4 +994,5 @@ the Pre-commit hooks as part of the Continuous Integration on GitHub which is th
 [python]: https://python.org
 [pm]: https://github.com/ns-rse/python-maths
 [ruff]: https://astral.sh/ruff
+[virtualenvwrapper]: https://rse.shef.ac.uk/blog/2024-08-13-python-virtualenvwrapper/
 [yaml]: https://yaml.org
