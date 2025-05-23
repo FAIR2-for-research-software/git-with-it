@@ -1,5 +1,7 @@
 # Git Collaboration
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15498183.svg)](https://doi.org/10.5281/zenodo.15498183)
+
 This lesson uses [The Carpentries Workbench][workbench] to develop training material for an intermediary level course on
 using Git effectively for collaboration.
 
