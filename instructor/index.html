@@ -222,7 +222,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="branching.html">2. Branching</a>
+        <a href="git_hygiene.html">2. Git Hygiene</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -231,7 +231,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="diverging_branches.html">3. Diverging Branches</a>
+        <a href="branching.html">3. Branching</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -240,7 +240,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="git_hygiene.html">4. Git Hygiene</a>
+        <a href="diverging_branches.html">4. Diverging Branches</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -373,34 +373,34 @@ the command line?
 <span class="visually-hidden">Duration: </span>00h 12m
 </td>
 <td>
- 2. <a href="branching.html">Branching</a>
+ 2. <a href="git_hygiene.html">Git Hygiene</a>
+</td>
+<td>
+How do I configure Git globally and locally?<br>How do we keep our
+repository and history clean?<br>What are atomic commits?<br>How do I
+avoid <code>Fixing typo</code> commits?
+</td>
+</tr><tr><td>
+<span class="visually-hidden">Duration: </span>00h 24m
+</td>
+<td>
+ 3. <a href="branching.html">Branching</a>
 </td>
 <td>
 What are branches?<br>Why use branches?<br>How can I switch between
 branches and commits?<br>Comparing commits on a branch
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>00h 24m
+<span class="visually-hidden">Duration: </span>00h 36m
 </td>
 <td>
- 3. <a href="diverging_branches.html">Diverging Branches</a>
+ 4. <a href="diverging_branches.html">Diverging Branches</a>
 </td>
 <td>
 What are branches?<br>How do we use branches in git
 effectively?<br>How can I check out other people’s branches whilst
 working on my own?<br>How do I keep my development branch up-to-date
 with <code>main</code>?
-</td>
-</tr><tr><td>
-<span class="visually-hidden">Duration: </span>00h 36m
-</td>
-<td>
- 4. <a href="git_hygiene.html">Git Hygiene</a>
-</td>
-<td>
-How do I configure Git globally and locally?<br>How do we keep our
-repository and history clean?<br>What are atomic commits?<br>How do I
-avoid <code>Fixing typo</code> commits?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 48m
@@ -487,9 +487,10 @@ Integrated Development Environment (IDE).</p>
 <p>For consistency across operating systems this course uses the Command
 Line Interface (CLI) to Git and instructions below will guide you
 through installation on different Operating Systems. The principles can
-be applied to any Git Porcelain (client) that you choose, including
-IDEs, although not all will support all of the functions introduced here
-(e.g. the RStudio Git interface is very basic).</p>
+be applied to any Git Porcelain (client) that you choose (e.g. <a href="https://www.gitkraken.com/" class="external-link">GitKraken</a>), including IDEs such as
+<a href="https://code.visualstudio.com/" class="external-link">VSCode</a>, PyCharm, <a href="https://posit.co/download/rstudio-desktop/" class="external-link">RStudio</a> and <a href="https://www.gnu.org/software/emacs/" class="external-link">Emacs</a>, although not all
+will support all of the functions introduced here (e.g. the RStudio Git
+interface is very basic).</p>
 </div>
 </div>
 </div>
@@ -500,7 +501,7 @@ IDEs, although not all will support all of the functions introduced here
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>You can use the <a href="https://git-scm.com/download/win" class="external-link">official
 binary</a> but we encourage you to use <a href="https://carpentries.github.io/workshop-template/install_instructions/#shell" class="external-link">Git
@@ -520,7 +521,7 @@ bundled together).</p>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p><a href="https://git-scm.com/" class="external-link">Git</a> is not included in the MacOS
 distribution by default. The <a href="https://git-scm.com/download/mac" class="external-link">official instructions</a>
@@ -552,7 +553,7 @@ suggests using either <a href="https://brew.sh/" class="external-link">Homebrew<
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Most GNU/Linux distributions will have Git installed by default. If
 not you can install it using the package manager for your distribution.
@@ -624,13 +625,16 @@ account</a>.</p>
   Generate SSH Keys
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>There is a detailed <a href="https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-openssh-on-macos-or-linux" class="external-link">article</a>
 on creating SSH keys under Linux and OSX that works with Git Bash too.
 It is recommended to use the newer <a href="https://blog.g3rt.nl/upgrade-your-ssh-keys.html" class="external-link">ed25519</a>
 algorithm. In a terminal or Git Bash shell, you can do this using the
-following commands.</p>
+following commands. You will be prompted to enter your password twice,
+<strong>make sure to enter a secure (i.e. long) password, password-less
+keys are insecure!</strong>, make sure you remember what the password is
+(<strong>Hint</strong> use a password manager!).</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -669,7 +673,7 @@ GitHub account with.</p>
   Adding Keys to GitHub (All OSs)
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>Once you have created your SSH key you need to copy it to your
 account, got to <em>Settings &gt; SSH and GPG Keys</em> and click on the
@@ -689,7 +693,7 @@ button.</p>
   Checking your key works
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>You can test if you have setup your SSH key by running the following
 command which should produce similar output.</p>
@@ -706,85 +710,20 @@ course starts.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="conda-environments">Conda Environments<a class="anchor" aria-label="anchor" href="#conda-environments"></a></h2>
-<hr class="half-width"><div id="anaconda-licensing" class="callout">
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="anaconda-licensing" class="callout-inner">
-<h3 class="callout-title">Anaconda Licensing</h3>
-<div class="callout-content">
-<p>It is important to fully understand and adhere to the <a href="https://www.anaconda.com/blog/update-on-anacondas-terms-of-service-for-academia-and-research" class="external-link">Anaconda
-Licensing</a> which permits the use of their software (including
-Miniconda) in educational and research environments <em>only</em> if
-there is no commercial benefit. If the work you undertake involves
-commercial collaboration you should seek alternative solutions for
-virtual environments (e.g. <a href="https://conda-forge.org/" class="external-link">miniforge3</a> or <a href="https://rse.shef.ac.uk/blog/2024-08-13-python-virtualenvwrapper/" class="external-link">virtualenvwrapper</a>).</p>
-</div>
-</div>
-</div>
-<div id="discussion3" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Discussion</h3>
+<h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<p>In order to teach this course we need some code that is version
-controlled and some tasks to complete. <a href="https://python.org" class="external-link">Python</a> has been chosen as the language to
-fulfill that task. You do <em>not</em> need to know Python in order to
-complete the course, the code you need to use is all provided and can be
-copy and pasted.</p>
-<p>However, you <em>do</em> need what is known as a “<em>Virtual
-Environment</em>” setup to be able to install various programmes and run
-the checks that are part of this course. To that end you should install
-<a href="https://docs.anaconda.com/free/miniconda/" class="external-link">Miniconda3</a>/<a href="https://conda-forge.org/" class="external-link">miniforge3</a> or another tool for
-managing Virtual Environments (e.g. <a href="https://rse.shef.ac.uk/blog/2024-08-13-python-virtualenvwrapper/" class="external-link">virtualenvwrapper</a>)
-on your system prior to attending the course.</p>
-<p>If you are already familiar with Python and Virtual Environments you
-can simply create a fresh virtual environment to use for the course.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
-  <h4 class="accordion-header" id="headingSolution7">
-  Installing Miniconda/Miniforge3
-  </h4>
-</button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
-<div class="accordion-body">
-<p>Please follow the instructions at <a href="https://docs.anaconda.com/free/miniconda/miniconda-install/" class="external-link">Installing
-Miniconda</a> for your Operating System.</p>
-<p>Should you chose to use <code>miniforge3</code> the downloads and
-installation instructions for different operating systems can be found
-<a href="https://github.com/conda-forge/miniforge" class="external-link">here</a>.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
-  <h4 class="accordion-header" id="headingSolution8">
-  Creating A Virtual Environment
-  </h4>
-</button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
-<div class="accordion-body">
-<p>You will have to create a virtual environment to undertake the
-course. If you have installed Miniconda as described above you open a
-terminal (Windows use the Git Bash Shell) and create a Virtual
-Environment called <code>git-collaboation</code>.</p>
-<div class="codewrapper sourceCode" id="cb10">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> git-collab python=3.11</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">conda</span> activate git-collab</span></code></pre>
-</div>
-</div>
-</div>
+<ul><li>You should have Git installed on your computer and opening a
+Terminal (or Git Bash Shell on Windows) you should be able to type
+<code>git</code> and receive a summary of available commands.</li>
+<li>You should have setup a GitHub account.</li>
+<li>You should have created an SSH key and uploaded the public component
+to your GitHub Account (<em>Settings &gt; SSH and GPG Keys</em>).</li>
+</ul></div>
 </div>
 </div>
 <!--
