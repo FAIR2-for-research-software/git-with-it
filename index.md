@@ -1,9 +1,9 @@
 ---
 site: sandpaper::sandpaper_site
 ---
-# Git Collaboration
+# Git With It
 
-Welcome to the _Git Collaboration_ course material.
+Welcome to the _Git With It_ course material.
 
 This course aims to help you develop a deeper understanding of how Git works to facilitate collaboration. It builds on
 foundational Git courses such as [Software Carpentry: Git Novice][swCarpentryGit] and [Git and GitHub through
