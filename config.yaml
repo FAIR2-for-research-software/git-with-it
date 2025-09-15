@@ -11,7 +11,7 @@
 carpentry: 'incubator'
 
 # Overall title for pages.
-title: 'Git Collaboration' # FIXME
+title: 'Git With It' # FIXME
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: 2023-10-09 # FIXME
@@ -27,7 +27,7 @@ life_cycle: 'pre-alpha' # FIXME
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/ns-rse/git-collaboration' # FIXME
+source: 'https://github.com/ns-rse/git-with-it' # FIXME
 
 # Default branch of your lesson
 branch: 'main'
@@ -84,4 +84,4 @@ profiles:
 # This space below is where custom yaml items (e.g. pinning
 # sandpaper and varnish versions) should live
 varnish: RSE-Sheffield/uos-varnish@main
-url: 'ns-rse.github.io/git-collaboration'
+url: 'fair2-for-research-software.github.io/git-with-it/'
