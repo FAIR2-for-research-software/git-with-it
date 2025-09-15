@@ -1,4 +1,4 @@
-# Git Collaboration
+# Git With It
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15498183.svg)](https://doi.org/10.5281/zenodo.15498183)
 

@@ -963,7 +963,7 @@ Please follow the instructions at [Installing Miniconda](https://docs.anaconda.c
 for your Operating System.
 
 Should you chose to use `miniforge3` the downloads and installation instructions for different operating systems can be
-found [here][miniforge3-install].
+found on their [install instructions][miniforge3-install].
 
 ### Creating A Virtual Environment
 

@@ -120,8 +120,8 @@ is given. If you need to use `git bisect` it is recommended that you read the [o
 documentation][gitbisect]. A useful feature is being able to include a script which
 automatically "runs" the tests or invocation that you wish to perform at each step so that after you have marked your
 good and bad commits you use a script which runs your tests and reports whether they were good or bad with `git bisect
-run <your_script> [aguments]`. A worked example of this can be found
-[here](https://interrupt.memfault.com/blog/git-bisect#scripting-the-testing).
+run <your_script> [aguments]`. A worked example of this can be found in
+[Git Bisect : Scripting the testing](https://interrupt.memfault.com/blog/git-bisect#scripting-the-testing).
 
 ## Worktrees instead of Branches
 
