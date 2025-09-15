@@ -631,11 +631,11 @@ The **Collaborator** should receive an email invitation to collaborate and shoul
 
 **NB** Both the **Repository Owner**, the **Collaborator** should perform this step.
 
-If you have not already done so activate the `git-collaboration` environment you created as described in the setup
+If you have not already done so activate the `git-with-it` environment you created as described in the setup
 instructions.
 
 ``` bash
-conda activate git-collaboration
+conda activate git-with-it
 ```
 
 You can now install the package and its test dependencies in an editable format so that as you work on the package the
