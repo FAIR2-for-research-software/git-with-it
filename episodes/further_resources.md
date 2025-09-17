@@ -115,7 +115,7 @@ Various tutorials and tools that help explain how Git works.
 #### Julia Evans (aka b0rk)
 
 [Julia Evans (aka b0rk)](https://jvns.ca/#git) writes useful and insightful posts on different aspects of Git
-that help tackle fundamental but often misunderstood concepts.
+that help tackle fundamental but often misunderstood concepts. She co-authored the [Git Cheat Sheet](https://git-scm.com/cheat-sheet).
 
 - [How HEAD works in git](https://jvns.ca/blog/2024/03/08/how-head-works-in-git/)
 - [Popular git config options](https://jvns.ca/blog/2024/02/16/popular-git-config-options/)
