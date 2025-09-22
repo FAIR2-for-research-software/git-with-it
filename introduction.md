@@ -130,7 +130,7 @@ Once people have completed the task ask for volunteers to describe their experie
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
-If anyone has multiple GitHub accounts it is possible that permission may be denied which force pushing if the wrong SSH
+If anyone has multiple GitHub accounts it is possible that permission may be denied when pushing if the wrong SSH
 key is used. It is simple to work around this by adding the following to the `.git/config` of the user and ensuring it
 points to the correct private SSH key that is associated with the account they wish to use.
 
@@ -143,12 +143,25 @@ points to the correct private SSH key that is associated with the account they w
 The important part is that it points to the correct SSH key, in the above this is `~/.ssh/id_ed25519` which will
 need modifying to reflect the users key for the account they wish to use.
 
+An alternative is to make sure you have configured Git globally to [`includeIf`][git_includeif]
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Bash and Nano Basics
 
 You will be using the [Bash][bash] shell to navigate and type commands and the [nano][nano] editor to edit files,
 although you are free to edit your files in any programme you want such as VSCode, RStudio or Emacs.
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Windows Explorer
+
+If you are using Windows Explorer and the recommended [Git for Windows][git4windows] then you may find that copying and
+pasting directory paths does not work. This is because natively Microsoft Windows uses `\` (back-slash) to separate
+directory names whilst all other operating systems use `/` (forward-slash). You will have to replace these when copy and
+pasting directory paths from Windows Explorer
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Bash
 
@@ -726,10 +739,12 @@ the most well known but there are many others including [BitBucket][bitbucket], 
 [collab_notepad]: https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/edit?tab=t.0
 [forgejo]: https://forgejo.org/
 [git]: https://git-scm.com
+[git4windows]: https://carpentries.github.io/workshop-template/install_instructions/#shell
 [gitaliases]: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 [gitignore]: https://git-scm.com/docs/gitignore
 [gitignorepatterns]: https://git-scm.com/docs/gitignore#_pattern_format
 [git_commit_problems]: https://cknoll.github.io/git-fire-en.html
+[git_includeif]: https://blog.nshephard.dev/posts/git-ssh/#conditional-includes
 [gh]: https://github.com
 [gh_newrepo]: https://github.com/new
 [gl]: https://gitlab.com
