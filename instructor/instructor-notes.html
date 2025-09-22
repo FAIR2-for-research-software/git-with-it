@@ -426,11 +426,10 @@ their experiences BVC.</p>
 <a href="introduction.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#introduction-headingInstructor2"></a>
 </h3>
 <p>If anyone has multiple GitHub accounts it is possible that permission
-may be denied which force pushing if the wrong SSH key is used. It is
-simple to work around this by adding the following to the
-<code>.git/config</code> of the user and ensuring it points to the
-correct private SSH key that is associated with the account they wish to
-use.</p>
+may be denied when pushing if the wrong SSH key is used. It is simple to
+work around this by adding the following to the <code>.git/config</code>
+of the user and ensuring it points to the correct private SSH key that
+is associated with the account they wish to use.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -441,6 +440,7 @@ use.</p>
 <p>The important part is that it points to the correct SSH key, in the
 above this is <code>~/.ssh/id_ed25519</code> which will need modifying
 to reflect the users key for the account they wish to use.</p>
+<p>An alternative is to make sure you have configured Git globally to <a href="https://blog.nshephard.dev/posts/git-ssh/#conditional-includes" class="external-link"><code>includeIf</code></a></p>
 <hr>
 <br><h3 id="introduction-headingInstructor3">
 <a href="introduction.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#introduction-headingInstructor3"></a>
