@@ -148,6 +148,8 @@ advocacy. His videos and articles are well worth reading (as is his book).
 - [Git Tips 3: Really Large Repositories and
  Monorepos](https://blog.gitbutler.com/git-tips-3-really-large-repositories/)
 - [How Core Git Developers Configure Git](https://blog.gitbutler.com/how-git-core-devs-configure-git/)
+
+
 #### General
 
 - [Little Things I Like to Do with Git – CSS Wizardry – Web Performance
