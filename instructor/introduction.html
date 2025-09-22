@@ -351,7 +351,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction</h1>
-        <p>Last updated on 2025-09-15 |
+        <p>Last updated on 2025-09-22 |
 
         <a href="https://github.com/ns-rse/git-with-it/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -723,8 +723,10 @@ you do this with <code>Ctrl + x</code>.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre>
 </div>
-<p>These options will be used whenever you use <code>nano</code>. See
-more options with <code>nano --help</code></p>
+<p>These options will be used whenever you use <code>nano</code>. You
+can alternatively place these configuration options in
+<code>$XDG_CONFIG_HOME/nano/nanorc</code>. See more options and
+information on configuration with <code>nano --help</code>.</p>
 </div>
 </div>
 </div>
@@ -973,6 +975,30 @@ adding the following</p>
 </div>
 </div>
 </div>
+<div id="useful-git-fire-alias" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="useful-git-fire-alias" class="callout-inner">
+<h3 class="callout-title">Useful <code>git fire</code> alias</h3>
+<div class="callout-content">
+<p>You may have seen the common Git meme about committing and pushing
+your changes before exiting the building if there is a fire alarm…</p>
+<figure><img src="https://cknoll.github.io/images/2025-09-git-fire/git-gommit-push-leave-building.png" alt="In case of fire… git commit, git push" class="figure mx-auto d-block"><div class="figcaption">In case of fire… <code>git commit</code>,
+<code>git push</code>
+</div>
+</figure><p>Whilst humorous its not the best advice as there are <a href="https://cknoll.github.io/git-fire-en.html" class="external-link">problems</a> with this
+approach. You can however, as noted in the linked blog, set an alias for
+this which makes it quick and easy to save your changes.</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.fire <span class="st">'!git swtich -c emergency-backup &amp;&amp; git commit -a -m "emergency commit" &amp;&amp; git push -u origin emergency-backup'</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="gitignore"><code>.gitignore</code><a class="anchor" aria-label="anchor" href="#gitignore"></a></h3>
@@ -993,10 +1019,10 @@ so add that to the <code>.gitignore</code> in the
 <code>python-maths</code> repository now. Navigate to the directory and
 open the file using <a href="https://www.nano-editor.org/" class="external-link">nano</a> and
 add the following line.</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">.DS_Store</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">.DS_Store</span></span></code></pre>
 </div>
 <p>It is often sensible to ensure data files are not included in your
 repository. What these files might be depends on how you are working,
@@ -1057,12 +1083,12 @@ talk through how to solve the problem together.</p>
 <div class="section level3">
 <h3 id="create-a-new-branch">Create a new branch<a class="anchor" aria-label="anchor" href="#create-a-new-branch"></a></h3>
 <p>First create a new branch.</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/ignore-csv-pkl</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/ignore-csv-pkl</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1082,12 +1108,12 @@ no matter what comes before the extension is ignored.</p>
 </div>
 <p>Stage and commit the changes to <code>.gitignore</code> and push to
 GitHub.</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: Ignoring .csv and .pkl files"</span></span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: Ignoring .csv and .pkl files"</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
 </div>
 <p>Pull requests are created on GitHub.</p>
 </div>
@@ -1127,13 +1153,13 @@ the <em>SSH</em> tab. Copy the URL. If you want to clone the work to
 <code>~/work/git/</code> then in a terminal run the following commands
 (be wary of copy and pasting them <code>&lt;owners_id&gt;</code> needs
 replacing)</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>owners_id<span class="op">&gt;</span>/python-maths</span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:<span class="op">&lt;</span>owners_id<span class="op">&gt;</span>/python-maths</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="edit--gitconfig">Edit <code>.git/config</code>
@@ -1144,12 +1170,12 @@ defined and replace <code>ns-rse</code> with the GitHub username of the
 person who will be the Repository Owner. For example if the repository
 owner uses the <code>alice_and_bob</code> username on GitHub it should
 read.</p>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
 </div>
 <p>This edit changes the <code>origin</code> to be the empty repository
 you created under the <em>Repository Owner’s</em> account called
@@ -1168,10 +1194,10 @@ the repository, it should be <strong>completely empty</strong>.</p>
 with the following command, the <code>--force</code> is optional and
 shouldn’t be required unless you have inadvertently initialised the
 repository with additional files.</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1237,52 +1263,52 @@ to collaborate and should accept it.</p>
 <strong>Collaborator</strong> should perform this step.</p>
 <p>If you have not already done so activate the <code>git-with-it</code>
 environment you created as described in the setup instructions.</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
 </div>
 <p>You can now install the package and its test dependencies in an
 editable format so that as you work on the package the changes you make
 will instantly be available. Make sure you are in the
 <code>python-maths</code> directory (use <code>pwd</code> to show where
 you are and <code>cd</code> to change directory).</p>
-<div class="codewrapper sourceCode" id="cb27">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="bu">pwd</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
-</div>
-<p>You can optionally check everything is installed and runs by running
-the tests via <a href="https://docs.pytest.org/" class="external-link">pytest</a>.</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">pytest</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
-<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
-<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
-<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
-<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
-<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
-<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
-<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
-<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
-<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
-<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
-<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
-<span id="cb28-20"><a href="#cb28-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb28-21"><a href="#cb28-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
-<span id="cb28-22"><a href="#cb28-22" tabindex="-1"></a></span>
-<span id="cb28-23"><a href="#cb28-23" tabindex="-1"></a></span>
-<span id="cb28-24"><a href="#cb28-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
+</div>
+<p>You can optionally check everything is installed and runs by running
+the tests via <a href="https://docs.pytest.org/" class="external-link">pytest</a>.</p>
+<div class="codewrapper sourceCode" id="cb29">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">pytest</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
+<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
+<span id="cb29-16"><a href="#cb29-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
+<span id="cb29-17"><a href="#cb29-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb29-18"><a href="#cb29-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
+<span id="cb29-19"><a href="#cb29-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
+<span id="cb29-20"><a href="#cb29-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb29-21"><a href="#cb29-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
+<span id="cb29-22"><a href="#cb29-22" tabindex="-1"></a></span>
+<span id="cb29-23"><a href="#cb29-23" tabindex="-1"></a></span>
+<span id="cb29-24"><a href="#cb29-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
 </div>
 </div>
 </div>
@@ -1404,7 +1430,7 @@ there are many others including <a href="https://bitbucket.org/" class="external
   "url": "fair2-for-research-software.github.io/git-with-it/instructor/introduction.html",
   "identifier": "fair2-for-research-software.github.io/git-with-it/instructor/introduction.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-09-15",
+  "dateModified": "2025-09-22",
   "datePublished": "2025-09-22"
 }
 
