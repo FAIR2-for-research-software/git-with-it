@@ -106,6 +106,7 @@ Various tutorials and tools that help explain how Git works.
 - [Git School](https://git-school.github.io/visualizing-git/) a visual sandbox/playground.
 - [Flight rules for git](https://github.com/k88hudson/git-flight-rules) an excellent clear set of resources of how to
   solve different problems/scenarios.
+- [The Git Parable](https://tom.preston-werner.com/2009/05/19/the-git-parable.html) a narrative of how Git works.
 
 #### Git Configuration
 
@@ -145,8 +146,8 @@ advocacy. His videos and articles are well worth reading (as is his book).
 - [Git Tips 1: Oldies but Goodies](https://blog.gitbutler.com/git-tips-1-theres-a-git-config-for-that/)
 - [Git Tips 2: Some Subtle New Things](https://blog.gitbutler.com/git-tips-2-new-stuff-in-git/)
 - [Git Tips 3: Really Large Repositories and
-  Monorepos](https://blog.gitbutler.com/git-tips-3-really-large-repositories/)
-
+ Monorepos](https://blog.gitbutler.com/git-tips-3-really-large-repositories/)
+- [How Core Git Developers Configure Git](https://blog.gitbutler.com/how-git-core-devs-configure-git/)
 #### General
 
 - [Little Things I Like to Do with Git – CSS Wizardry – Web Performance
