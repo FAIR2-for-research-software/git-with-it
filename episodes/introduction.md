@@ -268,7 +268,8 @@ echo "alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'" >
 
 ```
 
-These options will be used whenever you use `nano`. See more options with `nano --help`
+These options will be used whenever you use `nano`. You can alternatively place these configuration options in
+`$XDG_CONFIG_HOME/nano/nanorc`. See more options and information on configuration with `nano --help`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -446,6 +447,25 @@ git config --global alias.logp 'log --graph --pretty=format:"%C(yellow)%h\\ %C(g
 ```
 
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Useful `git fire` alias
+
+You may have seen the common Git meme about committing and pushing your changes before exiting the building if there is
+a fire alarm...
+
+![In case of fire... `git commit`, `git
+push`](https://cknoll.github.io/images/2025-09-git-fire/git-gommit-push-leave-building.png)
+
+Whilst humorous its not the best advice as there are [problems][git_commit_problems] with this approach. You can
+however, as noted in the linked blog, set an alias for this which makes it quick and easy to save your changes.
+
+``` bash
+git config --global alias.fire '!git swtich -c emergency-backup && git commit -a -m "emergency commit" && git push -u origin emergency-backup'
+```
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### `.gitignore`
@@ -709,6 +729,7 @@ the most well known but there are many others including [BitBucket][bitbucket], 
 [gitaliases]: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 [gitignore]: https://git-scm.com/docs/gitignore
 [gitignorepatterns]: https://git-scm.com/docs/gitignore#_pattern_format
+[git_commit_problems]: https://cknoll.github.io/git-fire-en.html
 [gh]: https://github.com
 [gh_newrepo]: https://github.com/new
 [gl]: https://gitlab.com
