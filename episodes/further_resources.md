@@ -90,6 +90,7 @@ resources for RSS feeds are below.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- markdownlint-disable-next-line MD001 -->
+
 #### Learning Resources
 
 Various tutorials and tools that help explain how Git works.
@@ -147,7 +148,9 @@ advocacy. His videos and articles are well worth reading (as is his book).
 - [Git Tips 1: Oldies but Goodies](https://blog.gitbutler.com/git-tips-1-theres-a-git-config-for-that/)
 - [Git Tips 2: Some Subtle New Things](https://blog.gitbutler.com/git-tips-2-new-stuff-in-git/)
 - [Git Tips 3: Really Large Repositories and
+
  Monorepos](https://blog.gitbutler.com/git-tips-3-really-large-repositories/)
+
 - [How Core Git Developers Configure Git](https://blog.gitbutler.com/how-git-core-devs-configure-git/)
 
 #### General

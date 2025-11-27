@@ -1,6 +1,7 @@
 ---
 site: sandpaper::sandpaper_site
 ---
+
 # Git With It
 
 Welcome to the _Git With It_ course material.

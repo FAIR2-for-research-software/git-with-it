@@ -24,7 +24,6 @@ directory which should be used to generate the contents of these emails in HTML 
 | On the Morning  | `joining_reminder_email_two_day.Rmd`         | A reminder of the course starting that day, to be scheduled one hour before the course starts.                 |
 | Day After       | `feedback_survey_email.Rmd` | A request to complete the feedback survey.                                                                     |
 
-
 ## Templates
 
 The templates, written in [RMarkdown][RMarkdown] are [parameterized][RMarkdown-parametrized]. This is achieved by adding
