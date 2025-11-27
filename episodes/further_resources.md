@@ -107,6 +107,7 @@ Various tutorials and tools that help explain how Git works.
 - [Flight rules for git](https://github.com/k88hudson/git-flight-rules) an excellent clear set of resources of how to
   solve different problems/scenarios.
 - [The Git Parable](https://tom.preston-werner.com/2009/05/19/the-git-parable.html) a narrative of how Git works.
+- [Git Hug](https://github.com/Gazler/githug) a game that helps you learn Git.
 
 #### Git Configuration
 
