@@ -8,12 +8,12 @@ title: 'Reference'
 
 ### B
 
-* **branch** a series of git commits.
+- **branch** a series of git commits.
 
 ### C
 
-* `cd` - shell command to `c`hange `d`irectory.
-* **Continuous Integration (CI)** - the process of automatically running different actions (tests, building
+- `cd` - shell command to `c`hange `d`irectory.
+- **Continuous Integration (CI)** - the process of automatically running different actions (tests, building
   documentation) in response to events in a GitHub repository.
 
 ### D
@@ -26,7 +26,7 @@ title: 'Reference'
 
 ### H
 
-* **hooks** - the process of automatically running different actions in response to events in a local Git repository.
+- **hooks** - the process of automatically running different actions in response to events in a local Git repository.
 
 ### I
 

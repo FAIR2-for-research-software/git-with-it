@@ -759,7 +759,7 @@ git reset --hard HEAD~1
 <!-- ## Solution 3 -->
 
 <!-- A third similar option is checkout the previous commit _before_ you added the file by mistake, create the -->
-<!-- `<github_user>/contributing` branch, and copy the `CONTRIBUTING.md` file from the `HEAD` of `main` using -->
+<!-- `<GitHub_user>/contributing` branch, and copy the `CONTRIBUTING.md` file from the `HEAD` of `main` using -->
 <!--  `git restore` and _then_ remove the commit from main. -->
 
 <!-- ``` bash -->

@@ -142,6 +142,7 @@ ability to have comments) and is regularly used for configuration files.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- markdownlint-disable-next-line MD001 -->
+
 #### Fields
 
 The syntax defined in the Workflow
@@ -161,6 +162,7 @@ The syntax defined in the Workflow
       - `matrix` : This is a neat way of defining more than one operating system, and in this case Python version on
         which to run the tests under. These combine to increase the number of virtual machines that are spun up and the
         tests are run under.
+
         - `os` : defines the operating system on which to run the tests, there are many available, including older
           versions of each.
         - `python-version` : defines which Python versions to run the tests under.
@@ -168,6 +170,7 @@ The syntax defined in the Workflow
       - `uses` : This first instance uses the [`actions/checkout@v4`](https://github.com/actions/checkout) which is an
         action provided by GitHub that checks out the repository the workflow belongs to. You will want to include this
         as the first step in almost all of your actions.
+
       - `name` : A description of the next step, in this case _Set up Python_
       - `uses` : Runs the [`actions/setup-python@v5`](https://github.com/actions/setup-python) which will install
         Python, which version is defined under the `with` that follows.
