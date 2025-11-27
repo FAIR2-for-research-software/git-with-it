@@ -31,14 +31,13 @@ As you and your collaborator(s) work on your repository you may find that change
 has been merged via a Pull Request, but the work to address the Square Root function hasn't and is in effect behind the
 `main` branch. The following is a representation of the current state, albeit from a single developer.
 
-<!-- Source for Mermaid diagram :
-     https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_diverging_branches-js
--->
-<!--
+``` mermaid
 %%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
          }
 }%%
     gitGraph
+       accTitle: Simple Git Branches
+       accDescr {Diverging branches in python-maths ns-rse/2-square-root is now behind the main branch which has incorporated the changes from ns-rse/1-zero-division.}
        commit id: "0-472f101"
        commit id: "1-51816d6"
        commit id: "2-6769ff2 (base)"
@@ -56,10 +55,7 @@ has been merged via a Pull Request, but the work to address the Square Root func
        merge "ns-rse/1-zero-division" id: "7-bc43901" tag: "Merge zero division"
        commit id: "HEAD"
 
--->
-
-<!-- markdownlint-disable-next-line MD013 -->
-![Diverging branches in `python-maths`: `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`.](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="Diverging branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
+```
 
 In this example the `main` branch now includes the commits `3-8c52dce` and `5-2315fa0` from the `ns-rse/1-zero-division`
 branch as well as the commit `7-bc43901` which was made when the `ns-rse/1-zero-division` branch was merged in. The
@@ -79,17 +75,43 @@ There are two approaches to solving this: merging (`git merge`)  and rebasing (`
 
 ### Merging
 
-<!-- markdownlint-disable-next-line MD013 -->
-![**Before** - diverged branches in `python-maths`: `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`.](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
-
-<!-- Source for Mermaid diagram :
-     https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_merging-js
--->
-<!--
+``` mermaid
 %%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
          }
 }%%
     gitGraph
+       accTitle: Diverging Branches
+       accDescr {Before - diverged branches in python-maths. The branch ns-rse/2-square-root is now behind the main
+       branch which has incorporated the changes from the ns-rse/1-zero-division branch.}
+       commit id: "0-472f101"
+       commit id: "1-51816d6"
+       commit id: "2-6769ff2 (base)"
+       branch "ns-rse/1-zero-division"
+       branch "ns-rse/2-square-root"
+       checkout "ns-rse/1-zero-division"
+       commit id: "3-8c52dce"
+       checkout "ns-rse/2-square-root"
+       commit id: "4-8ec389a"
+       checkout "ns-rse/1-zero-division"
+       commit id: "5-2315fa0"
+       checkout "ns-rse/2-square-root"
+       commit id: "6-93e787c"
+       checkout main
+       merge "ns-rse/1-zero-division" id: "7-bc43901" tag: "v0.1.1"
+       commit id: "HEAD"
+       checkout "main"
+
+```
+
+``` mermaid
+%%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
+         }
+}%%
+    gitGraph
+       accTitle: Merging Diverged Branches
+       accDescr {After - main, which has already had the work in ns-rse/1-zero-division merged into it, is
+       merged into ns-rse/2-square-root. Development is completed on ns-rse/2-square-root and the feature merged
+       into main.}
        commit id: "0-472f101"
        commit id: "1-51816d6"
        commit id: "2-6769ff2 (base)"
@@ -113,10 +135,7 @@ There are two approaches to solving this: merging (`git merge`)  and rebasing (`
        checkout "main"
        merge "ns-rse/2-square-root" id: "11-a8c9932" tag: "v0.1.2"
 
--->
-
-<!-- markdownlint-disable-next-line MD013 -->
-![**After** - `main`, which has already had the work in `ns-rse/1-zero-division` merged into it, is merged into `ns-rse/2-square-root`. Development is completed on `ns-rse/2-square-root` and the feature merged into `main`.](https://mermaid.ink/img/pako:eNqtk8GOmzAQhl8FWYpoJUxtA8bmVnVX7aE99VZxMcYk1i44NWbVXcS715CyTaIkqtpywuN_vvk9mhmBNLUCBdhsRt1pVwRj6HaqVWERhJXoVRgF4Va7j1bsd-F8a40TTn0wbavdZ1GpRx91dlBT2QXr5_-nzeYQWJNfr-WSGui6CEqAYJqTBiNcgssCDDPMMK3pNQGBNKe8aUjwZvb79khXWdHJndd0PbS9eofhi7IG1vpJ99p0N5QE9t8HYRW0xrjjyjslH8zg_oR54jKBTGakluom7GrZY1QKmZIJ4-J_-MogSXDWCPTvvijkicpZLi-hWqG712ir7FbdsPoLmMNKpgmfZyNwYjuHnlCM46uz8un-_d1fvWM1tLhcyzMoGJKqYb_Lf1l0B9VlCxzKiiX8tJ8n84wgFipLZXLZ6Rn8rFVnD1iZ2FuVnCfkrFNkJoEIeIrn1n7Nx5lcgmXFSzALa2EfZtnkdcO-9rt9X2tnLCjmrY6AGJz5-tzJ9XzQ3GmxtaIFRSMeex_di-6bMSdnUIzgBygwyWOcEoSTDHHMEU8i8AwKwmjMckwYyThllLIpAi8LAcUMYR9KEfU5Wcbx9BO0WV5-?type=png){alt-text="**After** - `main`, which has already had the work in `ns-rse/1-zero-division` merged into it, is merged into `ns-rse/2-square-root`. Development is completed on `ns-rse/2-square-root` and the feature merged into `main`."}
+```
 
 The syntax of `git merge` is
 
@@ -256,17 +275,43 @@ branches they are no longer shown by name in the `git log --graph` output.
 Rebasing moves the point at which the branch diverged from its original position to another, in this case the `HEAD` of
 the `main` branch. You are changing the `base` commit, hence the name `git rebase`.
 
-<!-- markdownlint-disable-next-line MD013 -->
-![**Before** - diverged branches in `python-maths`: `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`.](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="**Before** - diverged branches in `python-maths` `ns-rse/2-square-root` is now behind the `main` branch which has incorporated the changes from `ns-rse/1-zero-division`."}
-
-<!-- Source for Mermaid diagram :
-     https://gist.github.com/ns-rse/08fb86b003a26f7855281eeea88566d0#file-git_graph_branching_rebase-js
--->
-<!--
+``` mermaid
 %%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
          }
 }%%
     gitGraph
+       accTitle: Diverged Branches
+       accDescr {Before - diverged branches in python-maths. The branch ns-rse/2-square-root is now behind the main
+       branch which has incorporated the changes from the ns-rse/1-zero-division branch.}
+       commit id: "0-472f101"
+       commit id: "1-51816d6"
+       commit id: "2-6769ff2 (base)"
+       branch "ns-rse/1-zero-division"
+       branch "ns-rse/2-square-root"
+       checkout "ns-rse/1-zero-division"
+       commit id: "3-8c52dce"
+       checkout "ns-rse/2-square-root"
+       commit id: "4-8ec389a"
+       checkout "ns-rse/1-zero-division"
+       commit id: "5-2315fa0"
+       checkout "ns-rse/2-square-root"
+       commit id: "6-93e787c"
+       checkout main
+       merge "ns-rse/1-zero-division" id: "7-bc43901" tag: "v0.1.1"
+       commit id: "HEAD"
+       checkout "main"
+
+
+```
+
+``` mermaid
+%%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
+         }
+}%%
+    gitGraph
+       accTitle: Rebasing
+       accDescr {After - rebase to bring the diverged branch up-to-date with main which includes
+       ns-rse/1-zero-division. Two more commits are made and ns-rse/2-square-root is then merged into main.}
        commit id: "0-472f101"
        commit id: "1-51816d6"
        commit id: "2-6769ff2 (base)"
@@ -288,10 +333,7 @@ the `main` branch. You are changing the `base` commit, hence the name `git rebas
        checkout "main"
        merge "ns-rse/2-square-root" id: "9-ba93020" tag: "v0.1.2"
 
--->
-
-<!-- markdownlint-disable-next-line MD013 -->
-![**After** - rebase to bring the diverged branch up-to-date with `main` which includes `ns-rse/1-zero-division`. Two more commits are made and `ns-rse/2-square-root` is then merged into `main`.](https://mermaid.ink/img/pako:eNqtk02PmzAQhv8KshTRSjH1Bxiba1v10lN7q7gYYxJrF5was-ou4r_XziYrdpVEK7Wc8DvvPB7PaGagbKtBBTab2QzGV8mc-r3udVolaSNHnW6TdGf8NycP-zRGnfXS68-2743_Lht9H1TvJr3UQ3L-wv-y2TwL5-SXsDqmJqatkhogmJekwwjX4LIBwwJzzFp2zUAgK5noOpJ8iPV-XPkaJwe1D55hhG7UnzB80s7C1jyY0dhhTdxrdWcn_y7v-nYKuSpIq_T_gBWQUFx0El2C9dIML2qv3U7f4J-AJWxUTkXsbuLlLkoPKMPZhW6fwj90bOKNHhI4_p6k09BZ628--qpz_eQccq0oF_LfUQwKqkteqmuGEqqGU_G6vWsDh1jqIlf0cjHHCYBrM3hT4wkpYCMFRQS9mQCJoHoAWxAwAdyGFZwjugbH9atBtLbS3UXjEnzToQ1797U13jpQxY3bAjl5-_NxUOfzs-eLkTsne1B18n4M6kEOv6x9dQbVDP6ACpMywzlBmBZIYIEE3YJHUBHOMl5iwkkhGGeML1vwdCSgjCMcpByxkFMUAi9_ARUBQVQ?type=png){alt-text="**After** - rebase to bring the diverged branch up-to-date with `main` which includes `ns-rse/1-zero-division`. Two more commits are made and `ns-rse/2-square-root` is then merged into `main`."}
+```
 
 `git rebase` takes a different approach to bringing branches up-to-date and in effect moves the point at which a branch
 diverged from `main` rather than merging the changes in.
@@ -416,12 +458,97 @@ In your pairs bring the `square-root` branch up-to-date and incorporate the chan
 The person who has been working on the `square-root` issue/branch will be at the helm for this, but work together to
 come up with a solution. You can use either of the two strategies `git merge` or `git rebase` to do this.
 
-<!-- markdownlint-disable-next-line MD013 -->
-![Diverged branches](https://mermaid.ink/img/pako:eNqtklFv2yAUhf8KQoq8SSYDbDD4bVqr9WF72tvkF4JxglqbDOOpreX_PkiaKpXadNJmP9j38N1zD9KdoXatgTVcrWY72FCDOQs705usBtlGjSbLQba14atX-12WTr0LKpgvru9t-KY25i6qwU9maQZweuL_slodhVPz87E-tALb1qCBGJUV7QgmDXwdIIgRQXjL3wIo4hWXXUfBh5T34xm38WrQu8gMI_Kj-UTQo_EOtfa3Ha0bLpAUjb8m5Q3yzoXzyTujb90U_sbzRcoCCc1oq81FszfHnluVSBhdCKn-Ry6GaEFYp_C_5-JIFqYSlX7Nqld2eFZ747fmQtQnwwptdFnItBsgqG2Svh86Ew7eu9nN9eerBsIcxmlxeht3fE5kAw_73cAEtcrfJoMlctO-jYt93drgPKzTSudQTcH9eBj0qT4yV1ZtvepP4l4NP52LZafuxmMN6xnewxqVAq8lq-KLZcmpECyHD7DmeM0xZfFqRMr4kUsOHw8WdI1piQvBSMEKLmW1_AHrjxWc?type=png){alt-text="Diverged branches"}
-<!-- markdownlint-disable-next-line MD013 -->
-![Merge](https://mermaid.ink/img/pako:eNqtk8GOmzAQhl8FWYpoJUxtA8bmVnVX7aE99VZxMcYk1i44NWbVXcS715CyTaIkqtpywuN_vvk9mhmBNLUCBdhsRt1pVwRj6HaqVWERhJXoVRgF4Va7j1bsd-F8a40TTn0wbavdZ1GpRx91dlBT2QXr5_-nzeYQWJNfr-WSGui6CEqAYJqTBiNcgssCDDPMMK3pNQGBNKe8aUjwZvb79khXWdHJndd0PbS9eofhi7IG1vpJ99p0N5QE9t8HYRW0xrjjyjslH8zg_oR54jKBTGakluom7GrZY1QKmZIJ4-J_-MogSXDWCPTvvijkicpZLi-hWqG712ir7FbdsPoLmMNKpgmfZyNwYjuHnlCM46uz8un-_d1fvWM1tLhcyzMoGJKqYb_Lf1l0B9VlCxzKiiX8tJ8n84wgFipLZXLZ6Rn8rFVnD1iZ2FuVnCfkrFNkJoEIeIrn1n7Nx5lcgmXFSzALa2EfZtnkdcO-9rt9X2tnLCjmrY6AGJz5-tzJ9XzQ3GmxtaIFRSMeex_di-6bMSdnUIzgBygwyWOcEoSTDHHMEU8i8AwKwmjMckwYyThllLIpAi8LAcUMYR9KEfU5Wcbx9BO0WV5-?type=png){alt-text="Merge"}
-<!-- markdownlint-disable-next-line MD013 -->
-![Rebase](https://mermaid.ink/img/pako:eNqtk02PmzAQhv8KshTRSjH1Bxiba1v10lN7q7gYYxJrF5was-ou4r_XziYrdpVEK7Wc8DvvPB7PaGagbKtBBTab2QzGV8mc-r3udVolaSNHnW6TdGf8NycP-zRGnfXS68-2743_Lht9H1TvJr3UQ3L-wv-y2TwL5-SXsDqmJqatkhogmJekwwjX4LIBwwJzzFp2zUAgK5noOpJ8iPV-XPkaJwe1D55hhG7UnzB80s7C1jyY0dhhTdxrdWcn_y7v-nYKuSpIq_T_gBWQUFx0El2C9dIML2qv3U7f4J-AJWxUTkXsbuLlLkoPKMPZhW6fwj90bOKNHhI4_p6k09BZ628--qpz_eQccq0oF_LfUQwKqkteqmuGEqqGU_G6vWsDh1jqIlf0cjHHCYBrM3hT4wkpYCMFRQS9mQCJoHoAWxAwAdyGFZwjugbH9atBtLbS3UXjEnzToQ1797U13jpQxY3bAjl5-_NxUOfzs-eLkTsne1B18n4M6kEOv6x9dQbVDP6ACpMywzlBmBZIYIEE3YJHUBHOMl5iwkkhGGeML1vwdCSgjCMcpByxkFMUAi9_ARUBQVQ?type=png){alt-text="Rebase"}
+``` mermaid
+%%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
+         }
+}%%
+    gitGraph
+       accTitle: Diverged Branches
+       accDescr {Diverged Branches.}
+       commit id: "0-472f101"
+       commit id: "1-51816d6"
+       commit id: "2-6769ff2 (base)"
+       branch "ns-rse/1-zero-division"
+       branch "ns-rse/2-square-root"
+       checkout "ns-rse/1-zero-division"
+       commit id: "3-8c52dce"
+       checkout "ns-rse/2-square-root"
+       commit id: "4-8ec389a"
+       checkout "ns-rse/1-zero-division"
+       commit id: "5-2315fa0"
+       checkout "ns-rse/2-square-root"
+       commit id: "6-93e787c"
+       checkout main
+       merge "ns-rse/1-zero-division" id: "7-bc43901" tag: "v0.1.1"
+       commit id: "HEAD"
+       checkout "main"
+
+
+```
+
+``` mermaid
+%%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
+         }
+}%%
+    gitGraph
+       accTitle: Merging Diverged Branches
+       accDescr {After - main, which has already had the work in ns-rse/1-zero-division merged into it, is
+       merged into ns-rse/2-square-root. Development is completed on ns-rse/2-square-root and the feature merged
+       into main.}
+       commit id: "0-472f101"
+       commit id: "1-51816d6"
+       commit id: "2-6769ff2 (base)"
+       branch "ns-rse/1-zero-division"
+       branch "ns-rse/2-square-root"
+       checkout "ns-rse/1-zero-division"
+       commit id: "3-8c52dce"
+       checkout "ns-rse/2-square-root"
+       commit id: "4-8ec389a"
+       checkout "ns-rse/1-zero-division"
+       commit id: "5-2315fa0"
+       checkout "ns-rse/2-square-root"
+       commit id: "6-93e787c"
+       checkout main
+       merge "ns-rse/1-zero-division" id: "7-bc43901" tag: "v0.1.1"
+       commit id: "HEAD"
+       checkout "ns-rse/2-square-root"
+       merge "main" id: "8-a80cef8" tag: "Merge main"
+       commit id: "9-cb839a0"
+       commit id: "10-1ae54c3"
+       checkout "main"
+       merge "ns-rse/2-square-root" id: "11-a8c9932" tag: "v0.1.2"
+
+```
+
+``` mermaid
+%%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
+         }
+}%%
+    gitGraph
+       accTitle: Rebase
+       accDescr {Rebase.}
+       commit id: "0-472f101"
+       commit id: "1-51816d6"
+       commit id: "2-6769ff2 (base)"
+       branch "ns-rse/1-zero-division"
+       checkout "ns-rse/1-zero-division"
+       commit id: "3-8c52dce"
+       checkout "ns-rse/1-zero-division"
+       commit id: "5-2315fa0"
+       checkout main
+       merge "ns-rse/1-zero-division" id: "7-bc43901" tag: "v0.1.1"
+       commit tag: "Rebase"
+       branch "ns-rse/2-square-root"
+       checkout "ns-rse/2-square-root"
+       commit id: "4-8ec389a"
+       checkout "ns-rse/2-square-root"
+       commit id: "6-93e787c"
+       commit id: "7-cb839a0"
+       commit id: "8-1ae54c3"
+       checkout "main"
+       merge "ns-rse/2-square-root" id: "9-ba93020" tag: "v0.1.2"
+
+```
 
 :::::::::::::::::::::::: solution
 
