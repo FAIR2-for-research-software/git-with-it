@@ -65,9 +65,10 @@ Sometimes this won't be a problem, the two features/issues are completely indepe
 same file and it would be possible to merge the branches into `main` without any merge conflicts because neither have
 modified the same files in the same location.
 
-That will not always be the case though, sometimes merge conflicts might arise if the second branch is changing some of the
-same files as the first branch. Another scenario might be that whilst work was being done on adding a new feature branch,
-a critical bug was fixed that the new feature depends on and the changes now in `main` need incorporating in the feature
+That will not always be the case though, sometimes merge conflicts might arise if the second branch is changing some of
+the same files as the first branch. Another scenario might be that whilst work was being done on adding a new feature
+branch, a critical bug was fixed that the new feature depends on and the changes now in `main` need incorporating in the
+feature
 branch. That is in fact the situation we have with our `ns-rse/2-square-root` branch, it conflicts with `main` because
 of the changes we merged from the `ns-rse/1-zero-division` branch.
 
