@@ -14,8 +14,8 @@ contact an instructor in advance or arrive early and seek assistance from an ins
 
 <!-- ## Example Repository -->
 
-<!-- This course uses a GitHub Template that you will, in small groups, create a copy of and collaborate on. Using this -->
-<!-- template and setting it up is part of the course, you do not need to set it up in advance. -->
+<!-- This course uses a GitHub Template that you will, in small groups, create a copy of and collaborate on. Using -->
+<!-- this template and setting it up is part of the course, you do not need to set it up in advance. -->
 
 ::::::::::::::::::::::::::::::::::::::: discussion
 
