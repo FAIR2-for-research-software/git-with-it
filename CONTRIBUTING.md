@@ -48,7 +48,7 @@ NB: The published copy of the lesson is usually in the `main` branch.
 
 [repo]: https://github.com/Romain-Thomas-Shef/FAIR_Management_plan
 [repo-issues]: https://github.com/Romain-Thomas-Shef/FAIR_Management_plan/issues
-[contact]: mailto:romain.thomas@sheffield.ac.uk
+[contact]: mailto:<romain.thomas@sheffield.ac.uk>
 [github]: https://github.com
 [github-flow]: https://guides.github.com/introduction/flow/
 [github-join]: https://github.com/join

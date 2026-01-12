@@ -754,7 +754,7 @@ changes (**NB** make sure youre are)
 ## Solution
 
 The following line should be added under the `hooks:` section of the `- repo:
-https://github.com/pre-commit/pre-commit-hooks` repository configuration.
+<https://github.com/pre-commit/pre-commit-hooks>` repository configuration.
 
 ``` yaml
       - id: forbid-new-submodules

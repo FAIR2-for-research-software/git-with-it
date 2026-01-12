@@ -32,13 +32,13 @@ What follows are the descriptions of the workflow files:
 This is the main driver that will only act on the main branch of the repository.
 This workflow does the following:
 
- 1. checks out the lesson
- 2. provisions the following resources
+1. checks out the lesson
+2. provisions the following resources
    - R
    - pandoc
    - lesson infrastructure (stored in a cache)
    - lesson dependencies if needed (stored in a cache)
- 3. builds the lesson via `sandpaper:::ci_deploy()`
+3. builds the lesson via `sandpaper:::ci_deploy()`
 
 #### Caching
 
@@ -86,7 +86,7 @@ This workflow ensures that the workflow files are up-to-date. The way it work is
 to download the update-workflows.sh script from GitHub and run it. The script
 will do the following:
 
-1. check the recorded version of sandpaper against the current version on github
+1. check the recorded version of sandpaper against the current version on GitHub
 2. update the files if there is a difference in versions
 
 After the files are updated, if there are any changes, they are pushed to a
@@ -109,7 +109,7 @@ update cache workflow will do this by checking for updates, applying them in a
 branch called `updates/packages` and creating a pull request with _only the
 lockfile changed_.
 
-From here, the markdown documents will be rebuilt and you can inspect what has
+From here, the Markdown documents will be rebuilt and you can inspect what has
 changed based on how the packages have updated.
 
 ## Pull Request and Review Management

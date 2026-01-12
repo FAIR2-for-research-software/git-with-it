@@ -759,9 +759,11 @@ lines (although technically its 4 since we also included blank lines) then follo
 We are given some useful information as to what we could do and there are three options.
 
 1. `Resolve all conflicts manually, mark them as resolved with "git add/rm <conflicted files>", then run "git rebase
+
   --continue".`
-2. `You can instead skip this commit: run "git rebase --skip".`
-3. `To abort and get back to the state before "git rebase", run "git rebase --abort".`
+
+1. `You can instead skip this commit: run "git rebase --skip".`
+2. `To abort and get back to the state before "git rebase", run "git rebase --abort".`
 
 These are really useful messages telling us how we can proceed. In this instance we want to take option 1, so we should
 open the `README.md` and edit it to leave it in the state we want the file to be in.
@@ -795,6 +797,7 @@ text editor you use to edit and save the files and if you are comfortable using 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 <!-- markdownlint-disable-next-line MD001 -->
+
 #### 8. Add the conflicted file and continue with rebase
 
 You can now continue with the advice and add the conflicted files back to Git and continue with the rebase.
