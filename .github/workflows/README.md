@@ -1,9 +1,9 @@
 # Carpentries Workflows
 
-This directory contains workflows to be used for Lessons using the Carpentries Workbench lesson infrastructure. 
+This directory contains workflows to be used for Lessons using the Carpentries Workbench lesson infrastructure.
 
 The three `docker-` workflows build lessons and maintain packages.
-The workflows run using the [workbench-docker](https://github.com/carpentries/workbench-docker) container. 
+The workflows run using the [workbench-docker](https://github.com/carpentries/workbench-docker) container.
 This container comprises prebuilt and installed dependencies of the core Workbench packages, i.e. sandpaper, pegboard and varnish.
 
 Two `update-` workflows handle:
@@ -151,15 +151,15 @@ If you have no caches listed, make sure to run the "02 Maintain: Check for Updat
 
 These workflows run on a mix of schedules, automatic triggers, and at the maintainer's request.
 Because they create pull requests that update workflows/require the downstream actions to run,
-they need a special repository/organization secret token called 
-`SANDPAPER_WORKFLOW` and it must have the `public_repo` and `workflow` scope. 
+they need a special repository/organization secret token called
+`SANDPAPER_WORKFLOW` and it must have the `public_repo` and `workflow` scope.
 
 This can be an individual user token, OR it can be a trusted bot account. If you
 have a repository in one of the official Carpentries organisations, then you do not
 need to worry about this token being present because the Carpentries Core Team
 will take care of supplying this token.
 
-If you want to use your personal account: you can go to 
+If you want to use your personal account: you can go to
 <https://github.com/settings/tokens/new?scopes=public_repo,workflow&description=Sandpaper%20Token>
 to create a token. Once you have created your token, you should copy it to your
 clipboard and then go to your repository's settings > secrets > actions and
@@ -172,11 +172,11 @@ give you instructions to provide the token for your repository.
 
 For lessons that have generated content, we use {renv} to ensure that the output
 is stable. This is controlled by a single lockfile which documents the packages
-needed for the lesson and the version numbers. This workflow is skipped in 
+needed for the lesson and the version numbers. This workflow is skipped in
 lessons that do not have generated content.
 
 Packages are frequently updated, fixing bugs or introducing new features. It's a
-good idea to make sure these packages can be both: updated periodically, or; or left 
+good idea to make sure these packages can be both: updated periodically, or; or left
 static to ensure consistent lesson builds.
 
 The update cache workflow will do this by:
@@ -209,14 +209,14 @@ You would only ever need to run this workflow manually:
 
 ### "04 Maintain: Update Workflow Files" (update-workflows.yaml)
 
-The {sandpaper} repository was designed to do as much as possible to separate 
-the tools from the content. For local builds, this is absolutely true as you 
-can develop and build lessons without any GitHub workflows. When it comes to 
-workflow files on GitHub itself for managed builds online, the workflows must 
+The {sandpaper} repository was designed to do as much as possible to separate
+the tools from the content. For local builds, this is absolutely true as you
+can develop and build lessons without any GitHub workflows. When it comes to
+workflow files on GitHub itself for managed builds online, the workflows must
 live inside the lesson repository.
 
 This workflow ensures that the workflow files are up-to-date. It downloads the
-`update-workflows.sh` script from GitHub and runs it. The script will do the 
+`update-workflows.sh` script from GitHub and runs it. The script will do the
 following:
 
 1. check the recorded version of sandpaper against the current version on GitHub
@@ -235,7 +235,7 @@ Because our lessons execute code, pull requests are a secruity risk for any
 lesson and thus have security measures associted with them. **Do not merge any
 pull requests that do not pass checks and do not have bots commented on them.**
 
-This series of workflows all go together and are described in the following 
+This series of workflows all go together and are described in the following
 diagram and the below sections:
 
 ![Graph representation of a pull request](https://carpentries.github.io/sandpaper/articles/img/pr-flow.dot.svg)
@@ -246,15 +246,15 @@ This workflow runs every time a pull request is created and its purpose is to
 validate that the pull request is okay to run. This means the following things:
 
 1. The pull request does not contain modified workflow files
-2. If the pull request contains modified workflow files, it does not contain 
+2. If the pull request contains modified workflow files, it does not contain
    modified content files (such as a situation where @carpentries-bot will
    make an automated pull request)
 3. The pull request does not contain an invalid commit hash (e.g. from a fork
    that was made before a lesson was transitioned from styles to use the
    workbench).
 
-Once the checks are finished, a comment is issued to the pull request, which 
-will allow maintainers to determine if it is safe to run the 
+Once the checks are finished, a comment is issued to the pull request, which
+will allow maintainers to determine if it is safe to run the
 "Receive Pull Request" workflow from new contributors.
 
 ### Receive Pull Request (docker_pr_receive.yaml)
@@ -271,7 +271,7 @@ started.
 
 The first step of this workflow is to check if it is valid (e.g. that no
 workflow files have been modified). If there are workflow files that have been
-modified, a comment is made that indicates that the workflow is not run. If 
+modified, a comment is made that indicates that the workflow is not run. If
 both a workflow file and lesson content is modified, an error will occurr.
 
 The second step (if valid) is to build the generated content from the pull
@@ -297,9 +297,9 @@ The steps in this workflow are:
 Importantly: if the pull request is invalid, the branch is not created so any
 malicious code is not published.
 
-From here, the maintainer can request changes from the author and eventually 
-either merge or reject the PR. When this happens, if the PR was valid, the 
-preview branch needs to be deleted. 
+From here, the maintainer can request changes from the author and eventually
+either merge or reject the PR. When this happens, if the PR was valid, the
+preview branch needs to be deleted.
 
 ### Send Close PR Signal (pr-close-signal.yaml)
 
