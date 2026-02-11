@@ -63,6 +63,9 @@ These are summarised in the following series of blog posts.
 - [Git Tips 3: Really Large Repositories and
   Monorepos](https://blog.gitbutler.com/git-tips-3-really-large-repositories/)
 
+Another useful video that helps explain some of the basic principles of Git is the video [Git Will Finally Make Sense
+After This](https://www.youtube.com/watch?v=Ala6PHlYjmw).
+
 ### Blogs
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -177,6 +180,8 @@ advocacy. His videos and articles are well worth reading (as is his book).
 - [git rebase: what can go wrong?](https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/)
 - [Getting solid at Git rebase
   vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
+- [Git Interactive Rebase Tool](https://gitrebasetool.mitmaro.ca)
+  ([MitMaro/git-interactive-rebase-tool](https://github.com/MitMaro/git-interactive-rebase-tool))
 
 #### Reviewing
 

@@ -1169,6 +1169,7 @@ up-to-date when you know they have diverged.
 - [git rebase: what can go wrong?](https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/)
 - [Getting solid at Git rebase
   vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
+- [Git Interactive Rebase Tool](https://gitrebasetool.mitmaro.ca/)
 
 [nano]: https://www.nano-editor.org/
 [rerere]: https://git-scm.com/book/en/v2/Git-Tools-Rerere

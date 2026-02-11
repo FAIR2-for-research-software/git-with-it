@@ -224,7 +224,7 @@ repository and the different commits and branches but none of the _actual_ files
 
 **NB** If you don't explicitly state a target directory to clone to it will be the repository name suffixed with `.git`,
 i.e. in this example `pytest-examples.git`. I recommend sticking with the convention of using the same repository name
-so will explicitly state it.
+so will explicitly state it as `pytest-examples` (i.e. _without_ git `.git` suffix).
 
 ```bash
 cd ..
@@ -265,10 +265,15 @@ tree -afhD -L 2
 ```
 
 What use is that? Well from this point you can instead of using `git branch` use `git worktree add <branch_name>` and it
-will create a _directory_ with the name of the branch which holds all the files in their current state on that branch.
+will create a _directory_ with the name of the branch which holds all the files in their current state on that
+branch. Its a good idea to have a copy of the `main` branch so we'll start by adding a worktree for that. Note that the
+argument to `add` is `<path> <commit-ish>` which means if you want the directory to which the worktree is copied to have
+the same name as the branch then you should include the argument twice (remember branch names are a convenience to point
+to the tip of a series of commits). It also means you can create worktrees outside of the bare-cloned repository if
+required but for convenience I would keep them within the bare repository.
 
 ```bash
-git worktree add main
+git worktree add main main
 Preparing worktree (checking out 'main')
 HEAD is now at 2f7c382 Merge pull request #6 from ns-rse/ns-rse/tidy-print
 tree -afhD -L 2 main/
@@ -299,7 +304,8 @@ Each branch can have a worktree added for it and then when you want to switch be
 `cd`ing into the worktree (/branch) you wish to work on. You use Git commands within the worktree directory to apply
 them to that branch and Git keeps track of everything in the usual manner.
 
-Lets create two worktree's, the `contributing` and `citation` we created above when working with branches. If you didn't
+Lets create two worktree's, the `contributing` and `citation` we created previously when working with branches. If you
+haven't already made a bare clone of the repository you will have to do so.
 
 ```bash
 cd ../
