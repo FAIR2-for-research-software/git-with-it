@@ -4,29 +4,29 @@ author: ""
 date: ""
 output: html_document
 params:
-    course_title: "Git Collaboration"
+    course_title: "Git With It"
     day1:
         label: "Input dataset1:"
-        value: "2025-02-17"
+        value: "2026-03-02"
         input: date
         venue:
     day2:
         label: "Input dataset2:"
-        value: "2025-02-18"
+        value: "2026-03-03"
         input: date
     event_day1_start: "09:30"
     event_day1_finish: "13:00"
-    venue_day1: "Computer Room 4.02, Information Commons"
+    venue_day1: "Computer Room 3.02, Information Commons"
     event_day2_start: "09:30"
     event_day2_finish: "13:00"
-    venue_day2: "Computer Room 4.02, Information Commons"
+    venue_day2: "Computer Room 3.02, Information Commons"
     lead_instructor: "Neil Shephard"
     lead_instructor_title: "Research Software Engineer"
 ---
 
 <!--- Send this email around 2 week and  prior to event --->
 
-We're looking forward to welcoming you to the RSE Sheffield training session on **`r params$course_title`**
+We're looking forward to welcoming you to the RSE Sheffield training session on _`r params$course_title`_
 
 
 ### SETUP
@@ -37,13 +37,13 @@ GitHub.**
 #### <span style="color: #d1410c;">!!! Please ensure you have completed setup before the course begins !!!</span>
 
 Instructions on how to create the account as well as install all the software required can be found on the [**Setup
-Section**](https://fair2-for-research-software.github.io/git-collaboration/#setup) of the course materials.
+Section**](https://fair2-for-research-software.github.io/git-with-it/#setup) of the course materials.
 
 Once complete you should be able to run `ssh -T git@github.com` and you will see a message similar to the following
 
 ```
 ssh -T git@github.com
-Hi ns-rse! You've successfully authenticated, but GitHub does not provide shell access.
+Hi <your-github-username>! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
 If you do not see this message you have a problem, most likely with the SSH key you generated and added to your account.
@@ -71,7 +71,7 @@ on the waiting list**.
 
 <br>
 
-See you next week!
+<!-- See you next week! -->
 
 Please don’t hesitate to reach out to me with any questions.
 
