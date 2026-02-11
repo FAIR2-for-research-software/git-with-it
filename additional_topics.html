@@ -355,7 +355,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Additional Topics</h1>
-        <p>Last updated on 2025-09-15 |
+        <p>Last updated on 2026-02-11 |
 
         <a href="https://github.com/ns-rse/git-with-it/edit/main/episodes/additional_topics.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -433,7 +433,7 @@ your computer and configure Git globally to use it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Update the ~/.gitconfig </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The <a href="https://difftastic.wilfred.me.uk/git.html" class="external-link">instructions</a> show
 the configuration options you can add to <code>~/.gitconfig</code> to
@@ -613,8 +613,9 @@ files.</p>
 to clone to it will be the repository name suffixed with
 <code>.git</code>, i.e. in this example
 <code>pytest-examples.git</code>. I recommend sticking with the
-convention of using the same repository name so will explicitly state
-it.</p>
+convention of using the same repository name so will explicitly state it
+as <code>pytest-examples</code> (i.e. <em>without</em> git
+<code>.git</code> suffix).</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -658,11 +659,20 @@ it.</p>
 <code>git branch</code> use
 <code>git worktree add &lt;branch_name&gt;</code> and it will create a
 <em>directory</em> with the name of the branch which holds all the files
-in their current state on that branch.</p>
+in their current state on that branch. Its a good idea to have a copy of
+the <code>main</code> branch so we’ll start by adding a worktree for
+that. Note that the argument to <code>add</code> is
+<code>&lt;path&gt; &lt;commit-ish&gt;</code> which means if you want the
+directory to which the worktree is copied to have the same name as the
+branch then you should include the argument twice (remember branch names
+are a convenience to point to the tip of a series of commits). It also
+means you can create worktrees outside of the bare-cloned repository if
+required but for convenience I would keep them within the bare
+repository.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> worktree add main</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> worktree add main main</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">Preparing</span> worktree <span class="er">(</span><span class="ex">checking</span> out <span class="st">'main'</span><span class="kw">)</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">HEAD</span> is now at 2f7c382 Merge pull request <span class="co">#6 from ns-rse/ns-rse/tidy-print</span></span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2 main/</span>
@@ -694,8 +704,9 @@ the worktree (/branch) you wish to work on. You use Git commands within
 the worktree directory to apply them to that branch and Git keeps track
 of everything in the usual manner.</p>
 <p>Lets create two worktree’s, the <code>contributing</code> and
-<code>citation</code> we created above when working with branches. If
-you didn’t</p>
+<code>citation</code> we created previously when working with branches.
+If you haven’t already made a bare clone of the repository you will have
+to do so.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -967,7 +978,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.18.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -989,7 +1000,7 @@ any links that you are not going to use.
   "url": "fair2-for-research-software.github.io/git-with-it/additional_topics.html",
   "identifier": "fair2-for-research-software.github.io/git-with-it/additional_topics.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2025-09-15",
+  "dateModified": "2026-02-11",
   "datePublished": "2026-02-11"
 }
 

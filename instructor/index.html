@@ -341,17 +341,24 @@ Git works to facilitate collaboration. It builds on foundational Git
 courses such as <a href="https://swcarpentry.github.io/git-novice/" class="external-link">Software Carpentry: Git
 Novice</a> and <a href="https://srse-git-github-zero2hero.netlify.app" class="external-link">Git and GitHub
 through GitKraken : From Zero to Hero!</a>.</p>
-<p>The core idea around which the course is based is to improve your
-understanding of working with branches and how to make a clean Git
-history in terms of commits and pull requests which in turn makes it
-easier to collaborate and work on code with others (including your
-future self!).</p>
+<p>The core idea around which the course is centred is to improve your
+understanding of working with branches and how to ensure you have a
+clean and informative Git history in terms of commits and pull requests.
+This helps make it easier to collaborate and work on code with others
+(including your future self!) because the history of changes is easy to
+understand.</p>
 <p>The course is split into six episodes. The first three introduce the
-concepts of branches and how to navigate them and handle diverging
-branches and introduces the concept of atomic commits and keeping your
-commit history clean. The remaining three chapters introduce the concept
-of Git along with the Pre-Commit framework and how these can be
-leveraged in Continuous Integration.</p>
+concepts of branches and how to navigate them, handle diverging branches
+and introduces the concept of atomic commits to help keep your commit
+history clean. The remaining chapters introduce the concept of “hooks”
+along with the Pre-Commit framework and how these can be leveraged in
+Continuous Integration. The final chapter introduces, briefly, some
+other very useful features of Git that make working with it that little
+bit easier.</p>
+<p>We hope you enjoy the course and find it useful. If you have any
+feedback or find errors with the content, even if its just a tpyo please
+consider creating an <a href="https://github.com/FAIR2-for-research-software/git-with-it/issues/new/choose" class="external-link">issue</a>
+to let us know about it.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -503,7 +510,7 @@ interface is very basic).</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>You can use the <a href="https://git-scm.com/download/win" class="external-link">official
 binary</a> but we encourage you to use <a href="https://carpentries.github.io/workshop-template/install_instructions/#shell" class="external-link">Git
@@ -523,7 +530,7 @@ bundled together).</p>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p><a href="https://git-scm.com/" class="external-link">Git</a> is not included in the MacOS
 distribution by default. The <a href="https://git-scm.com/download/mac" class="external-link">official instructions</a>
@@ -555,7 +562,7 @@ suggests using either <a href="https://brew.sh/" class="external-link">Homebrew<
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Most GNU/Linux distributions will have Git installed by default. If
 not you can install it using the package manager for your distribution.
@@ -628,7 +635,7 @@ account</a>.</p>
   Generate SSH Keys
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>There is a detailed <a href="https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-openssh-on-macos-or-linux" class="external-link">article</a>
 on creating SSH keys under Linux and OSX that works with Git Bash too.
@@ -676,7 +683,7 @@ GitHub account with.</p>
   Adding Keys to GitHub (All OSs)
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>Once you have created your SSH key you need to copy it to your
 account, got to <em>Settings &gt; SSH and GPG Keys</em> and click on the
@@ -696,7 +703,7 @@ button.</p>
   Checking your key works
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>You can test if you have setup your SSH key by running the following
 command which should produce similar output.</p>
@@ -767,7 +774,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.18.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
