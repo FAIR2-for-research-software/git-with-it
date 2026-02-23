@@ -48,7 +48,7 @@ function. As the work is self-contained and we've not added to any other files t
 Git has a few functions to help here and we'll go through those in turn.
 
 We'll use the `python-maths` repository as an example and will make a new branch called
-`<github-user>/amend-fixup-tutorial` to add a `CONTRIBUTING.md` file to.
+`<github-user>/amend-fixup-tutorial` to add a very basic `CONTRIBUTING.md` file to.
 
 ``` bash
 cd pytest-maths
@@ -56,18 +56,36 @@ git switch -c ns-rse/amend-fixup-tutorial
   Switched to a new branch 'ns-rse/amend-fixup-tutorial'
 ```
 
-We already added a basic `CONTRIBUTING.md` to the repository in the previous episode, we will add to that.
+We  will create a `CONTRIBUTING.md` to the repository, you can either copy and paste the following `edit` line or you
+can use `nano CONTRIBUTING.md` to add the file
 
 ``` bash
-echo "\nPlease make a fork of this repository, make your changes and open a Pull Request." >> CONTRIBUTING.md
-git add -u
-git commit -m "docs: Ask for PRs via fork in CONTRIBUTING.md"
+echo "# Contributing\n\nTo contribute please make a fork of this repository, make your changes and open a Pull Request." > CONTRIBUTING.md
+git add CONTRIBUTING.md
+git commit -m "docs: Ask for PRs via fork in CONTRIBUTING.md\n"
 ```
 
 ``` bash
-git logp
+git lol
   01191a2 (HEAD -> ns-rse/amend-fixup-tutorial) docs: Ask for PRs via fork in CONTRIBUTING.md
 ```
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## `cat`
+
+If you want to check the contents of the `CONTRIBUTING.md` file you can use the `cat` command (short for
+"con`cat`enate") to view it.
+
+``` bash
+cat CONTRIBUTING.md
+
+# Contributing
+
+To contribute please make a fork of this repository, make your changes and open a Pull Request.
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Making Amends
 
@@ -76,7 +94,7 @@ test suite and find that on running it your tests fail so you needed to make a c
 more explicit about how to report bugs.
 
 ``` bash
-echo "\nBug reports are also welcome please create an [issue](https://github.com/<user-name>/python-maths/issues).\n" >> CONTRIBUTING.md
+echo "Bug reports are also welcome please create an [issue](https://github.com/<user-name>/python-maths/issues).\n" >> CONTRIBUTING.md
 ```
 
 We could add a new commit for this.
@@ -87,8 +105,10 @@ git commit -m "docs: Add link directing to GH issues for reporting bugs"
 ```
 
 ``` bash
-git logp
-9f0655b (HEAD -> ns-rse/amend-fixup-tutorial) docs: Add link directing to GH issues for reporting bugs
+git lol
+  9f0655b 2026-02-23 (HEAD -> ns-rse/amend-fixup-tutorial) docs: Add link directing to GH issues for reporting bugs
+  01191a2 2026-02-23 docs: Ask for PRs via fork in CONTRIBUTING.md
+  e075bdb 2026-02-16 (origin/main, origin/HEAD, main) Merge pull request #27 from ns-rse/pre-commit-ci-update-config [Neil Shephard]
 ```
 
 ...and there is nothing wrong with that. However, Git history can get long and complicated when there are lots of small
@@ -97,8 +117,8 @@ clearly we would have written about making forks in the first place and made a s
 
 Fortunately Git can help here as there is the `git commit --amend` option which adds the staged changes to the last
 commit and allows you to edit the last commit message (if nothing is currently staged then you will be prompted to edit
-the last commit message). We can undo the last commit using `git reset HEAD~1` as we saw in the branching episode and
-instead amend the first commit that added the `CONTRIBUTING.md`
+the last commit message). We can undo the last commit using `git reset HEAD~1` and instead amend the first commit that
+added the `CONTRIBUTING.md`.
 
 ``` bash
 git reset HEAD~1
@@ -106,15 +126,22 @@ git add -u
 git commit --amend
 ```
 
+The `nano` editor will open with our original commit message which we can edit and then exit (**NB** you _won't_ be
+prompted to save changes, Git does that for you).
+
 ``` bash
-git logp
-  4fda15f (HEAD -> amend-fixup-tutorial) Adding CONTRIBUTING.md
-cat CONTRIBUTING.md
-# Contributing
+docs: Adding CONTRIBUTING.md
 
-Contributions via pull requests are welcome.
+- Ask for contributions via a fork and pull request
+- Link to GitHub issues for reporting bugs
+```
 
-Please make a fork of this repository, make your changes and open a Pull Request.
+If we look at commit history we now only have one commit.
+
+``` bash
+git lol
+  a8eb76e 2026-02-23 (HEAD -> ns-rse/amend-fixup-tutorial) docs: Adding CONTRIBUTING.md [Neil Shephard]
+  e075bdb 2026-02-16 (origin/main, origin/HEAD, main) Merge pull request #27 from ns-rse/pre-commit-ci-update-config [Neil Shephard]
 ```
 
 We now have one commit which contains the new `CONTRIBUTING.md` file with all the changes we wished to have in the file
@@ -135,45 +162,44 @@ git commit --allow-empty -m "Another empty commit for demonstration purposes"
 ```
 
 ```bash
-git logp
-  8061221 (HEAD -> ns-rse/amend-fixup-tutorial) Another empty commit for demonstration purposes
-  65587ce Empty commit for demonstration purposes
-  4fda15f Adding CONTRIBUTING.md
-  35aa48c Previous commit before adding CONTRIBUTING.md
+git lol
+  fc667f7 2026-02-23 (HEAD -> ns-rse/amend-fixup-tutorial) Another empty commit for demonstration purposes [Neil Shephard]
+  6dc5179 2026-02-23 Empty commit for demonstration purposes [Neil Shephard]
+  a8eb76e 2026-02-23 docs: Adding CONTRIBUTING.md [Neil Shephard]
+  e075bdb 2026-02-16 (origin/main, origin/HEAD, main) Merge pull request #27 from ns-rse/pre-commit-ci-update-config [Neil Shephard]
 ```
 
-And let's expand our `CONTRIBUTING.md` file further.
+Now let's expand our `CONTRIBUTING.md` file further.
 
 ``` bash
 echo "\nPlease note this repository uses [pre-commit](https://pre-commit.com) to lint the Python code and Markdown files." >> CONTRIBUTING.md
 ```
 
-We want to merge this commit with the first one we made in this tutorial using `git commit --fixup`. To do this we need
-to know the hash (`4fda15f` see output from above `git logp`). You then use `git commit --fixup <hash>` to commit your
-changes as a "fixup" of the earlier commit.
+We want to merge this commit with the first one we made in this tutorial and can do so using `git commit --fixup`. To do
+this we need to know the hash (`a8eb76e` see output from above `git lol`). You then use `git commit --fixup <hash>` to
+commit your changes as a "fixup" of the earlier commit.
 
 ``` bash
 git add -u
-git commit --fixup 4fda15f
+git commit --fixup a8eb76e
 ```
 
 We see the commit we have just made starts with `fixup!` and is then followed by the commit message that it is fixing,
 but it hasn't yet been combined into that commit.
 
 ```bash
-git logp
-  97711a4 (HEAD -> ns-rse/amend-fixup-tutorial) fixup! Adding CONTRIBUTING.md
-  8061221 Another empty commit for demonstration purposes
-  65587ce Empty commit for demonstration purposes
-  4fda15f Adding CONTRIBUTING.md
-  35aa48c Previous commit before adding CONTRIBUTING.md
+git lol
+  1e4dd47 - 2026-02-23 (HEAD -> ns-rse/amend-fixup-tutorial) fixup! docs: Adding CONTRIBUTING.md [Neil Shephard]
+  fc667f7 - 2026-02-23 Another empty commit for demonstration purposes [Neil Shephard]
+  6dc5179 - 2026-02-23 Empty commit for demonstration purposes [Neil Shephard]
+  a8eb76e - 2026-02-23 docs: Adding CONTRIBUTING.md [Neil Shephard]
+  e075bdb - 2026-02-16 (origin/main, origin/HEAD, main) Merge pull request #27 from ns-rse/pre-commit-ci-update-config [Neil Shephard]
 ```
 
 The final step is to perform the automatic squashing via an "interactive rebase". You need to supply the hash of the
 commit _before_ the one you are fixing up, in the above example `35aa48c` (check the output of `git logp` if you haven't
-made a note of this). This can be done explicitly but, as covered in the earlier episodes, an alternative and convenient
-way of referring to this previous commit is by using the `~1` appended to the commit you have chosen to fixup so you
-would use.
+made a note of this). This can be done explicitly but an alternative and convenient way of referring to this previous
+commit is by using the `~1` appended to the commit you have chosen to fixup so you would use.
 
 ``` bash
 # Relative to the fixup
@@ -187,14 +213,14 @@ commits that need combining with `fixup`. All you have to do is save the file an
 look at the contents of the file.
 
 **NB** If you find that the necessary commit _isn't_ already marked then you are likely to have mistakenly supplied the
-wrong hash (most probably the hash of the commit your wish to fixup rather than the commit before it).
+wrong hash (most probably the hash of the commit you wish to fixup rather than the commit before it).
 
 ```bash
-git logp
-  0fda21e (HEAD -> amend-fixup-tutorial) Another empty commit for demonstration purposes
-  65587ce Empty commit for demonstration purposes
-  4fda15f Adding CONTRIBUTING.md
-  35aa48c Previous commit before adding CONTRIBUTING.md
+git lol
+  819a930 2026-02-23 (HEAD -> ns-rse/amend-fixup-tutorial) Another empty commit for demonstration purposes [Neil Shephard]
+  70f56e3 2026-02-23 Empty commit for demonstration purposes [Neil Shephard]
+  09a65a3 2026-02-23 docs: Adding CONTRIBUTING.md [Neil Shephard]
+  e075bdb 2026-02-16 (origin/main, origin/HEAD, main) Merge pull request #27 from ns-rse/pre-commit-ci-update-config [Neil Shephard]
 
 cat CONTRIBUTING.md
   # Contributing
@@ -223,7 +249,7 @@ In your pairs there are two issue templates in the `python-math` repository that
 - _03 Zero Division Amend and Fixup_
 - _04 Square Root Amend and Fixup_
 
-Create and assign one of these each and work through the stages. The tasks build on material already covered
+Create and assign one of these each and work through the steps. The tasks build on material already covered
 e.g. creating and switching branches and conventions for naming branches and rebasing. Solutions to each step are
 provided but try not to use them instead you can use your `history` to check what commands you have used.
 
@@ -305,32 +331,12 @@ def square_root(x):
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: callout
-
-### `git absorb`
-
-Rather than having to look up commit hashes or work out how many commits back you need to go to pass as an argument to
-`--fixup` you can instead use the [git-absorb][gitabsorb] extension that works out what commits changes to each file
-being fixed up need rebasing and with the `--and-rebase` flag it will automatically perform the squashing rebase.
-
-The steps involved then become much shorter with.
-
-```bash
-git add -u
-git absorb --and-rebase
-```
-
-By default `git absorb` will search the last 10 commits but this can be configured at runtime using the `--base` flag to
-specify the last commit to check or by adapting the configuration file.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 ### Squashing commits
 
-If you don't want to use [git-absorb][gitabsorb] and you forgot to use `git commit --fixup` you can still combine
+If  you forgot to use `git commit --fixup` you can still combine
 commits before making pull requests using an interactive rebase `git rebase -i`.  We've already touched on `git rebase`
-in the context of keeping branches up-to-date but its a very flexible and powerful component of Git and it also allows
-you to "squash" commits on the same branch.
+in the context of using `--autosquash` after `--fixup` but its a very flexible and powerful component of Git and it also
+allows you to "squash" commits on the same branch.
 
 We will now make a few commits to our branch and then squash them via an interactive rebase. This helps keep commits
 that you will merge into `main` atomic since even if you've been using `--amend` or `--fixup` to sequentially update
@@ -347,34 +353,34 @@ git commit --allow-empty -m "Commit 2"
 git commit --allow-empty -m "Commit 3"
 git commit --allow-empty -m "Commit 4"
 git commit --allow-empty -m "Commit 5"
-git logp
+git lol
 ```
 
 To squash these commits we need to know the hash or relative reference to the first commit we wish to interact with
-which the `git log` command does (if you set the `gl` alias earlier you can use that)
+which we can discover using our `git lol` alias.
 
 ``` bash
-git logp
-c33ab51 (HEAD -> test-rebase) Commit 5
-f7bb1c9 Commit 4
-d47d914 Commit 3
-e859738 Commit 2
-c437414 Commit 1
-2f7c382 (origin/main) Merge pull request #6 from ns-rse/ns-rse/tidy-print
-a1101c7 [pre-commit.ci] Fixing issues with pre-commit
+git lol
+  c33ab51 (HEAD -> test-rebase) Commit 5
+  f7bb1c9 Commit 4
+  d47d914 Commit 3
+  e859738 Commit 2
+  c437414 Commit 1
+  2f7c382 (origin/main) Merge pull request #6 from ns-rse/ns-rse/tidy-print
+  a1101c7 [pre-commit.ci] Fixing issues with pre-commit
 ```
 
-The hash of the first commit we want to squash is `c437414` or `HEAD~5`) but you need to include it. We start a rebase
-with `git rebase -i c437414` or `git rebase -i HEAD~5` which will open our default editor.
+We need to include the hash of the first commit we want to interact with is the one _prior_ to the first one we wish to
+squash, i.e. is `2f7c382` or `HEAD~5` (as it is five commits backwards from `HEAD`). We start a rebase
+with `git rebase -i 2f7c382` or `git rebase -i HEAD~5` which will open our default editor.
 
 ``` bash
-pick c437414 Commit 1 # empty
-pick e859738 Commit 2 # empty
-pick d47d914 Commit 3 # empty
-pick f7bb1c9 Commit 4 # empty
-pick c33ab51 Commit 5 # empty
-
-# Rebase c437414..c33ab51 onto c437414 (4 commands)
+ pick 327231c # Commit 1 # empty
+ pick 9bb6c50 # Commit 2 # empty
+ pick 3ff6955 # Commit 3 # empty
+ pick 7090c87 # Commit 4 # empty
+ pick 6d444b8 # Commit 5 # empty
+# Rebase e075bdb..6d444b8 onto e075bdb (5 commands)
 #
 # Commands:
 # p, pick <commit> = use commit
@@ -406,10 +412,10 @@ pick c33ab51 Commit 5 # empty
 #
 ```
 
-The instructions here are really useful and tell us how to edit the rebase. The first line tells us that we are rebasing
-the range of commits `onto c437414`. Subsequently there is a list of commands, by default `pick` is in place for each of
-the commits, but we are shown the available options and simply need to replace each of the `pick` with `s` or `squash`
-and we want to apply it to commits two through to 5.
+The instructions here are really useful and tell us how to edit the rebase and include some important warnings.
+The first line tells us that we are rebasing the range of commits `onto c437414`. Subsequently there is a list of
+commands, by default `pick` is in place for each of the commits, but we are shown the available options and simply need
+to replace each of the `pick` with `s` or `squash` and we want to apply it to commits two through to 5.
 
 You can do this manually by editing the file or you can use your editors find and replace functionality which in `nano`
 is `Ctrl + \` and you will be prompted for the string you want to find (`pick`) and what you want to replace it with
@@ -418,11 +424,11 @@ if the instances in the comments section are replaced. The first four rows of th
 following.
 
 ``` bash
-pick   c437414 Commit 1 # empty
-squash e859738 Commit 2 # empty
-squash d47d914 Commit 3 # empty
-squash f7bb1c9 Commit 4 # empty
-squash c33ab51 Commit 5 # empty
+ pick 327231c # Commit 1 # empty
+ squash 9bb6c50 # Commit 2 # empty
+ squash 3ff6955 # Commit 3 # empty
+ squash 7090c87 # Commit 4 # empty
+ squash 6d444b8 # Commit 5 # empty
 ```
 
 Save this file and exit (in `nano` use `Ctrl + o` then `Ctrl + x`), the editor will exit return you to the prompt and
@@ -467,6 +473,8 @@ Commit 5
 #
 # No changes
 ```
+
+**NB** Note the warning about what happens if you remove all messages!
 
 Edit the file to read how you want it to, here I've gone with the following to make it clearly
 
@@ -524,6 +532,26 @@ prefixed with `pick` will remain in the Git history.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::: callout
+
+### `git absorb`
+
+Rather than having to look up commit hashes or work out how many commits back you need to go to pass as an argument to
+`--fixup` you can instead use the [git-absorb][gitabsorb] extension that works out what commits changes to each file
+being fixed up need rebasing and with the `--and-rebase` flag it will automatically perform the squashing rebase.
+
+The steps involved then become much shorter with.
+
+```bash
+git add -u
+git absorb --and-rebase
+```
+
+By default `git absorb` will search the last 10 commits but this can be configured at runtime using the `--base` flag to
+specify the last commit to check or by adapting the configuration file.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ### Re-writing History - With Great Power
 
 ...comes great scope for messing things up!
@@ -541,11 +569,11 @@ doing so in some situations.
 
 ## Use force cautiously
 
-If anyone else has `git pull` the branch or if the changes have been merged into `main` (or another branch) using these
-commands then `git push --force` will cause a lot of headaches so make sure no one else is working on your branches and
-don't force push to branches that have already been merged.
+If anyone else has `git pull` the branch you are working on or if the changes have been merged into `main` (or another
+branch) using these commands then `git push --force` will cause a lot of headaches so make sure no one else is working
+on your branches and don't force push to branches that have already been merged.
 
-`--force-with-lease` offers some protection against the problems that can arise and `--force-if-includes` help catch if
+`--force-with-lease` offers some protection against the problems that can arise and `--force-if-includes` helps catch if
 you haven't `git pull` any changes that may be on the `origin`.
 
 The following resources are highly recommended reading on this topic.
@@ -575,6 +603,7 @@ sure `main` is up-to-date and make a new branch.
 
 ```bash
 git switch main
+git branch -D test-rebase
 git pull
 git switch -c ns-rse/test-patch
 ```
@@ -663,11 +692,12 @@ We can now commit the changes to the `multiply()` function keeping changes atomi
 functions.
 
 ``` bash
-git commit -m "docs: Improve docstring of multiply() function."
+git commit -m "docs(arithmatic): Improve docstring of multiply() function."
 ```
 
 Since we know the only outstanding change is to the docstring of the `add()` function (we can check with `git diff` to
-reassure us), we can stage that hunk and commit it separately.
+reassure us), we can stage that hunk and commit it separately, we don't really need the `--patch` option here but
+include it for consistency.
 
 ``` bash
 git add --patch -u
@@ -688,7 +718,7 @@ index 0546271..6e7f4fd 100644
 (1/1) Stage this hunk [y,n,q,a,d,e,p,?]? y
 
 
-git commit -m "doc: improve docstring for add() function"
+git commit -m "docs(arithmatic): improve docstring for add() function"
 
 [ns-rse/test-patch 88a3d9c] doc: improve docstring for add() function
  1 file changed, 2 insertions(+), 2 deletions(-)
@@ -703,9 +733,8 @@ topics](additional_topics.md#finding-bugs-with-git-bisect)).
 
 You may have noticed in many of the commit messages used so far a keyword is used to start the commit followed by a
 colon. This is an example of [Conventional Commits][concommit] which are a standardised way of writing commit messages
-that, as with the branch naming convention suggested earlier, include metadata about what the commit relates to.
-
-There are keywords to start your commit message with that are self-explanatory
+that, as with the branch naming conventions that are covered in the next episode, include metadata about what the commit
+relates to. There are keywords to start your commit message with that are self-explanatory...
 
 - `fix:`
 - `feat:` - short for _future_
@@ -752,7 +781,7 @@ Commit messages should explain _why_ you have made changes, the code itself show
 - [Why you need small, informative Git commits](https://masalmon.eu/2024/06/03/small-commits/)
 - [Hack your way to a good Git history · Maëlle's R Blog](https://masalmon.eu/2024/06/11/rewrite-git-history/)
 - [So You Think You Know Git](https://www.youtube.com/watch?v=aolI_Rz0ZqY) an excellent talk by Scot Chacon, one of the
-founders of GitHub and co-author of [Pro Git][progit] book on useful tips for using Git.
+founders of GitHub and co-author of the [Pro Git][progit] book on useful tips for using Git.
 - [So You Think You Know Git Part 2](https://www.youtube.com/watch?v=Md44rcw13k4) follow-on from previous video.
 - [Atlassian | Advanced Git Tutorials][advanced]
 
