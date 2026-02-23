@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this form when scheduling and setting up a new session of the course. It is recommended that you have a confirmed room booking prior to completing this form as these are required fields. You should also create an issue to [schedule emails](https://github.com/ns-rse/git-collaboration/issues/new?assignees=&labels=session-setup&projects=&template=schedule_emails.md&title=Schedule+emails+for+session+on+%5BDATE-OR-SESSION-DESCRIPTION%5D+for+%5BINSTRUCTOR-NAME%5D). You will also have to schedule emails (see separate template which includes instructions).
+        Use this form when scheduling and setting up a new session of the course. It is recommended that you have a confirmed room booking prior to completing this form as these are required fields. You should also create an issue to [schedule emails](https://github.com/ns-rse/git-collaboration/issues/new?assignees=&labels=session-setup&projects=&template=schedule_emails.md&title=Schedule+emails+for+session+on+%5BDATE-OR-SESSION-DESCRIPTION%5D+for+%5BINSTRUCTOR-NAME%5D). You will also have to schedule emails (see separate template which includes instructions). A [Register](https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/) is available which needs the title tweaking to reflect the `YYYY-MM` and tweaking with a link to a new issue for participants to provide feedback of errors.
   - type: dropdown
     id: lead-instructor
     attributes:
@@ -58,3 +58,4 @@ body:
     attributes:
       value: |
         - [ ] Schedule emails.
+        - [ ] Reset/update [register](https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/)
