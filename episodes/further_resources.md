@@ -44,7 +44,7 @@ finding out more about Git, GitHub and so forth.
 
 - [Pro Git](https://git-scm.com/book/en/v2) a comprehensive book about Git, very, very detailed.
 - [Learn Git - Tutorials, Workflows and Commands | Atlassian](https://www.atlassian.com/git) excellent resources from
-  Atlassian their tutorials are clear and informative and inspired much of this course.
+  Atlassian. Their tutorials are clear and informative and inspired much of this course.
 
 ### Videos
 
@@ -73,13 +73,13 @@ After This](https://www.youtube.com/watch?v=Ala6PHlYjmw).
 ## RSS
 
 [Really Simply Syndication](https://rssboard.org/rss-specification) is a much under appreciated/used technology that
-makes it really simple to syndicate blog posts from a range of sources to give yourself a customised reading list rather
+makes it really simple to aggregate blog posts from a range of sources to give yourself a personalised reading list rather
 than being at the whim of whatever is in your social media feeds when you happen to take a look at them.
 
-Many of the blogs linked above have RSS feeds and whilst not all posts will be focused on Git you can sometimes get
-specific feeds for topics. I would highly recommend using [RSS](https://en.wikipedia.org/wiki/RSS) reader not just for
-improving your understanding of Git but all other research areas (e.g. Python, R, Open Research et.c) Some useful
-resources for RSS feeds are below.
+Many of the articles linked on this page are from blogs that  have RSS feeds and whilst not all posts will be focused on
+Git you can sometimes get specific feeds for topics. I would highly recommend using
+[RSS](https://en.wikipedia.org/wiki/RSS) reader not just for improving your understanding of Git but all other research
+areas (e.g. Python, R, Open Research et.c) Some useful resources for RSS feeds are below.
 
 - [Get RSS Feed URL Extension](https://github.com/shevabam/get-rss-feed-url-extension) is a browser extension which digs
   out the RSS feed for a page.
@@ -88,7 +88,10 @@ resources for RSS feeds are below.
 - [Feeder](https://github.com/spacecowboy/Feeder) open source, private feed reader that runs on your Android device.
 - [Feedly](https://feedly.com/) web-based feed aggregator.
 - [FreshRSS](https://www.freshrss.org/) a free, self-hostable feeds aggregator if you run your own websites.
-- [Tiny Tiny RSS](https://tt-rss.org/) another free, self-hostable feeds aggregator if you run your own websites.
+
+**Tip** If a page or website doesn't have an obvious link to an RSS feed then right-click on the page and select "_View
+Source_" in the tab that opens search for either `feed` or `rss` to find the relevant link. Right-click on it to copy
+and add it to your RSS aggregator.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
