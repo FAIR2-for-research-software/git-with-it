@@ -73,19 +73,29 @@ the `HEAD` is `6-93e787c`.
 
 You can change branches by using `git switch <branchname>`.
 
-We can improve the output of `git log` using the following options.
-
-```bash
-git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
-```
-
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 1: What is the first and last commit on branch &nbsp; `divide`?
 
-Using the `python-maths` repository you have cloned look up the first and last commit of the `divide` branch.
+Using the `python-maths` repository you have cloned edit the `.git/config` as shown below and fetch the `divide`,
+`multiply` and `ns-rse/branches`.
 
-What are the commit hashes, commit messages, date/time and committers' names?
+``` bash
+[remote "upstream"]
+    url = git@github.com:ns-rse/python-maths.git
+    fetch = +refs/heads/*:refs/remotes/upstream/*
+```
+
+Fetch the branches from `upstream` with the following
+
+``` bash
+git fetch upstream {divide,multiply,ns-rse/merge-conflict}
+git checkout --track upstream/divide
+```
+
+Now look up the first and last commit of the `divide` branch.
+
+What are the commit hashes, commit messages, date and committers' names?
 
 :::::::::::::::::::::::: solution
 
@@ -93,68 +103,74 @@ What are the commit hashes, commit messages, date/time and committers' names?
 
 ```bash
 git switch divide
-git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
-* 6353fb4 - (HEAD -> divide, origin/divide) bug: Fix tpyo in divide function (2024-03-26 10:28:36 +0000) <Neil Shephard>
-* 7485e56 - chore: Fix merge conflict (2024-03-26 10:28:11 +0000) <Neil Shephard>
-* adfef4d - feat: Divide branch (2024-03-25 15:55:15 +0000) <Neil Shephard>
-* 400896a - Divide branch (2024-03-25 15:55:15 +0000) <Neil Shephard>
-* c1f64b0 - Setting up the repository for git-collaboration (2024-02-02 15:48:50 +0000) <Neil Shephard>
-*   fa76751 - (origin/main, main) Merge pull request #6 from RSE-Sheffield/ns-rse/5-setup-clean-up (2023-10-19 22:46:14 +0100) <Neil Shephard>
+git lol
+* 6353fb4 2024-03-26 (HEAD -> divide, upstream/divide, origin/divide) bug: Fix tpyo in divide function [Neil Shephard]
+* 7485e56 2024-03-26 chore: Fix merge conflict [Neil Shephard]
+* adfef4d 2024-03-25 feat: Divide branch [Neil Shephard]
+* 400896a 2024-03-25 Divide branch [Neil Shephard]
+* c1f64b0 2024-02-02 Setting up the repository for git-collaboration [Neil Shephard]
+*   fa76751 2023-10-19 Merge pull request #6 from RSE-Sheffield/ns-rse/5-setup-clean-up [GitHub]
 |\
-| * c8f0697 - 5 | Removing comment from setup.cfg (2022-10-04 11:12:23 +0100) <Neil Shephard>
-* |   aff8153 - Merge pull request #7 from RSE-Sheffield/subtract-mistake (2023-01-20 10:07:58 +0000) <bobturneruk>
+| * c8f0697 2022-10-04 5 | Removing comment from setup.cfg [Neil Shephard]
+* |   aff8153 2023-01-20 Merge pull request #7 from RSE-Sheffield/subtract-mistake [GitHub]
 |\ \
 | |/
 |/|
-| * a45a8dd - introduce mistake in subtract issue (2023-01-20 09:50:03 +0000) <Robert (Bob) Turner>
-| * 604a397 - introduce delibarate mistake (2022-12-21 10:29:34 +0000) <Robert (Bob) Turner>
+| * a45a8dd 2023-01-20 introduce mistake in subtract issue [Robert (Bob) Turner]
+| * 604a397 2022-12-21 introduce delibarate mistake [Robert (Bob) Turner]
 |/
-*   f06c0ab - Merge pull request #4 from RSE-Sheffield/simplify_deliberate_errors (2022-06-07 14:58:27 +0100) <David Wilby>
+*   f06c0ab 2022-06-07 Merge pull request #4 from RSE-Sheffield/simplify_deliberate_errors [GitHub]
 |\
-| * f55c0d2 - remove missing colon and no newline deliberate errors (2022-05-06 11:50:24 +0100) <David Wilby>
+| * f55c0d2 2022-05-06 remove missing colon and no newline deliberate errors [David Wilby]
 |/
-* 5c9ae75 - correct python testing instruction (2021-05-18 16:15:23 +0300) <Anna Krystalli>
-* 86d7633 - add correct details to each issue (2021-05-18 16:01:50 +0300) <Anna Krystalli>
-* a58d6e7 - add all github issue templates (2021-05-17 13:43:57 +0300) <Anna Krystalli>
-* 9429ab4 - complete subtract issue template (2021-05-14 15:53:25 +0300) <Anna Krystalli>
-* bb560b0 - simplify function (2021-05-14 15:53:01 +0300) <Anna Krystalli>
-*   325d038 - Merge pull request #1 from RSE-Sheffield/tests_changes (2021-05-14 14:40:36 +0300) <Anna Krystalli>
+* 5c9ae75 2021-05-18 correct python testing instruction [Anna Krystalli]
+* 86d7633 2021-05-18 add correct details to each issue [Anna Krystalli]
+* a58d6e7 2021-05-17 add all github issue templates [Anna Krystalli]
+* 9429ab4 2021-05-14 complete subtract issue template [Anna Krystalli]
+* bb560b0 2021-05-14 simplify function [Anna Krystalli]
+*   325d038 2021-05-14 Merge pull request #1 from RSE-Sheffield/tests_changes [GitHub]
 |\
-| * 608ad59 - Restructure so tests pass (2021-05-14 12:24:23 +0100) <Will Furnass>
+| * 608ad59 2021-05-14 Restructure so tests pass [Will Furnass]
 |/
-* 8584b0f - correct pull request branch spec (2021-05-14 12:45:21 +0300) <Anna Krystalli>
-* cdc9ea3 - correct push branch specification (2021-05-14 12:40:01 +0300) <Anna Krystalli>
-* c01ff62 - add instructions to README (2021-05-14 12:38:29 +0300) <Anna Krystalli>
-* 585287a - add test and CI (2021-05-14 12:38:09 +0300) <Anna Krystalli>
-* 3f4d54b - rename python_package folder (2021-05-14 12:37:48 +0300) <Anna Krystalli>
-* 4b1707b - use requirements.txt instead of env.yml (2021-05-14 10:04:02 +0100) <davidwilby>
-* 2556966 - remove build specs from conda env (2021-05-14 10:01:28 +0100) <davidwilby>
-* b50e658 - move env.yml to right place.. (2021-05-14 09:54:59 +0100) <davidwilby>
-*   0d2f520 - Merge branch 'main' of github.com:RSE-Sheffield/python-calculator into main (2021-05-14 09:53:44 +0100) <davidwilby>
+* 8584b0f 2021-05-14 correct pull request branch spec [Anna Krystalli]
+* cdc9ea3 2021-05-14 correct push branch specification [Anna Krystalli]
+* c01ff62 2021-05-14 add instructions to README [Anna Krystalli]
+* 585287a 2021-05-14 add test and CI [Anna Krystalli]
+* 3f4d54b 2021-05-14 rename python_package folder [Anna Krystalli]
+* 4b1707b 2021-05-14 use requirements.txt instead of env.yml [davidwilby]
+* 2556966 2021-05-14 remove build specs from conda env [davidwilby]
+* b50e658 2021-05-14 move env.yml to right place.. [davidwilby]
+*   0d2f520 2021-05-14 Merge branch 'main' of github.com:RSE-Sheffield/python-calculator into main [davidwilby]
 |\
-| * b1179a7 - add package name folder (2021-05-14 11:33:06 +0300) <Anna Krystalli>
-* | c883789 - add conda environment yaml (2021-05-14 09:53:06 +0100) <davidwilby>
+| * b1179a7 2021-05-14 add package name folder [Anna Krystalli]
+* | c883789 2021-05-14 add conda environment yaml [davidwilby]
 |/
-* fdb8716 - draft commit (2021-05-14 11:23:42 +0300) <Anna Krystalli>
-* 328e61b - Add subtraction issue template (2021-05-13 12:23:42 +0300) <Anna Krystalli>
-* 31a4a93 - Initial commit (2021-05-13 12:14:08 +0300) <Anna Krystalli>
+* fdb8716 2021-05-14 draft commit [Anna Krystalli]
+* 328e61b 2021-05-13 Add subtraction issue template [GitHub]
+* 31a4a93 2021-05-13 Initial commit [GitHub]
 ```
 
 From the `git log` graph we see the first and last commits were:
 
-| Commit | Hash    | Message                          | Date/time           | Committer      |
-|:-------|:--------|:---------------------------------|:--------------------|:---------------|
-| First  | 31a4a93 | Initial commit                   | 2021-05-13 12:14:08 | Anna Krystalli |
-| Last   | 6353fb4 | bug: Fix tpyo in divide function | 2024-03-26 10:28:36 | Neil Shephard  |
+| Commit | Hash    | Message                          | Date       | Committer      |
+|:-------|:--------|:---------------------------------|:-----------|:---------------|
+| First  | 31a4a93 | Initial commit                   | 2021-05-13 | Anna Krystalli |
+| Last   | 6353fb4 | bug: Fix tpyo in divide function | 2024-03-26 | Neil Shephard  |
 
 :::::::::::::::::::::::::::::::::
 
 ## Challenge 2: What commit did the &nbsp; `multiply` &nbsp; branch diverge from &nbsp; `main` &nbsp;?
 
-Again using the `python-maths` repository switch to the `multiply` branch. Use `git log` to find the commit at which
-`multiply` diverged from `main`. How many commits have been made on the `main` branch?
+Again using the `python-maths` repository switch to the `multiply` branch.
 
-**Hint** You will need to find `HEAD -> multiply, origin/multiply` and follow the line backwards.
+``` bash
+git checkout --track upstream/multiply
+```
+
+Use `git log --graph --pretty` to find the commit at which `multiply` diverged from `main`. How many commits have been
+made on the `main` branch?
+
+**Hint** You will need to find `ns-rse/multiply` in the commit messages and follow the line backwards.
 
 :::::::::::::::::::::::: solution
 
@@ -162,55 +178,63 @@ Again using the `python-maths` repository switch to the `multiply` branch. Use `
 
 ```bash
 git switch main
-git log --graph --pretty="%h %ad (%cr) %x09 %an : %s"
-*   9a267a0 - (origin/main, origin/HEAD, main) Merge pull request #7 from slackline/ns-rse/6-square-root-warning (2025-02-10 14:22:58 +0000) <slackline>
+git lol
 ...
-* 3f6494f - chore: tidying up prior to trial run (2024-05-02 14:26:33 +0100) <Neil Shephard>
-* ba7a5da - bug: ISSUE_TEMPLATES > ISSUE_TEMPLATES (2024-04-24 14:49:45 +0100) <Neil Shephard>
-*   ae5402f - Merge pull request #3 from ns-rse/multiply (2024-04-23 23:14:14 +0100) <Neil Shephard>
+* ba7a5da 2024-04-24 bug: ISSUE_TEMPLATES > ISSUE_TEMPLATES [Neil Shephard]
+*   ae5402f 2024-04-23 Merge pull request #3 from ns-rse/multiply [GitHub]
 |\
-| * b702501 - (HEAD -> multiply, origin/multiply) bug: multiply instead of add arguments (2024-03-26 10:33:37 +0000) <Neil Shephard>
-| * 11e36a3 - feat: Adding multiply function and tests (2024-03-26 10:32:42 +0000) <Neil Shephard>
-* |   12a159c - Merge pull request #2 from ns-rse/divide (2024-04-23 23:13:13 +0100) <Neil Shephard>
+| * b702501 2024-03-26 (upstream/multiply, origin/multiply, multiply) bug: multiply instead of add arguments [Neil Shephard]
+| * 11e36a3 2024-03-26 feat: Adding multiply function and tests [Neil Shephard]
+* |   12a159c 2024-04-23 Merge pull request #2 from ns-rse/divide [GitHub]
 |\ \
-| * | 6353fb4 - (origin/divide, divide) bug: Fix tpyo in divide function (2024-03-26 10:28:36 +0000) <Neil Shephard>
-| * | 7485e56 - chore: Fix merge conflict (2024-03-26 10:28:11 +0000) <Neil Shephard>
-| * | adfef4d - feat: Divide branch (2024-03-25 15:55:15 +0000) <Neil Shephard>
-| * | 400896a - Divide branch (2024-03-25 15:55:15 +0000) <Neil Shephard>
+| * | 6353fb4 2024-03-26 (upstream/divide, origin/divide, divide) bug: Fix tpyo in divide function [Neil Shephard]
+| * | 7485e56 2024-03-26 chore: Fix merge conflict [Neil Shephard]
+| * | adfef4d 2024-03-25 feat: Divide branch [Neil Shephard]
+| * | 400896a 2024-03-25 Divide branch [Neil Shephard]
 | |/
-* |   f8dcc8d - Merge pull request #1 from ns-rse/ns-rse/initial-setup (2024-03-15 18:04:02 +0000) <Neil Shephard>
+* |   f8dcc8d 2024-03-15 Merge pull request #1 from ns-rse/ns-rse/initial-setup [GitHub]
 |\ \
-| * | a4b1bb4 - Min Python version >= 3.10 to align with workflow (2024-03-15 18:01:01 +0000) <Neil Shephard>
-| * | 4f5daa2 - Quoting Python versions and adding os matrix to workflow (2024-03-15 17:59:05 +0000) <Neil Shephard>
-| * | 74e909b - Issue template for amend and fixup of square_root function (2024-03-08 13:01:42 +0000) <Neil Shephard>
-| * | bffc993 - Issue template for amend/fixup on zero-division branch (2024-03-07 17:28:49 +0000) <Neil Shephard>
-| * | 44c70e6 - Tidying .pre-commit-config.yaml| (2024-02-02 15:48:50 +0000) <Neil Shephard>
+| * | a4b1bb4 2024-03-15 Min Python version >= 3.10 to align with workflow [Neil Shephard]
+| * | 4f5daa2 2024-03-15 Quoting Python versions and adding os matrix to workflow [Neil Shephard]
+| * | 74e909b 2024-03-08 Issue template for amend and fixup of square_root function [Neil Shephard]
+| * | bffc993 2024-03-07 Issue template for amend/fixup on zero-division branch [Neil Shephard]
+| * | 44c70e6 2024-02-02 Tidying .pre-commit-config.yaml| [Neil Shephard]
 | |/
-| * c1f64b0 - Setting up the repository for git-collaboration (2024-02-02 15:48:50 +0000) <Neil Shephard>
+| * c1f64b0 2024-02-02 Setting up the repository for git-collaboration [Neil Shephard]
 |/
-*   fa76751 - Merge pull request #6 from RSE-Sheffield/ns-rse/5-setup-clean-up (2023-10-19 22:46:14 +0100) <Neil Shephard>
-|\
-| * c8f0697 - 5 | Removing comment from setup.cfg (2022-10-04 11:12:23 +0100) <Neil Shephard>
-* |   aff8153 - Merge pull request #7 from RSE-Sheffield/subtract-mistake (2023-01-20 10:07:58 +0000) <bobturneruk>
-|\ \
-| |/
-|/|
-| * a45a8dd - introduce mistake in subtract issue (2023-01-20 09:50:03 +0000) <Robert (Bob) Turner>
-| * 604a397 - introduce delibarate mistake (2022-12-21 10:29:34 +0000) <Robert (Bob) Turner>
-|/
-*   f06c0ab - Merge pull request #4 from RSE-Sheffield/simplify_deliberate_errors (2022-06-07 14:58:27 +0100) <David Wilby>
+*   fa76751 2023-10-19 Merge pull request #6 from RSE-Sheffield/ns-rse/5-setup-clean-up [GitHub]
 |\
 ...
 ```
 
 This is a little more challenging to interpret but reading the output carefully we have an indicator of where the
-`multiply` branch is where it reads `(HEAD -> multiply, origin/multiply)`. We can trace that line back to the furthest
-left branch (which is `main` and `origin/main`).
+`multiply` branch was merged and We can trace that line back to the furthest left branch (which is `main` and
+`origin/main`).
 
-We can see that the `multiply` branch diverged from the `fa76751` commit on `main` and that three commits
+We can see that the `multiply` branch diverged from the `fa76751` commit on `main` and that two commits
 have been made on the `multiply` branch.
 
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## `switch` v's `checkout`
+
+`git switch` was introduced in [Git
+v2.23.0](https://github.blog/2019-08-16-highlights-from-git-2-23/#experimental-alternatives-for-git-checkout) along with
+`git restore` to provide two separate commands for the functionality that was originally available in `git checkout`.
+`git checkout` still exists and allows you to which could "switch" branches, including creating
+branches using the `--branch`/`-b` flag, and change ("restore") individual files with `git checkout [treeish] --
+<filename>` (more on this later).
+
+Splitting this functionality means that `git switch` is solely for `switch`ing branches (including creating them with
+the `-c` flag) whilst `git restore` is solely concerned with `restore`ing files but it is destructive, i.e. you can lose
+work, and we will cover its use later the `git revert` command as an alternative.
+
+`git checkout` has not been deprecated though and is still available and many people still use it as old habits die
+hard.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Working with Branches
@@ -220,8 +244,9 @@ branches along with a few other tasks.
 
 To list the branches that are available you can just type `git branch` or optionally include the `--list` option. In the
 `python-maths` repository you  have cloned you should see a number of branches listed. The branch you are currently
-checked out on is listed first with an asterisk (`*`) at the start and they are listed alphabetically. Later we will
-change the default order to be more informative.
+checked out on is listed first with an asterisk (`*`) at the start and they are by default listed alphabetically (you
+may remember during the introduction there was a suggestion to change the configuration to use `-commitdate` which lists
+them in reverse chronological order of the most recent branch first).
 
 ``` bash
 git branch
@@ -230,29 +255,21 @@ git branch
 divide
 ```
 
-::::::::::::::::::::::::::::::::::::: callout
-
-## `switch` v's `checkout`
-
-`git switch` was introduced in [Git
-v2.23.0](https://github.blog/2019-08-16-highlights-from-git-2-23/#experimental-alternatives-for-git-checkout) along with
-`git restore` to provide two separate commands for the functionality that was originally available in `git checkout`.
-The main reason was to separate the functionality of `git checkout` which could "switch" branches, including creating
-branches using the `--branch`/`-b` flag, and change ("restore") individual files with `git checkout [treeish] --
-<filename>` (more on this later).
-
-Splitting this functionality means that `git switch` is solely for `switch`ing branches whilst `git restore` is solely
-concerned with `restore`ing files but is destructive and we will cover later the `git revert` command as an alternative.
-
-`git checkout` has not been deprecated and is still available and many people still use it as old habits die hard.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 ### Creating Branches
 
 You can create a new branch using `git switch -c <new_branch>`. By default it will use the branch you currently have
 checked out as a basis for the new branch. If you wish to use a different branch as a basis you can do so by including
 its name before the name of the new branch.
+
+To create a new branch called `ns-rse/test` you can use the following.
+
+``` bash
+git switch main
+git pull
+git switch -c main ns-rse/test
+```
+
+Git will use the current `HEAD` of the `main` branch as a basis for creating the `ns-rse/test` branch.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -272,16 +289,6 @@ typically `main`, when creating it as you will be already be checked out on that
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-To create a new branch called `ns-rse/test` you can use the following.
-
-``` bash
-git switch main
-git pull
-git switch -c main ns-rse/test
-```
-
-Git will use the current `HEAD` of the `main` branch as a basis for creating the `ns-rse/test` branch.
-
 ### Naming Branches
 
 Branch names can not include spaces, you should use underscores or dashes instead. You can include some special
@@ -297,7 +304,7 @@ work has been undertaken. For example GitHub user `ns-rse` working on issue 1 to
 
 This structure is informative as it provides other people you collaborate with or who look at the repository an
 indication of who created the branch, what issue they are working on and a very short indication of what it is concerned
-about. With this information it is very easy to look up the relevant Issue.
+about. With this information it is very easy to look up the relevant Issue and find more details.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -319,12 +326,12 @@ good merge the pull request.
 
 :::::::::::::::::::::::: solution
 
-## Solution - 01 Zero Division Exception
+## Solution - 03 Zero Division Exception
 
 ``` bash
 git switch main
 git pull
-git switch -c ns-rse/1-zero-divide-exception
+git switch -c ns-rse/3-zero-divide-exception
 # MAKE EDITS AS DESCRIBED IN THE GITHUB ISSUE
 git add -u
 git commit -m "Add Zero division exception and test"
@@ -336,12 +343,12 @@ You should then create a pull request, assign it to your collaborator who can re
 
 :::::::::::::::::::::::: solution
 
-## Solution - 02 Square root function
+## Solution - 04 Square root function
 
 ``` bash
 git switch main
 git pull
-git switch -c ns-rse/2-square-root
+git switch -c ns-rse/4-square-root
 # MAKE EDITS AS DESCRIBED IN THE GITHUB ISSUE
 git add -u
 git commit -m "Adds square root function"
@@ -427,7 +434,7 @@ git branch -d ns-rse/throwaway
 error: the branch 'ns-rse/throwaway' is not fully merged
 hint: If you are sure you want to delete it, run 'git branch -D ns-rse/throwaway'
 hint: Disable this message with "git config advice.forceDeleteBranch false"
-git -D ns-rse/0-divide
+git -D ns-rse/throwaway
 ```
 
 Be _very_ careful when forcing deletion of branches, if you have not pushed your changes to the remote `origin` then you
@@ -439,8 +446,8 @@ _will_lose them.
 
 ## Challenge 5 : Automatically delete branches on GitHub
 
-In your pairs navigate to the _Settings_ page and enable the _Automatically delete head branches_ option.
-
+In your pairs navigate to the _Settings_ page on the **repository owners account** and enable the _Automatically delete
+head branches_ option.
 **Hint** - Search [GitHub documentation][gh-help] for how to automatically delete branches.
 
 :::::::::::::::::::::::: solution
@@ -455,11 +462,11 @@ delete head branches_".
 
 ## Time Travelling - Losing your `HEAD`
 
-A branch is a history of commits and you can use `git log` to see the commit history (and customise the output so it can
-be easier to read), but what if you wanted to look at the state of the branch at a previous point in time? Well because
-Git has kept track of everything you can do that and the command to do so is `git checkout` which takes a "reference" as
-an argument. So far you have been using branch names as references but commit hashes are also references and so can be
-used to checkout the state of the repository in the past.
+A branch is a history of commits and you can use `git log` to see the commit history (and customise the output to make
+it easier to read as we have already done), but what if you wanted to look at the state of the branch at a previous
+point in time? Well because Git has kept track of everything you can do that and the command to do so is `git checkout`
+which takes a "reference" as an argument. So far you have been using branch names as references but commit hashes are
+also references and so can be used to checkout the state of the repository in the past.
 
 ``` mermaid
 %%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
@@ -510,7 +517,7 @@ Have you lost your head because it is now `detached`? No, `HEAD` is just a speci
 commit (tags are the same) and it is a short hand way of referring to a commit, what has happened is that Git has moved
 the commit `HEAD` points to from `8-a40cef8` to `4-8ec389a`. If you make changes to this branch they will be lost when
 you switch back to the `8-a40cef8` commit and you are told you can do this with `git switch -`. If you want to make
-changes and save them you are advised to create a new branch to do so.
+changes and save them from commit `4-8ec389a` you are advised to create a new branch to do so.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -573,7 +580,7 @@ Date:   2021-05-14 12:38:09 +0300
 
 ```
 
-We can see it was made by `Anna Krystalli <annakrystalli@googlemail.com>` almost four years ago on `2021-05-14 12:38:09
+We can see it was made by `Anna Krystalli <annakrystalli@googlemail.com>` on `2021-05-14 12:38:09
 +0300`.
 
 ```bash
@@ -646,7 +653,7 @@ branch you were working on.
 
 One way to solve this with Git is to `git reset` the branch to which you have just mistakenly made the commit. This
 removes reference to the changes from the Git history but leaves the changes to the files in place and they appear as
-`unstaged` files. It is ideal if you have only _one_ commit you wish to undo.
+`unstaged` files. It is ideal if you have only _one_ commit you wish to `reset`.
 
 #### Relative Refs
 
@@ -699,8 +706,8 @@ For a detailed exposition of `git reset` see the excellent [Atlassian | Git rese
 
 - Switch to the `main` branch of the `pytest-maths` repository.
 - Create a new file using `echo "# This is TODO list" > TODO.md`
-- Stage and commit the file to the `main` branch of your repository. **NB** to do this you will have to disable the
-  `pre-commit` checks with the `-n` flag.
+- Stage and commit the file to the `main` branch of your repository. **NB** to do this you may have to disable the
+  `pre-commit` checks with the `-n` flag, i.e. `git commit -n`.
 
 Ooops you've just committed to the `main` branch which is protected so you can't push your changes. Now move the commit
 to a new branch so you can push them.
@@ -724,7 +731,7 @@ git commit -n -m "docs: Adding a todo file"
 git reset --mixed HEAD~1
 git switch -c ns-rse/todo
 git add CONTRIBUTING.md
-git commit -m "docs: Adding a todo file"
+git commit -n -m "docs: Adding a todo file"
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -809,10 +816,10 @@ This adds the following line to the `alias` section of your `~/.gitconfig`.
 ### `git revert`
 
 `git reset` is destructive, you can lose work using it and it is advisable _not_ to use it when you have more than one
-commit you wish to undo as you lose the intermediary work between commits as you are restored to the commit you reset
-to. Fortunately Git has the `revert` option which is a non-destructive approach to undoing changes in your Git
+commit you wish to undo as you lose the intermediary work between commits as you are restored to the commit you are
+resetting to. Fortunately Git has the `revert` option which is a non-destructive approach to undoing changes in your Git
 history. Instead it takes a specified commit and inverts the changes, i.e. goes back to the previous state and rather
-than discarding the changes it makes a new "revert" commit to record the inversion and this new "revert" commit becomes
+than discarding the changes it makes a new "revert" commit to record the inversion. This new "revert" commit becomes
 the `HEAD` of the branch. `git revert` _has_ to have a reference in order to work, whether that is absolute (i.e. a
 hash) or relative.
 
@@ -839,7 +846,7 @@ But there is a challenge, in order to switch branches you have to stage and comm
 
 ``` bash
 git switch -c branch2
-echo "Please feel free to contribute to this repository" >> CONTRIBUTING.md
+echo "\nAny questions please feel free to get in touch\n" >> CONTRIBUTING.md
 git add CONTRIBUTING.md
 git commit -m "Adding CONTRIBUTING.md"
 echo "\nPlease don't break my repository though!" >> CONTRIBUTING.md
@@ -851,13 +858,12 @@ Please commit your changes or stash them before you switch branches.
 Aborting
 ```
 
-Whilst you could commit your changes and subsequently `git commit --amend` (more on this in the next episode) there is
-another option.
+Whilst you could `git commit --ammend`, use `--fixup` or `rebase -i` to commit your changes there is another option.
 
 ### `git stash`
 
 `git stash` allows you to save your current changes in a temporary location and then reverts to the last commit
-(`HEAD`). This allows you to move about`git switch` to other branches and undertake work. There are lots of options to
+(`HEAD`). This allows you to move about (`git switch`) to other branches and undertake work. There are lots of options to
 `git stash` but the basics are pretty straight-forward. You start by `git stash push` (the `push` is actually optional)
 and you can include a `--message` that explains what the stash contains, you are told if this has worked and on what
 branch the stash was made and can then switch branches, pull down changes, create a new branch and do something
@@ -878,14 +884,15 @@ git switch main
 git switch -c branch3
 ```
 
-Undertake the work that is required on `branch3`.
+Undertake the work that is required on `branch3`, e.g. making changes to the `README.md`.
 
 #### 3. Return to `branch2`
 
-When you have finished this other work you can return to `branch2` and `pop` the stash back. To see what stashes there
+When you have finished this other work can return to `branch2` and `pop` the stash back. To see what stashes there
 are you can use `git stash list`
 
 ``` bash
+git switch branch2
 git stash list
 stash@{0}: On branch2: CONTRIBUTION.md WIP
 ```
@@ -911,7 +918,7 @@ The changes to `CONTRIBUTING.md` and the corresponding entry are removed from th
 
 ### Multiple Stashes
 
-Over time though you may collect multiple stashes.
+Over time you may collect multiple stashes.
 
 #### 1. Make two stashes
 
@@ -920,13 +927,13 @@ different message.
 
 ``` bash
 git switch -c example-stashes
-git stash push --message "WIP CONTRIBUTING.md file"
+git stash --message "WIP CONTRIBUTING.md file"
 echo "Yet another file" > ANOTHER.md
 git add ANOTHER.md
-git stash push --message "WIP ANOTHER.md file"
+git stash --message "WIP ANOTHER.md file"
 
 stash@{0}: On branch2: WIP ANOTHER.md file
-stash@{1}: WIP on branch2: a8b6f5f WIP CONTRIBUTING.md
+stash@{1}: WIP on branch2: a8b6f5f WIP CONTRIBUTING.md file
 ```
 
 #### 2. Pop the `CONTRIBUTING.md` stash
@@ -972,10 +979,10 @@ ANOTHER.md: No such file or directory (os error 2).
 Working in your pairs on the `python-maths` repository...
 
 1. Create a `<github-username>/todo` branch.
-2. Create a `TODO.md` with `echo "# TODO Tasks." > TODO.md`
-3. Do _not_ add and commit, instead `git stash push -m "Adding a TODO file"` your changes
+2. Create a `TODO.md` with `echo "# This is a ToDo List\n\n1. Task1\n2. Task2." > TODO.md`
+3. Do _not_ add and commit, instead `git stash -m "WIP : adding TODO.md"` your changes
 4. Switch to the `main` branch and create a `<github-username>/citation` branch.
-5. Add a basic `CITATION.cff` with `echo "cff-version: 1.2.0\ntitle: Python \ntype: software" > CITATION.cff`
+5. Add a basic `CITATION.cff` with `echo "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" > CITATION.cff`
 6. Add and commit this file.
 7. Unstash the `TODO.md` file on the `citation` branch.
 8. Stage and commit the changes. Do **NOT** create a pull request or merge these changes.
@@ -1017,7 +1024,8 @@ git commit -m "doc: Adding a TODO.md"
 git push
 ```
 
-You can now make a pull request to merge these changes, assign it and have it reviewed and merged.
+You can now make a pull request to merge these changes, assign it and have it reviewed and merged. Once merged we can
+switch to `main`, pull the merged branch and force delete the two branches we created locally.
 
 ``` bash
 git switch main

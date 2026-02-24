@@ -15,7 +15,7 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Signpost some useful resources when you have more questions.
-- Highlight RSS and Mastodon as useful ways to find out more about Git on a regular basis.
+- RSS and Mastodon as useful ways to find out more about Git on a regular basis.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

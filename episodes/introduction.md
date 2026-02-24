@@ -27,23 +27,23 @@ exercises: 2
 [Git][git] is, in 2025, the most widely used version control system by far. It was developed by Linus Torvalds to manage
 [Linux kernel][linux] development and since then has exploded. Websites such as [GitHub][gh] and [GitLab][gl], both
 types of Forge[^1], facilitate asynchronous collaboration on common code bases and underpin many, many software projects
-from enterprise grade tools such as the aforementioned [Linux kernel][linuxGithub], the increasingly popular
-[Rust][rustGitHub] through to niche products such as [Snapcast][snapcast] or Android apps for tracking your exercise
-such as [OpenTracks][openTracks].
+from enterprise grade such as the increasingly popular language [Rust][rustGitHub] through to niche products such as
+[Snapcast][snapcast] or Android apps for tracking your exercise such as [OpenTracks][openTracks][^2].
 
 Git and Forges are wonderful tools for
 collaboration. However, because of the complexities of version controlling software in distributed, collaborative
 environments the tool itself, Git, has become quite complex. There are many different tasks that one may wish to
 undertake and often several different ways of achieving these.
 
-It's relatively easy to get the _basics_ of working with [Git][git] on your own or with small groups to work
+It's relatively easy to get the hang of the _basics_ of working with [Git][git] on your own or with small groups to work
 collaboratively on code development. If you aren't already familiar with these basics then this course isn't for you
 (yet!) and you would benefit from an introductory course such as [Git, GitHub through GitKraken : From Zero to
 Hero!][zeroHero] or the [Software Carpentry : Version Control with Git][swCarpentryGit]. This course aims to show you
 some of the more involved ways to use Git in a collaborative environment.
 
 Most of the ways in which collaboration can be eased is through a better understanding of how Git works and by
-maintaining clean and focused commits which make the task of reviewing work easier for those you are collaborating with.
+maintaining clean and focused commits which make the task of reviewing work easier for those you are collaborating with
+(which often includes your self).
 
 ## Code of Conduct
 
@@ -78,9 +78,9 @@ Once paired up please add details to the [Collaborative Notepad][collab_notepad]
 
 The aim of pairing up is _not_ to divide the tasks between people. There are a few exceptions but for most tasks you
 should work with your partner to solve each of the challenges, but with one person at the "driving seat" making the
-changes to the code as required.
+changes to the code as required (and you should take it in turns to do the "driving").
 
-You should discuss what you think the solution should be as you work through the challenge.
+You should discuss what you think the solution should be as you work through the challenges.
 
 This is a software development technique known as [Pair Programming][pairprogramming] and by discussing the solutions
 you will hopefully come away with a better understanding of the material.
@@ -116,7 +116,7 @@ If you are participating online please write down your names of pairs and provid
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
-Before the start of the course you should setup a new [collaborative pad][collab_notepad] where participants can answer
+Before the start of the course you should setup the [collaborative pad][collab_notepad] where participants can answer
 questions and collaborate.
 
 If running the course online you should have a list of participants and have paired them off at random.
@@ -178,7 +178,7 @@ pwd
 
 You can use `cd` to (`c`hange `d`irectory).
 
-**NB** The tilde (`~`) is short cut for your "home" directory, typically `/home/<username>` on GNU/Linux systems,
+**NB** The tilde (`~`) is a short-cut for your "home" directory, typically `/home/<username>` on GNU/Linux systems,
 `/Users/<username>` on OSX and `/c/Users/<username>` on Window systems.
 
 ``` bash
@@ -200,15 +200,15 @@ again will move onto the next possible completion. When you are at the completio
 will be entered on your command line.
 
 ```bash
-cd ~/te <Tab>
+cd ~/t <Tab>
 tests/  tmp/
 ```
 
 #### Redirection
 
-This course uses the redirection pipes `>` to "pipe" what is on the left of the symbol into the file give on the
-right. A single `>` will over-write any contents in the file if it already exists. If you want to append something to a
-file you can use `>>` instead.
+This course uses the redirection pipes `>` to "pipe" what is on the left of the symbol into the file given on the
+right side. A single `>` will over-write any contents in the file if it already exists. If you want to append something
+to a file you can use `>>` instead.
 
 #### History
 
@@ -220,7 +220,7 @@ history
 ...
 cd work
 mkdir git
-git clone git@github.com:ns-rse/python-maths
+git clone git@github.com:FAIR2-for-research-software/python-maths
 ```
 
 You can recall previous commands using the `Ctrl + p` or the Up arrow, each press takes you to the `p`revious command in
@@ -267,7 +267,8 @@ typically you don't need to change this, just hit `Enter`.
 
 #### Exiting `nano`
 
-When done editing you need to exit and return to the command line, you do this with `Ctrl + x`.
+When done editing you need to exit and return to the command line, you do this with `Ctrl + x`. If you have unsaved
+changes a prompt will appear asking if you want to save them.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -288,14 +289,24 @@ These options will be used whenever you use `nano`. You can alternatively place 
 
 ## Git Configuration
 
-Git configuration comes in two forms, "global" and "local" and is courtesy of some simple text files. The global
-configuration file lives in your home directory and on GNU/Linux and OSX systems is `~/.gitconfig` (on Windows it is
-`C:\Users\<username>\.gitconfig`) and will have been setup when you first attempted to use Git and were prompted for
-your name and email address.
+Git configuration comes in two forms, "global" and "local" and is courtesy of some simple text files.
+
+### Global Configuration
+
+The global configuration file lives in your home directory, where this is depends on your operating system.
+
+- GNU/Linux - `~/.gitconfig` or `$XDG_CONFIG_HOME/git/config` (typically `$XDG_CONFIG_HOME` is `~/.config/`)
+- OSX - `~/.gitconfig` or `~/Library/Preferences/`
+- Windows - `C:\Users\<username>\.gitconfig`
+
+If the global configuration file doesn't exist when you first try to use `git` at the command line you will have been
+were prompted for your name and email address.
+
+### Local Configuration
 
 Each repository that is under Git version control has a `.git/` directory where all of the configuration, hooks and
 history live. Within this directory you will find a `.git/config` file which is the "local" configuration for that
-repository. Configuration options defined locally over-ride global configuration options.
+repository. **Configuration options defined locally over-ride global configuration options**.
 
 There are two ways of modifying either the global or local configuration, using the Command Line `git config <options>`
 or by editing either the global (`~/.gitconfig`) or local (`git/config`) files.
@@ -324,7 +335,7 @@ shown below.
  sshCommand = ssh -i ~/.ssh/id_ed25519 -F /dev/null
  attributesFile = $HOME/.gitattributes
  autocrlf = input
- excludesfile = ~/dotfiles/git/.gitignore
+ excludesFile = ~/.config/git/.gitignore
 ```
 
 Sections are in square brackets with names, e.g. `[user]` or `[core]`. Fields then have key and value pairs e.g. the
@@ -356,8 +367,8 @@ git config --list  --show-scope --show-origin
 
 ### Editing config files
 
-You can also edit both the local (`.git/config`) and global (`~/.gitconfig`) files directly to set configuration options
-and this can at times be much quicker.
+You can also edit both the local (`.git/config`) and global (`~/.gitconfig` / `~/.config/git/config`) files directly to
+set configuration options and this can at times be much quicker.
 
 For example if we wanted to configure Git so that the order in which branches are listed is by the most recent commit we
 could add the following to our `~/.gitconfig` using `nano`, which will result in branches being listed in reverse
@@ -400,19 +411,15 @@ You could alternatively edit the `~/.gitconfig` file directly and add the follow
 ### Alias'
 
 A very useful configuration option available is the ability to set [aliases][gitaliases] for Git. This means you can
-create short cuts to complex commands. Aliases live under the `[alias]` section of the global (`.gitconfig`) or local
-(`.git/config`) configuration files. They can be set at the command line with `git config --[global|local]
-alias.<shortcut> <command>` .
+create short-cuts to complex commands. Aliases live under the `[alias]` section of the global (`.gitconfig`) or local
+(`.git/config`) configuration files (although you can set them on a per repository basis too if you want). They can be
+set at the command line with `git config --[global|local] alias.<shortcut> <command>` .
 
 If you wanted to save a few key strokes and set `sw` as an alias for `switch` globally you would.
 
 ``` bash
 git config --global alias.sw switch
 ```
-
-Or if you want to unstage files that are currently staged you can set an `unstage` alias using the following where the
-command you wish to add is put in quotes so the shell doesn't think they are arguments to the command and treats them as
-a string.
 
 As with other configuration options you can also edit the configuration files directly to add the commands.
 
@@ -421,17 +428,17 @@ As with other configuration options you can also edit the configuration files di
 ## Challenge 2 - Set a &nbsp; `git log` &nbsp; alias
 
 `git log` shows the history of commits on the current branch, but its default is quite verbose. Fortunately there are a
-_lot_ of options to modify the output adding colour, shortening dates and including a graph and we've been using a
-version a fair bit already. You can see all the options in the manual ([`git log --help`][gitlog])
+_lot_ of options to modify the output such as adding colour, shortening dates and including a graph and make it all fit
+on a single line. You can see all the options in the manual ([`git log --help`][gitlog])
 
 Rather than having to remember all the options and type them out each time you can set an alias that stores the options
-you want and can be called instead.
+_you_ want and can be called instead.
 
-For this exercise add the following set of log options to a global alias of your choice (the solution uses `logp` but
-you are free to set it to whatever you want, e.g. `lp`)
+For this exercise add the following set of log options to a global alias of your choice (the solution uses `lol` as its
+a `l`og `o`ne `l`ine but you are free to set it to whatever you want, e.g. `lp`)
 
 ``` bash
-log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ <%cn>" --decorate
 ```
 
 **NB** - Because there are double-quotes in this command you will if using the command line solution have to enclose all
@@ -445,7 +452,7 @@ You can set the alias `logp` to the above `git log` options by editing `~/.gitco
 
 ``` bash
 [alias]
-    logp = log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    lol = log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ <%cn>" --decorate
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -456,7 +463,7 @@ You can set the alias `logp` to the above `git log` options by editing `~/.gitco
 You could also set this alias at the command line
 
 ``` bash
-git config --global alias.logp 'log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
+git config --global alias.lol 'log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ <%cn>" --decorate'
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -490,22 +497,25 @@ therefore need to escape it with the `\` slash. A `*` matches anything but slash
 all directories (leading) or everything within a directory (trailing). For more details refer to [Git Ignore
 Patterns][gitignorepatterns].
 
-A common set of files you may want to ignore is the `.DS_Store` directory that Mac OSX automatically generates in
-most directories. Just as you can exclude files you can list directories so add that to the `.gitignore` in the
-`python-maths` repository now. Navigate to the directory and open the file using [nano][nano] and add the following
-line.
+It is often sensible to ensure data files are not included in your repository. What these files might be depends on what
+work you are doing. Common files to exclude are `.csv` for text files `.RData` for files from [R][r] and `.pkl` are the
+Python pickles. Thus to exclude all `.csv` files you would add...
 
 ``` bash
-.DS_Store
+*.csv
 ```
 
-It is often sensible to ensure data files are not included in your repository. What these files might be depends on how
-you are working, common formats are `.csv` for text files `.RData` for files from [R][r] and `.pkl` are the Python
-pickles.
+Just as you can exclude files you can also ignore directories and a common one you may wish to ignore is the `.DS_Store`
+directory that Mac OSX automatically generates in most directories. The ignore pattern for that includes a trailing
+slash.
 
-GitHub has a useful feature when you create a repository to include template `.gitignore` files for specific languages,
-but if you missed out this step you can always use the [.gitignore generator][ignoregenerator] to generate files to be
-ignored and copy and paste these in.
+``` bash
+.DS_Store/
+```
+
+GitHub has a useful feature when you create a repository to use template `.gitignore` files for specific languages,
+but if you missed out this step you can always use the [.gitignore generator][ignoregenerator] to generate a
+list of files to exclude and add the results to an existing `.gitignore`.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -514,8 +524,8 @@ a template can be found.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-The `.gitignore` file is part of the repository and is itself version controlled, this means that its rules are applied
-consistently across anyone who works on the project or a fork of it (since forks may end up making contributions
+The `.gitignore` file is part of the repository and should itself be version controlled, this means that its rules are
+applied consistently across anyone who works on the project or a fork of it (since forks may end up making contributions
 up-stream). You therefore have to remember to stage and commit changes to the file just as you would other files in the
 repository.
 
@@ -523,33 +533,23 @@ repository.
 
 ## Challenge 3
 
-In your pairs exclude files with the extension, `.RData`, `.csv` and `.pkl` and the `.DS_Store` director from being
-added to the `python-maths` project by adding the appropriate patterns to the `.gitignore` file on a new branch and
-merge it into the `main` branch via a pull-request, assigning it to the other person for review.
+In your pairs work together to _all_ exclude files with the extension, `.RData`, `.csv` and `.pkl` and the `.DS_Store/`
+directory from being added to repositories by editing and adding changes to your global `.gitignore` file.
 
-**NB** Only one person needs to make the changes, but talk through how to solve the problem together.
+**NB** The wildcard symbol `*` is required to ensure _any_ file, no matter what comes before the extension is ignored,
+e.g. `*.csv`.
 
 :::::::::::::::::::::::: solution
 
 ## Solution
 
-### Create a new branch
+### Update the global `.gitignore`
 
-First create a new branch.
-
-``` bash
-git switch main
-git pull
-git switch -c ns-rse/ignore-csv-pkl
-```
-
-### Update the `.gitignore`
-
-The following lines to `.gitignore` will ignore all files with the extensions `.csv` and `.pkl`. The wildcard symbol `*`
-is required to ensure _any_ file, no matter what comes before the extension is ignored.
+The following lines added to `~/.gitignore` / `~/.config/git/ignore` / `~/Library/Preferences/` /
+`C:\Users\<username>\.gitconfig` will ignore the directory and files.
 
 ```output
-.DS_Store
+.DS_Store/
 *.csv
 *.pkl
 *.RData
@@ -571,19 +571,24 @@ Pull requests are created on GitHub.
 
 ## Cloning Repositories
 
+We're now going to put all of this together working in your pairs go through cloning a repository and making some
+changes to the local configuration as well as making a few changes to the repository on GitHub.
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Choose Roles, Clone Repository and Install Package
+### Choose Roles, Clone Repository and Install Package
 
-In your pairs you now need to decide who is to take on each of the two roles. There isn't much between them in terms of
-what you will be doing but one person needs to be the **repository owner** and one person needs to be a
-**collaborator**.
+In your pairs you should decide who is to take on each of the two roles. There isn't much between them in terms of
+what you will be doing as you are working through the challenges and solutions together but one person needs to be the
+**repository owner** and one person needs to be a **collaborator**.
 
 Follow the instructions below under each section. If you have any questions please do not hesitate to ask.
 
 :::::::::::::::::::::::: solution
 
-## Clone the repository
+## Clone the repository (**Both**)
+
+You both now need to clone the repository locally (_not_ on GitHub).
 
 Click on the _Code_ button at [Python Maths][pythonmaths] and then the _SSH_ tab. Copy the URL. If you want to clone the
 work to `~/work/git/` then in a terminal run the following commands (be wary of copy and pasting them `<owners_id>`
@@ -591,15 +596,15 @@ needs replacing)
 
 ``` bash
 cd ~/work/git
-git clone git@github.com:<owners_id>/python-maths
+git clone git@github.com:FAIR2-for-research-software/python-maths
 cd python-maths
 git fetch origin {divide,multiply,ns-rse/merge-conflict}
 ```
 
-### Edit `.git/config`
+### Edit `.git/config` (**Both**)
 
-Both users should now edit the `.git/config` file and modify line 7 where the `url` of the `origin` is defined and
-replace `ns-rse` with the GitHub username of the person who will be the Repository Owner. For example if the repository
+**Both** users should now edit the `.git/config` file and modify line 7 where the `url` of the `origin` is defined and
+replace `ns-rse` with the GitHub username of the person who will be the **Repository Owner**. For example if the repository
 owner uses the `alice_and_bob` username on GitHub it should read.
 
 ``` bash
@@ -611,14 +616,14 @@ owner uses the `alice_and_bob` username on GitHub it should read.
 This edit changes the `origin` to be the empty repository you created under the _Repository Owner's_ account called
 `python-maths` and pushes the cloned repository there.
 
-### Force Push
+### Setup GitHub and Force Push (**Repository Owners**)
 
 **NB** This step is _just_ for the **Repository Owner**, the **Collaborator** should **not** perform this step.
 
 The repository owner should now create an empty repository called `python-maths` using the [new repo][gh_newrepo], do
-_not_ add a license or `.gitignore` to the repository, it should be **completely empty**.
+_not_ add a `README.md`,  license or `.gitignore` to the repository, it should be **completely empty**.
 
-The Repository Owner can push the cloned repository to their account with the following command, the `--force` is
+The Repository Owner can now push the cloned repository to their account with the following command, the `--force` is
 optional and shouldn't be required unless you have inadvertently initialised the repository with additional files.
 
 ``` bash
@@ -629,7 +634,7 @@ git push --force
 
 :::::::::::::::::::::::: solution
 
-## Protect the Main Branch
+## Protect the Main Branch (**Repository Owners**)
 
 **NB** This step is _just_ for the **Repository Owner**, the **Collaborator** should **not** perform this step.
 
@@ -645,7 +650,7 @@ On the `python-maths` repository you both now have access to, protect the `main`
 
 :::::::::::::::::::::::: solution
 
-## Invite your Collaborator
+## Invite your Collaborator (**Repository Owners**)
 
 **NB** This step is _just_ for the **Repository Owner**, the **Collaborator** should **not** perform this step.
 
@@ -660,7 +665,7 @@ The **Collaborator** should receive an email invitation to collaborate and shoul
 
 :::::::::::::::::::::::: solution
 
-## Install the Package
+## Install the Package (**Both**)
 
 **NB** Both the **Repository Owner**, the **Collaborator** should perform this step.
 
@@ -732,6 +737,10 @@ create a pull request and merge the changes.
 the most well known but there are many others including [BitBucket][bitbucket], [Codeberg][codeberg], and
 [ForgeJo][forgejo] and [SourceHut][sourcehut].
 
+[^2]: Forges such as [GitHub][gh], [GitLab][gl] and [Codeberg][codeberg] are not essential for using Git to version
+control a distributed project. In fact the Linux kernel where Git was first developed and used still uses email lists to
+share and update changes to the code base (although they are [mirrored on GitHub][linuxGitHub]).
+
 [bash]: https://www.gnu.org/software/bash/
 [bitbucket]: https://bitbucket.org/
 [coc]: https://rse.shef.ac.uk/community/code_of_conduct
@@ -756,7 +765,7 @@ the most well known but there are many others including [BitBucket][bitbucket], 
 [openTracks]: https://github.com/OpenTracksApp/OpenTracks
 [pairprogramming]: https://en.wikipedia.org/wiki/Pair_programming
 [pypi]: https://pypi.org/
-[pythonMaths]: https://github.com/ns-rse/python-maths
+[pythonMaths]: https://github.com/FAIR2-for-research-software/python-maths
 [pytest]: https://docs.pytest.org/
 [rustGithub]: https://github.com/rust-lang/rust
 [r]: https://www.r-project.org/

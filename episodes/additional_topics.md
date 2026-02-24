@@ -28,8 +28,8 @@ within a line are reflected as a deletion _and_ addition.
 +already follow along the above steps do so now.
 ```
 
-Its a matter of personal preference but it can sometimes be easier to look at differences in the split view that
-`difftastic` provides, the same changes above using the split view are shown below.
+Ultimately it's a matter of personal preference and experience but it can sometimes be easier to look at differences in
+the split view that `difftastic` provides, the same changes above using the split view are shown below.
 
 ``` bash
 1862                                                                            1863
