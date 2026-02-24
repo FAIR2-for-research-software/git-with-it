@@ -339,5 +339,5 @@ ci:
 [precommit-ci]: https://pre-commit.ci/
 [precommit-ci-docs]: https://pre-commit.ci/#configuration
 [pycov]: https://github.com/marketplace/actions/python-coverage
-[python-maths]: https://github.com/ns-rse/python-maths
+[python-maths]: https://github.com/FAIR2-for-research-software/python-maths
 [yaml]: https://yaml.org

@@ -1028,7 +1028,7 @@ conda activate git-collab
 [pc-hooks-repo]: https://github.com/pre-commit/pre-commit-hooks
 [pylint]: https://pylint.org
 [python]: https://python.org
-[pm]: https://github.com/ns-rse/python-maths
+[pm]: https://github.com/FAIR2-for-research-software/python-maths
 [ruff]: https://astral.sh/ruff
 [uv]: https://docs.astral.sh/uv/
 [virtualenvwrapper]: https://rse.shef.ac.uk/blog/2024-08-13-python-virtualenvwrapper/

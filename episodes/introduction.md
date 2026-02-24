@@ -220,7 +220,7 @@ history
 ...
 cd work
 mkdir git
-git clone git@github.com:ns-rse/python-maths
+git clone git@github.com:FAIR2-for-research-software/python-maths
 ```
 
 You can recall previous commands using the `Ctrl + p` or the Up arrow, each press takes you to the `p`revious command in
@@ -596,7 +596,7 @@ needs replacing)
 
 ``` bash
 cd ~/work/git
-git clone git@github.com:ns-rse/python-maths
+git clone git@github.com:FAIR2-for-research-software/python-maths
 cd python-maths
 git fetch origin {divide,multiply,ns-rse/merge-conflict}
 ```
@@ -765,7 +765,7 @@ share and update changes to the code base (although they are [mirrored on GitHub
 [openTracks]: https://github.com/OpenTracksApp/OpenTracks
 [pairprogramming]: https://en.wikipedia.org/wiki/Pair_programming
 [pypi]: https://pypi.org/
-[pythonMaths]: https://github.com/ns-rse/python-maths
+[pythonMaths]: https://github.com/FAIR2-for-research-software/python-maths
 [pytest]: https://docs.pytest.org/
 [rustGithub]: https://github.com/rust-lang/rust
 [r]: https://www.r-project.org/
