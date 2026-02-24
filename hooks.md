@@ -44,11 +44,11 @@ make on the repository at different stages in the Git workflow.
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ``` output
-❱ cd ~/work/git/hub/ns-rse
-❱ mkdir test
-❱ cd test
-❱ git init
-❱ ls -lha .git/hooks
+cd ~/work/git/hub/ns-rse
+mkdir test
+cd test
+git init
+ls -lha .git/hooks
 drwxr-xr-x neil neil 4.0 KB Fri Feb 23 10:40:42 2024 .
 drwxr-xr-x neil neil 4.0 KB Fri Feb 23 10:40:46 2024 ..
 .rwxr-xr-x neil neil 478 B  Fri Feb 23 10:40:42 2024 applypatch-msg.sample
@@ -69,8 +69,8 @@ drwxr-xr-x neil neil 4.0 KB Fri Feb 23 10:40:46 2024 ..
 ```
 
 If you create a repository on [GitHub][gh], [GitLab][gl] or another forge when you clone it locally these samples are
-created on your system. They are _not_ part of the repository itself as files under the `.git` directory are not under
-version control by default.
+created on your system. They are _not_ part of the repository itself and can not be found on the forge (i.e. GitHub or
+GitLab) as files under the `.git` directory are not under version control by default.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -156,20 +156,16 @@ When enabled this hook will "_prevent push of commits where the log message star
 
 :::::::::::::::::::::::: solution
 
-## Solution 2: Enable the `pre-push` hook and test it
+## Solution 2: Enable the `pre-push` hook
 
-This sounds like a good idea as it, notionally, prevents people from pushing work that is in progress...if they are in
+This sounds like a good idea as it, notionally, prevents people from pushing work that is in progress..._if_ they are in
 the habit of starting commit messages with "WIP"!
 
-1. Enable the hook.
-2. Create a new branch `<github-user>/test-hook` to test the hook on.
-3. Make an empty commit with a message that starts with `WIP` e.g. `git commit --allow-empty "WIP - testing the
-   pre-push commit"`. Was the commit pushed?
-4. Delete the branch you created.
+To enable the hook just make a copy of it without the `.sample` extension.
 
 ``` bash
-❱ cd python-maths
-❱ cp .git/hooks/pre-push.sample .git/hooks/pre-push
+cd python-maths
+cp .git/hooks/pre-push.sample .git/hooks/pre-push
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -182,13 +178,13 @@ We can test the hook by making a throw-away branch and adding an empty commit th
 `git push` the commit. After it fails we can force delete this test branch.
 
 ``` bash
-❱ git switch -c ns-rse/test-hook
-❱ git commit --allow-empty -m "WIP - testing the pre-push hook"
-❱ git push
+git switch -c ns-rse/test-hook
+git commit --allow-empty -m "WIP - testing the pre-push hook"
+git push
 Found WIP commit in refs/heads/ns-rse/test-hook, not pushing
 error: failed to push some refs to 'github.com:slackline/python-maths.git'
-❱ git switch main
-❱ git branch -D ns-rse/test-hook
+git switch main
+git branch -D ns-rse/test-hook
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -205,7 +201,7 @@ your changes to a remote. As the message shows this is because there are changes
 the local branch and you are advised to `git pull` before attempting to `git push` again.
 
 ``` bash
-❱ git push origin main
+git push origin main
 > To https://github.com/USERNAME/REPOSITORY.git
 >  ! [rejected]        main -> main (non-fast-forward)
 > error: failed to push some refs to 'https://github.com/USERNAME/REPOSITORY.git'
@@ -220,7 +216,7 @@ A simple addition you can add to the `.git/hooks/pre-push` script is to have it 
 ``` bash
 #!/bin/sh
 #
-# A hook script to pull before pushing
+# A pre-push hook to pull before pushing
 
 exec git pull
 ```
@@ -253,7 +249,8 @@ responsibility/ownership of the code you write so that it is to the highest stan
 better to form good habits than bad ones and hooks help you do so.
 
 There is a framework for `pre-commit` hooks called, unsurprisingly, [pre-commit][pc] that makes it incredibly
-easy to add (and configure) some really useful `pre-commit` hooks to your workflow.
+easy to add (and configure) some really useful `pre-commit` hooks to your workflow. Some of this can be off-loaded to
+your Integrated Development Environment (IDE) but the `pre-commit` hooks ecosystem is _much_ richer and diverse.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -281,19 +278,23 @@ However, for this section of the course you should install [Miniconda][miniconda
 [`pre-commit`][pc] in a Conda environment to leverage it. There are instructions at the bottom of this page on how to
 install Miniconda. Once you have done so you can proceed with creating a conda environment. The steps to do so are
 
-1. Create a Conda environment called `python-maths` with `conda create -n python-maths python=3.11`
+1. Create a Conda environment called `python-maths` with `conda create -n python-maths python=3.11 pre-commit`
 2. Activate the newly created `python-maths` environment.
 3. Install `pre-commit` in the `python-maths` repository.
 
 ``` bash
 ❱ conda create -n python-maths python=3.11 pre-commit
-Retrieving notices: ...working... done
-Collecting package metadata (current_repodata.json): done
+Retrieving notices: done
+Channels:
+ - conda-forge
+ - nodefaults
+Platform: linux-64
+Collecting package metadata (repodata.json): done
 Solving environment: done
 
 ## Package Plan ##
 
-  environment location: /home/neil/miniconda3/envs/python-maths
+  environment location: /home/neil/miniforge3/envs/python-maths
 
   added / updated specs:
     - pre-commit
@@ -304,55 +305,87 @@ The following packages will be downloaded:
 
     package                    |            build
     ---------------------------|-----------------
-    cffi-1.16.0                |  py311h5eee18b_1         313 KB
-    distlib-0.3.8              |  py311h06a4308_0         456 KB
-    openssl-3.0.13             |       h7f8727e_2         5.2 MB
-    platformdirs-3.10.0        |  py311h06a4308_0          37 KB
-    virtualenv-20.26.1         |  py311h06a4308_0         3.5 MB
+    _openmp_mutex-4.5          |           20_gnu          28 KB  conda-forge
+    bzip2-1.0.8                |       hda65f42_9         254 KB  conda-forge
+    cffi-2.0.0                 |  py311h03d9500_1         296 KB  conda-forge
+    cfgv-3.5.0                 |     pyhd8ed1ab_0          13 KB  conda-forge
+    distlib-0.4.0              |     pyhd8ed1ab_0         269 KB  conda-forge
+    filelock-3.24.3            |     pyhd8ed1ab_0          24 KB  conda-forge
+    identify-2.6.16            |     pyhd8ed1ab_0          77 KB  conda-forge
+    importlib-metadata-8.7.0   |     pyhe01879c_1          34 KB  conda-forge
+    libexpat-2.7.4             |       hecca717_0          75 KB  conda-forge
+    libgcc-15.2.0              |      he0feb66_18        1017 KB  conda-forge
+    libgcc-ng-15.2.0           |      h69a702a_18          27 KB  conda-forge
+    libgomp-15.2.0             |      he0feb66_18         589 KB  conda-forge
+    libnsl-2.0.1               |       hb9d3cd8_1          33 KB  conda-forge
+    libstdcxx-15.2.0           |      h934c35e_18         5.6 MB  conda-forge
+    libxcrypt-4.4.36           |       hd590300_1          98 KB  conda-forge
+    nodeenv-1.10.0             |     pyhd8ed1ab_0          40 KB  conda-forge
+    pip-26.0.1                 |     pyh8b19718_0         1.1 MB  conda-forge
+    platformdirs-4.9.2         |     pyhcf101f3_0          25 KB  conda-forge
+    pre-commit-4.5.1           |     pyha770c72_0         196 KB  conda-forge
+    python-3.11.14             |hd63d673_3_cpython        29.5 MB  conda-forge
+    python_abi-3.11            |          8_cp311           7 KB  conda-forge
+    pyyaml-6.0.3               |  py311h3778330_1         201 KB  conda-forge
+    typing_extensions-4.15.0   |     pyhcf101f3_0          50 KB  conda-forge
+    ukkonen-1.1.0              |  py311hdf67eae_0          15 KB  conda-forge
+    virtualenv-20.38.0         |     pyhcf101f3_0         4.4 MB  conda-forge
+    wheel-0.46.3               |     pyhd8ed1ab_0          31 KB  conda-forge
+    yaml-0.2.5                 |       h280c20c_3          83 KB  conda-forge
+    zipp-3.23.0                |     pyhcf101f3_1          24 KB  conda-forge
     ------------------------------------------------------------
-                                           Total:         9.5 MB
+                                           Total:        44.0 MB
 
 The following NEW packages will be INSTALLED:
 
-  _libgcc_mutex      pkgs/main/linux-64::_libgcc_mutex-0.1-main
-  _openmp_mutex      pkgs/main/linux-64::_openmp_mutex-5.1-1_gnu
-  bzip2              pkgs/main/linux-64::bzip2-1.0.8-h5eee18b_6
-  ca-certificates    pkgs/main/linux-64::ca-certificates-2024.3.11-h06a4308_0
-  cffi               pkgs/main/linux-64::cffi-1.16.0-py311h5eee18b_1
-  cfgv               pkgs/main/linux-64::cfgv-3.4.0-py311h06a4308_0
-  distlib            pkgs/main/linux-64::distlib-0.3.8-py311h06a4308_0
-  filelock           pkgs/main/linux-64::filelock-3.13.1-py311h06a4308_0
-  identify           pkgs/main/linux-64::identify-2.5.5-py311h06a4308_0
-  ld_impl_linux-64   pkgs/main/linux-64::ld_impl_linux-64-2.38-h1181459_1
-  libffi             pkgs/main/linux-64::libffi-3.4.4-h6a678d5_1
-  libgcc-ng          pkgs/main/linux-64::libgcc-ng-11.2.0-h1234567_1
-  libgomp            pkgs/main/linux-64::libgomp-11.2.0-h1234567_1
-  libstdcxx-ng       pkgs/main/linux-64::libstdcxx-ng-11.2.0-h1234567_1
-  libuuid            pkgs/main/linux-64::libuuid-1.41.5-h5eee18b_0
-  ncurses            pkgs/main/linux-64::ncurses-6.4-h6a678d5_0
-  nodeenv            pkgs/main/linux-64::nodeenv-1.7.0-py311h06a4308_0
-  openssl            pkgs/main/linux-64::openssl-3.0.13-h7f8727e_2
-  pip                pkgs/main/linux-64::pip-24.0-py311h06a4308_0
-  platformdirs       pkgs/main/linux-64::platformdirs-3.10.0-py311h06a4308_0
-  pre-commit         pkgs/main/linux-64::pre-commit-3.4.0-py311h06a4308_1
-  pycparser          pkgs/main/noarch::pycparser-2.21-pyhd3eb1b0_0
-  python             pkgs/main/linux-64::python-3.11.9-h955ad1f_0
-  pyyaml             pkgs/main/linux-64::pyyaml-6.0.1-py311h5eee18b_0
-  readline           pkgs/main/linux-64::readline-8.2-h5eee18b_0
-  setuptools         pkgs/main/linux-64::setuptools-69.5.1-py311h06a4308_0
-  sqlite             pkgs/main/linux-64::sqlite-3.45.3-h5eee18b_0
-  tk                 pkgs/main/linux-64::tk-8.6.14-h39e8969_0
-  tzdata             pkgs/main/noarch::tzdata-2024a-h04d1e81_0
-  ukkonen            pkgs/main/linux-64::ukkonen-1.0.1-py311hdb19cb5_0
-  virtualenv         pkgs/main/linux-64::virtualenv-20.26.1-py311h06a4308_0
-  wheel              pkgs/main/linux-64::wheel-0.43.0-py311h06a4308_0
-  xz                 pkgs/main/linux-64::xz-5.4.6-h5eee18b_1
-  yaml               pkgs/main/linux-64::yaml-0.2.5-h7b6447c_0
-  zlib               pkgs/main/linux-64::zlib-1.2.13-h5eee18b_1
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-20_gnu
+  bzip2              conda-forge/linux-64::bzip2-1.0.8-hda65f42_9
+  ca-certificates    conda-forge/noarch::ca-certificates-2026.1.4-hbd8a1cb_0
+  cffi               conda-forge/linux-64::cffi-2.0.0-py311h03d9500_1
+  cfgv               conda-forge/noarch::cfgv-3.5.0-pyhd8ed1ab_0
+  distlib            conda-forge/noarch::distlib-0.4.0-pyhd8ed1ab_0
+  filelock           conda-forge/noarch::filelock-3.24.3-pyhd8ed1ab_0
+  icu                conda-forge/linux-64::icu-78.2-h33c6efd_0
+  identify           conda-forge/noarch::identify-2.6.16-pyhd8ed1ab_0
+  importlib-metadata conda-forge/noarch::importlib-metadata-8.7.0-pyhe01879c_1
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.45.1-default_hbd61a6d_101
+  libexpat           conda-forge/linux-64::libexpat-2.7.4-hecca717_0
+  libffi             conda-forge/linux-64::libffi-3.5.2-h3435931_0
+  libgcc             conda-forge/linux-64::libgcc-15.2.0-he0feb66_18
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-15.2.0-h69a702a_18
+  libgomp            conda-forge/linux-64::libgomp-15.2.0-he0feb66_18
+  liblzma            conda-forge/linux-64::liblzma-5.8.2-hb03c661_0
+  libnsl             conda-forge/linux-64::libnsl-2.0.1-hb9d3cd8_1
+  libsqlite          conda-forge/linux-64::libsqlite-3.51.2-hf4e2dac_0
+  libstdcxx          conda-forge/linux-64::libstdcxx-15.2.0-h934c35e_18
+  libuuid            conda-forge/linux-64::libuuid-2.41.3-h5347b49_0
+  libxcrypt          conda-forge/linux-64::libxcrypt-4.4.36-hd590300_1
+  libzlib            conda-forge/linux-64::libzlib-1.3.1-hb9d3cd8_2
+  ncurses            conda-forge/linux-64::ncurses-6.5-h2d0b736_3
+  nodeenv            conda-forge/noarch::nodeenv-1.10.0-pyhd8ed1ab_0
+  openssl            conda-forge/linux-64::openssl-3.6.1-h35e630c_1
+  packaging          conda-forge/noarch::packaging-26.0-pyhcf101f3_0
+  pip                conda-forge/noarch::pip-26.0.1-pyh8b19718_0
+  platformdirs       conda-forge/noarch::platformdirs-4.9.2-pyhcf101f3_0
+  pre-commit         conda-forge/noarch::pre-commit-4.5.1-pyha770c72_0
+  pycparser          conda-forge/noarch::pycparser-2.22-pyh29332c3_1
+  python             conda-forge/linux-64::python-3.11.14-hd63d673_3_cpython
+  python_abi         conda-forge/noarch::python_abi-3.11-8_cp311
+  pyyaml             conda-forge/linux-64::pyyaml-6.0.3-py311h3778330_1
+  readline           conda-forge/linux-64::readline-8.3-h853b02a_0
+  setuptools         conda-forge/noarch::setuptools-82.0.0-pyh332efcf_0
+  tk                 conda-forge/linux-64::tk-8.6.13-noxft_h366c992_103
+  typing_extensions  conda-forge/noarch::typing_extensions-4.15.0-pyhcf101f3_0
+  tzdata             conda-forge/noarch::tzdata-2025c-hc9c84f9_1
+  ukkonen            conda-forge/linux-64::ukkonen-1.1.0-py311hdf67eae_0
+  virtualenv         conda-forge/noarch::virtualenv-20.38.0-pyhcf101f3_0
+  wheel              conda-forge/noarch::wheel-0.46.3-pyhd8ed1ab_0
+  yaml               conda-forge/linux-64::yaml-0.2.5-h280c20c_3
+  zipp               conda-forge/noarch::zipp-3.23.0-pyhcf101f3_1
+  zstd               conda-forge/linux-64::zstd-1.5.7-hb78ec9c_6
 
 
-Proceed ([y]/n)?
-
+Proceed ([y]/n)? y
 ...
 
 ❱ conda activate python-maths
@@ -531,12 +564,12 @@ itself. Other configured repositories are
 ### `rev:`
 
 The next line indicates the revision of the hook repository that you wish to use. These are typically `git tags` that
-have been applied to releases of the hook. In this example the revision is `4.5.0` for the `pre-commit-hooks`.
+have been applied to releases of the hook. In this example the revision of the `pre-commit-hooks` is `6.0.0`.
 
 ### `hooks:`
 
 There then follows another entry called `hooks:` which defines a list of `- id:` and each of these is the name of a
-particular hook that will be run. There are hooks enabled for the following and they are fairly explanatory but the
+particular hook that will be run. There are hooks enabled for the following. They are fairly self-explanatory but the
 [hooks][pc-hooks] page often has a one-line explanation of what the hooks enable.
 
 - `check-case-conflict`
@@ -591,12 +624,12 @@ Using [grep][grep] to search for the [`numpydoc`][numpydoc] string in the `.pre-
 the `repo` and its associated `rev`.
 
 ``` bash
-❱ grep -A1 numpydoc .pre-commit-config.yaml  | grep -B1 rev
+grep -A1 numpydoc .pre-commit-config.yaml  | grep -B1 rev
   - repo: https://github.com/numpy/numpydoc
-    rev: v1.6.0
+    rev: v1.10.0
 ```
 
-We see that it is `v1.6.0` that is currently configured for [`numpydoc`][numpydoc].
+We see that it is `v1.10.0` that is currently configured for [`numpydoc`][numpydoc].
 
 **NB** This hook ensures the docstrings of Python functions comply with thet [numpydocstyle][numpydocstyle] guide.
 
@@ -610,7 +643,7 @@ Searching for the `black-pre-commit-mirror` in the configuration and then lookin
 configured for this `repi`.
 
 ``` bash
-❱ grep -A10 "black-pre-commit-mirror" .pre-commit-config.yaml | grep "id:"
+grep -A10 "black-pre-commit-mirror" .pre-commit-config.yaml | grep "id:"
       - id: black
       - id: black-jupyter
 ```
@@ -628,7 +661,7 @@ Finally searching for `ruff` in `.pre-commit-config.yaml` and then looking for t
 arguments are passed to the [ruff][ruff] linter.
 
 ``` bash
-❱ grep -A5 ruff .pre-commit-config.yaml | grep "args:"
+grep -A5 ruff .pre-commit-config.yaml | grep "args:"
         args: [--fix, --exit-non-zero-on-fix, --show-fixes]
 ```
 
@@ -648,7 +681,7 @@ These need downloading and initialising before they will run on your local syste
 install-hooks`. We will now install the hooks.
 
 ```bash
-❱ pre-commit install-hooks
+pre-commit install-hooks
 ```
 
 The repos that are defined need installing, this is done once and sets up some virtual environments which are reused
@@ -661,14 +694,14 @@ Whilst configured as a hook to run before commits `pre-commit` you can run all h
 against the whole repository
 
 ``` bash
-❱ pre-commit run --all-files                # Run all hooks on all files
-❱ pre-commit run <hook-to-run> --all-files  # Run a specific hook on all files
+pre-commit run --all-files                # Run all hooks on all files
+pre-commit run <hook-to-run> --all-files  # Run a specific hook on all files
 ```
 
 ...or on individual files, in this case `pyproject.toml` and `README.md`
 
 ``` bash
-❱ pre-commit run --files pyproject.toml README.md
+pre-commit run --files pyproject.toml README.md
 ```
 
 If there are problems identified with any of the files `pre-commit` will report them and you will have to fix them and
@@ -685,10 +718,10 @@ create a new branch to make these changes on and add the `detect-private-keys`, 
 being added using the `check-added-large-files` hook.
 
 ``` bash
-❱ cd python-maths
-❱ git switch main
-❱ git pull
-❱ git switch -c ns-rse/add-pre-commit-hooks
+cd python-maths
+git switch main
+git pull
+git switch -c ns-rse/add-pre-commit-hooks
 ```
 
 Add the following `- id:` to the `hooks:` section defined under the first `- repo:`.
@@ -730,8 +763,8 @@ After you have made changes to `.pre-commit-config.yaml` you _have_ to stage the
 `pre-commit` programme will complain about it being unstaged.
 
 ``` bash
-❱ cd python-maths
-❱ git commit --allow-empty -m "Trying to commit without staging .pre-commit-config.yaml"
+cd python-maths
+git commit --allow-empty -m "Trying to commit without staging .pre-commit-config.yaml"
 [ERROR] Your pre-commit configuration is unstaged.
 `git add .pre-commit-config.yaml` to fix this.
 ```
@@ -740,9 +773,9 @@ Whenever you modify, add or delete content to `.pre-commit-configy.yaml` you mus
 changes (**NB** make sure youre are)
 
 ``` bash
-❱ git add .pre-commit-config.yaml
-❱ git commit -m "pre-commit : Exclude large files and detect private keys"
-❱ git push
+git add .pre-commit-config.yaml
+git commit -m "pre-commit: Exclude large files and detect private keys"
+git push
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -773,7 +806,7 @@ The file should then be staged, committed and pushed.
 
 ## Adding repos
 
-The definitive [list][pc-hooks] of `pre-commit` repos is maintained on the official website. Each entry links to the
+A large [list][pc-hooks] of `pre-commit` repos is maintained on the official website. Each entry links to the
 GitHub repository and most contain in their `README.md` instructions on how to use the hooks. Which you will want to use
 will depend very much on your project.
 
@@ -819,7 +852,7 @@ The `.pylintrc` file is a configuration file for `pylint` that defines what chec
 
 The `python-maths` repository has a suite of tests that can be run to ensure the code works as expected.
 
-Pytest is run simply with `pytest`.
+**Hint** Pytest is run with command `pytest`.
 
 :::::::::::::::::::::::: solution
 
@@ -828,9 +861,9 @@ Pytest is run simply with `pytest`.
 Create a branch to undertake the work on.
 
 ``` bash
-❱ git switch main
-❱ git pull
-❱ git switch -c ns-rse/pre-commit-pytest
+git switch main
+git pull
+git switch -c ns-rse/pre-commit-pytest
 ```
 
 The following should be added to your `.pre-commit-config.yaml`
@@ -847,15 +880,15 @@ The following should be added to your `.pre-commit-config.yaml`
 Check that the code base passes the checks, correct any errors that are highlighted.
 
 ``` bash
-❱ pre-commit run pytest --all-files
+pre-commit run pytest --all-files
 ```
 
 The file should then be staged, committed and pushed.
 
 ``` bash
-❱ git add .pre-commit-config.yaml
-❱ git commit -m "pre-commit : adds a local pytest repo/hook"
-❱ git push
+git add .pre-commit-config.yaml
+git commit -m "pre-commit : adds a local pytest repo/hook"
+git push
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -901,13 +934,16 @@ linting checks on your code base prior to commits. A short coming of this approa
 (`.pre-commit-config.yaml`) may live in your repository it means that every person contributing to the code has to
 install the hooks and ensure they run locally.
 
-Not everyone who contributes to your code will do this that is where [pre-commit.ci][pc-ci] comes in handy as it runs
-the Pre-commit hooks as part of the Continuous Integration on GitHub which is the focus of the next episode.
+Not everyone who contributes to your code will do this and that is where [pre-commit.ci][pc-ci] comes in handy as it
+runs the Pre-commit hooks as part of the Continuous Integration on GitHub which is the focus of the next episode.
+
+To enable this you should vist [pre-commit.ci][pc-ci] and login with your GitHub accountl. You can then choose which of
+the
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
 - Hooks are actions run by Git before or after particular events such as `commit`, `push` and `pull` via scripts.
-- They are defined in Bash scripts in the `.git/hooks` directory.
+- They are defined in [Bash][bash] scripts in the `.git/hooks` directory.
 - The `pre-commit` framework provides a wealth of hooks that can be enabled to run, by default, before commits are made.
 - Each hook can be configured to run on specific files, or to take additional arguments.
 - Local hooks can be configured to run when dependencies that will only be found on your system/virtual environment are
@@ -953,7 +989,7 @@ If you are not familiar with Python Virtual Environments you can follow the inst
 It is important to fully understand and adhere to the [Anaconda Licensing][anacondalicense] which permits
 the use of their software (including Miniconda) in educational and research environments _only_ if there is no
 commercial benefit. If the work you undertake involves commercial collaboration you should seek alternative solutions
-for virtual environments (e.g. [miniforge3][miniforge3] or [virtualenvwrapper][virtualenvwrapper]).
+for virtual environments (e.g. [uv][uv], [miniforge3][miniforge3] or [virtualenvwrapper][virtualenvwrapper]).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -992,7 +1028,8 @@ conda activate git-collab
 [pc-hooks-repo]: https://github.com/pre-commit/pre-commit-hooks
 [pylint]: https://pylint.org
 [python]: https://python.org
-[pm]: https://github.com/ns-rse/python-maths
+[pm]: https://github.com/FAIR2-for-research-software/python-maths
 [ruff]: https://astral.sh/ruff
+[uv]: https://docs.astral.sh/uv/
 [virtualenvwrapper]: https://rse.shef.ac.uk/blog/2024-08-13-python-virtualenvwrapper/
 [yaml]: https://yaml.org

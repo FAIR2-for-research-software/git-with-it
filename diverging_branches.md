@@ -6,21 +6,19 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What are branches?
-- How do we use branches in git effectively?
-- How can I check out other people's branches whilst working on my own?
+- What are diverged branches?
 - How do I keep my development branch up-to-date with `main`?
+- What is merging?
+- What is rebasing?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- How branches can be used to fix bugs or develop features in isolation.
-- Switching branches, stashing and restoring.
-- How to keep a development branch up-to-date.
+- How to keep a development branch up-to-date using
+  - `git merge`
+  - `git rebase`
 - Differences between and when to use merge and rebase.
-- Git worktrees instead of branches.
-- Tracking multiple origins.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -62,15 +60,14 @@ branch as well as the commit `7-bc43901` which was made when the `ns-rse/1-zero-
 `ns-rse/2-square-root` branch does _not_ contain these commits.
 
 Sometimes this won't be a problem, the two features/issues are completely independent and have not made changes to the
-same file and it would be possible to merge the branches into `main` without any merge conflicts because neither have
-modified the same files in the same location.
+same file. In such cases it is possible to merge the branches into `main` without any "merge conflicts" because neither
+have modified the same files in the same location.
 
-That will not always be the case though, sometimes merge conflicts might arise if the second branch is changing some of
-the same files as the first branch. Another scenario might be that whilst work was being done on adding a new feature
-branch, a critical bug was fixed that the new feature depends on and the changes now in `main` need incorporating in the
-feature
-branch. That is in fact the situation we have with our `ns-rse/2-square-root` branch, it conflicts with `main` because
-of the changes we merged from the `ns-rse/1-zero-division` branch.
+That will not always be the case though, sometimes merge conflicts might arise if the second branch is changing  the
+same files in the same place as the first branch. Another scenario might be that whilst work was being done on adding a
+new feature branch, a critical bug was fixed that the new feature depends on and the changes now in `main` need
+incorporating in the feature branch. That is in fact the situation we have with our `ns-rse/4-square-root` branch, it
+conflicts with `main` because of the changes we merged from the `ns-rse/3-zero-division` branch.
 
 There are two approaches to solving this: merging (`git merge`)  and rebasing (`git rebase`).
 
@@ -144,19 +141,20 @@ The syntax of `git merge` is
 git merge <OPTIONS> <ref>
 ```
 
-Where `<ref>` is one of a commit, branch name or tag (both of which are references to commits). There is an option for
-how the merge is made known as `fast-forward`. Fast-forward is the default action unless annotated tags are being merged
-that are in the incorrect hierarchy and it updates the branch pointer (`HEAD`) to match the merged branch.
+Where `<ref>` is one of a commit hash, branch name or tag (both of which are references to commit hashes). There is an
+option for how the merge is made known as `fast-forward`. Fast-forward is the default and it is used when a branch is
+merged with its ancestor which itself has no new commits.
 
-Typically, as in this example, the `main` branch contains work from someone else's branch and we want to incorporate
-those changes in the other branch.
+Often though, as in this example, the `main` branch contains work from someone else's branch and your feature branch and
+`main` have therefore diverged, and we want to incorporate the changes that have been introduced to `main` into the
+`feature` branch that is being worked on.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
 Remember to take the time to show the contents of the files and how they "disappear" when switching branches, in
 particular after having added `README.md` to `branch1` and switching back to `main`.
 
-Also use `git log` alias (or other form of `git log` that shows branches) to show the changes and explain the point at
+Also use `git lol` alias (or other form of `git log` that shows branches) to show the changes and explain the point at
 which each of the branches is at with reference to the `*` indicating commits, the branch names and where they sit and
 the date/time stamps.
 
@@ -179,7 +177,8 @@ git switch -c branch1
 echo "# Just a test" > README.md
 git add README.md
 git commit -m "docs: Adding README.md"
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
+cat README.md
 ```
 
 #### 3. Switch back to `main`
@@ -189,7 +188,7 @@ Check the contents of `README.md` (there is no such file as the it exists on `br
 ``` bash
 git switch main
 cat README.md   # Note that `README.md` does not currently exist on this branch
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 ```
 
 #### 4. Create `branch2`, add a `LICENSE` and commit it
@@ -198,8 +197,9 @@ git log --pretty="%h %ad (%cr) %x09 %an : %s"
 git switch -c branch2
 echo "YOU CAN DO WHAT YOU WANT WITH THIS CODE" > LICENSE
 git add LICENSE
-git commit -m "Adding a LICENSE"
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git commit -m "chore: Adding a LICENSE"
+git lol
+cat LICENSE
 ```
 
 #### 5. Merge `branch1` into `main`
@@ -211,7 +211,7 @@ exists on the `main` branch.
 git switch main
 git merge branch1
 cat README.md
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 ```
 
 #### 6. Merge `main`, which now contains `README.md`, into `branch2`
@@ -222,7 +222,7 @@ Switch to `branch2` which has now diverged as it contains changes of its own _an
 ``` bash
 git switch branch2
 git merge --ff main # Merge changes merged into main from branch1 into branch2
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 
 *   d914fee - (HEAD -> branch2) Merge branch 'main' into branch2 (2024-03-01 12:02:08 +0000) <Neil
 |\
@@ -232,6 +232,9 @@ git log --pretty="%h %ad (%cr) %x09 %an : %s"
 * 1bd6bb8 - Initial commit (2024-03-01 11:57:06 +0000) <Neil Shephard>
 ```
 
+It might seem strange that commit `7817070` is listed _after_ `a14a643` when the `README.md` was created and committed
+first but this is just an artefact of how the graph is drawn as the timestamps show.
+
 #### 7. Merge `branch2` into `main`
 
 We now have the changes from `branch1` included in `branch2` by virtue of having merged `main`. If we switch back to
@@ -240,13 +243,16 @@ We now have the changes from `branch1` included in `branch2` by virtue of having
 ``` bash
 git switch main
 git merge branch2
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 *   d914fee - (HEAD -> main, branch2) Merge branch 'main' into branch2 (2024-03-01 12:02:08 +0000) <Neil Shephard>
 |\
 | * 7817070 - (branch1) Adding a README.md (2024-03-01 11:57:35 +0000) <Neil Shephard>
 * | a14a643 - Adding a LICENSE (2024-03-01 12:00:39 +0000) <Neil Shephard>
 |/
 * 1bd6bb8 - Initial commit (2024-03-01 11:57:06 +0000) <Neil Shephard>
+ls -lh
+.rw-r--r-- neil neil 40 B Fri Mar 01 11:57:21 LICENSE
+.rw-r--r-- neil neil 14 B Fri Mar 01 11:58:03 README.md
 ```
 
 #### 8. Delete `branch1` and `branch2`
@@ -256,7 +262,7 @@ As we're done with `branch1` and `branch2` we can delete them.
 ``` bash
 # Delete the two branches
 git branch -d branch{1,2}
-git log --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 *   d914fee - (HEAD -> main) Merge branch 'main' into branch2 (2024-03-01 12:02:08 +0000) <Neil Shephard>
 |\
 | * 7817070 - Adding a README.md (2024-03-01 11:57:35 +0000) <Neil Shephard>
@@ -268,8 +274,8 @@ git log --pretty="%h %ad (%cr) %x09 %an : %s"
 Having used `git merge` we couldn't perform a simple fast-forward because the history of `main` now contained changes
 that were made on `branch1` and so a separate commit (`d914fee`) was made to merge the `main` branch into `branch2`
 (commits are denoted by `*` and so you can see the commits were made on separate branches). We can see from the graph
-that `README.md` was added from a separate `branch1` and `LICENSE` was added from `branch2`, although after deleting the
-branches they are no longer shown by name in the `git log --graph` output.
+that `README.md` was added from a separate branches, although after deleting the branches they are no longer shown by
+name in the output.
 
 ### Rebasing
 
@@ -399,6 +405,7 @@ exists on the `main` branch.
 git switch main
 git merge branch1  # Merge branch1 into main, equivalent to a Pull Request
 cat README.md
+git lol
 ```
 
 #### 6. Rebase `branch2` onto `main` so it includes the `README.md` and the point of divergence is updated
@@ -410,13 +417,15 @@ Switch to `branch2` which has now diverged as it contains changes of its own _an
 ``` bash
 git switch branch2
 git rebase main # Rebase branch2 onto main
-git  --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 
 * 12f5202 - (HEAD -> branch2) Adding a LICENSE (2024-03-01 12:19:12 +0000) <Neil Shephard>
 * 4e8e933 - (main, branch1) Adding README.md (2024-03-01 12:18:37 +0000) <Neil Shephard>
 * 2459609 - Initial commit (2024-03-01 12:18:37 +0000) <Neil Shephard>
 
 ```
+
+**NB** The commits here _are_ listed in chronological order because there is no branching.
 
 #### 7. Merge `branch2` into `main`
 
@@ -426,7 +435,7 @@ in `branch1` were merged in. If we switch back to `main` we can merge the change
 ``` bash
 git switch main
 git merge branch2
-git  --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 
 * 12f5202 - (HEAD -> main, branch2) docs: Adding a LICENSE (2024-03-01 12:19:12 +0000) <Neil Shephard>
 * 4e8e933 - (branch1) docs: Adding README.md (2024-03-01 12:18:37 +0000) <Neil Shephard>
@@ -439,7 +448,7 @@ As we're done with `branch1` and `branch2` we can delete them.
 
 ``` bash
 git branch -d branch{1,2}
-git  --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 
 * 12f5202 - (HEAD -> main) Adding a LICENSE (2024-03-01 12:19:12 +0000) <Neil Shephard>
 * 4e8e933 - Adding README.md (2024-03-01 12:18:37 +0000) <Neil Shephard>
@@ -458,6 +467,9 @@ In your pairs bring the `square-root` branch up-to-date and incorporate the chan
 
 The person who has been working on the `square-root` issue/branch will be at the helm for this, but work together to
 come up with a solution. You can use either of the two strategies `git merge` or `git rebase` to do this.
+
+**IMPORTANT** - You _should_ encounter a "conflict", please do _not_ try and solve this yet as we will go through how to
+do this.
 
 ``` mermaid
 %%{init: {'theme': 'base', 'gitGraph': {'rotateCommitLabel': true}
@@ -635,12 +647,29 @@ If you have undertaken the [Git & GitHub Through GitKraken - From Zero to Hero!]
 encountered merge conflicts when working through the "_Python Calculator_" exercise and have some idea of how to resolve
 them. We will however now go through resolving the issue when updating diverged branches.
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## `conflictStyle = diff3`
+
+There is a useful tweak we can make to our configuration before working through resolving merge conflicts that makes it
+a little easier to see/understand what changes have been made. If we set the `merge.conflictStyle = diff3` then we are
+shown the parent commit/state of one of the branches as well as the differences between the two.
+
+Enable this now...
+
+``` bash
+git config --global merge.conflictStyle = diff3
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- markdownlint-disable-next-line MD001 -->
 #### 1. Create a new repository
 
 ``` bash
 cd ~/work/git/hub/ns-rse
-mkdir git-rebase-test-conflict
-cd git-rebase-test-conflict
+mkdir git-rebase-conflict
+cd git-rebase-conflict
 git init --initial-branch=main
 git commit --allow-empty -m "Initial commit"
 ```
@@ -657,6 +686,11 @@ git commit -m "docs: Adding README.md"
 echo "Lets add another line in a separate commit" >> README.md
 git add README.md
 git commit -m "docs: Ooops, missed a line from the README.md"
+git lol
+* 59d399c - (HEAD -> branch1) docs: Ooops, missed a line from the README.md (2026-02-24 12:13:18 +0000) <Neil Shephard>
+* 4901898 - docs: Adding README.md (2026-02-24 12:13:18 +0000) <Neil Shephard>
+* 5750ad9 - (main) Initial commit (2026-02-24 12:12:55 +0000) <Neil Shephard>
+(END)
 ```
 
 #### 3. Switch back to `main`
@@ -683,15 +717,18 @@ cat README.md
 
 #### 5. Merge `branch1` into `main`
 
-Merge `branch1` into `main`. The `README.md` has the text from `branch1`. As we are done with this branch we can delete
-it now.
+Switch to `main` and merge `branch1`. As we are done with this branch we can delete it now. The `README.md` has the text
+from `branch1`.
 
 ``` bash
-# Switch to main and merge branch1
 git switch main
 git merge branch1
-cat README.md
 git branch -d branch1
+cat README.md
+# Just a test
+
+
+Lets add another line in a separate commit
 ```
 
 #### 6. Switch to `branch2` and add another line to `README.md`
@@ -705,11 +742,11 @@ git switch branch2
 echo "Lets add another commit to make things messier" >> README.md
 git add README.md
 git commit -m "Bulking out README.md with more information"
-git  --pretty="%h %ad (%cr) %x09 %an : %s"
+git lol
 
-* bce21bd - (HEAD -> branch2) Bulking out README.md with more information (2024-03-01 13:26:01 +0000) <Neil Shephard>
-* 29b2e32 - This repo needs a README.md (2024-03-01 13:23:16 +0000) <Neil Shephard>
-* 57e68aa - Initial commit (2024-03-01 13:20:14 +0000) <Neil Shephard>
+* 22c7da7 - (HEAD -> branch2) Bulking out README.md with more information (2026-02-24 12:16:09 +0000) <Neil Shephard>
+* bb1b362 - This repo needs a README.md (2026-02-24 12:14:39 +0000) <Neil Shephard>
+* 5750ad9 - Initial commit (2026-02-24 12:12:55 +0000) <Neil Shephard>
 
 ```
 
@@ -724,7 +761,7 @@ git rebase main
 
 Auto-merging README.md
 CONFLICT (add/add): Merge conflict in README.md
-error: could not apply fcfe2db... This repo needs a README.md
+error: could not apply bb1b362... This repo needs a README.md
 hint: Resolve all conflicts manually, mark them as resolved with
 hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
 hint: You can instead skip this commit: run "git rebase --skip".
@@ -734,27 +771,32 @@ Could not apply fcfe2db... This repo needs a README.md
 ```
 
 Oh dear we have, as expected, encountered the dreaded "merge conflict" as both `branch1` and `branch2` made changes to
-`README.md`. Lets take a look at what the file now looks like.
+`README.md` _in the same place_. Lets take a look at what the file now looks like.
 
 ``` bash
 cat README.md
 <<<<<<< HEAD
 # Just a test
 
+
 Lets add another line in a separate commit
+||||||| parent of bb1b362 (This repo needs a README.md)
 =======
 # Just a test
 
-But we're creating a merge conlict
+But we're creating a merge conflict
 
->>>>>>> 29b2e32 (This repo needs a README.md)
+>>>>>>> bb1b362 (This repo needs a README.md)
 ```
 
-Here `HEAD` refers to the branch that is being merged in (`main`) which contains the changes we made on `branch1` and
-merged into `main`. The text that this refers to  is delimited by `<<<<<<<` and `=======` and is
-`# Just a test` and `Lets add another line in a separate commit`. The commit (`fcfe2db`) on `branch2` which added _two_
-lines (although technically its 4 since we also included blank lines) then follows and is delimited by `=======` and
-`>>>>>>>` and includes the message.
+Here `HEAD` refers to the **current** branch that we have checked out (`main`) which includes the changes we made on
+`branch1` and merged into `main`. The text that this refers to is delimited by `<<<<<<<` and `|||||||`.
+
+The `parent of bb1b362` on is present because we set `merge.conflictStyle = diff3` and so we are shown the state of the
+file at this point _before_ commit `bb1b362` was made between `|||||||` and `=======`, in this case it is empty because
+there was no `README.md` file.
+The last section between `=======` and `>>>>>>> bb1b362 (This repo needs a README.md)` shows what was added by the
+commit `bb1b362`.
 
 We are given some useful information as to what we could do and there are three options.
 
@@ -778,19 +820,18 @@ Lets add another line in a separate commit
 But we're creating a merge conflict
 ```
 
-You can use `Ctrl+k` to remove a whole line at once. Save the file and return to the command prompt (in `nano` this is
-`Ctrl+O` then `Ctrl+X`).
-
 ::::::::::::::::::::::::::::::::::::: callout
 
 ## Nano
 
-[`nano`][nano] is a simple text editor found on most GNU/Linux and OSX systems that is quick and easy to use. A useful
-bookmark to help whilst developing the muscle memory for the commands is the [nano shortcuts
-cheatsheet](https://www.nano-editor.org/dist/latest/cheatsheet.html).
+In [`nano`][nano] You can use `Ctrl+k` to cut a whole line at once (`Ctrl+u` inserts the line that was last
+removed). Save the file and return to the command prompt (in `nano` this is `Ctrl+O` then `Ctrl+X`).
+
+A useful bookmark to help whilst developing the muscle memory for the commands is the [nano shortcuts
+cheatsheet][nano_cheatsheet].
 
 It is possible that your system may use a different editor than `nano` by default, e.g. `vim`. It does not matter which
-text editor you use to edit and save the files and if you are comfortable using this then that is not a problem.
+text editor you use to edit and save the files.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -808,32 +849,31 @@ Recorded resolution for 'README.md'.
  1 file changed, 4 insertions(+)
 Auto-merging README.md
 CONFLICT (content): Merge conflict in README.md
-error: could not apply 84a1592... Bulking out README.md with more information
+error: could not apply 22c7da7... Bulking out README.md with more information
 hint: Resolve all conflicts manually, mark them as resolved with
 hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
 hint: You can instead skip this commit: run "git rebase --skip".
 hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
 error: could not parse conflict hunks in 'README.md'
-Could not apply 84a1592... Bulking out README.md with more information
+Could not apply 22c7da7... Bulking out README.md with more information
 ```
 
-Hang on, we just resolved the merge conflict why are we being told there is another? Well the _first_ conflict with
-commit `fcfe2db` was resolved and we are told as much in the line `Recorded resolution for 'README.md'`, however there
-is now a conflict between that and commit `84a1592`. We get the same advice so lets take a look at the state of
-`README.md`
+Hang on, we just resolved the merge conflict why are we being told there is another? Well the _first_ conflict was with
+commit `bb1b362` and has been resolved and we are told as much in the line `Recorded resolution for 'README.md'`,
+however there is now a conflict between that and commit `22c7da7`. We get the same advice so lets take a look at the
+state of `README.md`
 
 ``` bash
 # Just a test
 
 Lets add another line in a separate commit
 
-But we're creating a merge conflict
-
 <<<<<<< HEAD
->>>>>>> fcfe2db (This repo needs a README.md)
+But we're creating a merge conflict
+||||||| parent of 22c7da7 (Bulking out README.md with more information)
 =======
 Lets add another commit to make things messier
->>>>>>> 84a1592 (Bulking out README.md with more information)
+>>>>>>> 22c7da7 (Bulking out README.md with more information)
 ```
 
 Here we can see it's the second line that we added to `README.md` under `branch2` that read
@@ -882,12 +922,13 @@ Lets add another commit to make things messier
 The history/graph is linear now and shows that `branch2` is two commits ahead of `main`.
 
 ``` bash
-git  --pretty="%h %ad (%cr) %x09 %an : %s"
-* 0ccfe91 - (HEAD -> branch2) Bulking out README.md with more information (2024-03-01 14:00:57 +0000) <Neil Shephard>
-* d041adb - This repo needs a README.md (2024-03-01 13:59:31 +0000) <Neil Shephard>
-* 64905e8 - (main) Ooops, missed a line from the README.md (2024-03-01 13:56:35 +0000) <Neil Shephard>
-* e68485d - Adding README.md (2024-03-01 13:55:50 +0000) <Neil Shephard>
-* dec5385 - Initial commit (2024-03-01 13:55:50 +0000) <Neil Shephard>
+git lol
+
+* 0a7f5db - (HEAD -> branch2) Bulking out README.md with more information (2026-02-24 12:16:09 +0000) <Neil Shephard>
+* ae93af0 - This repo needs a README.md (2026-02-24 12:14:39 +0000) <Neil Shephard>
+* 59d399c - (main) docs: Ooops, missed a line from the README.md (2026-02-24 12:13:18 +0000) <Neil Shephard>
+* 4901898 - docs: Adding README.md (2026-02-24 12:13:18 +0000) <Neil Shephard>
+* 5750ad9 - Initial commit (2026-02-24 12:12:55 +0000) <Neil Shephard>
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -917,10 +958,11 @@ best strategy to avoid this complication is two fold.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-You may encounter this situation and find that you are repeatedly resolving the same conflict as you want the finer
-grained control over `git rebase` and one option is to `git rebase --abort` and use `git merge` instead as you only have
-to resolve the conflicts once, although there may be a lot of them. One disadvantage of this is it makes it look like
-the commits stem from you and so many people prefer the rebase strategy.
+Even if you keep your work and branches small you may still encounter this situation and find that you are repeatedly
+resolving the same conflict as you want the finer grained control over `git rebase` and one option is to `git rebase
+--abort` and use `git merge` instead as you only have to resolve the conflicts once, although there may be a lot of
+them. One disadvantage of this is it makes it look like the commits stem from you and so many people prefer the rebase
+strategy.
 
 Help is at hand though if you find you are repeatedly being asked to resolve the same conflict as you progress through a
 rebase in the form of [rerere][rerere] which stands for "**re**use **re**corded **re**solution" and causes Git to
@@ -943,6 +985,15 @@ git config --local rerere.enabled true
 
 You can of course enable globally and disable locally as local configuration variables take precedence over global.
 
+::::::::::::::::::::::::::::::::::::: callout
+
+## Squash commits before rebasing/merging
+
+If you have lots of small commits you can perform an interactive rebase (`git rebase -i HEAD^^^^^^^^^`) to squash these
+into a single commit _prior_ to initiating the rebase or merge.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 2: Diverging Branches
@@ -950,10 +1001,10 @@ You can of course enable globally and disable locally as local configuration var
 You didn't complete the merge/rebase in the previous challenge because of the merge conflict. In your pairs do so now.
 
 If we look at the conflict in `tests/test_arithmetic.py` we can see at the bottom the sections that are
-conflicting. They are de-marked by `<<<<<<<`, `======-` and `>>>>>>>` and the `HEAD` and `<commit-hash>` show which
-branches they originate from.
+conflicting. They are de-marked by `<<<<<<<`, `|||||||`, `=======` and `>>>>>>>` and the `HEAD` and `<commit-hash>` show
+which branches they originate from.
 
-The exact solution will depend on the strategy you have chosen to bring the branch up-to-date.
+The exact solution will depend on the strategy you have chosen (`merge` or `rebase`) to bring the branch up-to-date.
 
 :::::::::::::::::::::::: solution
 
@@ -1144,7 +1195,7 @@ You can now create a pull request, assign it for review and merge it.
 
 ## Merge or Rebase
 
-Arguments rage online between experienced users as to whether you should `git merge` or `git rebase` it can often be a
+Arguments rage online between experienced users as to whether you should `git merge` or `git rebase`. It can often be a
 matter of preference and you should agree within your team which strategy to use and stick with it.
 
 However it is worth noting that if you `git merge` your changes from the `main` branch into your feature branch when you
@@ -1153,6 +1204,9 @@ have been merged into `main` since your feature branch was made and not just the
 branch (i.e. the commits that have already been merged into `main` also appear in your pull request). This can make
 reviewing pull requests considerably harder and is a good case for using `git rebase` to keep your feature branches
 up-to-date when you know they have diverged.
+
+On the flip side it can be very difficult to recover from a `git rebase` that has gone wrong and there is scope that you
+might lose work making `git merge` a safer option.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints
@@ -1172,5 +1226,6 @@ up-to-date when you know they have diverged.
 - [Git Interactive Rebase Tool](https://gitrebasetool.mitmaro.ca/)
 
 [nano]: https://www.nano-editor.org/
+[nano_cheatsheet]: https://www.nano-editor.org/dist/latest/cheatsheet.html
 [rerere]: https://git-scm.com/book/en/v2/Git-Tools-Rerere
 [zerohero]: https://srse-git-github-zero2hero.netlify.app/
