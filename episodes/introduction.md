@@ -47,7 +47,7 @@ maintaining clean and focused commits which make the task of reviewing work easi
 
 ## Code of Conduct
 
-To make clear what is expected, everyone participating in The Carpentries activities is required to abide by our
+To make clear what is expected, everyone participating in the activities is required to abide by a
 [Code of Conduct][coc]. Any form of behaviour to exclude, intimidate, or cause discomfort is a violation of the Code of
 Conduct. In order to foster a positive and professional learning environment we encourage you to:
 
@@ -57,8 +57,8 @@ Conduct. In order to foster a positive and professional learning environment we 
 - Focus on what is best for the community
 - Show courtesy and respect towards other community members
 
-If you believe someone is violating the Code of Conduct, we ask that you report it to The Carpentries Code of Conduct
-Committee by completing [this form](https://goo.gl/forms/KoUfO53Za3apOuOK2).
+If you believe someone is violating the Code of Conduct, we ask that you bring it to the attention of a course
+instructor.
 
 ## Icebreaker
 
