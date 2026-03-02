@@ -278,7 +278,7 @@ You may want to set the following alias in your `~/.bashrc` file, it sets variou
 ~/.bashrc` to
 
 ```bash
-echo "alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'" >> ~/.bashrc
+echo -e "export alias nano='nano --linenumbers'" >> ~/.bashrc
 
 ```
 
@@ -308,16 +308,19 @@ Each repository that is under Git version control has a `.git/` directory where 
 history live. Within this directory you will find a `.git/config` file which is the "local" configuration for that
 repository. **Configuration options defined locally over-ride global configuration options**.
 
-There are two ways of modifying either the global or local configuration, using the Command Line `git config <options>`
-or by editing either the global (`~/.gitconfig`) or local (`git/config`) files.
+### Modifying Configuration
 
-### `git config`
+There are two ways of modifying either the global or local configuration, using the Command Line `git config <options>`
+or by editing either the global (`~/.gitconfig`) or local (`.git/config`) files.
+
+#### `git config`
 
 The `git config` command has a host of options that you can view with the `--help` flag. The first required option says
 what file should be modified and is typically either `global` or `local`. You can view the configuration with `git
 config --list` and you can optionally restrict it to show either the `--global` or `--local` configuration.
 
 ``` bash
+cd ~/path/to/cloned/python-maths
 git config --list
 git config --list --local
 git config --list --global
@@ -328,14 +331,14 @@ shown below.
 
 ``` bash
 [user]
- email = a.n.other@sheffield.ac.uk
- name = A N Other
+  email = a.n.other@sheffield.ac.uk
+  name = A N Other
 [core]
- editor = nano
- sshCommand = ssh -i ~/.ssh/id_ed25519 -F /dev/null
- attributesFile = $HOME/.gitattributes
- autocrlf = input
- excludesFile = ~/.config/git/.gitignore
+  editor = nano
+  sshCommand = ssh -i ~/.ssh/id_ed25519 -F /dev/null
+  attributesFile = $HOME/.gitattributes
+  autocrlf = input
+  excludesFile = ~/.config/git/.gitignore
 ```
 
 Sections are in square brackets with names, e.g. `[user]` or `[core]`. Fields then have key and value pairs e.g. the
@@ -398,7 +401,7 @@ git config --global core.editor nano
 
 ## Solution 2 - Editing `~/.gitconfig`
 
-You could alternatively edit the `~/.gitconfig` file directly and add the following lines
+You could alternatively edit the `~/.gitconfig` (or `~/.config/git/config`) file directly and add the following lines.
 
 ``` bash
 [core]
@@ -469,26 +472,7 @@ git config --global alias.lol 'log --graph --pretty=format:"%C(yellow)%h\\ %C(gr
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: callout
-
-## Useful `git fire` alias
-
-You may have seen the common Git meme about committing and pushing your changes before exiting the building if there is
-a fire alarm...
-
-![In case of fire... `git commit`, `git
-push`](https://cknoll.github.io/images/2025-09-git-fire/git-gommit-push-leave-building.png)
-
-Whilst humorous its not the best advice as there are [problems][git_commit_problems] with this approach. You can
-however, as noted in the linked blog, set an alias for this which makes it quick and easy to save your changes.
-
-``` bash
-git config --global alias.fire '!git switch -c emergency-backup && git commit -a -m "emergency commit" && git push -u origin emergency-backup'
-```
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-### `.gitignore`
+## `.gitignore`
 
 The [`.gitignore`][gitignore] file does exactly what you might expect it to, it contains lists of directories and files
 that should be ignored by Git. To save having to write out the path to each and every file the format accepts
@@ -505,7 +489,7 @@ Python pickles. Thus to exclude all `.csv` files you would add...
 *.csv
 ```
 
-Just as you can exclude files you can also ignore directories and a common one you may wish to ignore is the `.DS_Store`
+Just as you can exclude files you can also ignore directories and a common one you may wish to ignore is the `.DS_Store/`
 directory that Mac OSX automatically generates in most directories. The ignore pattern for that includes a trailing
 slash.
 
@@ -752,8 +736,6 @@ share and update changes to the code base (although they are [mirrored on GitHub
 [gitaliases]: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 [gitignore]: https://git-scm.com/docs/gitignore
 [gitignorepatterns]: https://git-scm.com/docs/gitignore#_pattern_format
-[git_commit_problems]: https://cknoll.github.io/git-fire-en.html
-[git_includeif]: https://blog.nshephard.dev/posts/git-ssh/#conditional-includes
 [gh]: https://github.com
 [gh_newrepo]: https://github.com/new
 [gl]: https://gitlab.com

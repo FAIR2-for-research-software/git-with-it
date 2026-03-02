@@ -322,9 +322,9 @@ worktree and add the `CITATION.cff`
 
 ```bash
 cd contributing
-echo "# Contributing\n\nContributions to this repository are welcome via Pull Requests." > CONTRIBUTING.md
+echo -e "# Contributing\n\nContributions to this repository are welcome via Pull Requests." > CONTRIBUTING.md
 cd ../citation
-echo "cff-version: 1.2.0\ntitle: Pytest Examples\ntype: software" > CITATION.cff
+echo -e "cff-version: 1.2.0\ntitle: Pytest Examples\ntype: software" > CITATION.cff
 ```
 
 Neither branches have had the changes committed so Git will not show any differences between them, but we can use `diff
