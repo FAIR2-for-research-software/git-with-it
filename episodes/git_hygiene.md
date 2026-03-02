@@ -19,7 +19,7 @@ exercises: 2
 - Manually editing Git configuration files.
 - Use `.gitignore` to avoid adding unnecessary files.
 - Understand the concept of Atomic commits.
-- Ammending and fixing commits.
+- Amending and fixing commits.
 - Squashing commits.
 - Staging hunks with `--patch`.
 
@@ -29,7 +29,7 @@ exercises: 2
 
 The idea of atomic commits is that they are small self-contained commits focused on one issue, all the changes are
 typically in a small subset of files, e.g. only a particular module and its associated test file. You may have
-learnt to make lots of small commits frequently and so you're history may look like.
+learnt to make lots of small commits frequently and so your history may look like.
 
 ``` bash
 git log --oneline
@@ -48,16 +48,16 @@ function. As the work is self-contained and we've not added to any other files t
 Git has a few functions to help here and we'll go through those in turn.
 
 We'll use the `python-maths` repository as an example and will make a new branch called
-`<github-user>/amend-fixup-tutorial` to add a very basic `CONTRIBUTING.md` file to.
+`<github-user>/amend-fixup-tutorial` to add a very basic `CONTRIBUTING.md` file.
 
 ``` bash
-cd pytest-maths
+cd python-maths
 git switch -c ns-rse/amend-fixup-tutorial
   Switched to a new branch 'ns-rse/amend-fixup-tutorial'
 ```
 
 We  will create a `CONTRIBUTING.md` to the repository, you can either copy and paste the following `edit` line or you
-can use `nano CONTRIBUTING.md` to add the file
+can use `nano CONTRIBUTING.md` to add the file.
 
 ``` bash
 echo "# Contributing\n\nTo contribute please make a fork of this repository, make your changes and open a Pull Request." > CONTRIBUTING.md
@@ -197,15 +197,15 @@ git lol
 ```
 
 The final step is to perform the automatic squashing via an "interactive rebase". You need to supply the hash of the
-commit _before_ the one you are fixing up, in the above example `35aa48c` (check the output of `git logp` if you haven't
+commit _before_ the one you are fixing up, in the above example `e075bdb` (check the output of `git lol` if you haven't
 made a note of this). This can be done explicitly but an alternative and convenient way of referring to this previous
 commit is by using the `~1` appended to the commit you have chosen to fixup so you would use.
 
 ``` bash
 # Relative to the fixup
-git rebase -i --autosquash 4fda15f~1
+git rebase -i --autosquash a8eb76e~1
 # Absolute commit
-git rebase -i --autosquash 35aa48c
+git rebase -i --autosquash e075bdb
 ```
 
 This will open the default editor and because the `--autosquash` option has been used it should have marked the
@@ -335,7 +335,7 @@ def square_root(x):
 
 If  you forgot to use `git commit --fixup` you can still combine
 commits before making pull requests using an interactive rebase `git rebase -i`.  We've already touched on `git rebase`
-in the context of using `--autosquash` after `--fixup` but its a very flexible and powerful component of Git and it also
+in the context of using `--autosquash` after `--fixup` but it's a very flexible and powerful component of Git and it also
 allows you to "squash" commits on the same branch.
 
 We will now make a few commits to our branch and then squash them via an interactive rebase. This helps keep commits
@@ -413,13 +413,13 @@ with `git rebase -i 2f7c382` or `git rebase -i HEAD~5` which will open our defau
 ```
 
 The instructions here are really useful and tell us how to edit the rebase and include some important warnings.
-The first line tells us that we are rebasing the range of commits `onto c437414`. Subsequently there is a list of
+The first line tells us that we are rebasing the range of commits `onto e075bdb`. Subsequently there is a list of
 commands, by default `pick` is in place for each of the commits, but we are shown the available options and simply need
-to replace each of the `pick` with `s` or `squash` and we want to apply it to commits two through to 5.
+to replace each of the `pick` with `s` or `squash` and we want to apply it to commits 2 through to 5.
 
 You can do this manually by editing the file or you can use your editors find and replace functionality which in `nano`
 is `Ctrl + \` and you will be prompted for the string you want to find (`pick`) and what you want to replace it with
-`squash` and then asked if you want to change the first instance or all. We can safely change all as it doesn't matter
+(`squash`) and then asked if you want to change the first instance or all. We can safely change all as it doesn't matter
 if the instances in the comments section are replaced. The first four rows of the file should now read like the
 following.
 
@@ -608,17 +608,18 @@ git pull
 git switch -c ns-rse/test-patch
 ```
 
-We then cange the first line of the `add()` function to read....
+We then change the first two lines of the `add()` function to read....
 
 ```python
     """
     Return the sum of two numbers.
 ```
 
-...and update the first line of the `multiply()` function to read...
+...and update the first two lines of the `multiply()` function to read...
 
 ```python
-Return the product of x and y.
+    """
+    Return the product of x and y.
 ```
 
 Stage your changes, but include the `--patch` option, you should now be presented with the following screen asking if
@@ -692,7 +693,7 @@ We can now commit the changes to the `multiply()` function keeping changes atomi
 functions.
 
 ``` bash
-git commit -m "docs(arithmatic): Improve docstring of multiply() function."
+git commit -m "docs(arithmetic): Improve docstring of multiply() function."
 ```
 
 Since we know the only outstanding change is to the docstring of the `add()` function (we can check with `git diff` to
@@ -718,9 +719,9 @@ index 0546271..6e7f4fd 100644
 (1/1) Stage this hunk [y,n,q,a,d,e,p,?]? y
 
 
-git commit -m "docs(arithmatic): improve docstring for add() function"
+git commit -m "docs(arithmetic): improve docstring for add() function"
 
-[ns-rse/test-patch 88a3d9c] doc: improve docstring for add() function
+[ns-rse/test-patch 88a3d9c] docs(arithmetic): improve docstring for add() function
  1 file changed, 2 insertions(+), 2 deletions(-)
 ```
 
@@ -737,7 +738,7 @@ that, as with the branch naming conventions that are covered in the next episode
 relates to. There are keywords to start your commit message with that are self-explanatory...
 
 - `fix:`
-- `feat:` - short for _future_
+- `feat:` - short for _feature_
 - `build:`
 - `chore:`
 - `ci:`
@@ -748,7 +749,7 @@ relates to. There are keywords to start your commit message with that are self-e
 - `test:`
 
 If changes relate to a specific component or "scope" of a repository that can be included in parentheses afterwards. For
-example the Zero Division issue in `python-maths` relates to the `artihmatic` module so might be started with
+example the Zero Division issue in `python-maths` relates to the `arithmetic` module so might be started with
 `fix(arithmetic)`.
 
 You don't have to use [Conventional Commits][concommit] but do try and use informative titles and add more detail if

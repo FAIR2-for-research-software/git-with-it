@@ -408,7 +408,7 @@ You could alternatively edit the `~/.gitconfig` file directly and add the follow
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Alias'
+### Aliases
 
 A very useful configuration option available is the ability to set [aliases][gitaliases] for Git. This means you can
 create short-cuts to complex commands. Aliases live under the `[alias]` section of the global (`.gitconfig`) or local
@@ -448,7 +448,7 @@ of the above in single quotes.
 
 ## Solution 1 - Edit &nbsp; `~/.gitconfig`
 
-You can set the alias `logp` to the above `git log` options by editing `~/.gitconfig` and adding the following
+You can set the alias `lol` to the above `git log` options by editing `~/.gitconfig` and adding the following
 
 ``` bash
 [alias]
@@ -483,7 +483,7 @@ Whilst humorous its not the best advice as there are [problems][git_commit_probl
 however, as noted in the linked blog, set an alias for this which makes it quick and easy to save your changes.
 
 ``` bash
-git config --global alias.fire '!git swtich -c emergency-backup && git commit -a -m "emergency commit" && git push -u origin emergency-backup'
+git config --global alias.fire '!git switch -c emergency-backup && git commit -a -m "emergency commit" && git push -u origin emergency-backup'
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -533,7 +533,7 @@ repository.
 
 ## Challenge 3
 
-In your pairs work together to _all_ exclude files with the extension, `.RData`, `.csv` and `.pkl` and the `.DS_Store/`
+In your pairs work together to exclude _all_ files with the extension, `.RData`, `.csv` and `.pkl` and the `.DS_Store/`
 directory from being added to repositories by editing and adding changes to your global `.gitignore` file.
 
 **NB** The wildcard symbol `*` is required to ensure _any_ file, no matter what comes before the extension is ignored,
