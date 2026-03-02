@@ -103,6 +103,7 @@ You should now create a virtual environment for the course and install Git and O
 
 ``` bash
 conda create --name git-with-it --channel conda-forge python git openssh
+```
 
 As the prompt suggests activate the environment...
 
