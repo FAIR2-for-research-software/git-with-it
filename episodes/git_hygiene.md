@@ -370,17 +370,17 @@ git lol
   a1101c7 [pre-commit.ci] Fixing issues with pre-commit
 ```
 
-We need to include the hash of the first commit we want to interact with is the one _prior_ to the first one we wish to
+We need to ensure the hash of the first commit we want to interact with is the one _prior_ to the first one we wish to
 squash, i.e. is `2f7c382` or `HEAD~5` (as it is five commits backwards from `HEAD`). We start a rebase
 with `git rebase -i 2f7c382` or `git rebase -i HEAD~5` which will open our default editor.
 
 ``` bash
- pick 327231c # Commit 1 # empty
- pick 9bb6c50 # Commit 2 # empty
- pick 3ff6955 # Commit 3 # empty
- pick 7090c87 # Commit 4 # empty
- pick 6d444b8 # Commit 5 # empty
-# Rebase e075bdb..6d444b8 onto e075bdb (5 commands)
+ pick c437414 # Commit 1 # empty
+ pick e859738 # Commit 2 # empty
+ pick d47d914 # Commit 3 # empty
+ pick f7bb1c9 # Commit 4 # empty
+ pick c33ab51 # Commit 5 # empty
+# Rebase 2f7c382..c33ab51 onto 2f7c382 (5 commands)
 #
 # Commands:
 # p, pick <commit> = use commit
@@ -424,11 +424,11 @@ if the instances in the comments section are replaced. The first four rows of th
 following.
 
 ``` bash
- pick 327231c # Commit 1 # empty
- squash 9bb6c50 # Commit 2 # empty
- squash 3ff6955 # Commit 3 # empty
- squash 7090c87 # Commit 4 # empty
- squash 6d444b8 # Commit 5 # empty
+ pick c437414 # Commit 1 # empty
+ squash e859738 # Commit 2 # empty
+ squash d47d914 # Commit 3 # empty
+ squash f7bb1c9 # Commit 4 # empty
+ squash c33ab51 # Commit 5 # empty
 ```
 
 Save this file and exit (in `nano` use `Ctrl + o` then `Ctrl + x`), the editor will exit return you to the prompt and
@@ -462,7 +462,7 @@ Commit 5
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 #
-# Date:      Fri Mar 8 14:39:47 2024 +0000
+# Date:      Mon Feb 8 14:39:47 2026 +0000
 #
 # interactive rebase in progress; onto 2f7c382
 # Last commands done (5 commands done):
