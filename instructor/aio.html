@@ -547,7 +547,7 @@ branch or deleted something.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> In-Person </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>If the course is being run in person please describe the situation to
 the person or people sat next to you. Write your answer in the
@@ -561,7 +561,7 @@ collaborative pad under a heading with your name.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Online </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>If you are participating online please write down your names of pairs
 and provide an answer in the collaborative notepad.</p>
@@ -574,7 +574,7 @@ and provide an answer in the collaborative notepad.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Before the start of the course you should setup the <a href="https://docs.google.com/document/d/1deRatN-J7RDLaEW2_rE1a01pH2INL2KermibFY9vqYk/edit?tab=t.0" class="external-link">collaborative
 pad</a> where participants can answer questions and collaborate.</p>
@@ -594,7 +594,7 @@ their experiences BVC.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
 <p>If anyone has multiple GitHub accounts it is possible that permission
 may be denied when pushing if the wrong SSH key is used. It is simple to
@@ -611,7 +611,8 @@ is associated with the account they wish to use.</p>
 <p>The important part is that it points to the correct SSH key, in the
 above this is <code>~/.ssh/id_ed25519</code> which will need modifying
 to reflect the users key for the account they wish to use.</p>
-<p>An alternative is to make sure you have configured Git globally to <a href="https://blog.nshephard.dev/posts/git-ssh/#conditional-includes" class="external-link"><code>includeIf</code></a></p>
+<p>An alternative is to make sure you have configured Git globally to
+[<code>includeIf</code>][git_includeif]</p>
 </div>
 </div>
 </div>
@@ -805,7 +806,7 @@ prompt will appear asking if you want to save them.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"alias nano='nano --autoindent --linenumbers --tabstospaces --tabsize=4'"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"export alias nano='nano --linenumbers'"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre>
 </div>
 <p>These options will be used whenever you use <code>nano</code>. You
 can alternatively place these configuration options in
@@ -849,16 +850,19 @@ history live. Within this directory you will find a
 <code>.git/config</code> file which is the “local” configuration for
 that repository. <strong>Configuration options defined locally over-ride
 global configuration options</strong>.</p>
+</div>
+<div class="section level3">
+<h3 id="modifying-configuration">Modifying Configuration<a class="anchor" aria-label="anchor" href="#modifying-configuration"></a>
+</h3>
 <p>There are two ways of modifying either the global or local
 configuration, using the Command Line
 <code>git config &lt;options&gt;</code> or by editing either the global
-(<code>~/.gitconfig</code>) or local (<code>git/config</code>)
+(<code>~/.gitconfig</code>) or local (<code>.git/config</code>)
 files.</p>
-</div>
-<div class="section level3">
-<h3 id="git-config">
+<div class="section level4">
+<h4 id="git-config">
 <code>git config</code><a class="anchor" aria-label="anchor" href="#git-config"></a>
-</h3>
+</h4>
 <p>The <code>git config</code> command has a host of options that you
 can view with the <code>--help</code> flag. The first required option
 says what file should be modified and is typically either
@@ -869,9 +873,10 @@ restrict it to show either the <code>--global</code> or
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--local</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--global</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">cd</span> ~/path/to/cloned/python-maths</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--local</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--global</span></span></code></pre>
 </div>
 <p>Adding values requires a bit of understanding about the structure of
 the configuration file, a very simple example is shown below.</p>
@@ -879,14 +884,14 @@ the configuration file, a very simple example is shown below.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">[user]</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a> <span class="ex">email</span> = a.n.other@sheffield.ac.uk</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a> <span class="ex">name</span> = A N Other</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="ex">email</span> = a.n.other@sheffield.ac.uk</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="ex">name</span> = A N Other</span>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">[core]</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a> <span class="ex">editor</span> = nano</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a> <span class="ex">sshCommand</span> = ssh <span class="at">-i</span> ~/.ssh/id_ed25519 <span class="at">-F</span> /dev/null</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a> <span class="ex">attributesFile</span> = <span class="va">$HOME</span>/.gitattributes</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a> <span class="ex">autocrlf</span> = input</span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a> <span class="ex">excludesFile</span> = ~/.config/git/.gitignore</span></code></pre>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="ex">editor</span> = nano</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  <span class="ex">sshCommand</span> = ssh <span class="at">-i</span> ~/.ssh/id_ed25519 <span class="at">-F</span> /dev/null</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="ex">attributesFile</span> = <span class="va">$HOME</span>/.gitattributes</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="ex">autocrlf</span> = input</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="ex">excludesFile</span> = ~/.config/git/.gitignore</span></code></pre>
 </div>
 <p>Sections are in square brackets with names, e.g. <code>[user]</code>
 or <code>[core]</code>. Fields then have key and value pairs e.g. the
@@ -919,6 +924,7 @@ set as the first column of output.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span>  <span class="at">--show-scope</span> <span class="at">--show-origin</span></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -961,7 +967,7 @@ options).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Solution 1 - Command Line </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -977,10 +983,11 @@ options).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Solution 2 - Editing ~/.gitconfig </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<p>You could alternatively edit the <code>~/.gitconfig</code> file
-directly and add the following lines</p>
+<p>You could alternatively edit the <code>~/.gitconfig</code> (or
+<code>~/.config/git/config</code>) file directly and add the following
+lines.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1050,7 +1057,7 @@ above in single quotes.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Solution 1 - Edit   ~/.gitconfig </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>You can set the alias <code>lol</code> to the above
 <code>git log</code> options by editing <code>~/.gitconfig</code> and
@@ -1070,7 +1077,7 @@ adding the following</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Solution 2 - Use   git config </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>You could also set this alias at the command line</p>
 <div class="codewrapper sourceCode" id="cb18">
@@ -1082,35 +1089,11 @@ adding the following</p>
 </div>
 </div>
 </div>
-<div id="useful-git-fire-alias" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
 </div>
-<span class="callout-header">Callout</span>
-<div id="useful-git-fire-alias" class="callout-inner">
-<h3 class="callout-title">Useful <code>git fire</code> alias</h3>
-<div class="callout-content">
-<p>You may have seen the common Git meme about committing and pushing
-your changes before exiting the building if there is a fire alarm…</p>
-<figure><img src="https://cknoll.github.io/images/2025-09-git-fire/git-gommit-push-leave-building.png" alt="In case of fire… git commit, git push" class="figure mx-auto d-block"><div class="figcaption">In case of fire… <code>git commit</code>,
-<code>git push</code>
-</div>
-</figure><p>Whilst humorous its not the best advice as there are <a href="https://cknoll.github.io/git-fire-en.html" class="external-link">problems</a> with this
-approach. You can however, as noted in the linked blog, set an alias for
-this which makes it quick and easy to save your changes.</p>
-<div class="codewrapper sourceCode" id="cb19">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.fire <span class="st">'!git switch -c emergency-backup &amp;&amp; git commit -a -m "emergency commit" &amp;&amp; git push -u origin emergency-backup'</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="gitignore">
+</section><section><h2 class="section-heading" id="gitignore">
 <code>.gitignore</code><a class="anchor" aria-label="anchor" href="#gitignore"></a>
-</h3>
+</h2>
+<hr class="half-width">
 <p>The <a href="https://git-scm.com/docs/gitignore" class="external-link"><code>.gitignore</code></a>
 file does exactly what you might expect it to, it contains lists of
 directories and files that should be ignored by Git. To save having to
@@ -1127,19 +1110,19 @@ doing. Common files to exclude are <code>.csv</code> for text files
 <code>.RData</code> for files from <a href="https://www.r-project.org/" class="external-link">R</a> and <code>.pkl</code> are the
 Python pickles. Thus to exclude all <code>.csv</code> files you would
 add…</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">*.csv</span></span></code></pre>
+</div>
+<p>Just as you can exclude files you can also ignore directories and a
+common one you may wish to ignore is the <code>.DS_Store/</code>
+directory that Mac OSX automatically generates in most directories. The
+ignore pattern for that includes a trailing slash.</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">*.csv</span></span></code></pre>
-</div>
-<p>Just as you can exclude files you can also ignore directories and a
-common one you may wish to ignore is the <code>.DS_Store</code>
-directory that Mac OSX automatically generates in most directories. The
-ignore pattern for that includes a trailing slash.</p>
-<div class="codewrapper sourceCode" id="cb21">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">.DS_Store/</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">.DS_Store/</span></span></code></pre>
 </div>
 <p>GitHub has a useful feature when you create a repository to use
 template <code>.gitignore</code> files for specific languages, but if
@@ -1151,7 +1134,7 @@ to an existing <code>.gitignore</code>.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor3" aria-expanded="false" aria-controls="collapseInstructor3">
   <h3 class="accordion-header" id="headingInstructor3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" aria-labelledby="headingInstructor3" data-bs-parent="#accordionInstructor3">
+<div id="collapseInstructor3" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor3" aria-labelledby="headingInstructor3">
 <div class="accordion-body">
 <p>Remember to switch to GitHub and go through the process of creating a
 new repository to show where the option to select a template can be
@@ -1190,7 +1173,7 @@ ignored, e.g. <code>*.csv</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="section level3 accordion-body">
 <h3 id="update-the-global--gitignore">Update the global <code>.gitignore</code>
 <a class="anchor" aria-label="anchor" href="#update-the-global--gitignore"></a>
@@ -1209,15 +1192,14 @@ directory and files.</p>
 </div>
 <p>Stage and commit the changes to <code>.gitignore</code> and push to
 GitHub.</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: Ignoring .csv and .pkl files"</span></span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: Ignoring .csv and .pkl files"</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
 </div>
 <p>Pull requests are created on GitHub.</p>
-</div>
 </div>
 </div>
 </div>
@@ -1253,7 +1235,7 @@ questions please do not hesitate to ask.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Clone the repository (Both) </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <p>You both now need to clone the repository locally (<em>not</em> on
 GitHub).</p>
@@ -1262,13 +1244,13 @@ Maths</a> and then the <em>SSH</em> tab. Copy the URL. If you want to
 clone the work to <code>~/work/git/</code> then in a terminal run the
 following commands (be wary of copy and pasting them
 <code>&lt;owners_id&gt;</code> needs replacing)</p>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="edit--gitconfig-both">Edit <code>.git/config</code> (<strong>Both</strong>)<a class="anchor" aria-label="anchor" href="#edit--gitconfig-both"></a>
@@ -1280,12 +1262,12 @@ following commands (be wary of copy and pasting them
 the <strong>Repository Owner</strong>. For example if the repository
 owner uses the <code>alice_and_bob</code> username on GitHub it should
 read.</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
 </div>
 <p>This edit changes the <code>origin</code> to be the empty repository
 you created under the <em>Repository Owner’s</em> account called
@@ -1307,10 +1289,10 @@ repo</a>, do <em>not</em> add a <code>README.md</code>, license or
 account with the following command, the <code>--force</code> is optional
 and shouldn’t be required unless you have inadvertently initialised the
 repository with additional files.</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1322,7 +1304,7 @@ repository with additional files.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Protect the Main Branch (Repository Owners) </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -1350,7 +1332,7 @@ rule</em></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
   <h4 class="accordion-header" id="headingSolution10"> Invite your Collaborator (Repository Owners) </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
 <div class="accordion-body">
 <p><strong>NB</strong> This step is <em>just</em> for the
 <strong>Repository Owner</strong>, the <strong>Collaborator</strong>
@@ -1374,58 +1356,58 @@ to collaborate and should accept it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution11" aria-expanded="false" aria-controls="collapseSolution11">
   <h4 class="accordion-header" id="headingSolution11"> Install the Package (Both) </h4>
 </button>
-<div id="collapseSolution11" class="accordion-collapse collapse" aria-labelledby="headingSolution11" data-bs-parent="#accordionSolution11">
+<div id="collapseSolution11" class="accordion-collapse collapse" data-bs-parent="#accordionSolution11" aria-labelledby="headingSolution11">
 <div class="accordion-body">
 <p><strong>NB</strong> Both the <strong>Repository Owner</strong>, the
 <strong>Collaborator</strong> should perform this step.</p>
 <p>If you have not already done so activate the <code>git-with-it</code>
 environment you created as described in the setup instructions.</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
 </div>
 <p>You can now install the package and its test dependencies in an
 editable format so that as you work on the package the changes you make
 will instantly be available. Make sure you are in the
 <code>python-maths</code> directory (use <code>pwd</code> to show where
 you are and <code>cd</code> to change directory).</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="bu">pwd</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
 </div>
 <p>You can optionally check everything is installed and runs by running
 the tests via <a href="https://docs.pytest.org/" class="external-link">pytest</a>.</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">pytest</span></span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
-<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
-<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
-<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
-<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
-<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
-<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
-<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a></span>
-<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
-<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
-<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a></span>
-<span id="cb29-15"><a href="#cb29-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
-<span id="cb29-16"><a href="#cb29-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
-<span id="cb29-17"><a href="#cb29-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb29-18"><a href="#cb29-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
-<span id="cb29-19"><a href="#cb29-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
-<span id="cb29-20"><a href="#cb29-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb29-21"><a href="#cb29-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
-<span id="cb29-22"><a href="#cb29-22" tabindex="-1"></a></span>
-<span id="cb29-23"><a href="#cb29-23" tabindex="-1"></a></span>
-<span id="cb29-24"><a href="#cb29-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">pytest</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
+<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
+<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
+<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
+<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
+<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
+<span id="cb28-20"><a href="#cb28-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb28-21"><a href="#cb28-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
+<span id="cb28-22"><a href="#cb28-22" tabindex="-1"></a></span>
+<span id="cb28-23"><a href="#cb28-23" tabindex="-1"></a></span>
+<span id="cb28-24"><a href="#cb28-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
 </div>
 </div>
 </div>
@@ -1497,10 +1479,9 @@ and update changes to the code base (although they are <a href="https://github.c
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do I configure Git globally and locally?</li>
 <li>How do we keep our repository and history clean?</li>
-<li>What are atomic commits?</li>
 <li>How do I avoid <code>Fixing typo</code> commits?</li>
+<li>What are atomic commits?</li>
 </ul>
 </div>
 </div>
@@ -1510,12 +1491,10 @@ and update changes to the code base (although they are <a href="https://github.c
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Command line configuration of Git.</li>
-<li>Manually editing Git configuration files.</li>
-<li>Use <code>.gitignore</code> to avoid adding unnecessary files.</li>
 <li>Understand the concept of Atomic commits.</li>
 <li>Amending and fixing commits.</li>
 <li>Squashing commits.</li>
+<li>Rebasing commits interactively.</li>
 <li>Staging hunks with <code>--patch</code>.</li>
 </ul>
 </div>
@@ -1567,7 +1546,7 @@ can use <code>nano CONTRIBUTING.md</code> to add the file.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Contributing\n\nTo contribute please make a fork of this repository, make your changes and open a Pull Request."</span> <span class="op">&gt;</span> CONTRIBUTING.md</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Contributing\n\nTo contribute please make a fork of this repository, make your changes and open a Pull Request."</span> <span class="op">&gt;</span> CONTRIBUTING.md</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">git</span> add CONTRIBUTING.md</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: Ask for PRs via fork in CONTRIBUTING.md\n"</span></span></code></pre>
 </div>
@@ -1611,7 +1590,7 @@ bugs.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Bug reports are also welcome please create an [issue](https://github.com/&lt;user-name&gt;/python-maths/issues).\n"</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"Bug reports are also welcome please create an [issue](https://github.com/&lt;user-name&gt;/python-maths/issues).\n"</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span></code></pre>
 </div>
 <p>We could add a new commit for this.</p>
 <div class="codewrapper sourceCode" id="cb7">
@@ -1703,7 +1682,7 @@ These can then be autosquashed via an interactive Git rebase.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"\nPlease note this repository uses [pre-commit](https://pre-commit.com) to lint the Python code and Markdown files."</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"\nPlease note this repository uses [pre-commit](https://pre-commit.com) to lint the Python code and Markdown files."</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span></code></pre>
 </div>
 <p>We want to merge this commit with the first one we made in this
 tutorial and can do so using <code>git commit --fixup</code>. To do this
@@ -2461,7 +2440,7 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  --></section></section><section id="aio-branching"><p>Content from <a href="branching.html">Branching</a></p>
 <hr>
-<p>Last updated on 2026-02-24 |
+<p>Last updated on 2026-03-02 |
 
         <a href="https://github.com/ns-rse/git-with-it/edit/main/episodes/branching.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -2664,7 +2643,7 @@ were:</p>
 <col width="15%">
 <col width="20%">
 </colgroup>
-<thead><tr>
+<thead><tr class="header">
 <th align="left">Commit</th>
 <th align="left">Hash</th>
 <th align="left">Message</th>
@@ -2672,14 +2651,14 @@ were:</p>
 <th align="left">Committer</th>
 </tr></thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td align="left">First</td>
 <td align="left">31a4a93</td>
 <td align="left">Initial commit</td>
 <td align="left">2021-05-13</td>
 <td align="left">Anna Krystalli</td>
 </tr>
-<tr>
+<tr class="even">
 <td align="left">Last</td>
 <td align="left">6353fb4</td>
 <td align="left">bug: Fix tpyo in divide function</td>
@@ -3423,7 +3402,7 @@ the changes in commits are handled, these are <code>--soft</code>,
 <li>Switch to the <code>main</code> branch of the
 <code>pytest-maths</code> repository.</li>
 <li>Create a new file using
-<code>echo "# This is TODO list" &gt; TODO.md</code>
+<code>echo -e "# This is TODO list" &gt; TODO.md</code>
 </li>
 <li>Stage and commit the file to the <code>main</code> branch of your
 repository. <strong>NB</strong> to do this you may have to disable the
@@ -3458,7 +3437,7 @@ branch and add it to that.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# This is a TODO list"</span> <span class="op">&gt;</span> TODO.md</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# This is a TODO list"</span> <span class="op">&gt;</span> TODO.md</span>
 <span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="fu">git</span> add TODO.md</span>
 <span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-n</span> <span class="at">-m</span> <span class="st">"docs: Adding a todo file"</span></span>
 <span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--mixed</span> HEAD~1</span>
@@ -3487,7 +3466,7 @@ the commit from main.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# This is a TODO list"</span> <span class="op">&gt;</span> TODO.md</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# This is a TODO list"</span> <span class="op">&gt;</span> TODO.md</span>
 <span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="fu">git</span> add TODO.md</span>
 <span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-n</span> <span class="at">-m</span> <span class="st">"docs: Adding a todo file"</span></span>
 <span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="fu">git</span> log              <span class="co"># Note the commit of the mistaken hash</span></span>
@@ -3604,10 +3583,10 @@ stage and commit all changes to tracked files.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> branch2</span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"\nAny questions please feel free to get in touch\n"</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"\nAny questions please feel free to get in touch\n"</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span>
 <span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a><span class="fu">git</span> add CONTRIBUTING.md</span>
 <span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adding CONTRIBUTING.md"</span></span>
-<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"\nPlease don't break my repository though!"</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"\nPlease don't break my repository though!"</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span>
 <span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a><span class="fu">git</span> switch main</span>
 <span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a></span>
 <span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a><span class="ex">error:</span> Your local changes to the following files would be overwritten by checkout:</span>
@@ -3711,7 +3690,7 @@ different message.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> example-stashes</span>
 <span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">git</span> stash <span class="at">--message</span> <span class="st">"WIP CONTRIBUTING.md file"</span></span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Yet another file"</span> <span class="op">&gt;</span> ANOTHER.md</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"Yet another file"</span> <span class="op">&gt;</span> ANOTHER.md</span>
 <span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="fu">git</span> add ANOTHER.md</span>
 <span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a><span class="fu">git</span> stash <span class="at">--message</span> <span class="st">"WIP ANOTHER.md file"</span></span>
 <span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a></span>
@@ -3772,14 +3751,14 @@ repository…</p>
 <ol style="list-style-type: decimal">
 <li>Create a <code>&lt;github-username&gt;/todo</code> branch.</li>
 <li>Create a <code>TODO.md</code> with
-<code>echo "# This is a ToDo List\n\n1. Task1\n2. Task2." &gt; TODO.md</code>
+<code>echo -e "# This is a ToDo List\n\n1. Task1\n2. Task2." &gt; TODO.md</code>
 </li>
 <li>Do <em>not</em> add and commit, instead
 <code>git stash -m "WIP : adding TODO.md"</code> your changes</li>
 <li>Switch to the <code>main</code> branch and create a
 <code>&lt;github-username&gt;/citation</code> branch.</li>
 <li>Add a basic <code>CITATION.cff</code> with
-<code>echo "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" &gt; CITATION.cff</code>
+<code>echo -e "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" &gt; CITATION.cff</code>
 </li>
 <li>Add and commit this file.</li>
 <li>Unstash the <code>TODO.md</code> file on the <code>citation</code>
@@ -3787,8 +3766,8 @@ branch.</li>
 <li>Stage and commit the changes. Do <strong>NOT</strong> create a pull
 request or merge these changes.</li>
 <li>Delete the branches locally (try and avoid any messages telling you
-there are unmerged changes, see <code>git branch --help</code> on how to
-force deletion of unmerged branches).</li>
+there are unmerged changes, see <code>git branch    --help</code> on how
+to force deletion of unmerged branches).</li>
 </ol>
 </div>
 </div>
@@ -3807,7 +3786,7 @@ force deletion of unmerged branches).</li>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
 <span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="fu">git</span> pull</span>
 <span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> <span class="op">&lt;</span>github-username<span class="op">&gt;</span>/todo</span>
-<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# This is a ToDo List\n\n1. Task1\n2.Task2."</span> <span class="op">&gt;</span> TODO.md</span></code></pre>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# This is a ToDo List\n\n1. Task1\n2.Task2."</span> <span class="op">&gt;</span> TODO.md</span></code></pre>
 </div>
 <p>If we want to switch branches without making a commit but save our
 work in progress we stash the work and switch to <code>main</code> and
@@ -3820,7 +3799,7 @@ work in progress we stash the work and switch to <code>main</code> and
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">git</span> stash <span class="at">-m</span> <span class="st">"WIP : adding TODO.md"</span></span>
 <span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">git</span> switch main</span>
 <span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> <span class="op">&lt;</span>github-username<span class="op">&gt;</span>/citation</span>
-<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software"</span> <span class="op">&gt;</span> CITATION.cff</span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software"</span> <span class="op">&gt;</span> CITATION.cff</span>
 <span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a><span class="fu">git</span> add CITATION.cff</span>
 <span id="cb39-6"><a href="#cb39-6" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"doc: Adding a CITATION.cff"</span></span></code></pre>
 </div>
@@ -3925,7 +3904,7 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  --></section></section><section id="aio-diverging_branches"><p>Content from <a href="diverging_branches.html">Diverging Branches</a></p>
 <hr>
-<p>Last updated on 2026-02-24 |
+<p>Last updated on 2026-03-02 |
 
         <a href="https://github.com/ns-rse/git-with-it/edit/main/episodes/diverging_branches.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -4139,7 +4118,7 @@ commit it<a class="anchor" aria-label="anchor" href="#create-branch1-add-a-readm
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> branch1</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Just a test"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Just a test"</span> <span class="op">&gt;</span> README.md</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: Adding README.md"</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">git</span> lol</span>
@@ -4168,7 +4147,7 @@ commit it<a class="anchor" aria-label="anchor" href="#create-branch2-add-a-licen
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> branch2</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"YOU CAN DO WHAT YOU WANT WITH THIS CODE"</span> <span class="op">&gt;</span> LICENSE</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"YOU CAN DO WHAT YOU WANT WITH THIS CODE"</span> <span class="op">&gt;</span> LICENSE</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> add LICENSE</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: Adding a LICENSE"</span></span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">git</span> lol</span>
@@ -4383,7 +4362,7 @@ commit it<a class="anchor" aria-label="anchor" href="#create-branch1-add-a-readm
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> branch1</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Just a test"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Just a test"</span> <span class="op">&gt;</span> README.md</span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
 <span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: Adding README.md"</span></span></code></pre>
 </div>
@@ -4409,7 +4388,7 @@ commit it<a class="anchor" aria-label="anchor" href="#create-branch2-add-a-licen
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> branch2</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"YOU CAN DO WHAT YOU WANT WITH THIS CODE"</span> <span class="op">&gt;</span> LICENSE</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"YOU CAN DO WHAT YOU WANT WITH THIS CODE"</span> <span class="op">&gt;</span> LICENSE</span>
 <span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="fu">git</span> add LICENSE</span>
 <span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: Adding a LICENSE"</span></span></code></pre>
 </div>
@@ -4753,10 +4732,10 @@ commits to it, adding an extra line.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> branch1</span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Just a test\n\n"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Just a test\n\n"</span> <span class="op">&gt;</span> README.md</span>
 <span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
 <span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: Adding README.md"</span></span>
-<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Lets add another line in a separate commit"</span> <span class="op">&gt;&gt;</span> README.md</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"Lets add another line in a separate commit"</span> <span class="op">&gt;&gt;</span> README.md</span>
 <span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
 <span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: Ooops, missed a line from the README.md"</span></span>
 <span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a><span class="fu">git</span> lol</span>
@@ -4790,7 +4769,7 @@ text into it.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> branch2</span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Just a test\n\nBut we're creating a merge conflict\n"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Just a test\n\nBut we're creating a merge conflict\n"</span> <span class="op">&gt;</span> README.md</span>
 <span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
 <span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"This repo needs a README.md"</span></span>
 <span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a><span class="fu">cat</span> README.md</span></code></pre>
@@ -4829,7 +4808,7 @@ we have two commits on this branch after the “Initial commit”.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co"># Switch to branch2 add more to `README.md` and rebase</span></span>
 <span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="fu">git</span> switch branch2</span>
-<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Lets add another commit to make things messier"</span> <span class="op">&gt;&gt;</span> README.md</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"Lets add another commit to make things messier"</span> <span class="op">&gt;&gt;</span> README.md</span>
 <span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
 <span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Bulking out README.md with more information"</span></span>
 <span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a><span class="fu">git</span> lol</span>
@@ -7281,7 +7260,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-additional_topics"><p>Content from <a href="additional_topics.html">Additional Topics</a></p>
 <hr>
-<p>Last updated on 2026-02-24 |
+<p>Last updated on 2026-03-02 |
 
         <a href="https://github.com/ns-rse/git-with-it/edit/main/episodes/additional_topics.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -7342,7 +7321,7 @@ view are shown below.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Show how to toggle the view on GitHub pull requests. Make sure to
 have an example that is already open in a tab of your browser.</p>
@@ -7372,7 +7351,7 @@ your computer and configure Git globally to use it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Update the ~/.gitconfig </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The <a href="https://difftastic.wilfred.me.uk/git.html" class="external-link">instructions</a> show
 the configuration options you can add to <code>~/.gitconfig</code> to
@@ -7674,9 +7653,9 @@ then jump to the <code>citation</code> worktree and add the
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">cd</span> contributing</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Contributing\n\nContributions to this repository are welcome via Pull Requests."</span> <span class="op">&gt;</span> CONTRIBUTING.md</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Contributing\n\nContributions to this repository are welcome via Pull Requests."</span> <span class="op">&gt;</span> CONTRIBUTING.md</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="bu">cd</span> ../citation</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"cff-version: 1.2.0\ntitle: Pytest Examples\ntype: software"</span> <span class="op">&gt;</span> CITATION.cff</span></code></pre>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"cff-version: 1.2.0\ntitle: Pytest Examples\ntype: software"</span> <span class="op">&gt;</span> CITATION.cff</span></code></pre>
 </div>
 <p>Neither branches have had the changes committed so Git will not show
 any differences between them, but we can use <code>diff -qr</code> to
@@ -7898,7 +7877,7 @@ tasks run at the scheduled point (default is hourly).</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>Be prepared to explain how SSH keys can be unlocked on login so that
 the passwords don’t need entering every time you try to use the SSH
@@ -8352,7 +8331,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.0" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->

@@ -212,8 +212,10 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#git">Git</a></li>
+<li><a href="#miniforgeconda">Miniforge/Conda</a></li>
+<li><a href="#create-a-virtual-environment">Create a Virtual Environment</a></li>
 <li><a href="#github">GitHub</a></li>
-<li><a href="#ssh-keys">SSH Keys</a></li>
+<li><a href="#clone-a-repository">Clone a repository</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -375,58 +377,50 @@ any links that you are not going to use.
 </div>
 
       <section id="setup"><section><h2 class="section-heading" id="git">Git<a class="anchor" aria-label="anchor" href="#git"></a></h2>
-<hr class="half-width"><p>There are many Git clients (porcelains) out there and many Integrated
-Development Environments (IDEs) support Git actions and facilitate using
-the bewildering array of options, but this course teaches the Command
-Line Interface (CLI) to Git as it means we have a consistent interface
-to teach the <em>principles</em> that you can take away to your own
-choice of Git client. Below there are instructions for installing Git on
-each of the three most common operating systems.</p>
+<hr class="half-width"><p>There are many <a href="https://git-scm.com/" class="external-link">Git</a> clients
+(porcelains) out there and many Integrated Development Environments
+(IDEs) support Git actions and facilitate using the bewildering array of
+options, but this course teaches the Command Line Interface (CLI) to Git
+as it means we have a consistent interface to teach the
+<em>principles</em> that you can take away to your own choice of Git
+client. Below there are instructions for installing Git on each of the
+three most common operating systems.</p>
 <p>Please complete these setup tasks <strong>before</strong> attending
 the course. If you have any issues getting setup please either contact
 an instructor in advance or arrive early and seek assistance from an
 instructor.</p>
-<!-- ## Example Repository -->
-<!-- This course uses a GitHub Template that you will, in small groups, create a copy of and collaborate on. Using -->
-<!-- this template and setting it up is part of the course, you do not need to set it up in advance. -->
-<div id="install-git" class="callout discussion">
+</section><section><h2 class="section-heading" id="miniforgeconda">Miniforge/Conda<a class="anchor" aria-label="anchor" href="#miniforgeconda"></a></h2>
+<hr class="half-width"><p>We use the <a href="https://github.com/conda-forge/miniforge" class="external-link">Miniforge</a> virtual
+environment management system to install virtual environments and Git as
+it provides a consistent experience across operating systems.</p>
+<div id="discussion1" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <span class="callout-header">Discussion</span>
-<div id="install-git" class="callout-inner">
-<h3 class="callout-title">Install Git</h3>
+<div class="callout-inner">
 <div class="callout-content">
-<p>As this is a course about using <a href="https://git-scm.com/" class="external-link">Git</a> you will need to have it installed
-on your computer. If you’re already using Git then the chances are high
-you already have it installed or it may be integrated into your
-Integrated Development Environment (IDE).</p>
-<p>For consistency across operating systems this course uses the Command
-Line Interface (CLI) to Git and instructions below will guide you
-through installation on different Operating Systems. The principles can
-be applied to any Git Porcelain (client) that you choose (e.g. <a href="https://www.gitkraken.com/" class="external-link">GitKraken</a>), including IDEs such as
-<a href="https://code.visualstudio.com/" class="external-link">VSCode</a>, PyCharm, <a href="https://posit.co/download/rstudio-desktop/" class="external-link">RStudio</a> and <a href="https://www.gnu.org/software/emacs/" class="external-link">Emacs</a>, although not all
-will support all of the functions introduced here (e.g. the RStudio Git
-interface is very basic).</p>
+<p>Follow the <a href="https://github.com/conda-forge/miniforge?tab=readme-ov-file#install" class="external-link">install
+instructions</a> for your operating system to install Miniforge.</p>
 </div>
 </div>
 </div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Windows
-  </h4>
+  <h4 class="accordion-header" id="headingSolution1"> Windows </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>You can use the <a href="https://git-scm.com/download/win" class="external-link">official
-binary</a> but we encourage you to use <a href="https://carpentries.github.io/workshop-template/install_instructions/#shell" class="external-link">Git
-for Windows</a> which includes the Bash shell and there are excellent <a href="https://carpentries.github.io/workshop-template/install_instructions/#shell" class="external-link">instructions</a>
-on how to install this on the Carpentries installation instructions for
-the Bash Shell (<strong>NB</strong> the Git instructions for Windows on
-this page direct the reader to the Bash Shell instructions as they are
-bundled together).</p>
+<blockquote>
+<p>Download and execute the Windows installer. Follow the prompts,
+taking note of the option to “Create start menu shortcuts”. The most
+convenient and tested way to use the installed software (such as
+commands <code>conda</code> and <code>mamba</code>) is via the
+“Miniforge Prompt” installed to the start menu.</p>
+</blockquote>
+<p>Once installed you should find the <em>Miniforge Prompt</em> in your
+Start menu.</p>
 </div>
 </div>
 </div>
@@ -434,82 +428,123 @@ bundled together).</p>
 <div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
-  MacOS
-  </h4>
+  <h4 class="accordion-header" id="headingSolution2"> Unix-like (Linux, MacOS, WSL) </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p><a href="https://git-scm.com/" class="external-link">Git</a> is not included in the MacOS
-distribution by default. The <a href="https://git-scm.com/download/mac" class="external-link">official instructions</a>
-suggests using either <a href="https://brew.sh/" class="external-link">Homebrew</a>, <a href="https://www.macports.org/" class="external-link">MacPorts</a> or <a href="https://developer.apple.com/xcode/" class="external-link">Xcode</a>.</p>
-<div class="section level4">
-<h4 id="homebrew">Homebrew<a class="anchor" aria-label="anchor" href="#homebrew"></a></h4>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">brew</span> install git</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span></code></pre>
 </div>
-</div>
-<div class="section level4">
-<h4 id="macports">MacPorts<a class="anchor" aria-label="anchor" href="#macports"></a></h4>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> port install git</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span></code></pre>
+</div>
+<p>Then…</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">bash</span> Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span></code></pre>
+</div>
+<p>Answer the prompts for selecting an installation location. At the end
+of the installation you will see the following output and question…</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">installation</span> finished.</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">Do</span> you wish to update your shell profile to automatically initialize conda<span class="pp">?</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">This</span> will activate conda on startup and change the command prompt when activated.</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">If</span> you<span class="st">'d prefer that conda'</span>s base environment not be activated on startup,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>   <span class="ex">run</span> the following command when conda is activated:</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> auto_activate_base false</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="ex">Note:</span> You can undo this later by running <span class="kw">`</span><span class="ex">conda</span> init <span class="at">--reverse</span> <span class="va">$SHELL</span><span class="kw">`</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="ex">Proceed</span> with initialization<span class="pp">?</span> [yes<span class="kw">|</span><span class="ex">no]</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="ex">[no]</span> <span class="op">&gt;&gt;&gt;</span> yes</span></code></pre>
+</div>
+<p>Answer <code>yes</code> as it ensures that the <code>conda</code>
+base environment is activated each time you create</p>
 </div>
 </div>
 </div>
+</div>
+<div id="unable-to-activate-environment" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="unable-to-activate-environment" class="callout-inner">
+<h3 class="callout-title">Unable to activate environment</h3>
+<div class="callout-content">
+<p>If you are prompted to run <code>conda init</code> before
+<code>conda activate</code> and find this doesn’t work then its possible
+a key step was missed out, most likely answering <code>yes</code> to
+have your shell profile updated mentioned above. To rectify this the
+following might help…</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">source</span> activate base</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="create-a-virtual-environment">Create a Virtual Environment<a class="anchor" aria-label="anchor" href="#create-a-virtual-environment"></a></h2>
+<hr class="half-width"><p>We now need to create a virtual environment and install Python, Git
+and OpenSSH within it.</p>
+<div id="discussion2" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>You should now create a virtual environment for the course and
+install Git and OpenSSH from the Conda-Forge channel.</p>
 </div>
 </div>
 </div>
 <div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">
-  Linux
-  </h4>
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>Most GNU/Linux distributions will have Git installed by default. If
-not you can install it using the package manager for your distribution.
-This will vary between distributions but some common ones are shown
-below. They assume you have <code>root</code> (administrator) access to
-your system via <code>sudo</code>. If <code>sudo</code> is not
-configured but you have <code>root</code> access then <code>su</code>
-and remove the <code>sudo</code> prefix from the following commands.</p>
-<div class="section level4">
-<h4 id="arch">Arch<a class="anchor" aria-label="anchor" href="#arch"></a></h4>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-Syu</span> git</span></code></pre>
-</div>
-</div>
-<div class="section level4">
-<h4 id="debianubuntu">Debian/Ubuntu<a class="anchor" aria-label="anchor" href="#debianubuntu"></a></h4>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> apt-get install git</span></code></pre>
-</div>
-</div>
-<div class="section level4">
-<h4 id="fedora">Fedora<a class="anchor" aria-label="anchor" href="#fedora"></a></h4>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> dnf install git</span></code></pre>
-</div>
-</div>
-<div class="section level4">
-<h4 id="gentoo">Gentoo<a class="anchor" aria-label="anchor" href="#gentoo"></a></h4>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">sudo</span> emerge <span class="at">-av</span> dev-vcs/git</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> git-with-it <span class="at">--channel</span> conda-forge python git openssh</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">As</span> the prompt suggests activate the environment...</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="kw">```</span> <span class="fu">bash</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
 </div>
+<p>Check these are installed using the following commands</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">which</span> <span class="dt">{git</span><span class="op">,</span><span class="dt">ssh</span><span class="op">,</span><span class="dt">ssh-keygen}</span></span></code></pre>
+</div>
+<p>This will print out the path to each of the programmes
+<code>git</code>, <code>ssh</code> and <code>ssh-keygen</code>, the
+first part of the path will depend on <em>your</em> computer, but the
+last part of the output of each should <code>miniforge/bin/git</code>,
+<code>miniforge/bin/ssh</code> and <code>miniforge/bin/ssh-keygen</code>
+respectively. An example is shown below.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a> <span class="fu">which</span> <span class="dt">{git</span><span class="op">,</span><span class="dt">python</span><span class="op">,</span><span class="dt">ssh</span><span class="op">,</span><span class="dt">ssh-keygen}</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">/home/neil/miniforge3/bin/git</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">/home/neil/miniforge3/bin/python</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="ex">/home/neil/miniforge3/bin/ssh</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="ex">/home/neil/miniforge3/bin/ssh-keygen</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -521,8 +556,9 @@ please <a href="https://github.com/signup" class="external-link">register</a>, i
 academic email address such as <code>@&lt;institute&gt;.ac.uk</code> or
 <code>@&lt;institute.edu&gt;</code> then registering with this address
 will give you access to a few more features.</p>
-</section><section><h2 class="section-heading" id="ssh-keys">SSH Keys<a class="anchor" aria-label="anchor" href="#ssh-keys"></a></h2>
-<hr class="half-width"><div id="essential" class="callout discussion">
+<div class="section level3">
+<h3 id="ssh-keys">SSH Keys<a class="anchor" aria-label="anchor" href="#ssh-keys"></a></h3>
+<div id="essential" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
@@ -539,28 +575,27 @@ account</a>.</p>
 <div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4">
-  Generate SSH Keys
-  </h4>
+  <h4 class="accordion-header" id="headingSolution4"> Generate SSH Keys </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>There is a detailed <a href="https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-openssh-on-macos-or-linux" class="external-link">article</a>
-on creating SSH keys under Linux and OSX that works with Git Bash too.
-It is recommended to use the newer <a href="https://blog.g3rt.nl/upgrade-your-ssh-keys.html" class="external-link">ed25519</a>
+on creating SSH keys under Linux and OSX that works with Git installed
+under the Conda/Miniforge install you should have made following the
+above instructions. It is recommended to use the newer <a href="https://blog.g3rt.nl/upgrade-your-ssh-keys.html" class="external-link">ed25519</a>
 algorithm. In a terminal or Git Bash shell, you can do this using the
 following commands. You will be prompted to enter your password twice,
 <strong>make sure to enter a secure (i.e. long) password, password-less
-keys are insecure!</strong>, make sure you remember what the password is
-(<strong>Hint</strong> use a password manager!).</p>
-<div class="codewrapper sourceCode" id="cb7">
+keys are insecure!</strong> and make sure you remember what the password
+is (<strong>Hint</strong> use a password manager!).</p>
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-a</span> 100 <span class="at">-t</span> ed25519</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">Generating</span> public/private ed25519 key pair.</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">Enter</span> file in which to save the key <span class="er">(</span><span class="ex">/home/neil/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="ex">Enter</span> passphrase for <span class="st">"id_ed25519"</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="ex">Enter</span> same passphrase again:</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-a</span> 100 <span class="at">-t</span> ed25519</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">Generating</span> public/private ed25519 key pair.</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">Enter</span> file in which to save the key <span class="er">(</span><span class="ex">/home/neil/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">Enter</span> passphrase for <span class="st">"id_ed25519"</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">Enter</span> same passphrase again:</span></code></pre>
 </div>
 <p>As shown above, you will need to confirm the location that the SSH
 keys will be saved to (hit enter to select the default which will be
@@ -570,15 +605,15 @@ it is, do not forget it!).</p>
 <p>This creates two files in the <code>~/.ssh/</code> directory by
 default, the private key (<code>~/.ssh/id_ed25519'</code>) and the
 public key (<code>~/.ssh/id_ed25519.pub</code>). These are text files
-and it is the contents of the later that you need to add to GitHub (see
-next solution). You can view the contents of the
-<code>~/.ssh/id_ed25519.pub</code> file that you need to copy to your
-GitHub account with.</p>
-<div class="codewrapper sourceCode" id="cb8">
+and it is the contents of the later with the <code>.pub</code> extension
+that you need to add to GitHub (see next solution). You can view the
+contents of the <code>~/.ssh/id_ed25519.pub</code> file that you need to
+copy to your GitHub account with.</p>
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">ssh-ed25519</span> AAAAC3NzaC1lZDI1NTE5AAAAIARcKip5cMGhQvOooF0sAFTvLAj8R7wz+7cPV9BndPtL neil@haldane</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">ssh-ed25519</span> AAAAC3NzaC1lZDI1NTE5AAAAIARcKip5cMGhQvOooF0sAFTvLAj8R7wz+7cPV9BndPtL neil@haldane</span></code></pre>
 </div>
 </div>
 </div>
@@ -587,11 +622,9 @@ GitHub account with.</p>
 <div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5">
-  Adding Keys to GitHub (All OSs)
-  </h4>
+  <h4 class="accordion-header" id="headingSolution5"> Adding Keys to GitHub (All OSs) </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>Once you have created your SSH key you need to copy it to your
 account, got to <em>Settings &gt; SSH and GPG Keys</em> and click on the
@@ -607,23 +640,66 @@ button.</p>
 <div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6">
-  Checking your key works
-  </h4>
+  <h4 class="accordion-header" id="headingSolution6"> Checking your key works </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>You can test if you have setup your SSH key by running the following
 command which should produce similar output.</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">Hi</span> ns-rse! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">Hi</span> ns-rse! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code></pre>
 </div>
 <p>If you do <strong>not</strong> see the above successful
 authentication message please get in touch <strong>before</strong> the
 course starts.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="clone-a-repository">Clone a repository<a class="anchor" aria-label="anchor" href="#clone-a-repository"></a></h2>
+<hr class="half-width"><p>To undertake the work in this course you need to have a Git
+repository to work on. We will use the <a href="https://github.com/FAIR2-for-research-software/python-maths" class="external-link">python-maths</a>
+repository for this.</p>
+<div id="cloning-python-maths" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="cloning-python-maths" class="callout-inner">
+<h3 class="callout-title">Cloning <code>python-maths</code>
+</h3>
+<div class="callout-content">
+<p>You should clone the <a href="https://github.com/FAIR2-for-research-software/python-maths" class="external-link">python-maths</a>
+repository <em>before</em> joining the first training session to the
+computer you will be using to undertake the work. As you have now setup
+SSH keys under your GitHub account you can</p>
+<ul><li>Navigate to <a href="https://github.com/FAIR2-for-research-software/python-maths" class="external-link">python-maths</a>
+(use <code>Ctrl+click</code> to open in a new tab).</li>
+<li>Click on the green Code button.</li>
+<li>On the Local tab select SSH</li>
+<li>Use the Copy button to the right of
+<code>git@github.com:FAIR2-for-research-software/python-maths.git</code>
+to copy the SSH URL.</li>
+</ul></div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div class="accordion-body">
+<p>You can clone the repository with the following…</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -635,12 +711,15 @@ course starts.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>You should have Git installed on your computer and opening a
-Terminal (or Git Bash Shell on Windows) you should be able to type
-<code>git</code> and receive a summary of available commands.</li>
-<li>You should have setup a GitHub account.</li>
-<li>You should have created an SSH key and uploaded the public component
-to your GitHub Account (<em>Settings &gt; SSH and GPG Keys</em>).</li>
+<p>Prior to attending the course you should have…</p>
+<ul><li>Installed Miniforge on your computer.</li>
+<li>Created a virtual environment called <code>git-with-it</code> and
+included both <code>git</code> and <code>openssh</code> in this
+environment.</li>
+<li>Created an SSH key and uploaded the public component to your GitHub
+Account (<em>Settings &gt; SSH and GPG Keys</em>).</li>
+<li>Cloned the <a href="https://github.com/FAIR2-for-research-software/python-maths" class="external-link">python-maths</a>
+repository.</li>
 </ul></div>
 </div>
 </div>
@@ -682,7 +761,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.0" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
