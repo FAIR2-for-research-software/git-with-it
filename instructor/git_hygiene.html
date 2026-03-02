@@ -800,7 +800,7 @@ discover using our <code>git lol</code> alias.</p>
 <span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>  <span class="ex">2f7c382</span> <span class="er">(</span><span class="ex">origin/main</span><span class="kw">)</span> <span class="ex">Merge</span> pull request <span class="co">#6 from ns-rse/ns-rse/tidy-print</span></span>
 <span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>  <span class="ex">a1101c7</span> <span class="pp">[</span><span class="ss">pre</span><span class="pp">-</span><span class="ss">commit.ci</span><span class="pp">]</span> Fixing issues with pre-commit</span></code></pre>
 </div>
-<p>We need to include the hash of the first commit we want to interact
+<p>We need to ensure the hash of the first commit we want to interact
 with is the one <em>prior</em> to the first one we wish to squash,
 i.e. is <code>2f7c382</code> or <code>HEAD~5</code> (as it is five
 commits backwards from <code>HEAD</code>). We start a rebase with
@@ -809,12 +809,12 @@ which will open our default editor.</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a> <span class="ex">pick</span> 327231c <span class="co"># Commit 1 # empty</span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a> <span class="ex">pick</span> 9bb6c50 <span class="co"># Commit 2 # empty</span></span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a> <span class="ex">pick</span> 3ff6955 <span class="co"># Commit 3 # empty</span></span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a> <span class="ex">pick</span> 7090c87 <span class="co"># Commit 4 # empty</span></span>
-<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a> <span class="ex">pick</span> 6d444b8 <span class="co"># Commit 5 # empty</span></span>
-<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="co"># Rebase e075bdb..6d444b8 onto e075bdb (5 commands)</span></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a> <span class="ex">pick</span> c437414 <span class="co"># Commit 1 # empty</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a> <span class="ex">pick</span> e859738 <span class="co"># Commit 2 # empty</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a> <span class="ex">pick</span> d47d914 <span class="co"># Commit 3 # empty</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a> <span class="ex">pick</span> f7bb1c9 <span class="co"># Commit 4 # empty</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a> <span class="ex">pick</span> c33ab51 <span class="co"># Commit 5 # empty</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="co"># Rebase 2f7c382..c33ab51 onto 2f7c382 (5 commands)</span></span>
 <span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="co"># Commands:</span></span>
 <span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a><span class="co"># p, pick &lt;commit&gt; = use commit</span></span>
@@ -864,11 +864,11 @@ the file should now read like the following.</p>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a> <span class="ex">pick</span> 327231c <span class="co"># Commit 1 # empty</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a> <span class="ex">squash</span> 9bb6c50 <span class="co"># Commit 2 # empty</span></span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a> <span class="ex">squash</span> 3ff6955 <span class="co"># Commit 3 # empty</span></span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a> <span class="ex">squash</span> 7090c87 <span class="co"># Commit 4 # empty</span></span>
-<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a> <span class="ex">squash</span> 6d444b8 <span class="co"># Commit 5 # empty</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a> <span class="ex">pick</span> c437414 <span class="co"># Commit 1 # empty</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a> <span class="ex">squash</span> e859738 <span class="co"># Commit 2 # empty</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a> <span class="ex">squash</span> d47d914 <span class="co"># Commit 3 # empty</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a> <span class="ex">squash</span> f7bb1c9 <span class="co"># Commit 4 # empty</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a> <span class="ex">squash</span> c33ab51 <span class="co"># Commit 5 # empty</span></span></code></pre>
 </div>
 <p>Save this file and exit (in <code>nano</code> use
 <code>Ctrl + o</code> then <code>Ctrl + x</code>), the editor will exit
@@ -906,7 +906,7 @@ them.</p>
 <span id="cb26-22"><a href="#cb26-22" tabindex="-1"></a><span class="co"># Please enter the commit message for your changes. Lines starting</span></span>
 <span id="cb26-23"><a href="#cb26-23" tabindex="-1"></a><span class="co"># with '#' will be ignored, and an empty message aborts the commit.</span></span>
 <span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a><span class="co"># Date:      Fri Mar 8 14:39:47 2024 +0000</span></span>
+<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a><span class="co"># Date:      Mon Feb 8 14:39:47 2026 +0000</span></span>
 <span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb26-27"><a href="#cb26-27" tabindex="-1"></a><span class="co"># interactive rebase in progress; onto 2f7c382</span></span>
 <span id="cb26-28"><a href="#cb26-28" tabindex="-1"></a><span class="co"># Last commands done (5 commands done):</span></span>
@@ -1350,7 +1350,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.0" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
