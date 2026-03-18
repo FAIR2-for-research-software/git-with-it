@@ -67,6 +67,8 @@ sudo port install git
 
 :::::::::::::::::::::::::
 
+:::::::::::::::: solution
+
 ### Linux
 
 Most GNU/Linux distributions will have Git installed by default. If not you can install it using the package manager for

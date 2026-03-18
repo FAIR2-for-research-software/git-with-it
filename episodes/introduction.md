@@ -663,62 +663,6 @@ The **Collaborator** should receive an email invitation to collaborate and shoul
 
 :::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::: solution
-
-## Install the Package (**Both**)
-
-**NB** Both the **Repository Owner**, the **Collaborator** should perform this step.
-
-If you have not already done so activate the `git-with-it` environment you created as described in the setup
-instructions.
-
-``` bash
-conda activate git-with-it
-```
-
-You can now install the package and its test dependencies in an editable format so that as you work on the package the
-changes you make will instantly be available. Make sure you are in the `python-maths` directory (use `pwd` to show where
-you are and `cd` to change directory).
-
-``` bash
-pwd
-cd ~/work/git/python-maths
-pip install -e .[tests,dev]
-```
-
-You can optionally check everything is installed and runs by running the tests via [pytest][pytest].
-
-``` bash
-pytest
-========================================== test session starts ==========================================
-platform linux -- Python 3.13.1, pytest-8.3.4, pluggy-1.5.0
-Matplotlib: 3.10.0
-Freetype: 2.6.1
-rootdir: /home/neil/tmp/gitcollab-20250210/python-maths
-configfile: pyproject.toml
-testpaths: tests
-plugins: cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0
-collected 25 items
-
-tests/test_arithmetic.py .....................                                                                                                           [ 84%]
-tests/test_trig.py ....                                                                                                                                  [100%]
-
----------- coverage: platform linux, python 3.13.1-final-0 -----------
-Name                        Stmts   Miss  Cover
------------------------------------------------
-pythonmaths/arithmetic.py       8      0   100%
-pythonmaths/trig.py             4      0   100%
------------------------------------------------
-TOTAL                          12      0   100%
-
-
-========================================== 25 passed in 0.28s ===========================================
-```
-
-:::::::::::::::::::::::::::::::::
-
-After completing these steps you should both have a copy of the `python-maths` repository on your local computer.
-
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -766,7 +710,6 @@ share and update changes to the code base (although they are [mirrored on GitHub
 [pairprogramming]: https://en.wikipedia.org/wiki/Pair_programming
 [pypi]: https://pypi.org/
 [pythonMaths]: https://github.com/FAIR2-for-research-software/python-maths
-[pytest]: https://docs.pytest.org/
 [rustGithub]: https://github.com/rust-lang/rust
 [r]: https://www.r-project.org/
 [readline]: https://tiswww.cwru.edu/php/chet/readline/rltop.html
