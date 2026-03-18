@@ -705,7 +705,7 @@ For a detailed exposition of `git reset` see the excellent [Atlassian | Git rese
 ## Challenge 7: Commits on the wrong branch
 
 - Switch to the `main` branch of the `pytest-maths` repository.
-- Create a new file using `echo -e "# This is TODO list" > TODO.md`
+- Create a new file using `echo "# This is TODO list" > TODO.md`
 - Stage and commit the file to the `main` branch of your repository. **NB** to do this you may have to disable the
   `pre-commit` checks with the `-n` flag, i.e. `git commit -n`.
 
@@ -725,7 +725,7 @@ commit history, leaving it unstaged, then create a new branch and add it to that
 
 ``` bash
 git switch main
-echo -e "# This is a TODO list" > TODO.md
+echo "# This is a TODO list" > TODO.md
 git add TODO.md
 git commit -n -m "docs: Adding a todo file"
 git reset --mixed HEAD~1
@@ -746,7 +746,7 @@ file and _then_ remove the commit from main.
 
 ``` bash
 git switch main
-echo -e "# This is a TODO list" > TODO.md
+echo "# This is a TODO list" > TODO.md
 git add TODO.md
 git commit -n -m "docs: Adding a todo file"
 git log              # Note the commit of the mistaken hash
@@ -846,10 +846,10 @@ But there is a challenge, in order to switch branches you have to stage and comm
 
 ``` bash
 git switch -c branch2
-echo -e "\nAny questions please feel free to get in touch\n" >> CONTRIBUTING.md
+echo "\nAny questions please feel free to get in touch\n" >> CONTRIBUTING.md
 git add CONTRIBUTING.md
 git commit -m "Adding CONTRIBUTING.md"
-echo -e "\nPlease don't break my repository though!" >> CONTRIBUTING.md
+echo "\nPlease don't break my repository though!" >> CONTRIBUTING.md
 git switch main
 
 error: Your local changes to the following files would be overwritten by checkout:
@@ -928,7 +928,7 @@ different message.
 ``` bash
 git switch -c example-stashes
 git stash --message "WIP CONTRIBUTING.md file"
-echo -e "Yet another file" > ANOTHER.md
+echo "Yet another file" > ANOTHER.md
 git add ANOTHER.md
 git stash --message "WIP ANOTHER.md file"
 
@@ -979,10 +979,10 @@ ANOTHER.md: No such file or directory (os error 2).
 Working in your pairs on the `python-maths` repository...
 
 1. Create a `<github-username>/todo` branch.
-2. Create a `TODO.md` with `echo -e "# This is a ToDo List\n\n1. Task1\n2. Task2." > TODO.md`
+2. Create a `TODO.md` with `echo "# This is a ToDo List\n\n1. Task1\n2. Task2." > TODO.md`
 3. Do _not_ add and commit, instead `git stash -m "WIP : adding TODO.md"` your changes
 4. Switch to the `main` branch and create a `<github-username>/citation` branch.
-5. Add a basic `CITATION.cff` with `echo -e "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" > CITATION.cff`
+5. Add a basic `CITATION.cff` with `echo "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" > CITATION.cff`
 6. Add and commit this file.
 7. Unstash the `TODO.md` file on the `citation` branch.
 8. Stage and commit the changes. Do **NOT** create a pull request or merge these changes.
@@ -999,7 +999,7 @@ Lets create the `<github-username>/todo` branch
 git switch main
 git pull
 git switch -c <github-username>/todo
-echo -e "# This is a ToDo List\n\n1. Task1\n2.Task2." > TODO.md
+echo "# This is a ToDo List\n\n1. Task1\n2.Task2." > TODO.md
 ```
 
 If we want to switch branches without making a commit but save our work in progress we stash the work and switch to
@@ -1009,7 +1009,7 @@ If we want to switch branches without making a commit but save our work in progr
 git stash -m "WIP : adding TODO.md"
 git switch main
 git switch -c <github-username>/citation
-echo -e "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" > CITATION.cff
+echo "cff-version: 1.2.0\ntitle: Python Maths Package\ntype: software" > CITATION.cff
 git add CITATION.cff
 git commit -m "doc: Adding a CITATION.cff"
 ```
