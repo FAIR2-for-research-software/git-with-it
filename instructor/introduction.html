@@ -218,7 +218,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#code-of-conduct">Code of Conduct</a></li>
 <li><a href="#icebreaker">Icebreaker</a></li>
@@ -553,9 +553,9 @@ is associated with the account they wish to use.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">[core]</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="ex">...</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="ex">sshCommand</span> = ssh <span class="at">-i</span> ~/.ssh/id_ed25519 <span class="at">-F</span> /dev/null</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">[core]</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>    <span class="ex">...</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>    <span class="ex">sshCommand</span> = ssh <span class="at">-i</span> ~/.ssh/id_ed25519 <span class="at">-F</span> /dev/null</span></code></pre>
 </div>
 <p>The important part is that it points to the correct SSH key, in the
 above this is <code>~/.ssh/id_ed25519</code> which will need modifying
@@ -600,8 +600,8 @@ at the command line more quickly.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">pwd</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">/home/neil/work/git</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="bu">pwd</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">/home/neil/work/git</span></span></code></pre>
 </div>
 <p>You can use <code>cd</code> to (<code>c</code>hange
 <code>d</code>irectory).</p>
@@ -612,7 +612,7 @@ GNU/Linux systems, <code>/Users/&lt;username&gt;</code> on OSX and
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> ~/work</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="bu">cd</span> ~/work</span></code></pre>
 </div>
 <p>You can create directories with <code>mkdir</code>
 (<code>m</code>a<code>k</code>e <code>dir</code>ectory), the
@@ -620,7 +620,7 @@ GNU/Linux systems, <code>/Users/&lt;username&gt;</code> on OSX and
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">mkdir</span> ~/work/git</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">mkdir</span> ~/work/git</span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -637,8 +637,8 @@ line.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">cd</span> ~/t <span class="op">&lt;</span>Tab<span class="op">&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">tests/</span>  tmp/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="bu">cd</span> ~/t <span class="op">&lt;</span>Tab<span class="op">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="ex">tests/</span>  tmp/</span></code></pre>
 </div>
 </div>
 <div class="section level4">
@@ -657,11 +657,11 @@ typing <code>history</code>.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">history</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">...</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="bu">cd</span> work</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">mkdir</span> git</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="bu">history</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="ex">...</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="bu">cd</span> work</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a><span class="fu">mkdir</span> git</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span></code></pre>
 </div>
 <p>You can recall previous commands using the <code>Ctrl + p</code> or
 the Up arrow, each press takes you to the <code>p</code>revious command
@@ -743,7 +743,7 @@ prompt will appear asking if you want to save them.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"export alias nano='nano --linenumbers'"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"export alias nano='nano --linenumbers'"</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span></code></pre>
 </div>
 <p>These options will be used whenever you use <code>nano</code>. You
 can alternatively place these configuration options in
@@ -801,25 +801,25 @@ restrict it to show either the <code>--global</code> or
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">cd</span> ~/path/to/cloned/python-maths</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--local</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--global</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="bu">cd</span> ~/path/to/cloned/python-maths</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="fu">git</span> config <span class="at">--list</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--local</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a><span class="fu">git</span> config <span class="at">--list</span> <span class="at">--global</span></span></code></pre>
 </div>
 <p>Adding values requires a bit of understanding about the structure of
 the configuration file, a very simple example is shown below.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">[user]</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="ex">email</span> = a.n.other@sheffield.ac.uk</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="ex">name</span> = A N Other</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">[core]</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="ex">editor</span> = nano</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  <span class="ex">sshCommand</span> = ssh <span class="at">-i</span> ~/.ssh/id_ed25519 <span class="at">-F</span> /dev/null</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="ex">attributesFile</span> = <span class="va">$HOME</span>/.gitattributes</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="ex">autocrlf</span> = input</span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="ex">excludesFile</span> = ~/.config/git/.gitignore</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">[user]</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>  <span class="ex">email</span> = a.n.other@sheffield.ac.uk</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a>  <span class="ex">name</span> = A N Other</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a><span class="ex">[core]</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1" aria-label="code-block-9-5"></a>  <span class="ex">editor</span> = nano</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1" aria-label="code-block-9-6"></a>  <span class="ex">sshCommand</span> = ssh <span class="at">-i</span> ~/.ssh/id_ed25519 <span class="at">-F</span> /dev/null</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1" aria-label="code-block-9-7"></a>  <span class="ex">attributesFile</span> = <span class="va">$HOME</span>/.gitattributes</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1" aria-label="code-block-9-8"></a>  <span class="ex">autocrlf</span> = input</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1" aria-label="code-block-9-9"></a>  <span class="ex">excludesFile</span> = ~/.config/git/.gitignore</span></code></pre>
 </div>
 <p>Sections are in square brackets with names, e.g. <code>[user]</code>
 or <code>[core]</code>. Fields then have key and value pairs e.g. the
@@ -834,8 +834,8 @@ in the global configuration you would.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email a.other@sheffield.ac.uk</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Neil Shephard"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email a.other@sheffield.ac.uk</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Neil Shephard"</span></span></code></pre>
 </div>
 <div id="where-are-my-configuration-files" class="callout">
 <div class="callout-square">
@@ -851,7 +851,7 @@ set as the first column of output.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span>  <span class="at">--show-scope</span> <span class="at">--show-origin</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">git</span> config <span class="at">--list</span>  <span class="at">--show-scope</span> <span class="at">--show-origin</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -872,8 +872,8 @@ order when you <code>git branch --list</code>.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">[branch]</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>    <span class="fu">sort</span> = <span class="at">-commiterdate</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">[branch]</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a>    <span class="fu">sort</span> = <span class="at">-commiterdate</span></span></code></pre>
 </div>
 <div id="challenge-1" class="callout challenge">
 <div class="callout-square">
@@ -899,7 +899,7 @@ options).</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> core.editor nano</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">git</span> config <span class="at">--global</span> core.editor nano</span></code></pre>
 </div>
 </div>
 </div>
@@ -918,8 +918,8 @@ lines.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">[core]</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>    <span class="ex">editor</span> = nano</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">[core]</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a>    <span class="ex">editor</span> = nano</span></code></pre>
 </div>
 </div>
 </div>
@@ -941,7 +941,7 @@ alias for <code>switch</code> globally you would.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.sw switch</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.sw switch</span></code></pre>
 </div>
 <p>As with other configuration options you can also edit the
 configuration files directly to add the commands.</p>
@@ -970,7 +970,7 @@ set it to whatever you want, e.g. <code>lp</code>)</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">log</span> <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span>format:<span class="st">"%C(yellow)%h</span><span class="dt">\\</span><span class="st"> %C(green)%ad%Cred%d</span><span class="dt">\\</span><span class="st"> %Creset%s%Cblue</span><span class="dt">\\</span><span class="st"> &lt;%cn&gt;"</span> <span class="at">--decorate</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">log</span> <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span>format:<span class="st">"%C(yellow)%h</span><span class="dt">\\</span><span class="st"> %C(green)%ad%Cred%d</span><span class="dt">\\</span><span class="st"> %Creset%s%Cblue</span><span class="dt">\\</span><span class="st"> &lt;%cn&gt;"</span> <span class="at">--decorate</span></span></code></pre>
 </div>
 <p><strong>NB</strong> - Because there are double-quotes in this command
 you will if using the command line solution have to enclose all of the
@@ -991,8 +991,8 @@ adding the following</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">[alias]</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>    <span class="ex">lol</span> = log <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span>format:<span class="st">"%C(yellow)%h</span><span class="dt">\\</span><span class="st"> %C(green)%ad%Cred%d</span><span class="dt">\\</span><span class="st"> %Creset%s%Cblue</span><span class="dt">\\</span><span class="st"> &lt;%cn&gt;"</span> <span class="at">--decorate</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="ex">[alias]</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a>    <span class="ex">lol</span> = log <span class="at">--graph</span> <span class="at">--pretty</span><span class="op">=</span>format:<span class="st">"%C(yellow)%h</span><span class="dt">\\</span><span class="st"> %C(green)%ad%Cred%d</span><span class="dt">\\</span><span class="st"> %Creset%s%Cblue</span><span class="dt">\\</span><span class="st"> &lt;%cn&gt;"</span> <span class="at">--decorate</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1009,7 +1009,7 @@ adding the following</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.lol <span class="st">'log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ &lt;%cn&gt;" --decorate'</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.lol <span class="st">'log --graph --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ &lt;%cn&gt;" --decorate'</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1036,7 +1036,7 @@ add…</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">*.csv</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="ex">*.csv</span></span></code></pre>
 </div>
 <p>Just as you can exclude files you can also ignore directories and a
 common one you may wish to ignore is the <code>.DS_Store/</code>
@@ -1045,7 +1045,7 @@ ignore pattern for that includes a trailing slash.</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">.DS_Store/</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="ex">.DS_Store/</span></span></code></pre>
 </div>
 <p>GitHub has a useful feature when you create a repository to use
 template <code>.gitignore</code> files for specific languages, but if
@@ -1117,9 +1117,9 @@ GitHub.</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">git</span> add .gitignore</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: Ignoring .csv and .pkl files"</span></span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="fu">git</span> add .gitignore</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1" aria-label="code-block-22-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"chore: Ignoring .csv and .pkl files"</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1" aria-label="code-block-22-3"></a><span class="fu">git</span> push</span></code></pre>
 </div>
 <p>Pull requests are created on GitHub.</p>
 </div>
@@ -1167,10 +1167,10 @@ following commands (be wary of copy and pasting them
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="bu">cd</span> ~/work/git</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="bu">cd</span> ~/work/git</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1" aria-label="code-block-23-4"></a><span class="fu">git</span> fetch origin <span class="dt">{divide</span><span class="op">,</span><span class="dt">multiply</span><span class="op">,</span><span class="dt">ns-rse/merge-conflict}</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="edit--gitconfig-both">Edit <code>.git/config</code> (<strong>Both</strong>)<a class="anchor" aria-label="anchor" href="#edit--gitconfig-both"></a></h3>
@@ -1184,9 +1184,9 @@ read.</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a> <span class="ex">[remote</span> <span class="st">"origin"</span>]</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1" aria-label="code-block-24-2"></a>     <span class="ex">url</span> = git@github.com:alice_and_bob/python-maths.git</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1" aria-label="code-block-24-3"></a>     <span class="ex">fetch</span> = +refs/heads/<span class="pp">*</span>:refs/remotes/origin/<span class="pp">*</span></span></code></pre>
 </div>
 <p>This edit changes the <code>origin</code> to be the empty repository
 you created under the <em>Repository Owner’s</em> account called
@@ -1210,7 +1210,7 @@ repository with additional files.</p>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="fu">git</span> push <span class="at">--force</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1279,7 +1279,7 @@ environment you created as described in the setup instructions.</p>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
 </div>
 <p>You can now install the package and its test dependencies in an
 editable format so that as you work on the package the changes you make
@@ -1289,39 +1289,39 @@ you are and <code>cd</code> to change directory).</p>
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="bu">pwd</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="bu">pwd</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="bu">cd</span> ~/work/git/python-maths</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1" aria-label="code-block-27-3"></a><span class="ex">pip</span> install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">tests,dev</span><span class="pp">]</span></span></code></pre>
 </div>
 <p>You can optionally check everything is installed and runs by running
 the tests via <a href="https://docs.pytest.org/" class="external-link">pytest</a>.</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">pytest</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="ex">Freetype:</span> 2.6.1</span>
-<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
-<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="ex">configfile:</span> pyproject.toml</span>
-<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="ex">testpaths:</span> tests</span>
-<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
-<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a><span class="ex">collected</span> 25 items</span>
-<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
-<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
-<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
-<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
-<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
-<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
-<span id="cb28-20"><a href="#cb28-20" tabindex="-1"></a><span class="ex">-----------------------------------------------</span></span>
-<span id="cb28-21"><a href="#cb28-21" tabindex="-1"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
-<span id="cb28-22"><a href="#cb28-22" tabindex="-1"></a></span>
-<span id="cb28-23"><a href="#cb28-23" tabindex="-1"></a></span>
-<span id="cb28-24"><a href="#cb28-24" tabindex="-1"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="ex">pytest</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1" aria-label="code-block-28-2"></a><span class="ex">==========================================</span> test session starts ==========================================</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1" aria-label="code-block-28-3"></a><span class="ex">platform</span> linux <span class="at">--</span> Python 3.13.1, pytest-8.3.4, pluggy-1.5.0</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1" aria-label="code-block-28-4"></a><span class="ex">Matplotlib:</span> 3.10.0</span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1" aria-label="code-block-28-5"></a><span class="ex">Freetype:</span> 2.6.1</span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1" aria-label="code-block-28-6"></a><span class="ex">rootdir:</span> /home/neil/tmp/gitcollab-20250210/python-maths</span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1" aria-label="code-block-28-7"></a><span class="ex">configfile:</span> pyproject.toml</span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1" aria-label="code-block-28-8"></a><span class="ex">testpaths:</span> tests</span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1" aria-label="code-block-28-9"></a><span class="ex">plugins:</span> cov-6.0.0, github-actions-annotate-failures-0.3.0, mpl-0.17.0</span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1" aria-label="code-block-28-10"></a><span class="ex">collected</span> 25 items</span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1" aria-label="code-block-28-11"></a></span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1" aria-label="code-block-28-12"></a><span class="ex">tests/test_arithmetic.py</span> .....................                                                                                                           [ 84%]</span>
+<span id="cb28-13"><a href="#cb28-13" tabindex="-1" aria-label="code-block-28-13"></a><span class="ex">tests/test_trig.py</span> ....                                                                                                                                  <span class="pp">[</span><span class="ss">100%</span><span class="pp">]</span></span>
+<span id="cb28-14"><a href="#cb28-14" tabindex="-1" aria-label="code-block-28-14"></a></span>
+<span id="cb28-15"><a href="#cb28-15" tabindex="-1" aria-label="code-block-28-15"></a><span class="ex">----------</span> coverage: platform linux, python 3.13.1-final-0 <span class="at">-----------</span></span>
+<span id="cb28-16"><a href="#cb28-16" tabindex="-1" aria-label="code-block-28-16"></a><span class="ex">Name</span>                        Stmts   Miss  Cover</span>
+<span id="cb28-17"><a href="#cb28-17" tabindex="-1" aria-label="code-block-28-17"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb28-18"><a href="#cb28-18" tabindex="-1" aria-label="code-block-28-18"></a><span class="ex">pythonmaths/arithmetic.py</span>       8      0   100%</span>
+<span id="cb28-19"><a href="#cb28-19" tabindex="-1" aria-label="code-block-28-19"></a><span class="ex">pythonmaths/trig.py</span>             4      0   100%</span>
+<span id="cb28-20"><a href="#cb28-20" tabindex="-1" aria-label="code-block-28-20"></a><span class="ex">-----------------------------------------------</span></span>
+<span id="cb28-21"><a href="#cb28-21" tabindex="-1" aria-label="code-block-28-21"></a><span class="ex">TOTAL</span>                          12      0   100%</span>
+<span id="cb28-22"><a href="#cb28-22" tabindex="-1" aria-label="code-block-28-22"></a></span>
+<span id="cb28-23"><a href="#cb28-23" tabindex="-1" aria-label="code-block-28-23"></a></span>
+<span id="cb28-24"><a href="#cb28-24" tabindex="-1" aria-label="code-block-28-24"></a><span class="ex">==========================================</span> 25 passed in 0.28s ===========================================</span></code></pre>
 </div>
 </div>
 </div>
@@ -1420,7 +1420,7 @@ and update changes to the code base (although they are <a href="https://github.c
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1443,7 +1443,7 @@ and update changes to the code base (although they are <a href="https://github.c
   "identifier": "fair2-for-research-software.github.io/git-with-it/instructor/introduction.html",
   "dateCreated": "2023-10-09",
   "dateModified": "2026-03-02",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

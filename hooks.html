@@ -254,7 +254,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#what-are-hooks">What are hooks?</a></li>
 <li><a href="#pre-commit">Pre-Commit</a></li>
@@ -488,61 +488,61 @@ directory.</li>
 </ol><div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">❱</span> cd ~/path/to/cloned/repository/python-maths</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">❱</span> cat .git/hooks/pre-push.sample</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># An example hook script to verify what is about to be pushed.  Called by "git</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># push" after it has checked the remote status, but before anything has been</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># pushed.  If this script exits with a non-zero status nothing will be pushed.</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># This hook is called with the following parameters:</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co"># $1 -- Name of the remote to which the push is being done</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co"># $2 -- URL to which the push is being done</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co"># If pushing without using a named remote those arguments will be equal.</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co"># Information about the commits which are being pushed is supplied as lines to</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co"># the standard input in the form:</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#   &lt;local ref&gt; &lt;local oid&gt; &lt;remote ref&gt; &lt;remote oid&gt;</span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co"># This sample shows how to prevent push of commits where the log message starts</span></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co"># with "WIP" (work in progress).</span></span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="va">remote</span><span class="op">=</span><span class="st">"</span><span class="va">$1</span><span class="st">"</span></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="va">url</span><span class="op">=</span><span class="st">"</span><span class="va">$2</span><span class="st">"</span></span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="va">zero</span><span class="op">=</span><span class="va">$(</span><span class="fu">git</span> hash-object <span class="at">--stdin</span> <span class="op">&lt;</span>/dev/null <span class="kw">|</span> <span class="fu">tr</span> <span class="st">'[0-9a-f]'</span> <span class="st">'0'</span><span class="va">)</span></span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="cf">while</span> <span class="bu">read</span> <span class="va">local_ref</span> <span class="va">local_oid</span> <span class="va">remote_ref</span> <span class="va">remote_oid</span></span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">test</span> <span class="st">"</span><span class="va">$local_oid</span><span class="st">"</span> = <span class="st">"</span><span class="va">$zero</span><span class="st">"</span></span>
-<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a>    <span class="cf">then</span></span>
-<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a>        <span class="co"># Handle delete</span></span>
-<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a>        <span class="bu">:</span></span>
-<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">test</span> <span class="st">"</span><span class="va">$remote_oid</span><span class="st">"</span> = <span class="st">"</span><span class="va">$zero</span><span class="st">"</span></span>
-<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a>        <span class="cf">then</span></span>
-<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a>            <span class="co"># New branch, examine all commits</span></span>
-<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a>            <span class="va">range</span><span class="op">=</span><span class="st">"</span><span class="va">$local_oid</span><span class="st">"</span></span>
-<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a>        <span class="cf">else</span></span>
-<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a>            <span class="co"># Update to existing branch, examine new commits</span></span>
-<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a>            <span class="va">range</span><span class="op">=</span><span class="st">"</span><span class="va">$remote_oid</span><span class="st">..</span><span class="va">$local_oid</span><span class="st">"</span></span>
-<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a>        <span class="cf">fi</span></span>
-<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a>        <span class="co"># Check for WIP commit</span></span>
-<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a>        <span class="va">commit</span><span class="op">=</span><span class="va">$(</span><span class="fu">git</span> rev-list <span class="at">-n</span> 1 <span class="at">--grep</span> <span class="st">'^WIP'</span> <span class="st">"</span><span class="va">$range</span><span class="st">"</span><span class="va">)</span></span>
-<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">test</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$commit</span><span class="st">"</span></span>
-<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a>        <span class="cf">then</span></span>
-<span id="cb2-49"><a href="#cb2-49" tabindex="-1"></a>            <span class="bu">echo</span> <span class="op">&gt;&amp;</span><span class="dv">2</span> <span class="st">"Found WIP commit in </span><span class="va">$local_ref</span><span class="st">, not pushing"</span></span>
-<span id="cb2-50"><a href="#cb2-50" tabindex="-1"></a>            <span class="bu">exit</span> 1</span>
-<span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a>        <span class="cf">fi</span></span>
-<span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a>    <span class="cf">fi</span></span>
-<span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" tabindex="-1"></a><span class="bu">exit</span> 0</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">❱</span> cd ~/path/to/cloned/repository/python-maths</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">❱</span> cat .git/hooks/pre-push.sample</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="co"># An example hook script to verify what is about to be pushed.  Called by "git</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a><span class="co"># push" after it has checked the remote status, but before anything has been</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a><span class="co"># pushed.  If this script exits with a non-zero status nothing will be pushed.</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a><span class="co">#</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a><span class="co"># This hook is called with the following parameters:</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a><span class="co">#</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a><span class="co"># $1 -- Name of the remote to which the push is being done</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1" aria-label="code-block-2-12"></a><span class="co"># $2 -- URL to which the push is being done</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1" aria-label="code-block-2-13"></a><span class="co">#</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1" aria-label="code-block-2-14"></a><span class="co"># If pushing without using a named remote those arguments will be equal.</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1" aria-label="code-block-2-15"></a><span class="co">#</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1" aria-label="code-block-2-16"></a><span class="co"># Information about the commits which are being pushed is supplied as lines to</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1" aria-label="code-block-2-17"></a><span class="co"># the standard input in the form:</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1" aria-label="code-block-2-18"></a><span class="co">#</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1" aria-label="code-block-2-19"></a><span class="co">#   &lt;local ref&gt; &lt;local oid&gt; &lt;remote ref&gt; &lt;remote oid&gt;</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1" aria-label="code-block-2-20"></a><span class="co">#</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1" aria-label="code-block-2-21"></a><span class="co"># This sample shows how to prevent push of commits where the log message starts</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1" aria-label="code-block-2-22"></a><span class="co"># with "WIP" (work in progress).</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1" aria-label="code-block-2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1" aria-label="code-block-2-24"></a><span class="va">remote</span><span class="op">=</span><span class="st">"</span><span class="va">$1</span><span class="st">"</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1" aria-label="code-block-2-25"></a><span class="va">url</span><span class="op">=</span><span class="st">"</span><span class="va">$2</span><span class="st">"</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1" aria-label="code-block-2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1" aria-label="code-block-2-27"></a><span class="va">zero</span><span class="op">=</span><span class="va">$(</span><span class="fu">git</span> hash-object <span class="at">--stdin</span> <span class="op">&lt;</span>/dev/null <span class="kw">|</span> <span class="fu">tr</span> <span class="st">'[0-9a-f]'</span> <span class="st">'0'</span><span class="va">)</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1" aria-label="code-block-2-28"></a></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1" aria-label="code-block-2-29"></a><span class="cf">while</span> <span class="bu">read</span> <span class="va">local_ref</span> <span class="va">local_oid</span> <span class="va">remote_ref</span> <span class="va">remote_oid</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1" aria-label="code-block-2-30"></a><span class="cf">do</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1" aria-label="code-block-2-31"></a>    <span class="cf">if</span> <span class="bu">test</span> <span class="st">"</span><span class="va">$local_oid</span><span class="st">"</span> = <span class="st">"</span><span class="va">$zero</span><span class="st">"</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1" aria-label="code-block-2-32"></a>    <span class="cf">then</span></span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1" aria-label="code-block-2-33"></a>        <span class="co"># Handle delete</span></span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1" aria-label="code-block-2-34"></a>        <span class="bu">:</span></span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1" aria-label="code-block-2-35"></a>    <span class="cf">else</span></span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1" aria-label="code-block-2-36"></a>        <span class="cf">if</span> <span class="bu">test</span> <span class="st">"</span><span class="va">$remote_oid</span><span class="st">"</span> = <span class="st">"</span><span class="va">$zero</span><span class="st">"</span></span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1" aria-label="code-block-2-37"></a>        <span class="cf">then</span></span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1" aria-label="code-block-2-38"></a>            <span class="co"># New branch, examine all commits</span></span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1" aria-label="code-block-2-39"></a>            <span class="va">range</span><span class="op">=</span><span class="st">"</span><span class="va">$local_oid</span><span class="st">"</span></span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1" aria-label="code-block-2-40"></a>        <span class="cf">else</span></span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1" aria-label="code-block-2-41"></a>            <span class="co"># Update to existing branch, examine new commits</span></span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1" aria-label="code-block-2-42"></a>            <span class="va">range</span><span class="op">=</span><span class="st">"</span><span class="va">$remote_oid</span><span class="st">..</span><span class="va">$local_oid</span><span class="st">"</span></span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1" aria-label="code-block-2-43"></a>        <span class="cf">fi</span></span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1" aria-label="code-block-2-44"></a></span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1" aria-label="code-block-2-45"></a>        <span class="co"># Check for WIP commit</span></span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1" aria-label="code-block-2-46"></a>        <span class="va">commit</span><span class="op">=</span><span class="va">$(</span><span class="fu">git</span> rev-list <span class="at">-n</span> 1 <span class="at">--grep</span> <span class="st">'^WIP'</span> <span class="st">"</span><span class="va">$range</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1" aria-label="code-block-2-47"></a>        <span class="cf">if</span> <span class="bu">test</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$commit</span><span class="st">"</span></span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1" aria-label="code-block-2-48"></a>        <span class="cf">then</span></span>
+<span id="cb2-49"><a href="#cb2-49" tabindex="-1" aria-label="code-block-2-49"></a>            <span class="bu">echo</span> <span class="op">&gt;&amp;</span><span class="dv">2</span> <span class="st">"Found WIP commit in </span><span class="va">$local_ref</span><span class="st">, not pushing"</span></span>
+<span id="cb2-50"><a href="#cb2-50" tabindex="-1" aria-label="code-block-2-50"></a>            <span class="bu">exit</span> 1</span>
+<span id="cb2-51"><a href="#cb2-51" tabindex="-1" aria-label="code-block-2-51"></a>        <span class="cf">fi</span></span>
+<span id="cb2-52"><a href="#cb2-52" tabindex="-1" aria-label="code-block-2-52"></a>    <span class="cf">fi</span></span>
+<span id="cb2-53"><a href="#cb2-53" tabindex="-1" aria-label="code-block-2-53"></a><span class="cf">done</span></span>
+<span id="cb2-54"><a href="#cb2-54" tabindex="-1" aria-label="code-block-2-54"></a></span>
+<span id="cb2-55"><a href="#cb2-55" tabindex="-1" aria-label="code-block-2-55"></a><span class="bu">exit</span> 0</span></code></pre>
 </div>
 <p>When enabled this hook will “<em>prevent push of commits where the
 log message starts with ”WIP” (work in progress)</em>”</p>
@@ -565,8 +565,8 @@ starting commit messages with “WIP”!</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">cp</span> .git/hooks/pre-push.sample .git/hooks/pre-push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">cp</span> .git/hooks/pre-push.sample .git/hooks/pre-push</span></code></pre>
 </div>
 </div>
 </div>
@@ -586,13 +586,13 @@ this test branch.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/test-hook</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">"WIP - testing the pre-push hook"</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">git</span> push</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Found</span> WIP commit in refs/heads/ns-rse/test-hook, not pushing</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="ex">error:</span> failed to push some refs to <span class="st">'github.com:slackline/python-maths.git'</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-D</span> ns-rse/test-hook</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/test-hook</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">"WIP - testing the pre-push hook"</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="fu">git</span> push</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="ex">Found</span> WIP commit in refs/heads/ns-rse/test-hook, not pushing</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a><span class="ex">error:</span> failed to push some refs to <span class="st">'github.com:slackline/python-maths.git'</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="fu">git</span> switch main</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a><span class="fu">git</span> branch <span class="at">-D</span> ns-rse/test-hook</span></code></pre>
 </div>
 </div>
 </div>
@@ -615,13 +615,13 @@ again.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="op">&gt;</span> To <span class="ex">https://github.com/USERNAME/REPOSITORY.git</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="op">&gt;</span>  ! <span class="ex">[rejected]</span>        main <span class="at">-</span><span class="op">&gt;</span> main <span class="er">(</span><span class="ex">non-fast-forward</span><span class="kw">)</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="op">&gt;</span> error: <span class="ex">failed</span> to push some refs to <span class="st">'https://github.com/USERNAME/REPOSITORY.git'</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="op">&gt;</span> To <span class="ex">prevent</span> you from losing history, non-fast-forward updates were rejected</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="op">&gt;</span> Merge <span class="ex">the</span> remote changes <span class="er">(</span><span class="ex">e.g.</span> <span class="st">'git pull'</span><span class="kw">)</span> <span class="ex">before</span> pushing again.  See the</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="op">&gt;</span> <span class="st">'Note about fast-forwards'</span> <span class="ex">section</span> of <span class="st">'git push --help'</span> for details.</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="op">&gt;</span> To <span class="ex">https://github.com/USERNAME/REPOSITORY.git</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="op">&gt;</span>  ! <span class="ex">[rejected]</span>        main <span class="at">-</span><span class="op">&gt;</span> main <span class="er">(</span><span class="ex">non-fast-forward</span><span class="kw">)</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a><span class="op">&gt;</span> error: <span class="ex">failed</span> to push some refs to <span class="st">'https://github.com/USERNAME/REPOSITORY.git'</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a><span class="op">&gt;</span> To <span class="ex">prevent</span> you from losing history, non-fast-forward updates were rejected</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a><span class="op">&gt;</span> Merge <span class="ex">the</span> remote changes <span class="er">(</span><span class="ex">e.g.</span> <span class="st">'git pull'</span><span class="kw">)</span> <span class="ex">before</span> pushing again.  See the</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1" aria-label="code-block-5-7"></a><span class="op">&gt;</span> <span class="st">'Note about fast-forwards'</span> <span class="ex">section</span> of <span class="st">'git push --help'</span> for details.</span></code></pre>
 </div>
 <p>A simple addition you can add to the <code>.git/hooks/pre-push</code>
 script is to have it <code>git pull</code> before attempting to make a
@@ -630,11 +630,11 @@ of changes that have been made to the branch on <code>origin</code>.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># A pre-push hook to pull before pushing</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="bu">exec</span> git pull</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="co">#</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="co"># A pre-push hook to pull before pushing</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a><span class="bu">exec</span> git pull</span></code></pre>
 </div>
 </div>
 </div>
@@ -722,114 +722,114 @@ repository.</li>
 </ol><div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">❱</span> conda create <span class="at">-n</span> python-maths python=3.11 pre-commit</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">Retrieving</span> notices: done</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">Channels:</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a> <span class="ex">-</span> conda-forge</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a> <span class="ex">-</span> nodefaults</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="ex">Platform:</span> linux-64</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="ex">Collecting</span> package metadata <span class="er">(</span><span class="ex">repodata.json</span><span class="kw">)</span><span class="bu">:</span> done</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="ex">Solving</span> environment: done</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">## Package Plan ##</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  <span class="ex">environment</span> location: /home/neil/miniforge3/envs/python-maths</span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>  <span class="ex">added</span> / updated specs:</span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>    <span class="ex">-</span> pre-commit</span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>    <span class="ex">-</span> python=3.11</span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="ex">The</span> following packages will be downloaded:</span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>    <span class="ex">package</span>                    <span class="kw">|</span>            <span class="ex">build</span></span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>    <span class="ex">---------------------------</span><span class="kw">|</span><span class="ex">-----------------</span></span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>    <span class="ex">_openmp_mutex-4.5</span>          <span class="kw">|</span>           <span class="ex">20_gnu</span>          28 KB  conda-forge</span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>    <span class="ex">bzip2-1.0.8</span>                <span class="kw">|</span>       <span class="ex">hda65f42_9</span>         254 KB  conda-forge</span>
-<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>    <span class="ex">cffi-2.0.0</span>                 <span class="kw">|</span>  <span class="ex">py311h03d9500_1</span>         296 KB  conda-forge</span>
-<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>    <span class="ex">cfgv-3.5.0</span>                 <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          13 KB  conda-forge</span>
-<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>    <span class="ex">distlib-0.4.0</span>              <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>         269 KB  conda-forge</span>
-<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>    <span class="ex">filelock-3.24.3</span>            <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          24 KB  conda-forge</span>
-<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>    <span class="ex">identify-2.6.16</span>            <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          77 KB  conda-forge</span>
-<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>    <span class="ex">importlib-metadata-8.7.0</span>   <span class="kw">|</span>     <span class="ex">pyhe01879c_1</span>          34 KB  conda-forge</span>
-<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>    <span class="ex">libexpat-2.7.4</span>             <span class="kw">|</span>       <span class="ex">hecca717_0</span>          75 KB  conda-forge</span>
-<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>    <span class="ex">libgcc-15.2.0</span>              <span class="kw">|</span>      <span class="ex">he0feb66_18</span>        1017 KB  conda-forge</span>
-<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>    <span class="ex">libgcc-ng-15.2.0</span>           <span class="kw">|</span>      <span class="ex">h69a702a_18</span>          27 KB  conda-forge</span>
-<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>    <span class="ex">libgomp-15.2.0</span>             <span class="kw">|</span>      <span class="ex">he0feb66_18</span>         589 KB  conda-forge</span>
-<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a>    <span class="ex">libnsl-2.0.1</span>               <span class="kw">|</span>       <span class="ex">hb9d3cd8_1</span>          33 KB  conda-forge</span>
-<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a>    <span class="ex">libstdcxx-15.2.0</span>           <span class="kw">|</span>      <span class="ex">h934c35e_18</span>         5.6 MB  conda-forge</span>
-<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>    <span class="ex">libxcrypt-4.4.36</span>           <span class="kw">|</span>       <span class="ex">hd590300_1</span>          98 KB  conda-forge</span>
-<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a>    <span class="ex">nodeenv-1.10.0</span>             <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          40 KB  conda-forge</span>
-<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a>    <span class="ex">pip-26.0.1</span>                 <span class="kw">|</span>     <span class="ex">pyh8b19718_0</span>         1.1 MB  conda-forge</span>
-<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a>    <span class="ex">platformdirs-4.9.2</span>         <span class="kw">|</span>     <span class="ex">pyhcf101f3_0</span>          25 KB  conda-forge</span>
-<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a>    <span class="ex">pre-commit-4.5.1</span>           <span class="kw">|</span>     <span class="ex">pyha770c72_0</span>         196 KB  conda-forge</span>
-<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a>    <span class="ex">python-3.11.14</span>             <span class="kw">|</span><span class="ex">hd63d673_3_cpython</span>        29.5 MB  conda-forge</span>
-<span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a>    <span class="ex">python_abi-3.11</span>            <span class="kw">|</span>          <span class="ex">8_cp311</span>           7 KB  conda-forge</span>
-<span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a>    <span class="ex">pyyaml-6.0.3</span>               <span class="kw">|</span>  <span class="ex">py311h3778330_1</span>         201 KB  conda-forge</span>
-<span id="cb7-45"><a href="#cb7-45" tabindex="-1"></a>    <span class="ex">typing_extensions-4.15.0</span>   <span class="kw">|</span>     <span class="ex">pyhcf101f3_0</span>          50 KB  conda-forge</span>
-<span id="cb7-46"><a href="#cb7-46" tabindex="-1"></a>    <span class="ex">ukkonen-1.1.0</span>              <span class="kw">|</span>  <span class="ex">py311hdf67eae_0</span>          15 KB  conda-forge</span>
-<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a>    <span class="ex">virtualenv-20.38.0</span>         <span class="kw">|</span>     <span class="ex">pyhcf101f3_0</span>         4.4 MB  conda-forge</span>
-<span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a>    <span class="ex">wheel-0.46.3</span>               <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          31 KB  conda-forge</span>
-<span id="cb7-49"><a href="#cb7-49" tabindex="-1"></a>    <span class="ex">yaml-0.2.5</span>                 <span class="kw">|</span>       <span class="ex">h280c20c_3</span>          83 KB  conda-forge</span>
-<span id="cb7-50"><a href="#cb7-50" tabindex="-1"></a>    <span class="ex">zipp-3.23.0</span>                <span class="kw">|</span>     <span class="ex">pyhcf101f3_1</span>          24 KB  conda-forge</span>
-<span id="cb7-51"><a href="#cb7-51" tabindex="-1"></a>    <span class="ex">------------------------------------------------------------</span></span>
-<span id="cb7-52"><a href="#cb7-52" tabindex="-1"></a>                                           <span class="ex">Total:</span>        44.0 MB</span>
-<span id="cb7-53"><a href="#cb7-53" tabindex="-1"></a></span>
-<span id="cb7-54"><a href="#cb7-54" tabindex="-1"></a><span class="ex">The</span> following NEW packages will be INSTALLED:</span>
-<span id="cb7-55"><a href="#cb7-55" tabindex="-1"></a></span>
-<span id="cb7-56"><a href="#cb7-56" tabindex="-1"></a>  <span class="ex">_openmp_mutex</span>      conda-forge/linux-64::_openmp_mutex-4.5-20_gnu</span>
-<span id="cb7-57"><a href="#cb7-57" tabindex="-1"></a>  <span class="fu">bzip2</span>              conda-forge/linux-64::bzip2-1.0.8-hda65f42_9</span>
-<span id="cb7-58"><a href="#cb7-58" tabindex="-1"></a>  <span class="ex">ca-certificates</span>    conda-forge/noarch::ca-certificates-2026.1.4-hbd8a1cb_0</span>
-<span id="cb7-59"><a href="#cb7-59" tabindex="-1"></a>  <span class="ex">cffi</span>               conda-forge/linux-64::cffi-2.0.0-py311h03d9500_1</span>
-<span id="cb7-60"><a href="#cb7-60" tabindex="-1"></a>  <span class="ex">cfgv</span>               conda-forge/noarch::cfgv-3.5.0-pyhd8ed1ab_0</span>
-<span id="cb7-61"><a href="#cb7-61" tabindex="-1"></a>  <span class="ex">distlib</span>            conda-forge/noarch::distlib-0.4.0-pyhd8ed1ab_0</span>
-<span id="cb7-62"><a href="#cb7-62" tabindex="-1"></a>  <span class="ex">filelock</span>           conda-forge/noarch::filelock-3.24.3-pyhd8ed1ab_0</span>
-<span id="cb7-63"><a href="#cb7-63" tabindex="-1"></a>  <span class="ex">icu</span>                conda-forge/linux-64::icu-78.2-h33c6efd_0</span>
-<span id="cb7-64"><a href="#cb7-64" tabindex="-1"></a>  <span class="ex">identify</span>           conda-forge/noarch::identify-2.6.16-pyhd8ed1ab_0</span>
-<span id="cb7-65"><a href="#cb7-65" tabindex="-1"></a>  <span class="ex">importlib-metadata</span> conda-forge/noarch::importlib-metadata-8.7.0-pyhe01879c_1</span>
-<span id="cb7-66"><a href="#cb7-66" tabindex="-1"></a>  <span class="ex">ld_impl_linux-64</span>   conda-forge/linux-64::ld_impl_linux-64-2.45.1-default_hbd61a6d_101</span>
-<span id="cb7-67"><a href="#cb7-67" tabindex="-1"></a>  <span class="ex">libexpat</span>           conda-forge/linux-64::libexpat-2.7.4-hecca717_0</span>
-<span id="cb7-68"><a href="#cb7-68" tabindex="-1"></a>  <span class="ex">libffi</span>             conda-forge/linux-64::libffi-3.5.2-h3435931_0</span>
-<span id="cb7-69"><a href="#cb7-69" tabindex="-1"></a>  <span class="ex">libgcc</span>             conda-forge/linux-64::libgcc-15.2.0-he0feb66_18</span>
-<span id="cb7-70"><a href="#cb7-70" tabindex="-1"></a>  <span class="ex">libgcc-ng</span>          conda-forge/linux-64::libgcc-ng-15.2.0-h69a702a_18</span>
-<span id="cb7-71"><a href="#cb7-71" tabindex="-1"></a>  <span class="ex">libgomp</span>            conda-forge/linux-64::libgomp-15.2.0-he0feb66_18</span>
-<span id="cb7-72"><a href="#cb7-72" tabindex="-1"></a>  <span class="ex">liblzma</span>            conda-forge/linux-64::liblzma-5.8.2-hb03c661_0</span>
-<span id="cb7-73"><a href="#cb7-73" tabindex="-1"></a>  <span class="ex">libnsl</span>             conda-forge/linux-64::libnsl-2.0.1-hb9d3cd8_1</span>
-<span id="cb7-74"><a href="#cb7-74" tabindex="-1"></a>  <span class="ex">libsqlite</span>          conda-forge/linux-64::libsqlite-3.51.2-hf4e2dac_0</span>
-<span id="cb7-75"><a href="#cb7-75" tabindex="-1"></a>  <span class="ex">libstdcxx</span>          conda-forge/linux-64::libstdcxx-15.2.0-h934c35e_18</span>
-<span id="cb7-76"><a href="#cb7-76" tabindex="-1"></a>  <span class="ex">libuuid</span>            conda-forge/linux-64::libuuid-2.41.3-h5347b49_0</span>
-<span id="cb7-77"><a href="#cb7-77" tabindex="-1"></a>  <span class="ex">libxcrypt</span>          conda-forge/linux-64::libxcrypt-4.4.36-hd590300_1</span>
-<span id="cb7-78"><a href="#cb7-78" tabindex="-1"></a>  <span class="ex">libzlib</span>            conda-forge/linux-64::libzlib-1.3.1-hb9d3cd8_2</span>
-<span id="cb7-79"><a href="#cb7-79" tabindex="-1"></a>  <span class="ex">ncurses</span>            conda-forge/linux-64::ncurses-6.5-h2d0b736_3</span>
-<span id="cb7-80"><a href="#cb7-80" tabindex="-1"></a>  <span class="ex">nodeenv</span>            conda-forge/noarch::nodeenv-1.10.0-pyhd8ed1ab_0</span>
-<span id="cb7-81"><a href="#cb7-81" tabindex="-1"></a>  <span class="ex">openssl</span>            conda-forge/linux-64::openssl-3.6.1-h35e630c_1</span>
-<span id="cb7-82"><a href="#cb7-82" tabindex="-1"></a>  <span class="ex">packaging</span>          conda-forge/noarch::packaging-26.0-pyhcf101f3_0</span>
-<span id="cb7-83"><a href="#cb7-83" tabindex="-1"></a>  <span class="ex">pip</span>                conda-forge/noarch::pip-26.0.1-pyh8b19718_0</span>
-<span id="cb7-84"><a href="#cb7-84" tabindex="-1"></a>  <span class="ex">platformdirs</span>       conda-forge/noarch::platformdirs-4.9.2-pyhcf101f3_0</span>
-<span id="cb7-85"><a href="#cb7-85" tabindex="-1"></a>  <span class="ex">pre-commit</span>         conda-forge/noarch::pre-commit-4.5.1-pyha770c72_0</span>
-<span id="cb7-86"><a href="#cb7-86" tabindex="-1"></a>  <span class="ex">pycparser</span>          conda-forge/noarch::pycparser-2.22-pyh29332c3_1</span>
-<span id="cb7-87"><a href="#cb7-87" tabindex="-1"></a>  <span class="ex">python</span>             conda-forge/linux-64::python-3.11.14-hd63d673_3_cpython</span>
-<span id="cb7-88"><a href="#cb7-88" tabindex="-1"></a>  <span class="ex">python_abi</span>         conda-forge/noarch::python_abi-3.11-8_cp311</span>
-<span id="cb7-89"><a href="#cb7-89" tabindex="-1"></a>  <span class="ex">pyyaml</span>             conda-forge/linux-64::pyyaml-6.0.3-py311h3778330_1</span>
-<span id="cb7-90"><a href="#cb7-90" tabindex="-1"></a>  <span class="ex">readline</span>           conda-forge/linux-64::readline-8.3-h853b02a_0</span>
-<span id="cb7-91"><a href="#cb7-91" tabindex="-1"></a>  <span class="ex">setuptools</span>         conda-forge/noarch::setuptools-82.0.0-pyh332efcf_0</span>
-<span id="cb7-92"><a href="#cb7-92" tabindex="-1"></a>  <span class="ex">tk</span>                 conda-forge/linux-64::tk-8.6.13-noxft_h366c992_103</span>
-<span id="cb7-93"><a href="#cb7-93" tabindex="-1"></a>  <span class="ex">typing_extensions</span>  conda-forge/noarch::typing_extensions-4.15.0-pyhcf101f3_0</span>
-<span id="cb7-94"><a href="#cb7-94" tabindex="-1"></a>  <span class="ex">tzdata</span>             conda-forge/noarch::tzdata-2025c-hc9c84f9_1</span>
-<span id="cb7-95"><a href="#cb7-95" tabindex="-1"></a>  <span class="ex">ukkonen</span>            conda-forge/linux-64::ukkonen-1.1.0-py311hdf67eae_0</span>
-<span id="cb7-96"><a href="#cb7-96" tabindex="-1"></a>  <span class="ex">virtualenv</span>         conda-forge/noarch::virtualenv-20.38.0-pyhcf101f3_0</span>
-<span id="cb7-97"><a href="#cb7-97" tabindex="-1"></a>  <span class="ex">wheel</span>              conda-forge/noarch::wheel-0.46.3-pyhd8ed1ab_0</span>
-<span id="cb7-98"><a href="#cb7-98" tabindex="-1"></a>  <span class="ex">yaml</span>               conda-forge/linux-64::yaml-0.2.5-h280c20c_3</span>
-<span id="cb7-99"><a href="#cb7-99" tabindex="-1"></a>  <span class="ex">zipp</span>               conda-forge/noarch::zipp-3.23.0-pyhcf101f3_1</span>
-<span id="cb7-100"><a href="#cb7-100" tabindex="-1"></a>  <span class="ex">zstd</span>               conda-forge/linux-64::zstd-1.5.7-hb78ec9c_6</span>
-<span id="cb7-101"><a href="#cb7-101" tabindex="-1"></a></span>
-<span id="cb7-102"><a href="#cb7-102" tabindex="-1"></a></span>
-<span id="cb7-103"><a href="#cb7-103" tabindex="-1"></a><span class="ex">Proceed</span> <span class="er">(</span><span class="ex">[y]/n</span><span class="kw">)</span><span class="ex">?</span> y</span>
-<span id="cb7-104"><a href="#cb7-104" tabindex="-1"></a><span class="ex">...</span></span>
-<span id="cb7-105"><a href="#cb7-105" tabindex="-1"></a></span>
-<span id="cb7-106"><a href="#cb7-106" tabindex="-1"></a><span class="ex">❱</span> conda activate python-maths</span>
-<span id="cb7-107"><a href="#cb7-107" tabindex="-1"></a><span class="kw">(</span><span class="ex">python-maths</span><span class="kw">)</span> <span class="ex">❱</span> pre-commit install</span>
-<span id="cb7-108"><a href="#cb7-108" tabindex="-1"></a><span class="ex">pre-commit</span> installed at .git/hooks/pre-commit</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">❱</span> conda create <span class="at">-n</span> python-maths python=3.11 pre-commit</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="ex">Retrieving</span> notices: done</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="ex">Channels:</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a> <span class="ex">-</span> conda-forge</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a> <span class="ex">-</span> nodefaults</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a><span class="ex">Platform:</span> linux-64</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a><span class="ex">Collecting</span> package metadata <span class="er">(</span><span class="ex">repodata.json</span><span class="kw">)</span><span class="bu">:</span> done</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1" aria-label="code-block-7-8"></a><span class="ex">Solving</span> environment: done</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1" aria-label="code-block-7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1" aria-label="code-block-7-10"></a><span class="co">## Package Plan ##</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1" aria-label="code-block-7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1" aria-label="code-block-7-12"></a>  <span class="ex">environment</span> location: /home/neil/miniforge3/envs/python-maths</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1" aria-label="code-block-7-13"></a></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1" aria-label="code-block-7-14"></a>  <span class="ex">added</span> / updated specs:</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1" aria-label="code-block-7-15"></a>    <span class="ex">-</span> pre-commit</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1" aria-label="code-block-7-16"></a>    <span class="ex">-</span> python=3.11</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1" aria-label="code-block-7-17"></a></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1" aria-label="code-block-7-18"></a></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1" aria-label="code-block-7-19"></a><span class="ex">The</span> following packages will be downloaded:</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1" aria-label="code-block-7-20"></a></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1" aria-label="code-block-7-21"></a>    <span class="ex">package</span>                    <span class="kw">|</span>            <span class="ex">build</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1" aria-label="code-block-7-22"></a>    <span class="ex">---------------------------</span><span class="kw">|</span><span class="ex">-----------------</span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1" aria-label="code-block-7-23"></a>    <span class="ex">_openmp_mutex-4.5</span>          <span class="kw">|</span>           <span class="ex">20_gnu</span>          28 KB  conda-forge</span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1" aria-label="code-block-7-24"></a>    <span class="ex">bzip2-1.0.8</span>                <span class="kw">|</span>       <span class="ex">hda65f42_9</span>         254 KB  conda-forge</span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1" aria-label="code-block-7-25"></a>    <span class="ex">cffi-2.0.0</span>                 <span class="kw">|</span>  <span class="ex">py311h03d9500_1</span>         296 KB  conda-forge</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1" aria-label="code-block-7-26"></a>    <span class="ex">cfgv-3.5.0</span>                 <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          13 KB  conda-forge</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1" aria-label="code-block-7-27"></a>    <span class="ex">distlib-0.4.0</span>              <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>         269 KB  conda-forge</span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1" aria-label="code-block-7-28"></a>    <span class="ex">filelock-3.24.3</span>            <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          24 KB  conda-forge</span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1" aria-label="code-block-7-29"></a>    <span class="ex">identify-2.6.16</span>            <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          77 KB  conda-forge</span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1" aria-label="code-block-7-30"></a>    <span class="ex">importlib-metadata-8.7.0</span>   <span class="kw">|</span>     <span class="ex">pyhe01879c_1</span>          34 KB  conda-forge</span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1" aria-label="code-block-7-31"></a>    <span class="ex">libexpat-2.7.4</span>             <span class="kw">|</span>       <span class="ex">hecca717_0</span>          75 KB  conda-forge</span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1" aria-label="code-block-7-32"></a>    <span class="ex">libgcc-15.2.0</span>              <span class="kw">|</span>      <span class="ex">he0feb66_18</span>        1017 KB  conda-forge</span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1" aria-label="code-block-7-33"></a>    <span class="ex">libgcc-ng-15.2.0</span>           <span class="kw">|</span>      <span class="ex">h69a702a_18</span>          27 KB  conda-forge</span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1" aria-label="code-block-7-34"></a>    <span class="ex">libgomp-15.2.0</span>             <span class="kw">|</span>      <span class="ex">he0feb66_18</span>         589 KB  conda-forge</span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1" aria-label="code-block-7-35"></a>    <span class="ex">libnsl-2.0.1</span>               <span class="kw">|</span>       <span class="ex">hb9d3cd8_1</span>          33 KB  conda-forge</span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1" aria-label="code-block-7-36"></a>    <span class="ex">libstdcxx-15.2.0</span>           <span class="kw">|</span>      <span class="ex">h934c35e_18</span>         5.6 MB  conda-forge</span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1" aria-label="code-block-7-37"></a>    <span class="ex">libxcrypt-4.4.36</span>           <span class="kw">|</span>       <span class="ex">hd590300_1</span>          98 KB  conda-forge</span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1" aria-label="code-block-7-38"></a>    <span class="ex">nodeenv-1.10.0</span>             <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          40 KB  conda-forge</span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1" aria-label="code-block-7-39"></a>    <span class="ex">pip-26.0.1</span>                 <span class="kw">|</span>     <span class="ex">pyh8b19718_0</span>         1.1 MB  conda-forge</span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1" aria-label="code-block-7-40"></a>    <span class="ex">platformdirs-4.9.2</span>         <span class="kw">|</span>     <span class="ex">pyhcf101f3_0</span>          25 KB  conda-forge</span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1" aria-label="code-block-7-41"></a>    <span class="ex">pre-commit-4.5.1</span>           <span class="kw">|</span>     <span class="ex">pyha770c72_0</span>         196 KB  conda-forge</span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1" aria-label="code-block-7-42"></a>    <span class="ex">python-3.11.14</span>             <span class="kw">|</span><span class="ex">hd63d673_3_cpython</span>        29.5 MB  conda-forge</span>
+<span id="cb7-43"><a href="#cb7-43" tabindex="-1" aria-label="code-block-7-43"></a>    <span class="ex">python_abi-3.11</span>            <span class="kw">|</span>          <span class="ex">8_cp311</span>           7 KB  conda-forge</span>
+<span id="cb7-44"><a href="#cb7-44" tabindex="-1" aria-label="code-block-7-44"></a>    <span class="ex">pyyaml-6.0.3</span>               <span class="kw">|</span>  <span class="ex">py311h3778330_1</span>         201 KB  conda-forge</span>
+<span id="cb7-45"><a href="#cb7-45" tabindex="-1" aria-label="code-block-7-45"></a>    <span class="ex">typing_extensions-4.15.0</span>   <span class="kw">|</span>     <span class="ex">pyhcf101f3_0</span>          50 KB  conda-forge</span>
+<span id="cb7-46"><a href="#cb7-46" tabindex="-1" aria-label="code-block-7-46"></a>    <span class="ex">ukkonen-1.1.0</span>              <span class="kw">|</span>  <span class="ex">py311hdf67eae_0</span>          15 KB  conda-forge</span>
+<span id="cb7-47"><a href="#cb7-47" tabindex="-1" aria-label="code-block-7-47"></a>    <span class="ex">virtualenv-20.38.0</span>         <span class="kw">|</span>     <span class="ex">pyhcf101f3_0</span>         4.4 MB  conda-forge</span>
+<span id="cb7-48"><a href="#cb7-48" tabindex="-1" aria-label="code-block-7-48"></a>    <span class="ex">wheel-0.46.3</span>               <span class="kw">|</span>     <span class="ex">pyhd8ed1ab_0</span>          31 KB  conda-forge</span>
+<span id="cb7-49"><a href="#cb7-49" tabindex="-1" aria-label="code-block-7-49"></a>    <span class="ex">yaml-0.2.5</span>                 <span class="kw">|</span>       <span class="ex">h280c20c_3</span>          83 KB  conda-forge</span>
+<span id="cb7-50"><a href="#cb7-50" tabindex="-1" aria-label="code-block-7-50"></a>    <span class="ex">zipp-3.23.0</span>                <span class="kw">|</span>     <span class="ex">pyhcf101f3_1</span>          24 KB  conda-forge</span>
+<span id="cb7-51"><a href="#cb7-51" tabindex="-1" aria-label="code-block-7-51"></a>    <span class="ex">------------------------------------------------------------</span></span>
+<span id="cb7-52"><a href="#cb7-52" tabindex="-1" aria-label="code-block-7-52"></a>                                           <span class="ex">Total:</span>        44.0 MB</span>
+<span id="cb7-53"><a href="#cb7-53" tabindex="-1" aria-label="code-block-7-53"></a></span>
+<span id="cb7-54"><a href="#cb7-54" tabindex="-1" aria-label="code-block-7-54"></a><span class="ex">The</span> following NEW packages will be INSTALLED:</span>
+<span id="cb7-55"><a href="#cb7-55" tabindex="-1" aria-label="code-block-7-55"></a></span>
+<span id="cb7-56"><a href="#cb7-56" tabindex="-1" aria-label="code-block-7-56"></a>  <span class="ex">_openmp_mutex</span>      conda-forge/linux-64::_openmp_mutex-4.5-20_gnu</span>
+<span id="cb7-57"><a href="#cb7-57" tabindex="-1" aria-label="code-block-7-57"></a>  <span class="fu">bzip2</span>              conda-forge/linux-64::bzip2-1.0.8-hda65f42_9</span>
+<span id="cb7-58"><a href="#cb7-58" tabindex="-1" aria-label="code-block-7-58"></a>  <span class="ex">ca-certificates</span>    conda-forge/noarch::ca-certificates-2026.1.4-hbd8a1cb_0</span>
+<span id="cb7-59"><a href="#cb7-59" tabindex="-1" aria-label="code-block-7-59"></a>  <span class="ex">cffi</span>               conda-forge/linux-64::cffi-2.0.0-py311h03d9500_1</span>
+<span id="cb7-60"><a href="#cb7-60" tabindex="-1" aria-label="code-block-7-60"></a>  <span class="ex">cfgv</span>               conda-forge/noarch::cfgv-3.5.0-pyhd8ed1ab_0</span>
+<span id="cb7-61"><a href="#cb7-61" tabindex="-1" aria-label="code-block-7-61"></a>  <span class="ex">distlib</span>            conda-forge/noarch::distlib-0.4.0-pyhd8ed1ab_0</span>
+<span id="cb7-62"><a href="#cb7-62" tabindex="-1" aria-label="code-block-7-62"></a>  <span class="ex">filelock</span>           conda-forge/noarch::filelock-3.24.3-pyhd8ed1ab_0</span>
+<span id="cb7-63"><a href="#cb7-63" tabindex="-1" aria-label="code-block-7-63"></a>  <span class="ex">icu</span>                conda-forge/linux-64::icu-78.2-h33c6efd_0</span>
+<span id="cb7-64"><a href="#cb7-64" tabindex="-1" aria-label="code-block-7-64"></a>  <span class="ex">identify</span>           conda-forge/noarch::identify-2.6.16-pyhd8ed1ab_0</span>
+<span id="cb7-65"><a href="#cb7-65" tabindex="-1" aria-label="code-block-7-65"></a>  <span class="ex">importlib-metadata</span> conda-forge/noarch::importlib-metadata-8.7.0-pyhe01879c_1</span>
+<span id="cb7-66"><a href="#cb7-66" tabindex="-1" aria-label="code-block-7-66"></a>  <span class="ex">ld_impl_linux-64</span>   conda-forge/linux-64::ld_impl_linux-64-2.45.1-default_hbd61a6d_101</span>
+<span id="cb7-67"><a href="#cb7-67" tabindex="-1" aria-label="code-block-7-67"></a>  <span class="ex">libexpat</span>           conda-forge/linux-64::libexpat-2.7.4-hecca717_0</span>
+<span id="cb7-68"><a href="#cb7-68" tabindex="-1" aria-label="code-block-7-68"></a>  <span class="ex">libffi</span>             conda-forge/linux-64::libffi-3.5.2-h3435931_0</span>
+<span id="cb7-69"><a href="#cb7-69" tabindex="-1" aria-label="code-block-7-69"></a>  <span class="ex">libgcc</span>             conda-forge/linux-64::libgcc-15.2.0-he0feb66_18</span>
+<span id="cb7-70"><a href="#cb7-70" tabindex="-1" aria-label="code-block-7-70"></a>  <span class="ex">libgcc-ng</span>          conda-forge/linux-64::libgcc-ng-15.2.0-h69a702a_18</span>
+<span id="cb7-71"><a href="#cb7-71" tabindex="-1" aria-label="code-block-7-71"></a>  <span class="ex">libgomp</span>            conda-forge/linux-64::libgomp-15.2.0-he0feb66_18</span>
+<span id="cb7-72"><a href="#cb7-72" tabindex="-1" aria-label="code-block-7-72"></a>  <span class="ex">liblzma</span>            conda-forge/linux-64::liblzma-5.8.2-hb03c661_0</span>
+<span id="cb7-73"><a href="#cb7-73" tabindex="-1" aria-label="code-block-7-73"></a>  <span class="ex">libnsl</span>             conda-forge/linux-64::libnsl-2.0.1-hb9d3cd8_1</span>
+<span id="cb7-74"><a href="#cb7-74" tabindex="-1" aria-label="code-block-7-74"></a>  <span class="ex">libsqlite</span>          conda-forge/linux-64::libsqlite-3.51.2-hf4e2dac_0</span>
+<span id="cb7-75"><a href="#cb7-75" tabindex="-1" aria-label="code-block-7-75"></a>  <span class="ex">libstdcxx</span>          conda-forge/linux-64::libstdcxx-15.2.0-h934c35e_18</span>
+<span id="cb7-76"><a href="#cb7-76" tabindex="-1" aria-label="code-block-7-76"></a>  <span class="ex">libuuid</span>            conda-forge/linux-64::libuuid-2.41.3-h5347b49_0</span>
+<span id="cb7-77"><a href="#cb7-77" tabindex="-1" aria-label="code-block-7-77"></a>  <span class="ex">libxcrypt</span>          conda-forge/linux-64::libxcrypt-4.4.36-hd590300_1</span>
+<span id="cb7-78"><a href="#cb7-78" tabindex="-1" aria-label="code-block-7-78"></a>  <span class="ex">libzlib</span>            conda-forge/linux-64::libzlib-1.3.1-hb9d3cd8_2</span>
+<span id="cb7-79"><a href="#cb7-79" tabindex="-1" aria-label="code-block-7-79"></a>  <span class="ex">ncurses</span>            conda-forge/linux-64::ncurses-6.5-h2d0b736_3</span>
+<span id="cb7-80"><a href="#cb7-80" tabindex="-1" aria-label="code-block-7-80"></a>  <span class="ex">nodeenv</span>            conda-forge/noarch::nodeenv-1.10.0-pyhd8ed1ab_0</span>
+<span id="cb7-81"><a href="#cb7-81" tabindex="-1" aria-label="code-block-7-81"></a>  <span class="ex">openssl</span>            conda-forge/linux-64::openssl-3.6.1-h35e630c_1</span>
+<span id="cb7-82"><a href="#cb7-82" tabindex="-1" aria-label="code-block-7-82"></a>  <span class="ex">packaging</span>          conda-forge/noarch::packaging-26.0-pyhcf101f3_0</span>
+<span id="cb7-83"><a href="#cb7-83" tabindex="-1" aria-label="code-block-7-83"></a>  <span class="ex">pip</span>                conda-forge/noarch::pip-26.0.1-pyh8b19718_0</span>
+<span id="cb7-84"><a href="#cb7-84" tabindex="-1" aria-label="code-block-7-84"></a>  <span class="ex">platformdirs</span>       conda-forge/noarch::platformdirs-4.9.2-pyhcf101f3_0</span>
+<span id="cb7-85"><a href="#cb7-85" tabindex="-1" aria-label="code-block-7-85"></a>  <span class="ex">pre-commit</span>         conda-forge/noarch::pre-commit-4.5.1-pyha770c72_0</span>
+<span id="cb7-86"><a href="#cb7-86" tabindex="-1" aria-label="code-block-7-86"></a>  <span class="ex">pycparser</span>          conda-forge/noarch::pycparser-2.22-pyh29332c3_1</span>
+<span id="cb7-87"><a href="#cb7-87" tabindex="-1" aria-label="code-block-7-87"></a>  <span class="ex">python</span>             conda-forge/linux-64::python-3.11.14-hd63d673_3_cpython</span>
+<span id="cb7-88"><a href="#cb7-88" tabindex="-1" aria-label="code-block-7-88"></a>  <span class="ex">python_abi</span>         conda-forge/noarch::python_abi-3.11-8_cp311</span>
+<span id="cb7-89"><a href="#cb7-89" tabindex="-1" aria-label="code-block-7-89"></a>  <span class="ex">pyyaml</span>             conda-forge/linux-64::pyyaml-6.0.3-py311h3778330_1</span>
+<span id="cb7-90"><a href="#cb7-90" tabindex="-1" aria-label="code-block-7-90"></a>  <span class="ex">readline</span>           conda-forge/linux-64::readline-8.3-h853b02a_0</span>
+<span id="cb7-91"><a href="#cb7-91" tabindex="-1" aria-label="code-block-7-91"></a>  <span class="ex">setuptools</span>         conda-forge/noarch::setuptools-82.0.0-pyh332efcf_0</span>
+<span id="cb7-92"><a href="#cb7-92" tabindex="-1" aria-label="code-block-7-92"></a>  <span class="ex">tk</span>                 conda-forge/linux-64::tk-8.6.13-noxft_h366c992_103</span>
+<span id="cb7-93"><a href="#cb7-93" tabindex="-1" aria-label="code-block-7-93"></a>  <span class="ex">typing_extensions</span>  conda-forge/noarch::typing_extensions-4.15.0-pyhcf101f3_0</span>
+<span id="cb7-94"><a href="#cb7-94" tabindex="-1" aria-label="code-block-7-94"></a>  <span class="ex">tzdata</span>             conda-forge/noarch::tzdata-2025c-hc9c84f9_1</span>
+<span id="cb7-95"><a href="#cb7-95" tabindex="-1" aria-label="code-block-7-95"></a>  <span class="ex">ukkonen</span>            conda-forge/linux-64::ukkonen-1.1.0-py311hdf67eae_0</span>
+<span id="cb7-96"><a href="#cb7-96" tabindex="-1" aria-label="code-block-7-96"></a>  <span class="ex">virtualenv</span>         conda-forge/noarch::virtualenv-20.38.0-pyhcf101f3_0</span>
+<span id="cb7-97"><a href="#cb7-97" tabindex="-1" aria-label="code-block-7-97"></a>  <span class="ex">wheel</span>              conda-forge/noarch::wheel-0.46.3-pyhd8ed1ab_0</span>
+<span id="cb7-98"><a href="#cb7-98" tabindex="-1" aria-label="code-block-7-98"></a>  <span class="ex">yaml</span>               conda-forge/linux-64::yaml-0.2.5-h280c20c_3</span>
+<span id="cb7-99"><a href="#cb7-99" tabindex="-1" aria-label="code-block-7-99"></a>  <span class="ex">zipp</span>               conda-forge/noarch::zipp-3.23.0-pyhcf101f3_1</span>
+<span id="cb7-100"><a href="#cb7-100" tabindex="-1" aria-label="code-block-7-100"></a>  <span class="ex">zstd</span>               conda-forge/linux-64::zstd-1.5.7-hb78ec9c_6</span>
+<span id="cb7-101"><a href="#cb7-101" tabindex="-1" aria-label="code-block-7-101"></a></span>
+<span id="cb7-102"><a href="#cb7-102" tabindex="-1" aria-label="code-block-7-102"></a></span>
+<span id="cb7-103"><a href="#cb7-103" tabindex="-1" aria-label="code-block-7-103"></a><span class="ex">Proceed</span> <span class="er">(</span><span class="ex">[y]/n</span><span class="kw">)</span><span class="ex">?</span> y</span>
+<span id="cb7-104"><a href="#cb7-104" tabindex="-1" aria-label="code-block-7-104"></a><span class="ex">...</span></span>
+<span id="cb7-105"><a href="#cb7-105" tabindex="-1" aria-label="code-block-7-105"></a></span>
+<span id="cb7-106"><a href="#cb7-106" tabindex="-1" aria-label="code-block-7-106"></a><span class="ex">❱</span> conda activate python-maths</span>
+<span id="cb7-107"><a href="#cb7-107" tabindex="-1" aria-label="code-block-7-107"></a><span class="kw">(</span><span class="ex">python-maths</span><span class="kw">)</span> <span class="ex">❱</span> pre-commit install</span>
+<span id="cb7-108"><a href="#cb7-108" tabindex="-1" aria-label="code-block-7-108"></a><span class="ex">pre-commit</span> installed at .git/hooks/pre-commit</span></code></pre>
 </div>
 <div id="challenge-2---checking-out-the-installed-pre-commit-hook" class="callout challenge">
 <div class="callout-square">
@@ -861,27 +861,27 @@ were told was installed.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">❱</span> cat .git/hooks/pre-commit</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># File generated by pre-commit: https://pre-commit.com</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># ID: 138fd403232d2ddd5efb44317e38bf03</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># start templated</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="va">INSTALL_PYTHON</span><span class="op">=</span>/home/neil/miniconda3/envs/python-maths/bin/python</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="va">ARGS</span><span class="op">=</span><span class="va">(</span>hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit<span class="va">)</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co"># end templated</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="va">HERE</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="bu">cd</span> <span class="st">"</span><span class="va">$(</span><span class="fu">dirname</span> <span class="st">"</span><span class="va">$0</span><span class="st">"</span><span class="va">)</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="va">ARGS</span><span class="op">+=</span><span class="va">(</span>--hook-dir <span class="st">"</span><span class="va">$HERE</span><span class="st">"</span> -- <span class="st">"</span><span class="va">$@</span><span class="st">"</span><span class="va">)</span></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-x</span> <span class="st">"</span><span class="va">$INSTALL_PYTHON</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>    <span class="bu">exec</span> <span class="st">"</span><span class="va">$INSTALL_PYTHON</span><span class="st">"</span> <span class="at">-mpre_commit</span> <span class="st">"</span><span class="va">${ARGS</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span></span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="cf">elif</span> <span class="bu">command</span> <span class="at">-v</span> pre-commit <span class="op">&gt;</span> /dev/null<span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>    <span class="bu">exec</span> pre-commit <span class="st">"</span><span class="va">${ARGS</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span></span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">'`pre-commit` not found.  Did you forget to activate your virtualenv?'</span> <span class="dv">1</span><span class="op">&gt;&amp;</span><span class="dv">2</span></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="cf">fi</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">❱</span> cat .git/hooks/pre-commit</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="co"># File generated by pre-commit: https://pre-commit.com</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a><span class="co"># ID: 138fd403232d2ddd5efb44317e38bf03</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a><span class="co"># start templated</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a><span class="va">INSTALL_PYTHON</span><span class="op">=</span>/home/neil/miniconda3/envs/python-maths/bin/python</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a><span class="va">ARGS</span><span class="op">=</span><span class="va">(</span>hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit<span class="va">)</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a><span class="co"># end templated</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a><span class="va">HERE</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="bu">cd</span> <span class="st">"</span><span class="va">$(</span><span class="fu">dirname</span> <span class="st">"</span><span class="va">$0</span><span class="st">"</span><span class="va">)</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a><span class="va">ARGS</span><span class="op">+=</span><span class="va">(</span>--hook-dir <span class="st">"</span><span class="va">$HERE</span><span class="st">"</span> -- <span class="st">"</span><span class="va">$@</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1" aria-label="code-block-8-14"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-x</span> <span class="st">"</span><span class="va">$INSTALL_PYTHON</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1" aria-label="code-block-8-15"></a>    <span class="bu">exec</span> <span class="st">"</span><span class="va">$INSTALL_PYTHON</span><span class="st">"</span> <span class="at">-mpre_commit</span> <span class="st">"</span><span class="va">${ARGS</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1" aria-label="code-block-8-16"></a><span class="cf">elif</span> <span class="bu">command</span> <span class="at">-v</span> pre-commit <span class="op">&gt;</span> /dev/null<span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1" aria-label="code-block-8-17"></a>    <span class="bu">exec</span> pre-commit <span class="st">"</span><span class="va">${ARGS</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1" aria-label="code-block-8-18"></a><span class="cf">else</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1" aria-label="code-block-8-19"></a>    <span class="bu">echo</span> <span class="st">'`pre-commit` not found.  Did you forget to activate your virtualenv?'</span> <span class="dv">1</span><span class="op">&gt;&amp;</span><span class="dv">2</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1" aria-label="code-block-8-20"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1" aria-label="code-block-8-21"></a><span class="cf">fi</span></span></code></pre>
 </div>
 <p>We see that near the end a message is <code>echo</code> that prints
 what follows to the terminal so if we get to that point the sentence
@@ -902,94 +902,94 @@ clone.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">repos:</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/pre-commit/pre-commit-hooks</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>    <span class="ex">rev:</span> v4.5.0 <span class="co"># Use the ref you want to point at</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>      <span class="ex">-</span> id: check-case-conflict</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>      <span class="ex">-</span> id: check-docstring-first</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>      <span class="ex">-</span> id: check-merge-conflict</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>      <span class="ex">-</span> id: check-toml</span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>      <span class="ex">-</span> id: check-yaml</span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>      <span class="ex">-</span> id: debug-statements</span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>      <span class="ex">-</span> id: end-of-file-fixer</span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>        <span class="ex">types:</span> <span class="pp">[</span><span class="ss">python</span><span class="pp">]</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>      <span class="ex">-</span> id: fix-byte-order-marker</span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>      <span class="ex">-</span> id: name-tests-test</span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>        <span class="ex">args:</span> <span class="pp">[</span><span class="st">"--pytest-test-first"</span><span class="pp">]</span></span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>      <span class="ex">-</span> id: no-commit-to-branch <span class="co"># Protects main/master by default</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a>      <span class="ex">-</span> id: requirements-txt-fixer</span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>      <span class="ex">-</span> id: trailing-whitespace</span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a>        <span class="ex">types:</span> [python, yaml, markdown]</span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/DavidAnson/markdownlint-cli2</span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a>    <span class="ex">rev:</span> v0.11.0</span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a>      <span class="ex">-</span> id: markdownlint-cli2</span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>        <span class="ex">args:</span> []</span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a></span>
-<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/asottile/pyupgrade</span>
-<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a>    <span class="ex">rev:</span> v3.15.0</span>
-<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a>      <span class="ex">-</span> id: pyupgrade</span>
-<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a>        <span class="ex">args:</span> <span class="pp">[--</span><span class="ss">py38</span><span class="pp">-</span><span class="ss">plus</span><span class="pp">]</span></span>
-<span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/pre-commit/mirrors-mypy</span>
-<span id="cb9-34"><a href="#cb9-34" tabindex="-1"></a>    <span class="ex">rev:</span> v1.8.0</span>
-<span id="cb9-35"><a href="#cb9-35" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-36"><a href="#cb9-36" tabindex="-1"></a>      <span class="ex">-</span> id: mypy</span>
-<span id="cb9-37"><a href="#cb9-37" tabindex="-1"></a></span>
-<span id="cb9-38"><a href="#cb9-38" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/astral-sh/ruff-pre-commit</span>
-<span id="cb9-39"><a href="#cb9-39" tabindex="-1"></a>    <span class="co"># Ruff version.</span></span>
-<span id="cb9-40"><a href="#cb9-40" tabindex="-1"></a>    <span class="ex">rev:</span> v0.4.2</span>
-<span id="cb9-41"><a href="#cb9-41" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-42"><a href="#cb9-42" tabindex="-1"></a>      <span class="ex">-</span> id: ruff</span>
-<span id="cb9-43"><a href="#cb9-43" tabindex="-1"></a>        <span class="ex">args:</span> [--fix, <span class="at">--exit-non-zero-on-fix,</span> <span class="at">--show-fixes]</span></span>
-<span id="cb9-44"><a href="#cb9-44" tabindex="-1"></a></span>
-<span id="cb9-45"><a href="#cb9-45" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/psf/black-pre-commit-mirror</span>
-<span id="cb9-46"><a href="#cb9-46" tabindex="-1"></a>    <span class="ex">rev:</span> 23.12.1</span>
-<span id="cb9-47"><a href="#cb9-47" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-48"><a href="#cb9-48" tabindex="-1"></a>      <span class="ex">-</span> id: black</span>
-<span id="cb9-49"><a href="#cb9-49" tabindex="-1"></a>        <span class="ex">types:</span> <span class="pp">[</span><span class="ss">python</span><span class="pp">]</span></span>
-<span id="cb9-50"><a href="#cb9-50" tabindex="-1"></a>        <span class="ex">additional_dependencies:</span> <span class="pp">[</span><span class="st">"click==8.0.4"</span><span class="pp">]</span></span>
-<span id="cb9-51"><a href="#cb9-51" tabindex="-1"></a>        <span class="ex">args:</span> [<span class="st">"--extend-exclude"</span>, <span class="st">"topostats/plotting.py"</span>]</span>
-<span id="cb9-52"><a href="#cb9-52" tabindex="-1"></a>      <span class="ex">-</span> id: black-jupyter</span>
-<span id="cb9-53"><a href="#cb9-53" tabindex="-1"></a></span>
-<span id="cb9-54"><a href="#cb9-54" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/adamchainz/blacken-docs</span>
-<span id="cb9-55"><a href="#cb9-55" tabindex="-1"></a>    <span class="ex">rev:</span> 1.16.0</span>
-<span id="cb9-56"><a href="#cb9-56" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-57"><a href="#cb9-57" tabindex="-1"></a>      <span class="ex">-</span> id: blacken-docs</span>
-<span id="cb9-58"><a href="#cb9-58" tabindex="-1"></a>        <span class="ex">additional_dependencies:</span></span>
-<span id="cb9-59"><a href="#cb9-59" tabindex="-1"></a>          <span class="ex">-</span> black==22.12.0</span>
-<span id="cb9-60"><a href="#cb9-60" tabindex="-1"></a></span>
-<span id="cb9-61"><a href="#cb9-61" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/codespell-project/codespell</span>
-<span id="cb9-62"><a href="#cb9-62" tabindex="-1"></a>    <span class="ex">rev:</span> v2.2.6</span>
-<span id="cb9-63"><a href="#cb9-63" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-64"><a href="#cb9-64" tabindex="-1"></a>      <span class="ex">-</span> id: codespell</span>
-<span id="cb9-65"><a href="#cb9-65" tabindex="-1"></a></span>
-<span id="cb9-66"><a href="#cb9-66" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/pre-commit/mirrors-prettier</span>
-<span id="cb9-67"><a href="#cb9-67" tabindex="-1"></a>    <span class="ex">rev:</span> v4.0.0-alpha.8</span>
-<span id="cb9-68"><a href="#cb9-68" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-69"><a href="#cb9-69" tabindex="-1"></a>      <span class="ex">-</span> id: prettier</span>
-<span id="cb9-70"><a href="#cb9-70" tabindex="-1"></a></span>
-<span id="cb9-71"><a href="#cb9-71" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/numpy/numpydoc</span>
-<span id="cb9-72"><a href="#cb9-72" tabindex="-1"></a>    <span class="ex">rev:</span> v1.6.0</span>
-<span id="cb9-73"><a href="#cb9-73" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-74"><a href="#cb9-74" tabindex="-1"></a>      <span class="ex">-</span> id: numpydoc-validation</span>
-<span id="cb9-75"><a href="#cb9-75" tabindex="-1"></a>        <span class="ex">exclude:</span> <span class="kw">|</span></span>
-<span id="cb9-76"><a href="#cb9-76" tabindex="-1"></a>          <span class="kw">(</span><span class="ex">?x</span><span class="kw">)(</span></span>
-<span id="cb9-77"><a href="#cb9-77" tabindex="-1"></a>              <span class="ex">tests/</span><span class="kw">|</span></span>
-<span id="cb9-78"><a href="#cb9-78" tabindex="-1"></a>              <span class="ex">docs/</span></span>
-<span id="cb9-79"><a href="#cb9-79" tabindex="-1"></a>          <span class="kw">)</span></span>
-<span id="cb9-80"><a href="#cb9-80" tabindex="-1"></a></span>
-<span id="cb9-81"><a href="#cb9-81" tabindex="-1"></a>  <span class="ex">-</span> repo: local</span>
-<span id="cb9-82"><a href="#cb9-82" tabindex="-1"></a>    <span class="ex">hooks:</span></span>
-<span id="cb9-83"><a href="#cb9-83" tabindex="-1"></a>      <span class="ex">-</span> id: pylint</span>
-<span id="cb9-84"><a href="#cb9-84" tabindex="-1"></a>        <span class="ex">args:</span> <span class="pp">[</span><span class="st">"--rcfile=.pylintrc"</span><span class="pp">]</span></span>
-<span id="cb9-85"><a href="#cb9-85" tabindex="-1"></a>        <span class="ex">name:</span> Pylint</span>
-<span id="cb9-86"><a href="#cb9-86" tabindex="-1"></a>        <span class="ex">entry:</span> python <span class="at">-m</span> pylint</span>
-<span id="cb9-87"><a href="#cb9-87" tabindex="-1"></a>        <span class="ex">language:</span> system</span>
-<span id="cb9-88"><a href="#cb9-88" tabindex="-1"></a>        <span class="ex">files:</span> <span class="dt">\.</span>py$</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">repos:</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>  <span class="ex">-</span> repo: https://github.com/pre-commit/pre-commit-hooks</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a>    <span class="ex">rev:</span> v4.5.0 <span class="co"># Use the ref you want to point at</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1" aria-label="code-block-9-5"></a>      <span class="ex">-</span> id: check-case-conflict</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1" aria-label="code-block-9-6"></a>      <span class="ex">-</span> id: check-docstring-first</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1" aria-label="code-block-9-7"></a>      <span class="ex">-</span> id: check-merge-conflict</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1" aria-label="code-block-9-8"></a>      <span class="ex">-</span> id: check-toml</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1" aria-label="code-block-9-9"></a>      <span class="ex">-</span> id: check-yaml</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1" aria-label="code-block-9-10"></a>      <span class="ex">-</span> id: debug-statements</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1" aria-label="code-block-9-11"></a>      <span class="ex">-</span> id: end-of-file-fixer</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1" aria-label="code-block-9-12"></a>        <span class="ex">types:</span> <span class="pp">[</span><span class="ss">python</span><span class="pp">]</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1" aria-label="code-block-9-13"></a>      <span class="ex">-</span> id: fix-byte-order-marker</span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1" aria-label="code-block-9-14"></a>      <span class="ex">-</span> id: name-tests-test</span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1" aria-label="code-block-9-15"></a>        <span class="ex">args:</span> <span class="pp">[</span><span class="st">"--pytest-test-first"</span><span class="pp">]</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1" aria-label="code-block-9-16"></a>      <span class="ex">-</span> id: no-commit-to-branch <span class="co"># Protects main/master by default</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1" aria-label="code-block-9-17"></a>      <span class="ex">-</span> id: requirements-txt-fixer</span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1" aria-label="code-block-9-18"></a>      <span class="ex">-</span> id: trailing-whitespace</span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1" aria-label="code-block-9-19"></a>        <span class="ex">types:</span> [python, yaml, markdown]</span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1" aria-label="code-block-9-20"></a></span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1" aria-label="code-block-9-21"></a>  <span class="ex">-</span> repo: https://github.com/DavidAnson/markdownlint-cli2</span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1" aria-label="code-block-9-22"></a>    <span class="ex">rev:</span> v0.11.0</span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1" aria-label="code-block-9-23"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1" aria-label="code-block-9-24"></a>      <span class="ex">-</span> id: markdownlint-cli2</span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1" aria-label="code-block-9-25"></a>        <span class="ex">args:</span> []</span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1" aria-label="code-block-9-26"></a></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1" aria-label="code-block-9-27"></a>  <span class="ex">-</span> repo: https://github.com/asottile/pyupgrade</span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1" aria-label="code-block-9-28"></a>    <span class="ex">rev:</span> v3.15.0</span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1" aria-label="code-block-9-29"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1" aria-label="code-block-9-30"></a>      <span class="ex">-</span> id: pyupgrade</span>
+<span id="cb9-31"><a href="#cb9-31" tabindex="-1" aria-label="code-block-9-31"></a>        <span class="ex">args:</span> <span class="pp">[--</span><span class="ss">py38</span><span class="pp">-</span><span class="ss">plus</span><span class="pp">]</span></span>
+<span id="cb9-32"><a href="#cb9-32" tabindex="-1" aria-label="code-block-9-32"></a></span>
+<span id="cb9-33"><a href="#cb9-33" tabindex="-1" aria-label="code-block-9-33"></a>  <span class="ex">-</span> repo: https://github.com/pre-commit/mirrors-mypy</span>
+<span id="cb9-34"><a href="#cb9-34" tabindex="-1" aria-label="code-block-9-34"></a>    <span class="ex">rev:</span> v1.8.0</span>
+<span id="cb9-35"><a href="#cb9-35" tabindex="-1" aria-label="code-block-9-35"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-36"><a href="#cb9-36" tabindex="-1" aria-label="code-block-9-36"></a>      <span class="ex">-</span> id: mypy</span>
+<span id="cb9-37"><a href="#cb9-37" tabindex="-1" aria-label="code-block-9-37"></a></span>
+<span id="cb9-38"><a href="#cb9-38" tabindex="-1" aria-label="code-block-9-38"></a>  <span class="ex">-</span> repo: https://github.com/astral-sh/ruff-pre-commit</span>
+<span id="cb9-39"><a href="#cb9-39" tabindex="-1" aria-label="code-block-9-39"></a>    <span class="co"># Ruff version.</span></span>
+<span id="cb9-40"><a href="#cb9-40" tabindex="-1" aria-label="code-block-9-40"></a>    <span class="ex">rev:</span> v0.4.2</span>
+<span id="cb9-41"><a href="#cb9-41" tabindex="-1" aria-label="code-block-9-41"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-42"><a href="#cb9-42" tabindex="-1" aria-label="code-block-9-42"></a>      <span class="ex">-</span> id: ruff</span>
+<span id="cb9-43"><a href="#cb9-43" tabindex="-1" aria-label="code-block-9-43"></a>        <span class="ex">args:</span> [--fix, <span class="at">--exit-non-zero-on-fix,</span> <span class="at">--show-fixes]</span></span>
+<span id="cb9-44"><a href="#cb9-44" tabindex="-1" aria-label="code-block-9-44"></a></span>
+<span id="cb9-45"><a href="#cb9-45" tabindex="-1" aria-label="code-block-9-45"></a>  <span class="ex">-</span> repo: https://github.com/psf/black-pre-commit-mirror</span>
+<span id="cb9-46"><a href="#cb9-46" tabindex="-1" aria-label="code-block-9-46"></a>    <span class="ex">rev:</span> 23.12.1</span>
+<span id="cb9-47"><a href="#cb9-47" tabindex="-1" aria-label="code-block-9-47"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-48"><a href="#cb9-48" tabindex="-1" aria-label="code-block-9-48"></a>      <span class="ex">-</span> id: black</span>
+<span id="cb9-49"><a href="#cb9-49" tabindex="-1" aria-label="code-block-9-49"></a>        <span class="ex">types:</span> <span class="pp">[</span><span class="ss">python</span><span class="pp">]</span></span>
+<span id="cb9-50"><a href="#cb9-50" tabindex="-1" aria-label="code-block-9-50"></a>        <span class="ex">additional_dependencies:</span> <span class="pp">[</span><span class="st">"click==8.0.4"</span><span class="pp">]</span></span>
+<span id="cb9-51"><a href="#cb9-51" tabindex="-1" aria-label="code-block-9-51"></a>        <span class="ex">args:</span> [<span class="st">"--extend-exclude"</span>, <span class="st">"topostats/plotting.py"</span>]</span>
+<span id="cb9-52"><a href="#cb9-52" tabindex="-1" aria-label="code-block-9-52"></a>      <span class="ex">-</span> id: black-jupyter</span>
+<span id="cb9-53"><a href="#cb9-53" tabindex="-1" aria-label="code-block-9-53"></a></span>
+<span id="cb9-54"><a href="#cb9-54" tabindex="-1" aria-label="code-block-9-54"></a>  <span class="ex">-</span> repo: https://github.com/adamchainz/blacken-docs</span>
+<span id="cb9-55"><a href="#cb9-55" tabindex="-1" aria-label="code-block-9-55"></a>    <span class="ex">rev:</span> 1.16.0</span>
+<span id="cb9-56"><a href="#cb9-56" tabindex="-1" aria-label="code-block-9-56"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-57"><a href="#cb9-57" tabindex="-1" aria-label="code-block-9-57"></a>      <span class="ex">-</span> id: blacken-docs</span>
+<span id="cb9-58"><a href="#cb9-58" tabindex="-1" aria-label="code-block-9-58"></a>        <span class="ex">additional_dependencies:</span></span>
+<span id="cb9-59"><a href="#cb9-59" tabindex="-1" aria-label="code-block-9-59"></a>          <span class="ex">-</span> black==22.12.0</span>
+<span id="cb9-60"><a href="#cb9-60" tabindex="-1" aria-label="code-block-9-60"></a></span>
+<span id="cb9-61"><a href="#cb9-61" tabindex="-1" aria-label="code-block-9-61"></a>  <span class="ex">-</span> repo: https://github.com/codespell-project/codespell</span>
+<span id="cb9-62"><a href="#cb9-62" tabindex="-1" aria-label="code-block-9-62"></a>    <span class="ex">rev:</span> v2.2.6</span>
+<span id="cb9-63"><a href="#cb9-63" tabindex="-1" aria-label="code-block-9-63"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-64"><a href="#cb9-64" tabindex="-1" aria-label="code-block-9-64"></a>      <span class="ex">-</span> id: codespell</span>
+<span id="cb9-65"><a href="#cb9-65" tabindex="-1" aria-label="code-block-9-65"></a></span>
+<span id="cb9-66"><a href="#cb9-66" tabindex="-1" aria-label="code-block-9-66"></a>  <span class="ex">-</span> repo: https://github.com/pre-commit/mirrors-prettier</span>
+<span id="cb9-67"><a href="#cb9-67" tabindex="-1" aria-label="code-block-9-67"></a>    <span class="ex">rev:</span> v4.0.0-alpha.8</span>
+<span id="cb9-68"><a href="#cb9-68" tabindex="-1" aria-label="code-block-9-68"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-69"><a href="#cb9-69" tabindex="-1" aria-label="code-block-9-69"></a>      <span class="ex">-</span> id: prettier</span>
+<span id="cb9-70"><a href="#cb9-70" tabindex="-1" aria-label="code-block-9-70"></a></span>
+<span id="cb9-71"><a href="#cb9-71" tabindex="-1" aria-label="code-block-9-71"></a>  <span class="ex">-</span> repo: https://github.com/numpy/numpydoc</span>
+<span id="cb9-72"><a href="#cb9-72" tabindex="-1" aria-label="code-block-9-72"></a>    <span class="ex">rev:</span> v1.6.0</span>
+<span id="cb9-73"><a href="#cb9-73" tabindex="-1" aria-label="code-block-9-73"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-74"><a href="#cb9-74" tabindex="-1" aria-label="code-block-9-74"></a>      <span class="ex">-</span> id: numpydoc-validation</span>
+<span id="cb9-75"><a href="#cb9-75" tabindex="-1" aria-label="code-block-9-75"></a>        <span class="ex">exclude:</span> <span class="kw">|</span></span>
+<span id="cb9-76"><a href="#cb9-76" tabindex="-1" aria-label="code-block-9-76"></a>          <span class="kw">(</span><span class="ex">?x</span><span class="kw">)(</span></span>
+<span id="cb9-77"><a href="#cb9-77" tabindex="-1" aria-label="code-block-9-77"></a>              <span class="ex">tests/</span><span class="kw">|</span></span>
+<span id="cb9-78"><a href="#cb9-78" tabindex="-1" aria-label="code-block-9-78"></a>              <span class="ex">docs/</span></span>
+<span id="cb9-79"><a href="#cb9-79" tabindex="-1" aria-label="code-block-9-79"></a>          <span class="kw">)</span></span>
+<span id="cb9-80"><a href="#cb9-80" tabindex="-1" aria-label="code-block-9-80"></a></span>
+<span id="cb9-81"><a href="#cb9-81" tabindex="-1" aria-label="code-block-9-81"></a>  <span class="ex">-</span> repo: local</span>
+<span id="cb9-82"><a href="#cb9-82" tabindex="-1" aria-label="code-block-9-82"></a>    <span class="ex">hooks:</span></span>
+<span id="cb9-83"><a href="#cb9-83" tabindex="-1" aria-label="code-block-9-83"></a>      <span class="ex">-</span> id: pylint</span>
+<span id="cb9-84"><a href="#cb9-84" tabindex="-1" aria-label="code-block-9-84"></a>        <span class="ex">args:</span> <span class="pp">[</span><span class="st">"--rcfile=.pylintrc"</span><span class="pp">]</span></span>
+<span id="cb9-85"><a href="#cb9-85" tabindex="-1" aria-label="code-block-9-85"></a>        <span class="ex">name:</span> Pylint</span>
+<span id="cb9-86"><a href="#cb9-86" tabindex="-1" aria-label="code-block-9-86"></a>        <span class="ex">entry:</span> python <span class="at">-m</span> pylint</span>
+<span id="cb9-87"><a href="#cb9-87" tabindex="-1" aria-label="code-block-9-87"></a>        <span class="ex">language:</span> system</span>
+<span id="cb9-88"><a href="#cb9-88" tabindex="-1" aria-label="code-block-9-88"></a>        <span class="ex">files:</span> <span class="dt">\.</span>py$</span></code></pre>
 </div>
 <p>This <a href="https://yaml.org" class="external-link">YAML</a> file might look quite
 complex and intimidating if you are not familiar with the format so
@@ -1100,9 +1100,9 @@ string in the <code>.pre-commit-config.yaml</code> we can hone in on the
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-A1</span> numpydoc .pre-commit-config.yaml  <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-B1</span> rev</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="ex">-</span> repo: https://github.com/numpy/numpydoc</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    <span class="ex">rev:</span> v1.10.0</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">grep</span> <span class="at">-A1</span> numpydoc .pre-commit-config.yaml  <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-B1</span> rev</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a>  <span class="ex">-</span> repo: https://github.com/numpy/numpydoc</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>    <span class="ex">rev:</span> v1.10.0</span></code></pre>
 </div>
 <p>We see that it is <code>v1.10.0</code> that is currently configured
 for <a href="https://github.com/numpy/numpydoc" class="external-link"><code>numpydoc</code></a>.</p>
@@ -1126,9 +1126,9 @@ hooks are configured for this <code>repi</code>.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-A10</span> <span class="st">"black-pre-commit-mirror"</span> .pre-commit-config.yaml <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"id:"</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>      <span class="ex">-</span> id: black</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>      <span class="ex">-</span> id: black-jupyter</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">grep</span> <span class="at">-A10</span> <span class="st">"black-pre-commit-mirror"</span> .pre-commit-config.yaml <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"id:"</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a>      <span class="ex">-</span> id: black</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a>      <span class="ex">-</span> id: black-jupyter</span></code></pre>
 </div>
 <p>The <code>black</code> and <code>black-jupyter</code> hooks are
 enabled. These will apply <a href="https://black.readthedocs.io/en/stable/index.html" class="external-link">black</a>
@@ -1151,8 +1151,8 @@ formatting to Python files and Jupyter Notebooks.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-A5</span> ruff .pre-commit-config.yaml <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"args:"</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>        <span class="ex">args:</span> [--fix, <span class="at">--exit-non-zero-on-fix,</span> <span class="at">--show-fixes]</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">grep</span> <span class="at">-A5</span> ruff .pre-commit-config.yaml <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"args:"</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a>        <span class="ex">args:</span> [--fix, <span class="at">--exit-non-zero-on-fix,</span> <span class="at">--show-fixes]</span></span></code></pre>
 </div>
 <p>The <code>--fix</code>, <code>--exit-non-zero-on-fix</code> and
 <code>--show-fixes</code> options are enabled.</p>
@@ -1174,7 +1174,7 @@ hooks.</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">pre-commit</span> install-hooks</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">pre-commit</span> install-hooks</span></code></pre>
 </div>
 <p>The repos that are defined need installing, this is done once and
 sets up some virtual environments which are reused across Git
@@ -1189,15 +1189,15 @@ time against the whole repository</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">pre-commit</span> run <span class="at">--all-files</span>                <span class="co"># Run all hooks on all files</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">pre-commit</span> run <span class="op">&lt;</span>hook-to-run<span class="op">&gt;</span> --all-files  <span class="co"># Run a specific hook on all files</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">pre-commit</span> run <span class="at">--all-files</span>                <span class="co"># Run all hooks on all files</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1" aria-label="code-block-14-2"></a><span class="ex">pre-commit</span> run <span class="op">&lt;</span>hook-to-run<span class="op">&gt;</span> --all-files  <span class="co"># Run a specific hook on all files</span></span></code></pre>
 </div>
 <p>…or on individual files, in this case <code>pyproject.toml</code> and
 <code>README.md</code></p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">pre-commit</span> run <span class="at">--files</span> pyproject.toml README.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="ex">pre-commit</span> run <span class="at">--files</span> pyproject.toml README.md</span></code></pre>
 </div>
 <p>If there are problems identified with any of the files
 <code>pre-commit</code> will report them and you will have to fix them
@@ -1218,47 +1218,47 @@ hook.</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/add-pre-commit-hooks</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1" aria-label="code-block-16-2"></a><span class="fu">git</span> switch main</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1" aria-label="code-block-16-3"></a><span class="fu">git</span> pull</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1" aria-label="code-block-16-4"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/add-pre-commit-hooks</span></code></pre>
 </div>
 <p>Add the following <code>- id:</code> to the <code>hooks:</code>
 section defined under the first <code>- repo:</code>.</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-added-large-files</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--maxkb=800"</span><span class="kw">]</span></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> detect-private-keys</span></span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-added-large-files</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--maxkb=800"</span><span class="kw">]</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1" aria-label="code-block-17-3"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> detect-private-keys</span></span></code></pre>
 </div>
 <p>It can help with readability if you order the hooks alphabetically so
 you may have something that reads like the following.</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">repos</span><span class="kw">:</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/pre-commit/pre-commit-hooks</span></span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="at">    </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v4.5.0</span><span class="co"> # Use the ref you want to point at</span></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="at">    </span><span class="fu">hooks</span><span class="kw">:</span></span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-added-large-files</span></span>
-<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--maxkb=800"</span><span class="kw">]</span></span>
-<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-case-conflict</span></span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-docstring-first</span></span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-merge-conflict</span></span>
-<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-toml</span></span>
-<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-yaml</span></span>
-<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> debug-statements</span></span>
-<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> detect-private-keys</span></span>
-<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> end-of-file-fixer</span></span>
-<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a><span class="at">        </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">python</span><span class="kw">]</span></span>
-<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> fix-byte-order-marker</span></span>
-<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> name-tests-test</span></span>
-<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--pytest-test-first"</span><span class="kw">]</span></span>
-<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> no-commit-to-branch</span><span class="co"> # Protects main/master by default</span></span>
-<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> requirements-txt-fixer</span></span>
-<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> trailing-whitespace</span></span>
-<span id="cb18-22"><a href="#cb18-22" tabindex="-1"></a><span class="at">        </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">python</span><span class="kw">,</span><span class="at"> yaml</span><span class="kw">,</span><span class="at"> markdown</span><span class="kw">]</span></span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="fu">repos</span><span class="kw">:</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/pre-commit/pre-commit-hooks</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1" aria-label="code-block-18-3"></a><span class="at">    </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v4.5.0</span><span class="co"> # Use the ref you want to point at</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1" aria-label="code-block-18-4"></a><span class="at">    </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1" aria-label="code-block-18-5"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-added-large-files</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1" aria-label="code-block-18-6"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--maxkb=800"</span><span class="kw">]</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1" aria-label="code-block-18-7"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-case-conflict</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1" aria-label="code-block-18-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-docstring-first</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1" aria-label="code-block-18-9"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-merge-conflict</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1" aria-label="code-block-18-10"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-toml</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1" aria-label="code-block-18-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-yaml</span></span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1" aria-label="code-block-18-12"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> debug-statements</span></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1" aria-label="code-block-18-13"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> detect-private-keys</span></span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1" aria-label="code-block-18-14"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> end-of-file-fixer</span></span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1" aria-label="code-block-18-15"></a><span class="at">        </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">python</span><span class="kw">]</span></span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1" aria-label="code-block-18-16"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> fix-byte-order-marker</span></span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1" aria-label="code-block-18-17"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> name-tests-test</span></span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1" aria-label="code-block-18-18"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--pytest-test-first"</span><span class="kw">]</span></span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1" aria-label="code-block-18-19"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> no-commit-to-branch</span><span class="co"> # Protects main/master by default</span></span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1" aria-label="code-block-18-20"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> requirements-txt-fixer</span></span>
+<span id="cb18-21"><a href="#cb18-21" tabindex="-1" aria-label="code-block-18-21"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> trailing-whitespace</span></span>
+<span id="cb18-22"><a href="#cb18-22" tabindex="-1" aria-label="code-block-18-22"></a><span class="at">        </span><span class="fu">types</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">python</span><span class="kw">,</span><span class="at"> yaml</span><span class="kw">,</span><span class="at"> markdown</span><span class="kw">]</span></span></code></pre>
 </div>
 <p>After you have made changes to <code>.pre-commit-config.yaml</code>
 you <em>have</em> to stage them for committing, if you don’t the
@@ -1267,10 +1267,10 @@ unstaged.</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="bu">cd</span> python-maths</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">"Trying to commit without staging .pre-commit-config.yaml"</span></span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="ex">[ERROR]</span> Your pre-commit configuration is unstaged.</span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="kw">`</span><span class="fu">git</span> add .pre-commit-config.yaml<span class="kw">`</span> to fix this.</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="bu">cd</span> python-maths</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">"Trying to commit without staging .pre-commit-config.yaml"</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1" aria-label="code-block-19-3"></a><span class="ex">[ERROR]</span> Your pre-commit configuration is unstaged.</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1" aria-label="code-block-19-4"></a><span class="kw">`</span><span class="fu">git</span> add .pre-commit-config.yaml<span class="kw">`</span> to fix this.</span></code></pre>
 </div>
 <p>Whenever you modify, add or delete content to
 <code>.pre-commit-configy.yaml</code> you must therefore stage and
@@ -1278,9 +1278,9 @@ commit the changes (<strong>NB</strong> make sure youre are)</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">git</span> add .pre-commit-config.yaml</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"pre-commit: Exclude large files and detect private keys"</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="fu">git</span> add .pre-commit-config.yaml</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1" aria-label="code-block-20-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"pre-commit: Exclude large files and detect private keys"</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1" aria-label="code-block-20-3"></a><span class="fu">git</span> push</span></code></pre>
 </div>
 <div id="challenge-6-add-the-forbid-new-submodules-hook-id-to-the-pre-commit-hooks-configuration" class="callout challenge">
 <div class="callout-square">
@@ -1310,14 +1310,14 @@ repository configuration.</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> forbid-new-submodules</span></span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> forbid-new-submodules</span></span></code></pre>
 </div>
 <p>The file should then be staged, committed and pushed.</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">❱</span> git add .pre-commit-config.yaml</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="ex">❱</span> git commit <span class="at">-m</span> <span class="st">"pre-commit : adds the forbid-new-modules hook"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="ex">❱</span> git add .pre-commit-config.yaml</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1" aria-label="code-block-22-2"></a><span class="ex">❱</span> git commit <span class="at">-m</span> <span class="st">"pre-commit : adds the forbid-new-modules hook"</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1342,14 +1342,14 @@ activated that has all the dependencies installed.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="at">   </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> local</span></span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="at">     </span><span class="fu">hooks</span><span class="kw">:</span></span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> pylint</span></span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="at">         </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--rcfile=.pylintrc"</span><span class="kw">]</span></span>
-<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="at">         </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Pylint</span></span>
-<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a><span class="at">         </span><span class="fu">entry</span><span class="kw">:</span><span class="at"> python -m pylint</span></span>
-<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a><span class="at">         </span><span class="fu">language</span><span class="kw">:</span><span class="at"> system</span></span>
-<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="at">         </span><span class="fu">files</span><span class="kw">:</span><span class="at"> \.py$</span></span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="at">   </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> local</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a><span class="at">     </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> pylint</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1" aria-label="code-block-23-4"></a><span class="at">         </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"--rcfile=.pylintrc"</span><span class="kw">]</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1" aria-label="code-block-23-5"></a><span class="at">         </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Pylint</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1" aria-label="code-block-23-6"></a><span class="at">         </span><span class="fu">entry</span><span class="kw">:</span><span class="at"> python -m pylint</span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1" aria-label="code-block-23-7"></a><span class="at">         </span><span class="fu">language</span><span class="kw">:</span><span class="at"> system</span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1" aria-label="code-block-23-8"></a><span class="at">         </span><span class="fu">files</span><span class="kw">:</span><span class="at"> \.py$</span></span></code></pre>
 </div>
 <p>Several of the configuration options we have already seen such as
 <code>id</code>, <code>args</code> and <code>files</code> but the
@@ -1361,7 +1361,7 @@ is</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pylint <span class="at">--rcfile</span><span class="op">=</span>.pylintrc</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">python</span> <span class="at">-m</span> pylint <span class="at">--rcfile</span><span class="op">=</span>.pylintrc</span></code></pre>
 </div>
 <div id="pylint-configuration" class="callout">
 <div class="callout-square">
@@ -1403,36 +1403,36 @@ can be run to ensure the code works as expected.</p>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">git</span> switch main</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/pre-commit-pytest</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a><span class="fu">git</span> pull</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1" aria-label="code-block-25-3"></a><span class="fu">git</span> switch <span class="at">-c</span> ns-rse/pre-commit-pytest</span></code></pre>
 </div>
 <p>The following should be added to your
 <code>.pre-commit-config.yaml</code></p>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="at">   </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> local</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="at">     </span><span class="fu">hooks</span><span class="kw">:</span></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> pytest</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="at">         </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Pytest</span></span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="at">         </span><span class="fu">entry</span><span class="kw">:</span><span class="at"> pytest</span></span>
-<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="at">         </span><span class="fu">language</span><span class="kw">:</span><span class="at"> system</span></span></code></pre>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="at">   </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> local</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1" aria-label="code-block-26-2"></a><span class="at">     </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1" aria-label="code-block-26-3"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> pytest</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1" aria-label="code-block-26-4"></a><span class="at">         </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Pytest</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1" aria-label="code-block-26-5"></a><span class="at">         </span><span class="fu">entry</span><span class="kw">:</span><span class="at"> pytest</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1" aria-label="code-block-26-6"></a><span class="at">         </span><span class="fu">language</span><span class="kw">:</span><span class="at"> system</span></span></code></pre>
 </div>
 <p>Check that the code base passes the checks, correct any errors that
 are highlighted.</p>
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">pre-commit</span> run pytest <span class="at">--all-files</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="ex">pre-commit</span> run pytest <span class="at">--all-files</span></span></code></pre>
 </div>
 <p>The file should then be staged, committed and pushed.</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">git</span> add .pre-commit-config.yaml</span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"pre-commit : adds a local pytest repo/hook"</span></span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="fu">git</span> add .pre-commit-config.yaml</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1" aria-label="code-block-28-2"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"pre-commit : adds a local pytest repo/hook"</span></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1" aria-label="code-block-28-3"></a><span class="fu">git</span> push</span></code></pre>
 </div>
 </div>
 </div>
@@ -1519,14 +1519,14 @@ different Linux systems or OSX. Note you will need to have
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Arch Linux</span></span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="ex">pacman</span> <span class="at">-Syu</span> pre-commit</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="co"># Gentoo</span></span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="ex">emerge</span> <span class="at">-av</span> pre-commit</span>
-<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="co"># Debin/Ubuntu</span></span>
-<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="ex">apt-get</span> install pre-commit</span>
-<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="co"># OSX Homebrew</span></span>
-<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a><span class="ex">brew</span> install pre-commit</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="co"># Arch Linux</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1" aria-label="code-block-29-2"></a><span class="ex">pacman</span> <span class="at">-Syu</span> pre-commit</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1" aria-label="code-block-29-3"></a><span class="co"># Gentoo</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1" aria-label="code-block-29-4"></a><span class="ex">emerge</span> <span class="at">-av</span> pre-commit</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1" aria-label="code-block-29-5"></a><span class="co"># Debin/Ubuntu</span></span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1" aria-label="code-block-29-6"></a><span class="ex">apt-get</span> install pre-commit</span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1" aria-label="code-block-29-7"></a><span class="co"># OSX Homebrew</span></span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1" aria-label="code-block-29-8"></a><span class="ex">brew</span> install pre-commit</span></code></pre>
 </div>
 <p>The advantage of this is that you will be able to
 <code>pre-commit install</code> in any repository without first having
@@ -1579,8 +1579,8 @@ Environment called <code>git-collaboation</code>.</p>
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> git-collab python=3.11</span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="ex">conda</span> activate git-collab</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1" aria-label="code-block-30-1"></a><span class="ex">conda</span> create <span class="at">--name</span> git-collab python=3.11</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1" aria-label="code-block-30-2"></a><span class="ex">conda</span> activate git-collab</span></code></pre>
 </div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
@@ -1630,7 +1630,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1653,7 +1653,7 @@ any links that you are not going to use.
   "identifier": "fair2-for-research-software.github.io/git-with-it/hooks.html",
   "dateCreated": "2023-10-09",
   "dateModified": "2026-02-24",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

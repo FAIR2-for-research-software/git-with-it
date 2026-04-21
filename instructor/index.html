@@ -523,36 +523,36 @@ Start menu.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">wget</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="va">$(</span><span class="fu">uname</span><span class="va">)</span><span class="st">-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span></code></pre>
 </div>
 <p>Then…</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">bash</span> Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">bash</span> Miniforge3-<span class="va">$(</span><span class="fu">uname</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span></code></pre>
 </div>
 <p>Answer the prompts for selecting an installation location. At the end
 of the installation you will see the following output and question…</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">installation</span> finished.</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">Do</span> you wish to update your shell profile to automatically initialize conda<span class="pp">?</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">This</span> will activate conda on startup and change the command prompt when activated.</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">If</span> you<span class="st">'d prefer that conda'</span>s base environment not be activated on startup,</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>   <span class="ex">run</span> the following command when conda is activated:</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> auto_activate_base false</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="ex">Note:</span> You can undo this later by running <span class="kw">`</span><span class="ex">conda</span> init <span class="at">--reverse</span> <span class="va">$SHELL</span><span class="kw">`</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="ex">Proceed</span> with initialization<span class="pp">?</span> [yes<span class="kw">|</span><span class="ex">no]</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="ex">[no]</span> <span class="op">&gt;&gt;&gt;</span> yes</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">installation</span> finished.</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="ex">Do</span> you wish to update your shell profile to automatically initialize conda<span class="pp">?</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="ex">This</span> will activate conda on startup and change the command prompt when activated.</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="ex">If</span> you<span class="st">'d prefer that conda'</span>s base environment not be activated on startup,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>   <span class="ex">run</span> the following command when conda is activated:</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a><span class="ex">conda</span> config <span class="at">--set</span> auto_activate_base false</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a><span class="ex">Note:</span> You can undo this later by running <span class="kw">`</span><span class="ex">conda</span> init <span class="at">--reverse</span> <span class="va">$SHELL</span><span class="kw">`</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a><span class="ex">Proceed</span> with initialization<span class="pp">?</span> [yes<span class="kw">|</span><span class="ex">no]</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a><span class="ex">[no]</span> <span class="op">&gt;&gt;&gt;</span> yes</span></code></pre>
 </div>
 <p>Answer <code>yes</code> as it ensures that the <code>conda</code>
 base environment is activated each time you create</p>
@@ -576,7 +576,7 @@ following might help…</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">source</span> activate base</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="bu">source</span> activate base</span></code></pre>
 </div>
 </div>
 </div>
@@ -606,19 +606,19 @@ install Git and OpenSSH from the Conda-Forge channel.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> git-with-it <span class="at">--channel</span> conda-forge python git openssh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">conda</span> create <span class="at">--name</span> git-with-it <span class="at">--channel</span> conda-forge python git openssh</span></code></pre>
 </div>
 <p>As the prompt suggests activate the environment…</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">conda</span> activate git-with-it</span></code></pre>
 </div>
 <p>Check these are installed using the following commands</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">which</span> <span class="dt">{git</span><span class="op">,</span><span class="dt">ssh</span><span class="op">,</span><span class="dt">ssh-keygen}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">which</span> <span class="dt">{git</span><span class="op">,</span><span class="dt">ssh</span><span class="op">,</span><span class="dt">ssh-keygen}</span></span></code></pre>
 </div>
 <p>This will print out the path to each of the programmes
 <code>git</code>, <code>ssh</code> and <code>ssh-keygen</code>, the
@@ -629,11 +629,11 @@ respectively. An example is shown below.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a> <span class="fu">which</span> <span class="dt">{git</span><span class="op">,</span><span class="dt">python</span><span class="op">,</span><span class="dt">ssh</span><span class="op">,</span><span class="dt">ssh-keygen}</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">/home/neil/miniforge3/bin/git</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">/home/neil/miniforge3/bin/python</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">/home/neil/miniforge3/bin/ssh</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">/home/neil/miniforge3/bin/ssh-keygen</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a> <span class="fu">which</span> <span class="dt">{git</span><span class="op">,</span><span class="dt">python</span><span class="op">,</span><span class="dt">ssh</span><span class="op">,</span><span class="dt">ssh-keygen}</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="ex">/home/neil/miniforge3/bin/git</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a><span class="ex">/home/neil/miniforge3/bin/python</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a><span class="ex">/home/neil/miniforge3/bin/ssh</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1" aria-label="code-block-9-5"></a><span class="ex">/home/neil/miniforge3/bin/ssh-keygen</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -680,11 +680,11 @@ is (<strong>Hint</strong> use a password manager!).</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-a</span> 100 <span class="at">-t</span> ed25519</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">Generating</span> public/private ed25519 key pair.</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">Enter</span> file in which to save the key <span class="er">(</span><span class="ex">/home/neil/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="ex">Enter</span> passphrase for <span class="st">"id_ed25519"</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="ex">Enter</span> same passphrase again:</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">ssh-keygen</span> <span class="at">-a</span> 100 <span class="at">-t</span> ed25519</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="ex">Generating</span> public/private ed25519 key pair.</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a><span class="ex">Enter</span> file in which to save the key <span class="er">(</span><span class="ex">/home/neil/.ssh/id_ed25519</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a><span class="ex">Enter</span> passphrase for <span class="st">"id_ed25519"</span> <span class="er">(</span><span class="ex">empty</span> for no passphrase<span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a><span class="ex">Enter</span> same passphrase again:</span></code></pre>
 </div>
 <p>As shown above, you will need to confirm the location that the SSH
 keys will be saved to (hit enter to select the default which will be
@@ -701,8 +701,8 @@ copy to your GitHub account with.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">ssh-ed25519</span> AAAAC3NzaC1lZDI1NTE5AAAAIARcKip5cMGhQvOooF0sAFTvLAj8R7wz+7cPV9BndPtL neil@haldane</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="ex">ssh-ed25519</span> AAAAC3NzaC1lZDI1NTE5AAAAIARcKip5cMGhQvOooF0sAFTvLAj8R7wz+7cPV9BndPtL neil@haldane</span></code></pre>
 </div>
 </div>
 </div>
@@ -738,8 +738,8 @@ command which should produce similar output.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">Hi</span> ns-rse! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">ssh</span> <span class="at">-T</span> git@github.com</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="ex">Hi</span> ns-rse! You<span class="st">'ve successfully authenticated, but GitHub does not provide shell access.</span></span></code></pre>
 </div>
 <p>If you do <strong>not</strong> see the above successful
 authentication message please get in touch <strong>before</strong> the
@@ -787,7 +787,7 @@ to copy the SSH URL.</li>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">git</span> clone git@github.com:FAIR2-for-research-software/python-maths</span></code></pre>
 </div>
 </div>
 </div>
@@ -850,7 +850,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -872,8 +872,8 @@ any links that you are not going to use.
   "url": "fair2-for-research-software.github.io/git-with-it/instructor/index.html",
   "identifier": "fair2-for-research-software.github.io/git-with-it/instructor/index.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2026-04-14",
-  "datePublished": "2026-04-14"
+  "dateModified": "2026-04-21",
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

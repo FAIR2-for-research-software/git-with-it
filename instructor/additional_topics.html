@@ -272,7 +272,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#difftastic"><code>difftastic</code></a></li>
 <li><a href="#finding-bugs-with-git-bisect">Finding bugs with <code>git bisect</code></a></li>
@@ -382,18 +382,18 @@ within a line are reflected as a deletion <em>and</em> addition.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-1861,12</span> +1862,18 @@ tree <span class="at">-afhD</span> <span class="at">-L</span> 2 main/</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a> <span class="ex">Each</span> branch can have a worktree added for it and then when you want to switch between them its is simply a case of</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="ex">-</span><span class="kw">`</span><span class="bu">cd</span><span class="kw">`</span>ing into the worktree <span class="er">(</span><span class="ex">/branch</span><span class="kw">)</span> <span class="ex">you</span> wish to work on. You use Git commands within the directory to apply them to that</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="ex">-branch</span> and Git keeps track of everything in the usual manner.</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="ex">+</span><span class="kw">`</span><span class="bu">cd</span><span class="kw">`</span>ing into the worktree <span class="er">(</span><span class="ex">/branch</span><span class="kw">)</span> <span class="ex">you</span> wish to work on. You use Git commands within the worktree directory to apply</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="ex">+them</span> to that branch and Git keeps track of everything in the usual manner.</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="ex">-Lets</span> create two worktree<span class="st">'s, the `contributing` and `citation` we created above when working with branches.</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="st">+###</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="st">+Lets create two worktree'</span>s, the <span class="kw">`</span><span class="ex">contributing</span><span class="kw">`</span> and <span class="kw">`</span><span class="ex">citation</span><span class="kw">`</span> we created above when working with branches. If you didn<span class="st">'t</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="st">+already follow along the above steps do so now.</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">@@</span> <span class="at">-1861,12</span> +1862,18 @@ tree <span class="at">-afhD</span> <span class="at">-L</span> 2 main/</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a> <span class="ex">Each</span> branch can have a worktree added for it and then when you want to switch between them its is simply a case of</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="ex">-</span><span class="kw">`</span><span class="bu">cd</span><span class="kw">`</span>ing into the worktree <span class="er">(</span><span class="ex">/branch</span><span class="kw">)</span> <span class="ex">you</span> wish to work on. You use Git commands within the directory to apply them to that</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="ex">-branch</span> and Git keeps track of everything in the usual manner.</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a><span class="ex">+</span><span class="kw">`</span><span class="bu">cd</span><span class="kw">`</span>ing into the worktree <span class="er">(</span><span class="ex">/branch</span><span class="kw">)</span> <span class="ex">you</span> wish to work on. You use Git commands within the worktree directory to apply</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="ex">+them</span> to that branch and Git keeps track of everything in the usual manner.</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a><span class="ex">-Lets</span> create two worktree<span class="st">'s, the `contributing` and `citation` we created above when working with branches.</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a><span class="st">+###</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1" aria-label="code-block-1-11"></a><span class="st">+Lets create two worktree'</span>s, the <span class="kw">`</span><span class="ex">contributing</span><span class="kw">`</span> and <span class="kw">`</span><span class="ex">citation</span><span class="kw">`</span> we created above when working with branches. If you didn<span class="st">'t</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1" aria-label="code-block-1-12"></a><span class="st">+already follow along the above steps do so now.</span></span></code></pre>
 </div>
 <p>Ultimately it’s a matter of personal preference and experience but it
 can sometimes be easier to look at differences in the split view that
@@ -402,25 +402,25 @@ view are shown below.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">1862</span>                                                                            1863</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">1863</span> Each branch can have a worktree added for it and then when you want to swi 1864 Each branch can have a worktree added for it and then when you want to swi</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">....</span> tch between them its is simply a case of                                   .... tch between them its is simply a case of</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">1864</span> <span class="kw">`</span><span class="bu">cd</span><span class="kw">`</span>ing into the worktree <span class="er">(</span><span class="ex">/branch</span><span class="kw">)</span> <span class="ex">you</span> wish to work on. You use Git comma 1865 <span class="kw">`</span><span class="bu">cd</span><span class="kw">`</span>ing into the worktree <span class="er">(</span><span class="ex">/branch</span><span class="kw">)</span> <span class="ex">you</span> wish to work on. You use Git comma</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">....</span> nds within the directory to apply them to that                             .... nds within the worktree directory to apply</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">1865</span> branch and Git keeps track of everything in the usual manner.              1866 them to that branch and Git keeps track of everything in the usual manner.</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="ex">1866</span>                                                                            1867</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="ex">....</span>                                                                            1868 <span class="co">###</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="ex">1867</span> Lets create two worktree<span class="st">'s, the `contributing` and `citation` we created a 1869 Lets create two worktree'</span>s, the <span class="kw">`</span><span class="ex">contributing</span><span class="kw">`</span> and <span class="kw">`</span><span class="ex">citation</span><span class="kw">`</span> we created a</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="ex">....</span> bove when working with branches.                                           .... bove when working with branches. If you didn<span class="st">'t</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="st">....                                                                            1870 already follow along the above</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="st">steps do so now.</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">1862</span>                                                                            1863</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">1863</span> Each branch can have a worktree added for it and then when you want to swi 1864 Each branch can have a worktree added for it and then when you want to swi</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="ex">....</span> tch between them its is simply a case of                                   .... tch between them its is simply a case of</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a><span class="ex">1864</span> <span class="kw">`</span><span class="bu">cd</span><span class="kw">`</span>ing into the worktree <span class="er">(</span><span class="ex">/branch</span><span class="kw">)</span> <span class="ex">you</span> wish to work on. You use Git comma 1865 <span class="kw">`</span><span class="bu">cd</span><span class="kw">`</span>ing into the worktree <span class="er">(</span><span class="ex">/branch</span><span class="kw">)</span> <span class="ex">you</span> wish to work on. You use Git comma</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="ex">....</span> nds within the directory to apply them to that                             .... nds within the worktree directory to apply</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a><span class="ex">1865</span> branch and Git keeps track of everything in the usual manner.              1866 them to that branch and Git keeps track of everything in the usual manner.</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a><span class="ex">1866</span>                                                                            1867</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a><span class="ex">....</span>                                                                            1868 <span class="co">###</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a><span class="ex">1867</span> Lets create two worktree<span class="st">'s, the `contributing` and `citation` we created a 1869 Lets create two worktree'</span>s, the <span class="kw">`</span><span class="ex">contributing</span><span class="kw">`</span> and <span class="kw">`</span><span class="ex">citation</span><span class="kw">`</span> we created a</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a><span class="ex">....</span> bove when working with branches.                                           .... bove when working with branches. If you didn<span class="st">'t</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a><span class="st">....                                                                            1870 already follow along the above</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1" aria-label="code-block-2-12"></a><span class="st">steps do so now.</span></span></code></pre>
 </div>
 <div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Show how to toggle the view on GitHub pull requests. Make sure to
 have an example that is already open in a tab of your browser.</p>
@@ -450,7 +450,7 @@ your computer and configure Git globally to use it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Update the ~/.gitconfig </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The <a href="https://difftastic.wilfred.me.uk/git.html" class="external-link">instructions</a> show
 the configuration options you can add to <code>~/.gitconfig</code> to
@@ -545,75 +545,75 @@ files).</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:ns-rse/pytest-examples.git</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">cd</span> pytest-examples</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">[4.0K</span> Mar 11 07:26]  .</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="ex">├──</span> [ 52K Jan  5 11:26]  ./.coverage</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 11 07:26]  ./.git</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">│  </span> ├── [ 749 Jan  5 11:30]  ./.git/COMMIT_EDITMSG</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="ex">│  </span> ├── [ 394 Jan  5 11:28]  ./.git/COMMIT_EDITMSG~</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="ex">│  </span> ├── [ 479 Feb 17 14:08]  ./.git/config</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="ex">│  </span> ├── [ 556 Feb 17 14:06]  ./.git/config~</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="ex">│  </span> ├── [  73 Jan  1 13:24]  ./.git/description</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="ex">│  </span> ├── [ 222 Mar 11 07:26]  ./.git/FETCH_HEAD</span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="ex">│  </span> ├── [  21 Mar 11 07:26]  ./.git/HEAD</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Jan  1 13:27]  ./.git/hooks</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="ex">│  </span> ├── [1.3K Mar 11 07:26]  ./.git/index</span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Jan  1 13:24]  ./.git/info</span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Jan  1 13:24]  ./.git/logs</span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Mar 11 07:26]  ./.git/objects</span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="ex">│  </span> ├── [  41 Mar 11 07:26]  ./.git/ORIG_HEAD</span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="ex">│  </span> ├── [ 112 Jan  3 15:57]  ./.git/packed-refs</span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Jan  1 13:24]  ./.git/refs</span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="ex">│  </span> └── [4.0K Jan  1 13:31]  ./.git/rr-cache</span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="ex">├──</span> [4.0K Jan  2 11:52]  ./.github</span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="ex">│  </span> └── [4.0K Jan  3 15:57]  ./.github/workflows</span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="ex">├──</span> [3.0K Jan  2 12:06]  ./.gitignore</span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="ex">├──</span> [1.0K Jan  1 13:24]  ./LICENSE</span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="ex">├──</span> [ 293 Jan  2 12:06]  ./.markdownlint-cli2.yaml</span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="ex">├──</span> [4.0K Jan  5 11:27]  ./.mypy_cache</span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="ex">│  </span> ├── [ 12K Jan  5 11:28]  ./.mypy_cache/3.11</span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="ex">│  </span> ├── [ 190 Jan  2 10:39]  ./.mypy_cache/CACHEDIR.TAG</span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="ex">│  </span> └── [  34 Jan  2 10:39]  ./.mypy_cache/.gitignore</span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="ex">├──</span> [1.7K Mar 11 07:26]  ./.pre-commit-config.yaml</span>
-<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="ex">├──</span> [ 763 Jan  1 13:25]  ./.pre-commit-config.yaml~</span>
-<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="ex">├──</span> [ 18K Jan  2 12:06]  ./.pylintrc</span>
-<span id="cb4-35"><a href="#cb4-35" tabindex="-1"></a><span class="ex">├──</span> [4.8K Mar 11 07:26]  ./pyproject.toml</span>
-<span id="cb4-36"><a href="#cb4-36" tabindex="-1"></a><span class="ex">├──</span> [4.7K Jan  1 17:36]  ./pyproject.toml~</span>
-<span id="cb4-37"><a href="#cb4-37" tabindex="-1"></a><span class="ex">├──</span> [4.0K Jan  1 19:04]  ./.pytest_cache</span>
-<span id="cb4-38"><a href="#cb4-38" tabindex="-1"></a><span class="ex">│  </span> ├── [ 191 Jan  1 19:04]  ./.pytest_cache/CACHEDIR.TAG</span>
-<span id="cb4-39"><a href="#cb4-39" tabindex="-1"></a><span class="ex">│  </span> ├── [  37 Jan  1 19:04]  ./.pytest_cache/.gitignore</span>
-<span id="cb4-40"><a href="#cb4-40" tabindex="-1"></a><span class="ex">│  </span> ├── [ 302 Jan  1 19:04]  ./.pytest_cache/README.md</span>
-<span id="cb4-41"><a href="#cb4-41" tabindex="-1"></a><span class="ex">│  </span> └── [4.0K Jan  1 19:04]  ./.pytest_cache/v</span>
-<span id="cb4-42"><a href="#cb4-42" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 11 07:26]  ./pytest_examples</span>
-<span id="cb4-43"><a href="#cb4-43" tabindex="-1"></a><span class="ex">│  </span> ├── [1.3K Mar 11 07:26]  ./pytest_examples/divide.py</span>
-<span id="cb4-44"><a href="#cb4-44" tabindex="-1"></a><span class="ex">│  </span> ├── [ 179 Mar 11 07:26]  ./pytest_examples/__init__.py</span>
-<span id="cb4-45"><a href="#cb4-45" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Jan  5 11:18]  ./pytest_examples/__pycache__</span>
-<span id="cb4-46"><a href="#cb4-46" tabindex="-1"></a><span class="ex">│  </span> ├── [ 491 Mar 11 07:26]  ./pytest_examples/shapes.py</span>
-<span id="cb4-47"><a href="#cb4-47" tabindex="-1"></a><span class="ex">│  </span> └── [ 390 Jan  2 13:34]  ./pytest_examples/shapes.py~</span>
-<span id="cb4-48"><a href="#cb4-48" tabindex="-1"></a><span class="ex">├──</span> [4.0K Jan  2 16:09]  ./pytest_examples.egg-info</span>
-<span id="cb4-49"><a href="#cb4-49" tabindex="-1"></a><span class="ex">│  </span> ├── [   1 Jan  2 16:09]  ./pytest_examples.egg-info/dependency_links.txt</span>
-<span id="cb4-50"><a href="#cb4-50" tabindex="-1"></a><span class="ex">│  </span> ├── [3.1K Jan  2 16:09]  ./pytest_examples.egg-info/PKG-INFO</span>
-<span id="cb4-51"><a href="#cb4-51" tabindex="-1"></a><span class="ex">│  </span> ├── [ 481 Jan  2 16:09]  ./pytest_examples.egg-info/requires.txt</span>
-<span id="cb4-52"><a href="#cb4-52" tabindex="-1"></a><span class="ex">│  </span> ├── [ 446 Jan  2 16:09]  ./pytest_examples.egg-info/SOURCES.txt</span>
-<span id="cb4-53"><a href="#cb4-53" tabindex="-1"></a><span class="ex">│  </span> └── [  16 Jan  2 16:09]  ./pytest_examples.egg-info/top_level.txt</span>
-<span id="cb4-54"><a href="#cb4-54" tabindex="-1"></a><span class="ex">├──</span> [ 602 Jan  3 15:57]  ./README.md</span>
-<span id="cb4-55"><a href="#cb4-55" tabindex="-1"></a><span class="ex">├──</span> [   0 Jan  1 13:31]  ./README.md~</span>
-<span id="cb4-56"><a href="#cb4-56" tabindex="-1"></a><span class="ex">├──</span> [4.0K Jan  1 13:30]  ./.ruff_cache</span>
-<span id="cb4-57"><a href="#cb4-57" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Jan  2 11:57]  ./.ruff_cache/0.1.8</span>
-<span id="cb4-58"><a href="#cb4-58" tabindex="-1"></a><span class="ex">│  </span> ├── [  43 Jan  1 13:30]  ./.ruff_cache/CACHEDIR.TAG</span>
-<span id="cb4-59"><a href="#cb4-59" tabindex="-1"></a><span class="ex">│  </span> └── [   1 Jan  1 13:30]  ./.ruff_cache/.gitignore</span>
-<span id="cb4-60"><a href="#cb4-60" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 11 07:26]  ./tests</span>
-<span id="cb4-61"><a href="#cb4-61" tabindex="-1"></a><span class="ex">│  </span> ├── [ 681 Mar 11 07:26]  ./tests/conftest.py</span>
-<span id="cb4-62"><a href="#cb4-62" tabindex="-1"></a><span class="ex">│  </span> ├── [  26 Jan  2 12:11]  ./tests/conftest.py~</span>
-<span id="cb4-63"><a href="#cb4-63" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Jan  5 11:26]  ./tests/__pycache__</span>
-<span id="cb4-64"><a href="#cb4-64" tabindex="-1"></a><span class="ex">│  </span> ├── [1.7K Mar 11 07:26]  ./tests/test_divide.py</span>
-<span id="cb4-65"><a href="#cb4-65" tabindex="-1"></a><span class="ex">│  </span> ├── [1.6K Mar 11 07:26]  ./tests/test_shapes.py</span>
-<span id="cb4-66"><a href="#cb4-66" tabindex="-1"></a><span class="ex">│  </span> └── [   0 Jan  2 13:36]  ./tests/test_shapes.py~</span>
-<span id="cb4-67"><a href="#cb4-67" tabindex="-1"></a><span class="ex">└──</span> [ 460 Jan  2 16:09]  ./_version.py</span>
-<span id="cb4-68"><a href="#cb4-68" tabindex="-1"></a></span>
-<span id="cb4-69"><a href="#cb4-69" tabindex="-1"></a><span class="ex">21</span> directories, 43 files</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> clone git@github.com:ns-rse/pytest-examples.git</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="bu">cd</span> pytest-examples</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="ex">[4.0K</span> Mar 11 07:26]  .</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a><span class="ex">├──</span> [ 52K Jan  5 11:26]  ./.coverage</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="ex">├──</span> [4.0K Mar 11 07:26]  ./.git</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a><span class="ex">│  </span> ├── [ 749 Jan  5 11:30]  ./.git/COMMIT_EDITMSG</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a><span class="ex">│  </span> ├── [ 394 Jan  5 11:28]  ./.git/COMMIT_EDITMSG~</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a><span class="ex">│  </span> ├── [ 479 Feb 17 14:08]  ./.git/config</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a><span class="ex">│  </span> ├── [ 556 Feb 17 14:06]  ./.git/config~</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a><span class="ex">│  </span> ├── [  73 Jan  1 13:24]  ./.git/description</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a><span class="ex">│  </span> ├── [ 222 Mar 11 07:26]  ./.git/FETCH_HEAD</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a><span class="ex">│  </span> ├── [  21 Mar 11 07:26]  ./.git/HEAD</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a><span class="ex">│  </span> ├── [4.0K Jan  1 13:27]  ./.git/hooks</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a><span class="ex">│  </span> ├── [1.3K Mar 11 07:26]  ./.git/index</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1" aria-label="code-block-4-16"></a><span class="ex">│  </span> ├── [4.0K Jan  1 13:24]  ./.git/info</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1" aria-label="code-block-4-17"></a><span class="ex">│  </span> ├── [4.0K Jan  1 13:24]  ./.git/logs</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1" aria-label="code-block-4-18"></a><span class="ex">│  </span> ├── [4.0K Mar 11 07:26]  ./.git/objects</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1" aria-label="code-block-4-19"></a><span class="ex">│  </span> ├── [  41 Mar 11 07:26]  ./.git/ORIG_HEAD</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1" aria-label="code-block-4-20"></a><span class="ex">│  </span> ├── [ 112 Jan  3 15:57]  ./.git/packed-refs</span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1" aria-label="code-block-4-21"></a><span class="ex">│  </span> ├── [4.0K Jan  1 13:24]  ./.git/refs</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1" aria-label="code-block-4-22"></a><span class="ex">│  </span> └── [4.0K Jan  1 13:31]  ./.git/rr-cache</span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1" aria-label="code-block-4-23"></a><span class="ex">├──</span> [4.0K Jan  2 11:52]  ./.github</span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1" aria-label="code-block-4-24"></a><span class="ex">│  </span> └── [4.0K Jan  3 15:57]  ./.github/workflows</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1" aria-label="code-block-4-25"></a><span class="ex">├──</span> [3.0K Jan  2 12:06]  ./.gitignore</span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1" aria-label="code-block-4-26"></a><span class="ex">├──</span> [1.0K Jan  1 13:24]  ./LICENSE</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1" aria-label="code-block-4-27"></a><span class="ex">├──</span> [ 293 Jan  2 12:06]  ./.markdownlint-cli2.yaml</span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1" aria-label="code-block-4-28"></a><span class="ex">├──</span> [4.0K Jan  5 11:27]  ./.mypy_cache</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1" aria-label="code-block-4-29"></a><span class="ex">│  </span> ├── [ 12K Jan  5 11:28]  ./.mypy_cache/3.11</span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1" aria-label="code-block-4-30"></a><span class="ex">│  </span> ├── [ 190 Jan  2 10:39]  ./.mypy_cache/CACHEDIR.TAG</span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1" aria-label="code-block-4-31"></a><span class="ex">│  </span> └── [  34 Jan  2 10:39]  ./.mypy_cache/.gitignore</span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1" aria-label="code-block-4-32"></a><span class="ex">├──</span> [1.7K Mar 11 07:26]  ./.pre-commit-config.yaml</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1" aria-label="code-block-4-33"></a><span class="ex">├──</span> [ 763 Jan  1 13:25]  ./.pre-commit-config.yaml~</span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1" aria-label="code-block-4-34"></a><span class="ex">├──</span> [ 18K Jan  2 12:06]  ./.pylintrc</span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1" aria-label="code-block-4-35"></a><span class="ex">├──</span> [4.8K Mar 11 07:26]  ./pyproject.toml</span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1" aria-label="code-block-4-36"></a><span class="ex">├──</span> [4.7K Jan  1 17:36]  ./pyproject.toml~</span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1" aria-label="code-block-4-37"></a><span class="ex">├──</span> [4.0K Jan  1 19:04]  ./.pytest_cache</span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1" aria-label="code-block-4-38"></a><span class="ex">│  </span> ├── [ 191 Jan  1 19:04]  ./.pytest_cache/CACHEDIR.TAG</span>
+<span id="cb4-39"><a href="#cb4-39" tabindex="-1" aria-label="code-block-4-39"></a><span class="ex">│  </span> ├── [  37 Jan  1 19:04]  ./.pytest_cache/.gitignore</span>
+<span id="cb4-40"><a href="#cb4-40" tabindex="-1" aria-label="code-block-4-40"></a><span class="ex">│  </span> ├── [ 302 Jan  1 19:04]  ./.pytest_cache/README.md</span>
+<span id="cb4-41"><a href="#cb4-41" tabindex="-1" aria-label="code-block-4-41"></a><span class="ex">│  </span> └── [4.0K Jan  1 19:04]  ./.pytest_cache/v</span>
+<span id="cb4-42"><a href="#cb4-42" tabindex="-1" aria-label="code-block-4-42"></a><span class="ex">├──</span> [4.0K Mar 11 07:26]  ./pytest_examples</span>
+<span id="cb4-43"><a href="#cb4-43" tabindex="-1" aria-label="code-block-4-43"></a><span class="ex">│  </span> ├── [1.3K Mar 11 07:26]  ./pytest_examples/divide.py</span>
+<span id="cb4-44"><a href="#cb4-44" tabindex="-1" aria-label="code-block-4-44"></a><span class="ex">│  </span> ├── [ 179 Mar 11 07:26]  ./pytest_examples/__init__.py</span>
+<span id="cb4-45"><a href="#cb4-45" tabindex="-1" aria-label="code-block-4-45"></a><span class="ex">│  </span> ├── [4.0K Jan  5 11:18]  ./pytest_examples/__pycache__</span>
+<span id="cb4-46"><a href="#cb4-46" tabindex="-1" aria-label="code-block-4-46"></a><span class="ex">│  </span> ├── [ 491 Mar 11 07:26]  ./pytest_examples/shapes.py</span>
+<span id="cb4-47"><a href="#cb4-47" tabindex="-1" aria-label="code-block-4-47"></a><span class="ex">│  </span> └── [ 390 Jan  2 13:34]  ./pytest_examples/shapes.py~</span>
+<span id="cb4-48"><a href="#cb4-48" tabindex="-1" aria-label="code-block-4-48"></a><span class="ex">├──</span> [4.0K Jan  2 16:09]  ./pytest_examples.egg-info</span>
+<span id="cb4-49"><a href="#cb4-49" tabindex="-1" aria-label="code-block-4-49"></a><span class="ex">│  </span> ├── [   1 Jan  2 16:09]  ./pytest_examples.egg-info/dependency_links.txt</span>
+<span id="cb4-50"><a href="#cb4-50" tabindex="-1" aria-label="code-block-4-50"></a><span class="ex">│  </span> ├── [3.1K Jan  2 16:09]  ./pytest_examples.egg-info/PKG-INFO</span>
+<span id="cb4-51"><a href="#cb4-51" tabindex="-1" aria-label="code-block-4-51"></a><span class="ex">│  </span> ├── [ 481 Jan  2 16:09]  ./pytest_examples.egg-info/requires.txt</span>
+<span id="cb4-52"><a href="#cb4-52" tabindex="-1" aria-label="code-block-4-52"></a><span class="ex">│  </span> ├── [ 446 Jan  2 16:09]  ./pytest_examples.egg-info/SOURCES.txt</span>
+<span id="cb4-53"><a href="#cb4-53" tabindex="-1" aria-label="code-block-4-53"></a><span class="ex">│  </span> └── [  16 Jan  2 16:09]  ./pytest_examples.egg-info/top_level.txt</span>
+<span id="cb4-54"><a href="#cb4-54" tabindex="-1" aria-label="code-block-4-54"></a><span class="ex">├──</span> [ 602 Jan  3 15:57]  ./README.md</span>
+<span id="cb4-55"><a href="#cb4-55" tabindex="-1" aria-label="code-block-4-55"></a><span class="ex">├──</span> [   0 Jan  1 13:31]  ./README.md~</span>
+<span id="cb4-56"><a href="#cb4-56" tabindex="-1" aria-label="code-block-4-56"></a><span class="ex">├──</span> [4.0K Jan  1 13:30]  ./.ruff_cache</span>
+<span id="cb4-57"><a href="#cb4-57" tabindex="-1" aria-label="code-block-4-57"></a><span class="ex">│  </span> ├── [4.0K Jan  2 11:57]  ./.ruff_cache/0.1.8</span>
+<span id="cb4-58"><a href="#cb4-58" tabindex="-1" aria-label="code-block-4-58"></a><span class="ex">│  </span> ├── [  43 Jan  1 13:30]  ./.ruff_cache/CACHEDIR.TAG</span>
+<span id="cb4-59"><a href="#cb4-59" tabindex="-1" aria-label="code-block-4-59"></a><span class="ex">│  </span> └── [   1 Jan  1 13:30]  ./.ruff_cache/.gitignore</span>
+<span id="cb4-60"><a href="#cb4-60" tabindex="-1" aria-label="code-block-4-60"></a><span class="ex">├──</span> [4.0K Mar 11 07:26]  ./tests</span>
+<span id="cb4-61"><a href="#cb4-61" tabindex="-1" aria-label="code-block-4-61"></a><span class="ex">│  </span> ├── [ 681 Mar 11 07:26]  ./tests/conftest.py</span>
+<span id="cb4-62"><a href="#cb4-62" tabindex="-1" aria-label="code-block-4-62"></a><span class="ex">│  </span> ├── [  26 Jan  2 12:11]  ./tests/conftest.py~</span>
+<span id="cb4-63"><a href="#cb4-63" tabindex="-1" aria-label="code-block-4-63"></a><span class="ex">│  </span> ├── [4.0K Jan  5 11:26]  ./tests/__pycache__</span>
+<span id="cb4-64"><a href="#cb4-64" tabindex="-1" aria-label="code-block-4-64"></a><span class="ex">│  </span> ├── [1.7K Mar 11 07:26]  ./tests/test_divide.py</span>
+<span id="cb4-65"><a href="#cb4-65" tabindex="-1" aria-label="code-block-4-65"></a><span class="ex">│  </span> ├── [1.6K Mar 11 07:26]  ./tests/test_shapes.py</span>
+<span id="cb4-66"><a href="#cb4-66" tabindex="-1" aria-label="code-block-4-66"></a><span class="ex">│  </span> └── [   0 Jan  2 13:36]  ./tests/test_shapes.py~</span>
+<span id="cb4-67"><a href="#cb4-67" tabindex="-1" aria-label="code-block-4-67"></a><span class="ex">└──</span> [ 460 Jan  2 16:09]  ./_version.py</span>
+<span id="cb4-68"><a href="#cb4-68" tabindex="-1" aria-label="code-block-4-68"></a></span>
+<span id="cb4-69"><a href="#cb4-69" tabindex="-1" aria-label="code-block-4-69"></a><span class="ex">21</span> directories, 43 files</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="the-worktree">The Worktree<a class="anchor" aria-label="anchor" href="#the-worktree"></a></h2>
 <hr class="half-width"><p>Worktrees take a different approach to organising branches. They
@@ -636,41 +636,41 @@ as <code>pytest-examples</code> (i.e. <em>without</em> git
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">cd</span> ..</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">mv</span> pytest-examples pytest-examples-orig-clone</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--bare</span> git@github.com:ns-rse/pytest-examples.git pytest-examples</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="bu">cd</span> pytest-examples</span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="ex">[4.0K</span> Mar 13 07:45]  .</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="ex">├──</span> [ 129 Mar 13 07:45]  ./config</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="ex">├──</span> [  73 Mar 13 07:45]  ./description</span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="ex">├──</span> [  21 Mar 13 07:45]  ./HEAD</span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 13 07:45]  ./hooks</span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="ex">│  </span> ├── [ 478 Mar 13 07:45]  ./hooks/applypatch-msg.sample</span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="ex">│  </span> ├── [ 896 Mar 13 07:45]  ./hooks/commit-msg.sample</span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="ex">│  </span> ├── [4.6K Mar 13 07:45]  ./hooks/fsmonitor-watchman.sample</span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="ex">│  </span> ├── [ 189 Mar 13 07:45]  ./hooks/post-update.sample</span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="ex">│  </span> ├── [ 424 Mar 13 07:45]  ./hooks/pre-applypatch.sample</span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="ex">│  </span> ├── [1.6K Mar 13 07:45]  ./hooks/pre-commit.sample</span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="ex">│  </span> ├── [ 416 Mar 13 07:45]  ./hooks/pre-merge-commit.sample</span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="ex">│  </span> ├── [1.5K Mar 13 07:45]  ./hooks/prepare-commit-msg.sample</span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="ex">│  </span> ├── [1.3K Mar 13 07:45]  ./hooks/pre-push.sample</span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="ex">│  </span> ├── [4.8K Mar 13 07:45]  ./hooks/pre-rebase.sample</span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="ex">│  </span> ├── [ 544 Mar 13 07:45]  ./hooks/pre-receive.sample</span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="ex">│  </span> ├── [2.7K Mar 13 07:45]  ./hooks/push-to-checkout.sample</span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="ex">│  </span> ├── [2.3K Mar 13 07:45]  ./hooks/sendemail-validate.sample</span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="ex">│  </span> └── [3.6K Mar 13 07:45]  ./hooks/update.sample</span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 13 07:45]  ./info</span>
-<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="ex">│  </span> └── [ 240 Mar 13 07:45]  ./info/exclude</span>
-<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 13 07:45]  ./objects</span>
-<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Mar 13 07:45]  ./objects/info</span>
-<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="ex">│  </span> └── [4.0K Mar 13 07:45]  ./objects/pack</span>
-<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="ex">├──</span> [ 249 Mar 13 07:45]  ./packed-refs</span>
-<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="ex">└──</span> [4.0K Mar 13 07:45]  ./refs</span>
-<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a>    <span class="ex">├──</span> [4.0K Mar 13 07:45]  ./refs/heads</span>
-<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a>    <span class="ex">└──</span> [4.0K Mar 13 07:45]  ./refs/tags</span>
-<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a></span>
-<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="ex">9</span> directories, 19 files</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="fu">mv</span> pytest-examples pytest-examples-orig-clone</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="fu">git</span> clone <span class="at">--bare</span> git@github.com:ns-rse/pytest-examples.git pytest-examples</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a><span class="bu">cd</span> pytest-examples</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a><span class="ex">[4.0K</span> Mar 13 07:45]  .</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1" aria-label="code-block-5-7"></a><span class="ex">├──</span> [ 129 Mar 13 07:45]  ./config</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1" aria-label="code-block-5-8"></a><span class="ex">├──</span> [  73 Mar 13 07:45]  ./description</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1" aria-label="code-block-5-9"></a><span class="ex">├──</span> [  21 Mar 13 07:45]  ./HEAD</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1" aria-label="code-block-5-10"></a><span class="ex">├──</span> [4.0K Mar 13 07:45]  ./hooks</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1" aria-label="code-block-5-11"></a><span class="ex">│  </span> ├── [ 478 Mar 13 07:45]  ./hooks/applypatch-msg.sample</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1" aria-label="code-block-5-12"></a><span class="ex">│  </span> ├── [ 896 Mar 13 07:45]  ./hooks/commit-msg.sample</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1" aria-label="code-block-5-13"></a><span class="ex">│  </span> ├── [4.6K Mar 13 07:45]  ./hooks/fsmonitor-watchman.sample</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1" aria-label="code-block-5-14"></a><span class="ex">│  </span> ├── [ 189 Mar 13 07:45]  ./hooks/post-update.sample</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1" aria-label="code-block-5-15"></a><span class="ex">│  </span> ├── [ 424 Mar 13 07:45]  ./hooks/pre-applypatch.sample</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1" aria-label="code-block-5-16"></a><span class="ex">│  </span> ├── [1.6K Mar 13 07:45]  ./hooks/pre-commit.sample</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1" aria-label="code-block-5-17"></a><span class="ex">│  </span> ├── [ 416 Mar 13 07:45]  ./hooks/pre-merge-commit.sample</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1" aria-label="code-block-5-18"></a><span class="ex">│  </span> ├── [1.5K Mar 13 07:45]  ./hooks/prepare-commit-msg.sample</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1" aria-label="code-block-5-19"></a><span class="ex">│  </span> ├── [1.3K Mar 13 07:45]  ./hooks/pre-push.sample</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1" aria-label="code-block-5-20"></a><span class="ex">│  </span> ├── [4.8K Mar 13 07:45]  ./hooks/pre-rebase.sample</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1" aria-label="code-block-5-21"></a><span class="ex">│  </span> ├── [ 544 Mar 13 07:45]  ./hooks/pre-receive.sample</span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1" aria-label="code-block-5-22"></a><span class="ex">│  </span> ├── [2.7K Mar 13 07:45]  ./hooks/push-to-checkout.sample</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1" aria-label="code-block-5-23"></a><span class="ex">│  </span> ├── [2.3K Mar 13 07:45]  ./hooks/sendemail-validate.sample</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1" aria-label="code-block-5-24"></a><span class="ex">│  </span> └── [3.6K Mar 13 07:45]  ./hooks/update.sample</span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1" aria-label="code-block-5-25"></a><span class="ex">├──</span> [4.0K Mar 13 07:45]  ./info</span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1" aria-label="code-block-5-26"></a><span class="ex">│  </span> └── [ 240 Mar 13 07:45]  ./info/exclude</span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1" aria-label="code-block-5-27"></a><span class="ex">├──</span> [4.0K Mar 13 07:45]  ./objects</span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1" aria-label="code-block-5-28"></a><span class="ex">│  </span> ├── [4.0K Mar 13 07:45]  ./objects/info</span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1" aria-label="code-block-5-29"></a><span class="ex">│  </span> └── [4.0K Mar 13 07:45]  ./objects/pack</span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1" aria-label="code-block-5-30"></a><span class="ex">├──</span> [ 249 Mar 13 07:45]  ./packed-refs</span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1" aria-label="code-block-5-31"></a><span class="ex">└──</span> [4.0K Mar 13 07:45]  ./refs</span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1" aria-label="code-block-5-32"></a>    <span class="ex">├──</span> [4.0K Mar 13 07:45]  ./refs/heads</span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1" aria-label="code-block-5-33"></a>    <span class="ex">└──</span> [4.0K Mar 13 07:45]  ./refs/tags</span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1" aria-label="code-block-5-34"></a></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1" aria-label="code-block-5-35"></a><span class="ex">9</span> directories, 19 files</span></code></pre>
 </div>
 <p>What use is that? Well from this point you can instead of using
 <code>git branch</code> use
@@ -689,31 +689,31 @@ repository.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">git</span> worktree add main main</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">Preparing</span> worktree <span class="er">(</span><span class="ex">checking</span> out <span class="st">'main'</span><span class="kw">)</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">HEAD</span> is now at 2f7c382 Merge pull request <span class="co">#6 from ns-rse/ns-rse/tidy-print</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2 main/</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="ex">[4.0K</span> Mar 13 08:13]  main</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="ex">├──</span> [  64 Mar 13 08:13]  main/.git</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 13 08:13]  main/.github</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="ex">│  </span> └── [4.0K Mar 13 08:13]  main/.github/workflows</span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="ex">├──</span> [3.0K Mar 13 08:13]  main/.gitignore</span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="ex">├──</span> [1.0K Mar 13 08:13]  main/LICENSE</span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="ex">├──</span> [ 293 Mar 13 08:13]  main/.markdownlint-cli2.yaml</span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="ex">├──</span> [1.7K Mar 13 08:13]  main/.pre-commit-config.yaml</span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="ex">├──</span> [ 18K Mar 13 08:13]  main/.pylintrc</span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="ex">├──</span> [4.8K Mar 13 08:13]  main/pyproject.toml</span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 13 08:13]  main/pytest_examples</span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="ex">│  </span> ├── [1.3K Mar 13 08:13]  main/pytest_examples/divide.py</span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="ex">│  </span> ├── [ 179 Mar 13 08:13]  main/pytest_examples/__init__.py</span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="ex">│  </span> └── [ 491 Mar 13 08:13]  main/pytest_examples/shapes.py</span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="ex">├──</span> [ 602 Mar 13 08:13]  main/README.md</span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="ex">└──</span> [4.0K Mar 13 08:13]  main/tests</span>
-<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a>    <span class="ex">├──</span> [ 681 Mar 13 08:13]  main/tests/conftest.py</span>
-<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a>    <span class="ex">├──</span> [1.7K Mar 13 08:13]  main/tests/test_divide.py</span>
-<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a>    <span class="ex">└──</span> [1.6K Mar 13 08:13]  main/tests/test_shapes.py</span>
-<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="ex">5</span> directories, 14 files</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">git</span> worktree add main main</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="ex">Preparing</span> worktree <span class="er">(</span><span class="ex">checking</span> out <span class="st">'main'</span><span class="kw">)</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="ex">HEAD</span> is now at 2f7c382 Merge pull request <span class="co">#6 from ns-rse/ns-rse/tidy-print</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2 main/</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a><span class="ex">[4.0K</span> Mar 13 08:13]  main</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a><span class="ex">├──</span> [  64 Mar 13 08:13]  main/.git</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a><span class="ex">├──</span> [4.0K Mar 13 08:13]  main/.github</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1" aria-label="code-block-6-8"></a><span class="ex">│  </span> └── [4.0K Mar 13 08:13]  main/.github/workflows</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1" aria-label="code-block-6-9"></a><span class="ex">├──</span> [3.0K Mar 13 08:13]  main/.gitignore</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1" aria-label="code-block-6-10"></a><span class="ex">├──</span> [1.0K Mar 13 08:13]  main/LICENSE</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1" aria-label="code-block-6-11"></a><span class="ex">├──</span> [ 293 Mar 13 08:13]  main/.markdownlint-cli2.yaml</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1" aria-label="code-block-6-12"></a><span class="ex">├──</span> [1.7K Mar 13 08:13]  main/.pre-commit-config.yaml</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1" aria-label="code-block-6-13"></a><span class="ex">├──</span> [ 18K Mar 13 08:13]  main/.pylintrc</span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1" aria-label="code-block-6-14"></a><span class="ex">├──</span> [4.8K Mar 13 08:13]  main/pyproject.toml</span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1" aria-label="code-block-6-15"></a><span class="ex">├──</span> [4.0K Mar 13 08:13]  main/pytest_examples</span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1" aria-label="code-block-6-16"></a><span class="ex">│  </span> ├── [1.3K Mar 13 08:13]  main/pytest_examples/divide.py</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1" aria-label="code-block-6-17"></a><span class="ex">│  </span> ├── [ 179 Mar 13 08:13]  main/pytest_examples/__init__.py</span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1" aria-label="code-block-6-18"></a><span class="ex">│  </span> └── [ 491 Mar 13 08:13]  main/pytest_examples/shapes.py</span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1" aria-label="code-block-6-19"></a><span class="ex">├──</span> [ 602 Mar 13 08:13]  main/README.md</span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1" aria-label="code-block-6-20"></a><span class="ex">└──</span> [4.0K Mar 13 08:13]  main/tests</span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1" aria-label="code-block-6-21"></a>    <span class="ex">├──</span> [ 681 Mar 13 08:13]  main/tests/conftest.py</span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1" aria-label="code-block-6-22"></a>    <span class="ex">├──</span> [1.7K Mar 13 08:13]  main/tests/test_divide.py</span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1" aria-label="code-block-6-23"></a>    <span class="ex">└──</span> [1.6K Mar 13 08:13]  main/tests/test_shapes.py</span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1" aria-label="code-block-6-24"></a></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1" aria-label="code-block-6-25"></a><span class="ex">5</span> directories, 14 files</span></code></pre>
 </div>
 <p>Each branch can have a worktree added for it and then when you want
 to switch between them its is simply a case of <code>cd</code>ing into
@@ -727,12 +727,12 @@ to do so.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">cd</span> ../</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">mv</span> pytest-examples pytest-examples-orig-clone</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--bare</span> git@github.com:ns-rse/pytest-examples.git pytest-examples</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="bu">cd</span> pytest-examples</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">git</span> worktree add contributing</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">git</span> worktree add citation</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="bu">cd</span> ../</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="fu">mv</span> pytest-examples pytest-examples-orig-clone</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="fu">git</span> clone <span class="at">--bare</span> git@github.com:ns-rse/pytest-examples.git pytest-examples</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="bu">cd</span> pytest-examples</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a><span class="fu">git</span> worktree add contributing</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a><span class="fu">git</span> worktree add citation</span></code></pre>
 </div>
 <p>You are now free to move between worktrees (/branches) and undertake
 work on each without having to <code>git stash</code> or
@@ -743,10 +743,10 @@ then jump to the <code>citation</code> worktree and add the
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">cd</span> contributing</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Contributing\n\nContributions to this repository are welcome via Pull Requests."</span> <span class="op">&gt;</span> CONTRIBUTING.md</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="bu">cd</span> ../citation</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"cff-version: 1.2.0\ntitle: Pytest Examples\ntype: software"</span> <span class="op">&gt;</span> CITATION.cff</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="bu">cd</span> contributing</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Contributing\n\nContributions to this repository are welcome via Pull Requests."</span> <span class="op">&gt;</span> CONTRIBUTING.md</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="bu">cd</span> ../citation</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"cff-version: 1.2.0\ntitle: Pytest Examples\ntype: software"</span> <span class="op">&gt;</span> CITATION.cff</span></code></pre>
 </div>
 <p>Neither branches have had the changes committed so Git will not show
 any differences between them, but we can use <code>diff -qr</code> to
@@ -754,32 +754,32 @@ compare the directories.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">diff</span> <span class="at">-qr</span> contributing citation</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">Only</span> in citation: CITATION.cff</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">Only</span> in contributing: CONTRIBUTING.md</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">Files</span> contributing/.git and citation/.git differ</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">diff</span> <span class="at">-qr</span> contributing citation</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="ex">Only</span> in citation: CITATION.cff</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a><span class="ex">Only</span> in contributing: CONTRIBUTING.md</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a><span class="ex">Files</span> contributing/.git and citation/.git differ</span></code></pre>
 </div>
 <p>If we commit the changes to each we can <code>git diff</code>
 them.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="bu">cd</span> contributing</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">git</span> add CONTRIBUTING.md</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adding basic CONTRIBUTING.md"</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="bu">cd</span> ../citation</span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="fu">git</span> add CITATION.cff</span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adding basic CITATION.cff"</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">git</span> diff citation contributing</span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="ex">CITATION.cff</span> <span class="at">---</span> Text</span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="ex">1</span> cff-version: 1.2.0</span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="ex">2</span> title: Pytest Examples</span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="ex">3</span> type: software</span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="ex">CONTRIBUTING.md</span> <span class="at">---</span> Text</span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="ex">1</span> <span class="co"># Contributing</span></span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="ex">2</span></span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="ex">3</span> Contributions to this repository are welcome via Pull Requests</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="bu">cd</span> contributing</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="fu">git</span> add CONTRIBUTING.md</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adding basic CONTRIBUTING.md"</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a><span class="bu">cd</span> ../citation</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a><span class="fu">git</span> add CITATION.cff</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adding basic CITATION.cff"</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1" aria-label="code-block-10-7"></a><span class="fu">git</span> diff citation contributing</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1" aria-label="code-block-10-8"></a><span class="ex">CITATION.cff</span> <span class="at">---</span> Text</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1" aria-label="code-block-10-9"></a><span class="ex">1</span> cff-version: 1.2.0</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1" aria-label="code-block-10-10"></a><span class="ex">2</span> title: Pytest Examples</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1" aria-label="code-block-10-11"></a><span class="ex">3</span> type: software</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1" aria-label="code-block-10-12"></a></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1" aria-label="code-block-10-13"></a><span class="ex">CONTRIBUTING.md</span> <span class="at">---</span> Text</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1" aria-label="code-block-10-14"></a><span class="ex">1</span> <span class="co"># Contributing</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1" aria-label="code-block-10-15"></a><span class="ex">2</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1" aria-label="code-block-10-16"></a><span class="ex">3</span> Contributions to this repository are welcome via Pull Requests</span></code></pre>
 </div>
 <p><strong>NB</strong> The output of <code>git diff</code> may depend on
 the difftool that you have configured, I use and recommend the brilliant
@@ -793,11 +793,11 @@ Git</a>.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples</span>               <span class="er">(</span><span class="ex">bare</span><span class="kw">)</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/citation</span>      19ff076 <span class="pp">[</span><span class="ss">citation</span><span class="pp">]</span></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/contributing</span>  ad56b91 <span class="pp">[</span><span class="ss">contributing</span><span class="pp">]</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/main</span>          2f7c382 <span class="pp">[</span><span class="ss">main</span><span class="pp">]</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">git</span> worktree list</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples</span>               <span class="er">(</span><span class="ex">bare</span><span class="kw">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/citation</span>      19ff076 <span class="pp">[</span><span class="ss">citation</span><span class="pp">]</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/contributing</span>  ad56b91 <span class="pp">[</span><span class="ss">contributing</span><span class="pp">]</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1" aria-label="code-block-11-5"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/main</span>          2f7c382 <span class="pp">[</span><span class="ss">main</span><span class="pp">]</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -811,49 +811,49 @@ worktree.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="bu">cd</span> pytest-examples   <span class="co"># Move to the bare repository</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2 worktrees</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">[4.0K</span> Mar 13 09:27]  worktrees</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 13 09:31]  worktrees/citation</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="ex">│  </span> ├── [  26 Mar 13 09:31]  worktrees/citation/COMMIT_EDITMSG</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="ex">│  </span> ├── [   6 Mar 13 09:27]  worktrees/citation/commondir</span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="ex">│  </span> ├── [  55 Mar 13 09:27]  worktrees/citation/gitdir</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="ex">│  </span> ├── [  25 Mar 13 09:27]  worktrees/citation/HEAD</span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="ex">│  </span> ├── [1.4K Mar 13 09:31]  worktrees/citation/index</span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Mar 13 09:27]  worktrees/citation/logs</span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="ex">│  </span> ├── [   0 Mar 13 09:31]  worktrees/citation/MERGE_RR</span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="ex">│  </span> ├── [  41 Mar 13 09:27]  worktrees/citation/ORIG_HEAD</span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="ex">│  </span> └── [4.0K Mar 13 09:27]  worktrees/citation/refs</span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="ex">├──</span> [4.0K Mar 13 09:30]  worktrees/contributing</span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="ex">│  </span> ├── [  29 Mar 13 09:30]  worktrees/contributing/COMMIT_EDITMSG</span>
-<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="ex">│  </span> ├── [   6 Mar 13 09:27]  worktrees/contributing/commondir</span>
-<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="ex">│  </span> ├── [  59 Mar 13 09:27]  worktrees/contributing/gitdir</span>
-<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="ex">│  </span> ├── [  29 Mar 13 09:27]  worktrees/contributing/HEAD</span>
-<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="ex">│  </span> ├── [1.4K Mar 13 09:30]  worktrees/contributing/index</span>
-<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="ex">│  </span> ├── [4.0K Mar 13 09:27]  worktrees/contributing/logs</span>
-<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="ex">│  </span> ├── [   0 Mar 13 09:30]  worktrees/contributing/MERGE_RR</span>
-<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="ex">│  </span> ├── [  41 Mar 13 09:27]  worktrees/contributing/ORIG_HEAD</span>
-<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="ex">│  </span> └── [4.0K Mar 13 09:27]  worktrees/contributing/refs</span>
-<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="ex">└──</span> [4.0K Mar 13 08:13]  worktrees/main</span>
-<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a>    <span class="ex">├──</span> [   6 Mar 13 08:13]  worktrees/main/commondir</span>
-<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a>    <span class="ex">├──</span> [  51 Mar 13 08:13]  worktrees/main/gitdir</span>
-<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a>    <span class="ex">├──</span> [  21 Mar 13 08:13]  worktrees/main/HEAD</span>
-<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a>    <span class="ex">├──</span> [1.3K Mar 13 08:13]  worktrees/main/index</span>
-<span id="cb12-29"><a href="#cb12-29" tabindex="-1"></a>    <span class="ex">├──</span> [4.0K Mar 13 08:13]  worktrees/main/logs</span>
-<span id="cb12-30"><a href="#cb12-30" tabindex="-1"></a>    <span class="ex">├──</span> [  41 Mar 13 08:13]  worktrees/main/ORIG_HEAD</span>
-<span id="cb12-31"><a href="#cb12-31" tabindex="-1"></a>    <span class="ex">└──</span> [4.0K Mar 13 08:13]  worktrees/main/refs</span>
-<span id="cb12-32"><a href="#cb12-32" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" tabindex="-1"></a><span class="ex">10</span> directories, 19 files</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="bu">cd</span> pytest-examples   <span class="co"># Move to the bare repository</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="ex">tree</span> <span class="at">-afhD</span> <span class="at">-L</span> 2 worktrees</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a><span class="ex">[4.0K</span> Mar 13 09:27]  worktrees</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a><span class="ex">├──</span> [4.0K Mar 13 09:31]  worktrees/citation</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1" aria-label="code-block-12-5"></a><span class="ex">│  </span> ├── [  26 Mar 13 09:31]  worktrees/citation/COMMIT_EDITMSG</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1" aria-label="code-block-12-6"></a><span class="ex">│  </span> ├── [   6 Mar 13 09:27]  worktrees/citation/commondir</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1" aria-label="code-block-12-7"></a><span class="ex">│  </span> ├── [  55 Mar 13 09:27]  worktrees/citation/gitdir</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1" aria-label="code-block-12-8"></a><span class="ex">│  </span> ├── [  25 Mar 13 09:27]  worktrees/citation/HEAD</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1" aria-label="code-block-12-9"></a><span class="ex">│  </span> ├── [1.4K Mar 13 09:31]  worktrees/citation/index</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1" aria-label="code-block-12-10"></a><span class="ex">│  </span> ├── [4.0K Mar 13 09:27]  worktrees/citation/logs</span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1" aria-label="code-block-12-11"></a><span class="ex">│  </span> ├── [   0 Mar 13 09:31]  worktrees/citation/MERGE_RR</span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1" aria-label="code-block-12-12"></a><span class="ex">│  </span> ├── [  41 Mar 13 09:27]  worktrees/citation/ORIG_HEAD</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1" aria-label="code-block-12-13"></a><span class="ex">│  </span> └── [4.0K Mar 13 09:27]  worktrees/citation/refs</span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1" aria-label="code-block-12-14"></a><span class="ex">├──</span> [4.0K Mar 13 09:30]  worktrees/contributing</span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1" aria-label="code-block-12-15"></a><span class="ex">│  </span> ├── [  29 Mar 13 09:30]  worktrees/contributing/COMMIT_EDITMSG</span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1" aria-label="code-block-12-16"></a><span class="ex">│  </span> ├── [   6 Mar 13 09:27]  worktrees/contributing/commondir</span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1" aria-label="code-block-12-17"></a><span class="ex">│  </span> ├── [  59 Mar 13 09:27]  worktrees/contributing/gitdir</span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1" aria-label="code-block-12-18"></a><span class="ex">│  </span> ├── [  29 Mar 13 09:27]  worktrees/contributing/HEAD</span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1" aria-label="code-block-12-19"></a><span class="ex">│  </span> ├── [1.4K Mar 13 09:30]  worktrees/contributing/index</span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1" aria-label="code-block-12-20"></a><span class="ex">│  </span> ├── [4.0K Mar 13 09:27]  worktrees/contributing/logs</span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1" aria-label="code-block-12-21"></a><span class="ex">│  </span> ├── [   0 Mar 13 09:30]  worktrees/contributing/MERGE_RR</span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1" aria-label="code-block-12-22"></a><span class="ex">│  </span> ├── [  41 Mar 13 09:27]  worktrees/contributing/ORIG_HEAD</span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1" aria-label="code-block-12-23"></a><span class="ex">│  </span> └── [4.0K Mar 13 09:27]  worktrees/contributing/refs</span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1" aria-label="code-block-12-24"></a><span class="ex">└──</span> [4.0K Mar 13 08:13]  worktrees/main</span>
+<span id="cb12-25"><a href="#cb12-25" tabindex="-1" aria-label="code-block-12-25"></a>    <span class="ex">├──</span> [   6 Mar 13 08:13]  worktrees/main/commondir</span>
+<span id="cb12-26"><a href="#cb12-26" tabindex="-1" aria-label="code-block-12-26"></a>    <span class="ex">├──</span> [  51 Mar 13 08:13]  worktrees/main/gitdir</span>
+<span id="cb12-27"><a href="#cb12-27" tabindex="-1" aria-label="code-block-12-27"></a>    <span class="ex">├──</span> [  21 Mar 13 08:13]  worktrees/main/HEAD</span>
+<span id="cb12-28"><a href="#cb12-28" tabindex="-1" aria-label="code-block-12-28"></a>    <span class="ex">├──</span> [1.3K Mar 13 08:13]  worktrees/main/index</span>
+<span id="cb12-29"><a href="#cb12-29" tabindex="-1" aria-label="code-block-12-29"></a>    <span class="ex">├──</span> [4.0K Mar 13 08:13]  worktrees/main/logs</span>
+<span id="cb12-30"><a href="#cb12-30" tabindex="-1" aria-label="code-block-12-30"></a>    <span class="ex">├──</span> [  41 Mar 13 08:13]  worktrees/main/ORIG_HEAD</span>
+<span id="cb12-31"><a href="#cb12-31" tabindex="-1" aria-label="code-block-12-31"></a>    <span class="ex">└──</span> [4.0K Mar 13 08:13]  worktrees/main/refs</span>
+<span id="cb12-32"><a href="#cb12-32" tabindex="-1" aria-label="code-block-12-32"></a></span>
+<span id="cb12-33"><a href="#cb12-33" tabindex="-1" aria-label="code-block-12-33"></a><span class="ex">10</span> directories, 19 files</span></code></pre>
 </div>
 <p>If we look at the <code>gitdir</code> file in each
 <code>worktree</code> sub-directory we see where they point to.</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">cat</span> worktrees/<span class="pp">*</span>/gitdir</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/citation/.git</span></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/contributing/.git</span></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/main/.git</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="fu">cat</span> worktrees/<span class="pp">*</span>/gitdir</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/citation/.git</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1" aria-label="code-block-13-3"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/contributing/.git</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1" aria-label="code-block-13-4"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/main/.git</span></span></code></pre>
 </div>
 <p>These mirror the locations reported by
 <code>git worktree list</code>, albeit with <code>.git</code>
@@ -863,7 +863,7 @@ appended.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">git</span> worktree move citation ~/tmp</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="fu">git</span> worktree move citation ~/tmp</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -874,12 +874,12 @@ done so.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">git</span> worktree remove citation</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">git</span> worktree prune</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples</span>               <span class="er">(</span><span class="ex">bare</span><span class="kw">)</span></span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/contributing</span>  ad56b91 <span class="pp">[</span><span class="ss">contributing</span><span class="pp">]</span></span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/main</span>          2f7c382 <span class="pp">[</span><span class="ss">main</span><span class="pp">]</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">git</span> worktree remove citation</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a><span class="fu">git</span> worktree prune</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1" aria-label="code-block-15-3"></a><span class="fu">git</span> worktree list</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1" aria-label="code-block-15-4"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples</span>               <span class="er">(</span><span class="ex">bare</span><span class="kw">)</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1" aria-label="code-block-15-5"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/contributing</span>  ad56b91 <span class="pp">[</span><span class="ss">contributing</span><span class="pp">]</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1" aria-label="code-block-15-6"></a><span class="ex">/mnt/work/git/hub/ns-rse/pytest-examples/main</span>          2f7c382 <span class="pp">[</span><span class="ss">main</span><span class="pp">]</span></span></code></pre>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="not-breaking-things-during-rebasing">Not Breaking Things During Rebasing<a class="anchor" aria-label="anchor" href="#not-breaking-things-during-rebasing"></a></h2>
@@ -891,7 +891,7 @@ example below would run <code>pytest</code> at each step of the
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">-x</span> <span class="st">"pytest"</span> <span class="op">&lt;</span>reference<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="fu">git</span> rebase <span class="at">-x</span> <span class="st">"pytest"</span> <span class="op">&lt;</span>reference<span class="op">&gt;</span></span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="constructive-reviewing">Constructive Reviewing<a class="anchor" aria-label="anchor" href="#constructive-reviewing"></a></h2>
 <hr class="half-width"><p>Working collaboratively invariably involves reviewing pull/merge
@@ -942,7 +942,7 @@ about it.</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">git</span> mainetenance register</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">git</span> mainetenance register</span></code></pre>
 </div>
 <p>This adds entries to your global configuration
 (<code>~/.gitconfig</code>) to ensure the repository will have these
@@ -952,7 +952,7 @@ tasks run at the scheduled point (default is hourly).</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>Be prepared to explain how SSH keys can be unlocked on login so that
 the passwords don’t need entering every time you try to use the SSH
@@ -1008,7 +1008,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1031,7 +1031,7 @@ any links that you are not going to use.
   "identifier": "fair2-for-research-software.github.io/git-with-it/instructor/additional_topics.html",
   "dateCreated": "2023-10-09",
   "dateModified": "2026-03-02",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>
