@@ -34,7 +34,7 @@ $ git push origin main
 
 > [!NOTE]
 > For non-renv lessons, this is all the setup you need!
-> 
+>
 > For renv-enabled lessons:
 > - Cancel any "01 Maintain: Build and Deploy Site" workflow currently running
 > - Run the "02 Maintain: Check for Updated Packages" workflow and merge any PR opened to update the renv lockfile
@@ -125,7 +125,7 @@ If you have no caches listed, make sure to run the "02 Maintain: Check for Updat
 > [!NOTE]
 > If you are maintaining an official lesson, caches are saved in an AWS S3 bucket owned by the Carpentries.
 > Once a successful cache has been saved, these will be listed in the outputs of the "01 Maintain: Build and Deploy Site" workflow.
-> 
+>
 > If you are developing a lesson in your own repository, caches are saved on GitHub.
 > You can see available caches by going to the Actions tab, and clicking Caches on the left hand side.
 
@@ -247,7 +247,7 @@ The steps in this workflow are:
 Importantly: if the pull request is invalid, the branch is not created so any malicious code is not published.
 
 From here, the maintainer can request changes from the author and eventually either merge or reject the PR.
-When this happens, if the PR was valid, the preview branch needs to be deleted. 
+When this happens, if the PR was valid, the preview branch needs to be deleted.
 
 ### Send Close PR Signal (pr-close-signal.yaml)
 
