@@ -38,7 +38,7 @@ they are _not_ executed in response to any of the actions.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
-Make sure the audience understands what the `commit`, `push` and `pull` events are and they they are actions for git to
+Make sure the audience understands what the `commit`, `push` and `pull` events are and they are actions for git to
 make on the repository at different stages in the Git workflow.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -231,7 +231,7 @@ exec git pull
 
 This section requires you to either install `pre-commit` at the system level or setup a Virtual Environment.
 
-Instructions on doing so can be found at the bottom of the [document](hooks.md#installing_pre-commit).
+Instructions on doing so can be found at the bottom of the [document](hooks.md#installing-pre-commit).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -848,7 +848,7 @@ The `.pylintrc` file is a configuration file for `pylint` that defines what chec
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge 9: Define local `pre-commit` repo to run a `pytest` hook
+## Challenge 7: Define local `pre-commit` repo to run a `pytest` hook
 
 The `python-maths` repository has a suite of tests that can be run to ensure the code works as expected.
 
@@ -954,10 +954,18 @@ the
 
 ## Installing Pre-commit
 
+On Linux systems or OSX OS's you can install [pre-commit][pc] at the system level. The advantage of this is that you
+will be able to `pre-commit install` in any repository without first having to activate a virtual environment.
+
 ### Install Pre-commit globally
 
-Examples of installing [pre-commit][pc] at the system level for different Linux systems or OSX. Note you will
-need to have `root` access to install packages on your Linux system.
+::::::::::::::::::::::::::::::::::::: challenge
+
+:::::::::::::::::::::::: solution
+
+## GNU/Linux
+
+Note you will need to have `root` access to install packages on your Linux system.
 
 ``` bash
 # Arch Linux
@@ -970,8 +978,22 @@ apt-get install pre-commit
 brew install pre-commit
 ```
 
-The advantage of this is that you will be able to `pre-commit install` in any repository without first having to
-activate a virtual environment.
+:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::: solution
+
+## OSX
+
+If you use the [homebrew][homebrew] package manager for OSX you can install `pre-commit` with the following.
+
+``` bash
+# OSX Homebrew
+brew install pre-commit
+```
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Virtual Environments
 
@@ -993,7 +1015,11 @@ for virtual environments (e.g. [uv][uv], [miniforge3][miniforge3] or [virtualenv
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Installing Miniconda/Miniforge3
+::::::::::::::::::::::::::::::::::::: challenge
+
+:::::::::::::::::::::::: solution
+
+## Installing Miniconda/Miniforge3
 
 Please follow the instructions at [Installing Miniconda](https://docs.anaconda.com/free/miniconda/miniconda-install/)
 for your Operating System.
@@ -1001,15 +1027,25 @@ for your Operating System.
 Should you chose to use `miniforge3` the downloads and installation instructions for different operating systems can be
 found on their [install instructions][miniforge3-install].
 
-### Creating A Virtual Environment
+:::::::::::::::::::::::::::::::::
 
-You will have to create a virtual environment to undertake the course. If you have installed Miniconda as described
-above you open a terminal (Windows use the Git Bash Shell) and create a Virtual Environment called `git-collaboation`.
+:::::::::::::::::::::::: solution
+
+## Creating A Virtual Environment with pre-commit
+
+Once installed you will have to create a virtual environment and install both Python and [pre-commit][pc]. If you have
+installed Miniconda as described above you open a terminal (Windows use the Git Bash Shell) and create a Virtual
+Environment called `git-collaboation`.
 
 ``` bash
-conda create --name git-collab python=3.11
-conda activate git-collab
+conda create --name python-maths python=3.13 pre-commit
+conda activate python-maths
+which {python,pre-commit}
 ```
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 [anacondalicense]: https://www.anaconda.com/blog/update-on-anacondas-terms-of-service-for-academia-and-research
 [bash]: https://www.gnu.org/software/bash/
@@ -1017,6 +1053,7 @@ conda activate git-collab
 [gh]: https://github.com
 [gl]: https://gitlab.com
 [grep]: https://en.wikipedia.org/wiki/Grep
+[homebrew]: https://brew.sh
 [miniconda3]: https://docs.anaconda.com/free/miniconda/
 [miniforge3]: https://conda-forge.org/
 [miniforge3-install]: https://github.com/conda-forge/miniforge

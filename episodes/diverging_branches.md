@@ -174,7 +174,7 @@ git commit --allow-empty -m "Initial commit"
 
 ``` bash
 git switch -c branch1
-echo -e "# Just a test" > README.md
+echo "# Just a test" > README.md
 git add README.md
 git commit -m "docs: Adding README.md"
 git lol
@@ -195,7 +195,7 @@ git lol
 
 ``` bash
 git switch -c branch2
-echo -e "YOU CAN DO WHAT YOU WANT WITH THIS CODE" > LICENSE
+echo "YOU CAN DO WHAT YOU WANT WITH THIS CODE" > LICENSE
 git add LICENSE
 git commit -m "chore: Adding a LICENSE"
 git lol
@@ -373,7 +373,7 @@ git commit --allow-empty -m "Initial commit"
 
 ``` bash
 git switch -c branch1
-echo -e "# Just a test" > README.md
+echo "# Just a test" > README.md
 git add README.md
 git commit -m "docs: Adding README.md"
 ```
@@ -391,7 +391,7 @@ cat README.md   # Note that `README.md` does not currently exist on this branch
 
 ``` bash
 git switch -c branch2
-echo -e "YOU CAN DO WHAT YOU WANT WITH THIS CODE" > LICENSE
+echo "YOU CAN DO WHAT YOU WANT WITH THIS CODE" > LICENSE
 git add LICENSE
 git commit -m "docs: Adding a LICENSE"
 ```
@@ -680,10 +680,10 @@ Again we add a `README.md` but this time we make two commits to it, adding an ex
 
 ``` bash
 git switch -c branch1
-echo -e "# Just a test\n\n" > README.md
+echo "# Just a test\n\n" > README.md
 git add README.md
 git commit -m "docs: Adding README.md"
-echo -e "Lets add another line in a separate commit" >> README.md
+echo "Lets add another line in a separate commit" >> README.md
 git add README.md
 git commit -m "docs: Ooops, missed a line from the README.md"
 git lol
@@ -709,7 +709,7 @@ already exists on `branch1`. We put different text into it.
 
 ``` bash
 git switch -c branch2
-echo -e "# Just a test\n\nBut we're creating a merge conflict\n" > README.md
+echo "# Just a test\n\nBut we're creating a merge conflict\n" > README.md
 git add README.md
 git commit -m "This repo needs a README.md"
 cat README.md
@@ -739,7 +739,7 @@ two commits on this branch after the "Initial commit".
 ``` bash
 # Switch to branch2 add more to `README.md` and rebase
 git switch branch2
-echo -e "Lets add another commit to make things messier" >> README.md
+echo "Lets add another commit to make things messier" >> README.md
 git add README.md
 git commit -m "Bulking out README.md with more information"
 git lol
