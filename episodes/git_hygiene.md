@@ -6,18 +6,21 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions
 
+- How do I configure Git globally and locally?
 - How do we keep our repository and history clean?
-- How do I avoid `Fixing typo` commits?
 - What are atomic commits?
+- How do I avoid `Fixing typo` commits?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
+- Command line configuration of Git.
+- Manually editing Git configuration files.
+- Use `.gitignore` to avoid adding unnecessary files.
 - Understand the concept of Atomic commits.
 - Amending and fixing commits.
 - Squashing commits.
-- Rebasing commits interactively.
 - Staging hunks with `--patch`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -57,7 +60,7 @@ We  will create a `CONTRIBUTING.md` to the repository, you can either copy and p
 can use `nano CONTRIBUTING.md` to add the file.
 
 ``` bash
-echo -e "# Contributing\n\nTo contribute please make a fork of this repository, make your changes and open a Pull Request." > CONTRIBUTING.md
+echo "# Contributing\n\nTo contribute please make a fork of this repository, make your changes and open a Pull Request." > CONTRIBUTING.md
 git add CONTRIBUTING.md
 git commit -m "docs: Ask for PRs via fork in CONTRIBUTING.md\n"
 ```
@@ -91,7 +94,7 @@ test suite and find that on running it your tests fail so you needed to make a c
 more explicit about how to report bugs.
 
 ``` bash
-echo -e "Bug reports are also welcome please create an [issue](https://github.com/<user-name>/python-maths/issues).\n" >> CONTRIBUTING.md
+echo "Bug reports are also welcome please create an [issue](https://github.com/<user-name>/python-maths/issues).\n" >> CONTRIBUTING.md
 ```
 
 We could add a new commit for this.
@@ -169,7 +172,7 @@ git lol
 Now let's expand our `CONTRIBUTING.md` file further.
 
 ``` bash
-echo -e "\nPlease note this repository uses [pre-commit](https://pre-commit.com) to lint the Python code and Markdown files." >> CONTRIBUTING.md
+echo "\nPlease note this repository uses [pre-commit](https://pre-commit.com) to lint the Python code and Markdown files." >> CONTRIBUTING.md
 ```
 
 We want to merge this commit with the first one we made in this tutorial and can do so using `git commit --fixup`. To do
