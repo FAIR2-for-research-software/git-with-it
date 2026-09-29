@@ -351,7 +351,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Git Hygiene</h1>
-        <p>Last updated on 2026-03-02 |
+        <p>Last updated on 2026-09-29 |
 
         <a href="https://github.com/ns-rse/git-with-it/edit/main/episodes/git_hygiene.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -370,9 +370,10 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How do we keep our repository and history clean?</li>
-<li>How do I avoid <code>Fixing typo</code> commits?</li>
+<ul><li>How do I configure Git globally and locally?</li>
+<li>How do we keep our repository and history clean?</li>
 <li>What are atomic commits?</li>
+<li>How do I avoid <code>Fixing typo</code> commits?</li>
 </ul></div>
 </div>
 </div>
@@ -380,10 +381,12 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Understand the concept of Atomic commits.</li>
+<ul><li>Command line configuration of Git.</li>
+<li>Manually editing Git configuration files.</li>
+<li>Use <code>.gitignore</code> to avoid adding unnecessary files.</li>
+<li>Understand the concept of Atomic commits.</li>
 <li>Amending and fixing commits.</li>
 <li>Squashing commits.</li>
-<li>Rebasing commits interactively.</li>
 <li>Staging hunks with <code>--patch</code>.</li>
 </ul></div>
 </div>
@@ -432,7 +435,7 @@ can use <code>nano CONTRIBUTING.md</code> to add the file.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"# Contributing\n\nTo contribute please make a fork of this repository, make your changes and open a Pull Request."</span> <span class="op">&gt;</span> CONTRIBUTING.md</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="bu">echo</span> <span class="st">"# Contributing\n\nTo contribute please make a fork of this repository, make your changes and open a Pull Request."</span> <span class="op">&gt;</span> CONTRIBUTING.md</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="fu">git</span> add CONTRIBUTING.md</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs: Ask for PRs via fork in CONTRIBUTING.md\n"</span></span></code></pre>
 </div>
@@ -475,7 +478,7 @@ bugs.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"Bug reports are also welcome please create an [issue](https://github.com/&lt;user-name&gt;/python-maths/issues).\n"</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="bu">echo</span> <span class="st">"Bug reports are also welcome please create an [issue](https://github.com/&lt;user-name&gt;/python-maths/issues).\n"</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span></code></pre>
 </div>
 <p>We could add a new commit for this.</p>
 <div class="codewrapper sourceCode" id="cb7">
@@ -565,7 +568,7 @@ These can then be autosquashed via an interactive Git rebase.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"\nPlease note this repository uses [pre-commit](https://pre-commit.com) to lint the Python code and Markdown files."</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="bu">echo</span> <span class="st">"\nPlease note this repository uses [pre-commit](https://pre-commit.com) to lint the Python code and Markdown files."</span> <span class="op">&gt;&gt;</span> CONTRIBUTING.md</span></code></pre>
 </div>
 <p>We want to merge this commit with the first one we made in this
 tutorial and can do so using <code>git commit --fixup</code>. To do this
@@ -672,7 +675,7 @@ each step are provided but try not to use them instead you can use your
   Main branch with improved docstrings
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The instructions should have guided you through.</p>
 <p>On the <code>main</code> branch of your <code>python-maths</code>
@@ -1345,7 +1348,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/RSE-Sheffield/uos-varnish/tree/main" class="external-link">varnish (1.0.7)</a> [UoS fork]</p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1367,8 +1370,8 @@ any links that you are not going to use.
   "url": "fair2-for-research-software.github.io/git-with-it/git_hygiene.html",
   "identifier": "fair2-for-research-software.github.io/git-with-it/git_hygiene.html",
   "dateCreated": "2023-10-09",
-  "dateModified": "2026-03-02",
-  "datePublished": "2026-08-25"
+  "dateModified": "2026-09-29",
+  "datePublished": "2026-09-29"
 }
 
   </script><script>
